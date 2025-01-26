@@ -33,8 +33,8 @@ export default function (userOptions?: Options) {
           containerId: "search",
           showImages: false,
           showEmptyFilters: true,
-          resetStyles: false
-        }
+          resetStyles: false,
+        },
       }))
       .use(basePath())
       .use(toc())
