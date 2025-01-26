@@ -31,4 +31,4 @@ jobs:
         with:
           project: "timpost-lume-infima-55"
           entrypoint: "src/serve.ts"
-          root: "/"
+          root: ""
