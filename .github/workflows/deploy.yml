@@ -29,14 +29,6 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-<<<<<<< HEAD
           project: "timpost-lume-infima-55"
           entrypoint: "serve.ts"
           root: "/"
-=======
-          project: "dreamydocs"
-          entrypoint: "src/serve.ts"
-          root: ""
-          
-          
->>>>>>> 4e438df47b8da47de7971a0fe7220f490168f603
