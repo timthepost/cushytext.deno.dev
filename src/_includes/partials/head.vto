@@ -1,0 +1,11 @@
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title || metas.title }} - {{ metas.site }}</title>
+    <meta name="color-scheme" content="light dark">
+    <link rel="canonical" href="{{ url |> url(true) }}">
+        
+    <!-- theme-stylesheet is scoped in main.js for theme switching -->
+    <link id="theme-stylesheet" rel="stylesheet" href="/infima-css/theme-light.css">
+    
+    <!-- overrides and such -->
+    <link rel="stylesheet" href="/style.css">

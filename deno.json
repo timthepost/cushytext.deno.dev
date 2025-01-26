@@ -1,0 +1,34 @@
+{
+  "imports": {
+    "lume/": "https://deno.land/x/lume@v2.5.0/",
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.7.3/"
+  },
+  "tasks": {
+    "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
+    "build": "deno task lume",
+    "serve": "deno task lume -s",
+    "dev": "LUME_DRAFTS=true deno task lume -s --watch",
+    "clean": "rm -rf _site || true; rm -rf .netlify || true",
+    "update-deps": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.8/cli.ts' update plugins.ts deno.json"
+  },
+  "compilerOptions": {
+    "types": [
+      "lume/types.ts"
+    ]
+  },
+  "lint": {
+    "exclude": [
+      "./_site"
+    ],
+    "rules": {
+      "tags": [
+        "recommended"
+      ]
+    }
+  },
+  "fmt": {
+    "exclude": [
+      "./_site"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+Currently, theme-dark.css and theme-light.css are generated from a build in 
+the infima repository. Ideally, we just use the PostCSS plugin here and build
+them from source, so that we can load them as components as-needed instead
+of the entire honking framework on every request. 
+
+Someone better with PostCSS (even though my last name is Post (btw, feel free
+to ask me about how that's going)) than me needs to take a look at just how that's
+going to happen. 
+
+I've included the gulpfile and everything else from:
+
+https://github.com/facebookincubator/infima
+
+See the stuff in the infima-postcss-src directory. 
+
+--tim

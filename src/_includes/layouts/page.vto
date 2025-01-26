@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="{{ lang || metas.lang }}" data-theme="light">
+  <head>
+    {{ include "partials/head.vto" }}
+    {{ include "partials/scripts.vto" }}
+  </head>
+  <body>
+    {{ include "partials/nav.vto" }}
+    <div class="main-wrapper">
+      <main data-pagefind-body>
+        <div class="container margin-top--sm">
+          {{ content }}
+        </div>
+      </main>
+    </div>
+    {{ include "partials/footer.vto" }}
+    <script type="text/javascript" src="/main.js" />
+  </body>
+</html>
