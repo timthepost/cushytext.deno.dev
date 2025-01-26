@@ -31,6 +31,6 @@ jobs:
         with:
           project: "dreamydocs"
           entrypoint: "src/serve.ts"
-          root: "/"
+          root: ""
           
           
