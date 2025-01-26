@@ -33,7 +33,7 @@ export default function (userOptions?: Options) {
           containerId: "search",
           showImages: false,
           showEmptyFilters: true,
-          resetStyles: false,
+          resetStyles: true,
         },
       }))
       .use(basePath())
