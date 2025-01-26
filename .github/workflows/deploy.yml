@@ -1,29 +1,36 @@
-name: Publish on Deno Deploy
-
+name: Deploy
 on:
   push:
-    branches: [main]
+    branches: main
+  pull_request:
+    branches: main
 
 jobs:
-  build:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
+
     permissions:
-      id-token: write
-      contents: read
+      id-token: write # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
 
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Setup Deno environment
+      - name: Install Deno
         uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
 
-      - name: Build site
-        run: deno task build
+      - name: Build step
+        run: "deno task build"
 
-      - name: Deploy to Deno Deploy
+      - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: lume-infima
-          import-map: "./deno.json"
-          entrypoint: serve.ts
+          project: "dreamydocs"
+          entrypoint: "src/serve.ts"
+          root: "/"
+          
+          
