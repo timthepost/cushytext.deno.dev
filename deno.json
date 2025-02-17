@@ -1,13 +1,13 @@
 {
   "imports": {
-    "lume/": "https://deno.land/x/lume@v2.5.0/",
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@ca4e31e5e1ac05ddfea1d521238fa50a6acc11bf/",
     "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.7.3/"
   },
   "tasks": {
     "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
     "build": "deno task lume",
     "serve": "deno task lume -s",
-    "dev": "LUME_DRAFTS=true deno task lume -s --watch",
+    "dev": "LUME_DRAFTS=true deno task lume -s",
     "clean": "rm -rf _site || true; rm -rf .netlify || true",
     "update-deps": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.8/cli.ts' update plugins.ts deno.json"
   },
