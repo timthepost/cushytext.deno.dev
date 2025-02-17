@@ -33,20 +33,18 @@ export default function (userOptions?: Options) {
       .use(mdx({ extensions: [".mdx"] }))
       .use(sitemap(options.sitemap))
       .use(favicon(options.favicon))
+      .remoteFile(
+          "_includes/css/theme-light.css",
+            "https://cdn.jsdelivr.net/npm/infima@0.2.0-alpha.45/dist/css/default/default.css",
+      )
+      .remoteFile(
+        "_includes/css/theme-dark.css",
+        "https://cdn.jsdelivr.net/npm/infima@0.2.0-alpha.45/dist/css/default-dark/default-dark.css",
+      )
       .add("uploads")
       .add("serve.ts")
       .add("main.js", ".")
       .add("_includes/js", "js")
-      .add("_includes/css", "infima-css");
-    /*
-      site.remoteFile(
-          "_includes/css/infima-light.css",
-            "https://cdn.jsdelivr.net/npm/infima@0.2.0-alpha.45/dist/css/default/default.css",
-      );
-      site.remoteFile(
-        "_includes/css/infima-dark.css",
-        "https://cdn.jsdelivr.net/npm/infima@0.2.0-alpha.45/dist/css/default-dark/default-dark.css",
-      );
-      */
+      .add("_includes/css", "css")
   };
 }

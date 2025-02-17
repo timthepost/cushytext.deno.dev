@@ -18,7 +18,7 @@ function sync() {
   const userTheme = getLocalStorageOrDefault("theme", "light");
 
   function syncCSS() {
-    themeStyleSheet.href = `/infima-css/theme-${userTheme}.css`;
+    themeStyleSheet.href = `/css/theme-${userTheme}.css`;
   }
 
   function syncTheme() {
