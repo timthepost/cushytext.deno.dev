@@ -1,4 +1,0 @@
-# TODO
-
-Once we're sure these are set, we can just load them
-as remote files (see plugins.ts)
