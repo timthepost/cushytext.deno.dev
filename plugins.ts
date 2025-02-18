@@ -26,7 +26,7 @@ export default function (userOptions?: Options) {
 
   return (site: Lume.Site) => {
     site.use(postcss())
-      .add(".css")
+      .add([".css"])
       .use(basePath())
       .use(toc())
       .use(metas())
