@@ -9,6 +9,7 @@
   /* Global */
   --ifm-global-border-width: 1px;
   --ifm-global-radius: 0.4rem;
+
   /* Color tweaks */
   --ifm-dark-value: 10%;
   --ifm-darker-value: 15%;
@@ -20,6 +21,7 @@
   --ifm-contrast-foreground-value: 70%;
   --ifm-contrast-background-dark-value: 70%;
   --ifm-contrast-foreground-dark-value: 90%;
+
   /* Typography. */
   --ifm-font-color-base: var(--ifm-color-content);
   --ifm-font-color-base-inverse: var(--ifm-color-content-inverse);
@@ -243,13 +245,6 @@
   --ifm-tabs-padding-vertical: 1rem;
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 * {
   box-sizing: border-box;
 }
@@ -279,13 +274,6 @@ iframe {
 }
 
 /* Layout */
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .container {
   margin: 0 auto;
@@ -443,13 +431,6 @@ iframe {
 .col--offset-12 {
   margin-left: calc(12 / 12 * 100%);
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .margin--none {
   margin: 0 !important;
@@ -813,13 +794,6 @@ iframe {
 
 /* Content */
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 code {
   background-color: var(--ifm-code-background);
   border: 0.1rem solid rgba(0, 0, 0, 0.1);
@@ -900,13 +874,6 @@ h6 {
   font-size: var(--ifm-h6-font-size);
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 img {
   max-width: 100%;
 }
@@ -918,13 +885,6 @@ img[align="right"] {
 img[align="left"] {
   padding-right: var(--image-alignment-padding);
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .markdown {
   --ifm-h1-vertical-rhythm-top: 3;
@@ -1006,13 +966,6 @@ img[align="left"] {
   margin-top: var(--ifm-list-item-margin);
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 /* Lists */
 
 ul,
@@ -1039,13 +992,6 @@ ol ul ol,
 ol ol ol {
   list-style-type: lower-alpha;
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 table {
   border-collapse: collapse;
@@ -1086,13 +1032,6 @@ table th {
 table td {
   color: var(--ifm-table-cell-color);
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 strong {
   font-weight: var(--ifm-font-weight-bold);
@@ -1156,13 +1095,6 @@ hr {
 
 /* Utilities */
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 .shadow--lw {
   box-shadow: var(--ifm-global-shadow-lw) !important;
 }
@@ -1174,13 +1106,6 @@ hr {
 .shadow--tl {
   box-shadow: var(--ifm-global-shadow-tl) !important;
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .text--primary {
   color: var(--ifm-color-primary);
@@ -1270,20 +1195,6 @@ hr {
   text-decoration: none;
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 .clean-btn {
   background: none;
   border: none;
@@ -1299,13 +1210,6 @@ hr {
 }
 
 /* Components */
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .alert--primary {
   --ifm-alert-background-color: var(--ifm-color-primary-contrast-background);
@@ -1409,13 +1313,6 @@ hr {
   text-decoration-thickness: 2px;
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 .avatar {
   -moz-column-gap: var(--ifm-avatar-intro-margin);
   column-gap: var(--ifm-avatar-intro-margin);
@@ -1467,13 +1364,6 @@ hr {
   flex-direction: column;
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 .badge {
   background-color: var(--ifm-badge-background-color);
   border: var(--ifm-badge-border-width) solid var(--ifm-badge-border-color);
@@ -1517,13 +1407,6 @@ hr {
   --ifm-badge-background-color: var(--ifm-color-danger);
   --ifm-badge-border-color: var(--ifm-badge-background-color);
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .breadcrumbs {
   margin-bottom: 0;
@@ -1601,13 +1484,6 @@ area[href].breadcrumbs__link:hover {
 .breadcrumbs--lg {
   --ifm-breadcrumb-size-multiplier: 1.2;
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .button {
   background-color: var(--ifm-button-background-color);
@@ -1797,13 +1673,6 @@ area[href].breadcrumbs__link:hover {
   --ifm-button-border-color: var(--ifm-color-danger-darker);
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 .button-group {
   display: inline-flex;
   gap: var(--ifm-button-group-spacing);
@@ -1827,13 +1696,6 @@ area[href].breadcrumbs__link:hover {
 .button-group--block > .button {
   flex-grow: 1;
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .card {
   background-color: var(--ifm-card-background-color);
@@ -1879,13 +1741,6 @@ area[href].breadcrumbs__link:hover {
 .card__footer {
   margin-top: auto; /* Pushes the footer to the bottom of the card. */
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .table-of-contents {
   font-size: 0.8rem;
@@ -2649,57 +2504,6 @@ html[data-theme="dark"],
 .tabs--block .tabs__item {
   flex-grow: 1;
   justify-content: center;
-}
-
-/* Mode */
-
-html[data-theme="dark"] {
-  --ifm-color-scheme: dark;
-
-  --ifm-color-emphasis-0: var(--ifm-color-gray-1000);
-  --ifm-color-emphasis-100: var(--ifm-color-gray-900);
-  --ifm-color-emphasis-200: var(--ifm-color-gray-800);
-  --ifm-color-emphasis-300: var(--ifm-color-gray-700);
-  --ifm-color-emphasis-400: var(--ifm-color-gray-600);
-  --ifm-color-emphasis-500: var(--ifm-color-gray-500);
-  --ifm-color-emphasis-600: var(--ifm-color-gray-400);
-  --ifm-color-emphasis-700: var(--ifm-color-gray-300);
-  --ifm-color-emphasis-800: var(--ifm-color-gray-200);
-  --ifm-color-emphasis-900: var(--ifm-color-gray-100);
-  --ifm-color-emphasis-1000: var(--ifm-color-gray-0);
-
-  --ifm-background-color: #1b1b1d;
-  --ifm-background-surface-color: #242526;
-
-  --ifm-hover-overlay: rgba(255, 255, 255, 0.05);
-
-  --ifm-color-content: #e3e3e3;
-  --ifm-color-content-secondary: rgba(255, 255, 255, 1);
-
-  --ifm-breadcrumb-separator-filter: invert(64%) sepia(11%) saturate(0%)
-    hue-rotate(149deg) brightness(99%) contrast(95%);
-
-  --ifm-code-background: rgba(255, 255, 255, 0.1);
-
-  --ifm-scrollbar-track-background-color: #444444;
-  --ifm-scrollbar-thumb-background-color: #686868;
-  --ifm-scrollbar-thumb-hover-background-color: #7a7a7a;
-
-  --ifm-table-stripe-background: rgba(255, 255, 255, 0.07);
-
-  --ifm-toc-border-color: var(--ifm-color-emphasis-200);
-  --ifm-color-primary-contrast-background: rgb(16, 36, 69);
-  --ifm-color-primary-contrast-foreground: rgb(235, 242, 252);
-  --ifm-color-secondary-contrast-background: rgb(71, 71, 72);
-  --ifm-color-secondary-contrast-foreground: rgb(253, 253, 254);
-  --ifm-color-success-contrast-background: rgb(0, 49, 0);
-  --ifm-color-success-contrast-foreground: rgb(230, 246, 230);
-  --ifm-color-info-contrast-background: rgb(25, 60, 71);
-  --ifm-color-info-contrast-foreground: rgb(238, 249, 253);
-  --ifm-color-warning-contrast-background: rgb(77, 56, 0);
-  --ifm-color-warning-contrast-foreground: rgb(255, 248, 230);
-  --ifm-color-danger-contrast-background: rgb(75, 17, 19);
-  --ifm-color-danger-contrast-foreground: rgb(255, 235, 236);
 }
 
 @media (min-width: 1440px) {
