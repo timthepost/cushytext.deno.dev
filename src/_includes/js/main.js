@@ -1,7 +1,3 @@
-/*
- * Load the framework helpers, theme switchers, etc.
- */
-
 function getLocalStorageOrDefault(key, defaultValue) {
   const storedValue = localStorage.getItem(key);
   if (storedValue !== null) {
