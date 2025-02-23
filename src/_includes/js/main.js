@@ -21,7 +21,7 @@ function toggleColorTheme() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  /* See _includes/partials/scripts.vto for more about these */
+
   alert(document.querySelectorAll(".alert"));
   buttonGroups(document.querySelectorAll(".button-group"));
   dropdowns(document.querySelectorAll(".dropdown"));
