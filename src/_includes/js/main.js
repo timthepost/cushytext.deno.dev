@@ -8,6 +8,7 @@ function getLocalStorageOrDefault(key, defaultValue) {
   }
 }
 
+// TODO: Combine this with  toggleMode(). 
 function sync() {
   const html = document.documentElement;
   const userTheme = getLocalStorageOrDefault("theme", "light");
@@ -19,6 +20,7 @@ function sync() {
   syncTheme();
 }
 
+// TODO: rename to toggleColorTheme()
 function toggleMode() {
   const userTheme = localStorage.getItem("theme");
   localStorage.setItem("theme", userTheme === "dark" ? "light" : "dark");
