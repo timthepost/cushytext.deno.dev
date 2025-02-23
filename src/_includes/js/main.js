@@ -21,7 +21,6 @@ function toggleColorTheme() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
   alert(document.querySelectorAll(".alert"));
   buttonGroups(document.querySelectorAll(".button-group"));
   dropdowns(document.querySelectorAll(".dropdown"));
