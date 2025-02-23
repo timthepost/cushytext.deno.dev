@@ -8,20 +8,15 @@ function getLocalStorageOrDefault(key, defaultValue) {
   }
 }
 
-// TODO: Combine this with  toggleMode(). 
+// TODO: Combine this with  toggleMode().
 function sync() {
   const html = document.documentElement;
   const userTheme = getLocalStorageOrDefault("theme", "light");
-
-  function syncTheme() {
-    html.setAttribute("data-theme", userTheme === "dark" ? "dark" : "light");
-  }
-
-  syncTheme();
+  html.setAttribute("data-theme", userTheme === "dark" ? "dark" : "light");
 }
 
 // TODO: rename to toggleColorTheme()
-function toggleMode() {
+function toggleColorTheme() {
   const userTheme = localStorage.getItem("theme");
   localStorage.setItem("theme", userTheme === "dark" ? "light" : "dark");
   sync();
@@ -41,6 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const themeSwitcher = document.getElementById("mode-toggle");
   if (themeSwitcher) {
     sync();
-    themeSwitcher.addEventListener("click", toggleMode);
+    themeSwitcher.addEventListener("click", toggleColorTheme);
   }
 });
