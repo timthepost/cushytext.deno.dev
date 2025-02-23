@@ -10,18 +10,12 @@ function getLocalStorageOrDefault(key, defaultValue) {
 
 function sync() {
   const html = document.documentElement;
-  const themeStyleSheet = document.querySelector("#theme-stylesheet");
   const userTheme = getLocalStorageOrDefault("theme", "light");
-
-  function syncCSS() {
-    themeStyleSheet.href = `/css/theme-${userTheme}.css`;
-  }
 
   function syncTheme() {
     html.setAttribute("data-theme", userTheme === "dark" ? "dark" : "light");
   }
 
-  syncCSS();
   syncTheme();
 }
 

@@ -5,139 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-/* Common */
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 :root {
-  --ifm-color-scheme: light;
-
-  /* Colors. */
+  /* Global */
+  --ifm-global-border-width: 1px;
+  --ifm-global-radius: 0.4rem;
+  /* Color tweaks */
   --ifm-dark-value: 10%;
   --ifm-darker-value: 15%;
   --ifm-darkest-value: 30%;
   --ifm-light-value: 15%;
   --ifm-lighter-value: 30%;
   --ifm-lightest-value: 50%;
-
-  /*
-  This seems like a lot, but we want to ensure enough contrast.
-  Goal is to have a min score of 3 on https://www.myndex.com/APCA/fullmatrix
-  For fontWeight 400 + score 3, the cell must show a value < 16px (fontsize we use in places like alerts)
-  See also https://github.com/facebookincubator/infima/issues/55#issuecomment-884023075
-   */
   --ifm-contrast-background-value: 90%;
   --ifm-contrast-foreground-value: 70%;
-  /* Using slightly different values for dark mode */
   --ifm-contrast-background-dark-value: 70%;
   --ifm-contrast-foreground-dark-value: 90%;
-
-  --ifm-color-primary: #3578e5;
-  --ifm-color-secondary: #ebedf0;
-  --ifm-color-success: #00a400;
-  --ifm-color-info: #54c7ec;
-  --ifm-color-warning: #ffba00;
-  --ifm-color-danger: #fa383e;
-  --ifm-color-primary-dark: rgb(48, 108, 206);
-  --ifm-color-primary-darker: rgb(45, 102, 195);
-  --ifm-color-primary-darkest: rgb(37, 84, 160);
-  --ifm-color-primary-light: rgb(83, 140, 233);
-  --ifm-color-primary-lighter: rgb(114, 161, 237);
-  --ifm-color-primary-lightest: rgb(154, 188, 242);
-  --ifm-color-primary-contrast-background: rgb(235, 242, 252);
-  --ifm-color-primary-contrast-foreground: rgb(16, 36, 69);
-  --ifm-color-secondary-dark: rgb(212, 213, 216);
-  --ifm-color-secondary-darker: rgb(200, 201, 204);
-  --ifm-color-secondary-darkest: rgb(164, 166, 168);
-  --ifm-color-secondary-light: rgb(238, 240, 242);
-  --ifm-color-secondary-lighter: rgb(241, 242, 245);
-  --ifm-color-secondary-lightest: rgb(245, 246, 248);
-  --ifm-color-secondary-contrast-background: rgb(253, 253, 254);
-  --ifm-color-secondary-contrast-foreground: rgb(71, 71, 72);
-  --ifm-color-success-dark: rgb(0, 148, 0);
-  --ifm-color-success-darker: rgb(0, 139, 0);
-  --ifm-color-success-darkest: rgb(0, 115, 0);
-  --ifm-color-success-light: rgb(38, 178, 38);
-  --ifm-color-success-lighter: rgb(77, 191, 77);
-  --ifm-color-success-lightest: rgb(128, 210, 128);
-  --ifm-color-success-contrast-background: rgb(230, 246, 230);
-  --ifm-color-success-contrast-foreground: rgb(0, 49, 0);
-  --ifm-color-info-dark: rgb(76, 179, 212);
-  --ifm-color-info-darker: rgb(71, 169, 201);
-  --ifm-color-info-darkest: rgb(59, 139, 165);
-  --ifm-color-info-light: rgb(110, 207, 239);
-  --ifm-color-info-lighter: rgb(135, 216, 242);
-  --ifm-color-info-lightest: rgb(170, 227, 246);
-  --ifm-color-info-contrast-background: rgb(238, 249, 253);
-  --ifm-color-info-contrast-foreground: rgb(25, 60, 71);
-  --ifm-color-warning-dark: rgb(230, 167, 0);
-  --ifm-color-warning-darker: rgb(217, 158, 0);
-  --ifm-color-warning-darkest: rgb(179, 130, 0);
-  --ifm-color-warning-light: rgb(255, 196, 38);
-  --ifm-color-warning-lighter: rgb(255, 207, 77);
-  --ifm-color-warning-lightest: rgb(255, 221, 128);
-  --ifm-color-warning-contrast-background: rgb(255, 248, 230);
-  --ifm-color-warning-contrast-foreground: rgb(77, 56, 0);
-  --ifm-color-danger-dark: rgb(225, 50, 56);
-  --ifm-color-danger-darker: rgb(213, 48, 53);
-  --ifm-color-danger-darkest: rgb(175, 39, 43);
-  --ifm-color-danger-light: rgb(251, 86, 91);
-  --ifm-color-danger-lighter: rgb(251, 116, 120);
-  --ifm-color-danger-lightest: rgb(253, 156, 159);
-  --ifm-color-danger-contrast-background: rgb(255, 235, 236);
-  --ifm-color-danger-contrast-foreground: rgb(75, 17, 19);
-
-  --ifm-color-white: #fff;
-  --ifm-color-black: #000;
-
-  --ifm-color-gray-0: var(--ifm-color-white);
-  --ifm-color-gray-100: #f5f6f7;
-  --ifm-color-gray-200: #ebedf0;
-  --ifm-color-gray-300: #dadde1;
-  --ifm-color-gray-400: #ccd0d5;
-  --ifm-color-gray-500: #bec3c9;
-  --ifm-color-gray-600: #8d949e;
-  --ifm-color-gray-700: #606770;
-  --ifm-color-gray-800: #444950;
-  --ifm-color-gray-900: #1c1e21;
-  --ifm-color-gray-1000: var(--ifm-color-black);
-
-  --ifm-color-emphasis-0: var(--ifm-color-gray-0);
-  --ifm-color-emphasis-100: var(--ifm-color-gray-100);
-  --ifm-color-emphasis-200: var(--ifm-color-gray-200);
-  --ifm-color-emphasis-300: var(--ifm-color-gray-300);
-  --ifm-color-emphasis-400: var(--ifm-color-gray-400);
-  --ifm-color-emphasis-500: var(--ifm-color-gray-500);
-  --ifm-color-emphasis-600: var(--ifm-color-gray-600);
-  --ifm-color-emphasis-700: var(--ifm-color-gray-700);
-  --ifm-color-emphasis-800: var(--ifm-color-gray-800);
-  --ifm-color-emphasis-900: var(--ifm-color-gray-900);
-  --ifm-color-emphasis-1000: var(--ifm-color-gray-1000);
-
-  /* Base. */
-  --ifm-color-content: var(--ifm-color-emphasis-900);
-  --ifm-color-content-inverse: var(--ifm-color-emphasis-0);
-  --ifm-color-content-secondary: #525860;
-
-  --ifm-background-color: transparent; /* Body's background. */
-  --ifm-background-surface-color: var(--ifm-color-content-inverse);
-  --ifm-global-border-width: 1px;
-  --ifm-global-radius: 0.4rem;
-
-  --ifm-hover-overlay: rgba(0, 0, 0, 0.05);
-
   /* Typography. */
   --ifm-font-color-base: var(--ifm-color-content);
   --ifm-font-color-base-inverse: var(--ifm-color-content-inverse);
@@ -165,8 +47,8 @@
   --ifm-spacing-horizontal: var(--ifm-global-spacing);
 
   /* Transitions. */
-  --ifm-transition-fast: 200ms;
-  --ifm-transition-slow: 400ms;
+  --ifm-transition-fast: 0ms;
+  --ifm-transition-slow: 0ms;
   --ifm-transition-timing-default: cubic-bezier(0.08, 0.52, 0.52, 1);
 
   /* Shadows. */
@@ -980,13 +862,6 @@ kbd {
   font: 80% var(--ifm-font-family-monospace);
   padding: 0.15rem 0.3rem;
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 h1,
 h2,
@@ -2045,13 +1920,6 @@ area[href].breadcrumbs__link:hover {
   text-decoration: none;
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 .close {
   color: var(--ifm-color-black);
   float: right;
@@ -2071,13 +1939,6 @@ area[href].breadcrumbs__link:hover {
 .close:focus {
   opacity: 0.8;
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .dropdown {
   display: inline-flex;
@@ -2158,13 +2019,6 @@ area[href].breadcrumbs__link:hover {
   transform: translateY(-50%);
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 .footer {
   background-color: var(--ifm-footer-background-color);
   color: var(--ifm-footer-color);
@@ -2216,23 +2070,9 @@ area[href].breadcrumbs__link:hover {
   margin-bottom: 0;
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 [type="checkbox"] {
   padding: 0;
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .hero {
   align-items: center;
@@ -2260,13 +2100,6 @@ area[href].breadcrumbs__link:hover {
   font-size: 1.5rem;
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 .menu {
   font-weight: var(--ifm-font-weight-semibold);
   overflow-x: hidden;
@@ -2277,8 +2110,6 @@ area[href].breadcrumbs__link:hover {
   margin: 0;
   padding-left: 0;
 }
-
-/* Non-top level menus */
 
 .menu__list .menu__list {
   flex: 0 0 100%;
@@ -2388,13 +2219,6 @@ area[href].breadcrumbs__link:hover {
   width: 1.25rem;
   transition: transform var(--ifm-transition-fast) linear;
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 html[data-theme="dark"],
 .navbar--dark {
@@ -2648,13 +2472,6 @@ html[data-theme="dark"],
   margin-left: auto;
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 .pagination {
   -moz-column-gap: var(--ifm-pagination-page-spacing);
   column-gap: var(--ifm-pagination-page-spacing);
@@ -2712,13 +2529,6 @@ html[data-theme="dark"],
   text-decoration: none;
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 .pagination-nav {
   display: grid;
   grid-gap: var(--ifm-spacing-horizontal);
@@ -2768,13 +2578,6 @@ html[data-theme="dark"],
   margin-bottom: 0.25rem;
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 .pills {
   display: flex;
   gap: var(--ifm-pills-spacing);
@@ -2808,13 +2611,6 @@ html[data-theme="dark"],
   flex-grow: 1;
   text-align: center;
 }
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 .tabs {
   color: var(--ifm-tabs-color);
@@ -2856,13 +2652,6 @@ html[data-theme="dark"],
 }
 
 /* Mode */
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 html[data-theme="dark"] {
   --ifm-color-scheme: dark;
