@@ -4,50 +4,24 @@ title: README (MDX Playground)
 
 # A "Cushy" ☁️ Docu-Site Base Template For Lume
 
-<strong>
-[Get this sloppy MDX code on Github &raquo;](https://github.com/timthepost/lume-infima)
-</strong> 
+Infima is a great framework for content-heavy sites. I thought
+it would be great to use in Lume. 
 
-This is a copy of the `README.md` file from the repo:
+See `/pages` for pages, `/docs` for documentation and `/posts` for the
+blog styles. I don't have indexes worked out yet. Or tags.
 
-This theme was put together in order to bring a documentation site theme with a
-familiar content-optimized CSS framework (Infima, used by Docusaurus) along with
-popular plugins and dynamic features that any technical documentation author
-would want.
+Search will require using lume's router middleware to just use the pagefind
+API (since pagefind breaks this template with its styles)
 
-I decided that it's worth doing this _really well_ one time, in a way that
-leaves a lasting artifact for others, than to half-ass it a dozen times across
-the projects that all develop different persistent bugs and ick to maintain.
+All of the components (hero, buttons, breadcrumbs, pills, badges, admonitions,
+etc) will be Lume3 components with styles compartmentalized.
 
-<div class="alert alert--danger margin-bottom--lg" role="alert">
-  This is <strong>ALPHA-QUALITY</strong> code. Expect many breaking changes.
-</div>
+See `src/style.css` for colors. Currently working on nav and generation stuff.
 
-## The Big Wishlist / Initial Features:
+This is nowhere near ready for use, is probably broken, and not really documented
+yet.
 
-- Infima CSS (ideally loadable per-component)
-- Basic search pre-configured
-- Redirects, Site Map, Gtag integration
-- Content Rating Feature Using Lume Routing Functionality along with backend ✨
-- Font Accessibility Selector (optional: Open Dyslexic) + Google Font Manager
-- MDX
-- Example layouts:
-  - Blog Post
-  - Blog Archive Page
-  - Index W / Hero & Features
-  - Doc With Sidebar
-  - 9x9 Grid Layout
-- Components for UX candy (pills, buttons, admonitions, etc}
-
-## Archetypes for CLI
-
-- Front / Landing page with hero and features
-- Landing / Inner content page with nav bar, bread crumbs and pagination
-- Blog Post layout
-- Adjustable grid layout example
-- Documentation page with sidebars, codeblocks
-
-### Motivation (Why Infima?)
+## Motivation (Why Infima?)
 
 Infima CSS is the framework that emerged from the
 [Docusaurus](https://docusaurus.io) project, developed out-in-the-open by Meta
@@ -66,15 +40,3 @@ When Meta open-sourced Infima, they specifically said:
 > documentation-site styling could use it too.
 
 This is precisely that kind of case.
-
-### Swim at Your Own Risk!
-
-Expect daily breaking changes when I'm active, and frequent bouts of me not
-being active. This project is being built along side some professional writing
-projects I'm working on to supplement my needs as a disabled person, so I only
-have so many spoons, but I really need _this_ framework in order to achieve the
-results I want in those projects; out in the open seemed like a great place to
-build.
-
-I'm [Tim Post](https://timthepost.netlify.app) (`timthepost@protonmail.com`) if you want to collaborate, you can also find me
-in the [Lume Discord](https://discord.gg/DTGe9UFA) server.
