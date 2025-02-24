@@ -39,7 +39,6 @@ export default function (userOptions?: Options) {
       .use(favicon(options.favicon))
       .add("_includes/js", "js")
       .add("_includes/css", "css")
-      .add("uploads")
-      .add("serve.ts");
+      .add("uploads");
   };
 }
