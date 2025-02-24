@@ -6,21 +6,35 @@ title: Dreamy Docs
 # Goals:
 
  - Be component driven (all [features](/features/) should be Lume 3 components with
-   isolated CSS).
+   isolated CSS), this includes the hero banner above this content.
+
+ - Be i18n friendly, but don't go overboard. See also "Don't try to be Docusaurus" 
+   below.
 
  - Bring a touch of interactivity (content rating, contact form) using Lume's
    router middleware + DenoKV for a nearly zero-config experience.
 
- - Do not try to be Docusaurus: offer basic nav with some additional options in
-   the `_data.yml` files, generate a blog index and archive page, and that's it.
-   Not doing extensive sidebars, collections, or anything else like that. If they
-   are needed, they can be added as plugins by users of the theme.
-
  - Nice plugin setup from the start (including fonts, accessible font switcher,
    Dynamic OG Image, compression, minification, etc)
 
+ - Implement site tags with an eye toward making them smart (some tags could also
+   flip feature flags), export tags to JSON so other things can use them.
+
+ - No cookies / cookie banners. 
+
+ - Accessibility Matters.
+
  - Don't be fragile: set defaults for things. Make doing the right thing easier 
-   than taking on debt.
+   than not.
+
+ - Dev experience should match production (middlewares, redirects, etc)
+
+## Non-Goals:
+
+ - Do not try to be Docusaurus: offer basic nav with some additional options in
+   the `_data.yml` files, generate a blog index and archive page, and that's it.
+   Not doing extensive sidebars, collections, versioning or anything else like 
+   that. Maintainers can add functionality via plugins. 
 
 ## Current Status:
 
