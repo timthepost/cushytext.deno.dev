@@ -6,7 +6,7 @@ const site = lume({
   src: "./src",
   location: new URL("https://example.deno.dev"),
   server: {
-    middlewares: [router.middleware()]
+    middlewares: [router.middleware()],
   },
 });
 
