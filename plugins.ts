@@ -5,6 +5,7 @@ import redirects from "lume/plugins/redirects.ts";
 import postcss from "lume/plugins/postcss.ts";
 import basePath from "lume/plugins/base_path.ts";
 import metas from "lume/plugins/metas.ts";
+import robots from "lume/plugins/robots.ts";
 import mdx from "lume/plugins/mdx.ts";
 import toc from "https://deno.land/x/lume_markdown_plugins@v0.7.1/toc.ts";
 
@@ -31,6 +32,7 @@ export default function (userOptions?: Options) {
       .use(basePath())
       .use(toc())
       .use(metas())
+      .use(robots())
       .use(mdx({ extensions: [".mdx"] }))
       .use(redirects({ output: "json" }))
       .use(sitemap(options.sitemap))
