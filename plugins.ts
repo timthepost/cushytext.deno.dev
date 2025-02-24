@@ -32,7 +32,7 @@ export default function (userOptions?: Options) {
       .use(toc())
       .use(metas())
       .use(mdx({ extensions: [".mdx"] }))
-      .use(redirects({ output: "json"}))
+      .use(redirects({ output: "json" }))
       .use(sitemap(options.sitemap))
       .use(favicon(options.favicon))
       .add("_includes/js", "js")
