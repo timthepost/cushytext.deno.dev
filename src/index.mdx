@@ -6,8 +6,13 @@ title: Dreamy Docs
 # Goals:
 
  - Be component driven (all [infima features](/features/) should be Lume 3 
-   components with isolated CSS), this includes the hero banner above this 
-   content.
+   components), this includes the hero banner above this content. However,
+   one shouldn't _be required_ to use the component form of something in 
+   all applications, so the component CSS is kept global, with override
+   CSS files affecting only the component styles on a per-component basis.
+
+   Likewise, JS component events still run globally; components can introduce
+   additional JS if needed. We'll have to figure that out.
 
  - Be i18n friendly, but don't go overboard. See also "Don't try to be 
    Docusaurus" below.
@@ -25,17 +30,19 @@ title: Dreamy Docs
 
  - Accessibility Matters.
 
- - Don't be fragile: set defaults for things. Make doing the right thing easier 
-   than not.
+ - Don't be fragile: set defaults for things. Make taking the correct path easier 
+   than not wherever possible.
 
- - Dev experience should match production (middlewares, redirects, etc)
+ - DevEx should match production (middlewares, redirects, etc)
 
 ## Non-Goals:
 
  - Do not try to be Docusaurus: offer basic nav with some additional options in
    the `_data.yml` files, generate a blog index and archive page, and that's it.
    Not doing extensive sidebars, collections, versioning or anything else like 
-   that. Maintainers can add functionality via plugins. 
+   that. Maintainers can add functionality via plugins or additional generators.
+   This is a fully-loaded theme, not really a platform in itself. It could be the
+   start of a platform, though.
 
 ## Current Status As Of February 2025:
 
