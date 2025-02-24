@@ -1,0 +1,40 @@
+---
+layout: layouts/homepage.vto
+title: Dreamy Docs
+---
+
+# Goals:
+
+ - Be component driven (all [features](/features/) should be components with)
+   isolated CSS.
+
+ - Bring a touch of interactivity (content rating, contact form) using Lume's
+   router middleware + DenoKV for a nearly zero-config experience.
+
+ - Do not try to be Docusaurus: offer basic nav with some additional options in
+   the `_data.yml` files, generate a blog index and archive page, and that's it.
+   Not doing extensive sidebars, collections, or anything else like that. If they
+   are needed, they can be added as plugins by users of the theme.
+
+ - Nice plugin setup from the start (including fonts, accessible font switcher,
+   Dynamic OG Image, compression, minification, etc)
+
+ - Don't be fragile: set defaults for things. Make doing the right thing easier 
+   than taking on debt.
+
+## Current Status:
+
+  - Infima has been imported (`src/_includes/css/theme.css` with color and main variable
+  definitions found in `src/style.css`). The `src/style.css` is what's loaded by the theme,
+  which loads the `theme.css` file. Note that, soon, component-specific styles (Like breadcrumbs, 
+  tabs, buttons, pills, etc) will be compartmentalized in `_plugins/(component)/style.css`. Right 
+  now, `main.js` sets up all of the helper JS for each one, we'll move this to a per-component model 
+  too. There is no need to set up event listeners until the content actually exists.
+
+  - Basic structure (pages in `/pages`, documentation-style files in `/docs`, posts in `/blog`
+  ) has been set up. Current focus is getting the nav auto generated with some yaml tweaks for
+  it where appropriate.
+
+  - Now running Lume 3 Dev 
+
+Not much else has been finished yet. 
