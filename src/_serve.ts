@@ -1,7 +1,7 @@
 import Server from "lume/core/server.ts";
 import expires from "lume/middlewares/expires.ts";
 import notFound from "lume/middlewares/not_found.ts";
-import router from "./server_routes.ts";
+import router from "./_server_routes.ts";
 
 const server = new Server({
   port: 8000,
