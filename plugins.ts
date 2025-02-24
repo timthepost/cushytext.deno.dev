@@ -1,5 +1,5 @@
 import { Options as SitemapOptions, sitemap } from "lume/plugins/sitemap.ts";
-import { favicon, Options as FaviconOptions } from "lume/plugins/favicon.ts";
+import { Options as FaviconOptions, favicon } from "lume/plugins/favicon.ts";
 import { merge } from "lume/core/utils/object.ts";
 import redirects from "lume/plugins/redirects.ts";
 import postcss from "lume/plugins/postcss.ts";
@@ -8,6 +8,7 @@ import metas from "lume/plugins/metas.ts";
 import robots from "lume/plugins/robots.ts";
 import mdx from "lume/plugins/mdx.ts";
 import toc from "https://deno.land/x/lume_markdown_plugins@v0.7.1/toc.ts";
+import nav from "lume/plugins/nav.ts";
 
 import "lume/types.ts";
 
@@ -31,6 +32,7 @@ export default function (userOptions?: Options) {
       .add([".css"])
       .use(basePath())
       .use(toc())
+      .use(nav())
       .use(metas())
       .use(robots())
       .use(mdx({ extensions: [".mdx"] }))
