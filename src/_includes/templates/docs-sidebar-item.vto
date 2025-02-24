@@ -1,0 +1,18 @@
+{{ if item.data.url }}
+  <a href="{{ item.data.url }}" class="menu__link">
+    {{ item.data.title }}
+  </a>
+{{ else }}
+  <a href="#" class="menu__link">
+    {{ item.data.basename }}
+  </a>
+{{ /if }}
+{{ if item.children }}
+<ul>
+  {{ for child of item.children }}
+  <li class="menu__list-item">
+    {{ include "templates/docs-sidebar-item.vto" { item: child } }}
+  </li>
+  {{ /for }}
+</ul>
+{{ /if }}
