@@ -1,8 +1,8 @@
 lang: en
-title: Dreamy Docs
-slogan: A Cushy Infima-Based Documentation Theme For Lume.
+title: Cushy Docs
+slogan: A "Cushy" Infima-Based Documentation Theme For Lume.
 metas:
-  site: Dreamy Docs
+  site: "=title"
   description: "=slogan"
   icon: /uploads/favicon.svg
   lang: =lang
