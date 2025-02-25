@@ -1,4 +1,5 @@
 _site
 _cache
+src/_menu_structure.json
 .DS_Store
 node_modules
