@@ -28,12 +28,12 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Lume.Site) => {
-    site.use(postcss())
+    site.use(nav())
+      .use(postcss())
       .add([".css"])
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
       .use(redirects({ output: "json" }))
-      .use(nav())
       .use(toc())
       .use(metas())
       .use(robots())
