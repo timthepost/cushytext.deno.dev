@@ -1,71 +1,44 @@
+{{ set menuItems = nav.menu(url, "hide_menu!=true", "order=asc title=asc-locale basename=asc-locale").children || [] }}
+{{ set breadCrumbs = nav.breadcrumb(url, `lang=${lang} hide_menu!=true`) }}
   <div class="row">
     <div class="col col--3">
       <div class="menu thin-scrollbar">
         <ul class="menu__list">
+          {{ for item of breadCrumbs }}
+            {{ if item.data.url }}
+              {{ if item.data.url !== url }}
+              <li class="meny__list--item">
+                <a class="menu__link" href="{{ item.data.url }}">&laquo; {{ item.data.title || item.slug }}</a></li>
+              {{ /if }}
+            {{ else if item.slug }}
+              <li class="menu__list-item"><strong>{{ item.slug }}</strong></li>
+            {{ /if }}
+          {{ /for }}
           <li class="menu__list-item">
-            <a class="menu__link" href="#url">No-Category Link (Folder Index Title)</a>
+            <a class="menu__link" href="{{ page.url }}">{{ title }}</a>
           </li>
-          <li class="menu__list-item">
-            <div class="menu__list-item-collapsible">
-              <a class="menu__link" href="#url">Collapsible Category</a>
-              <button
-                type="button"
-                class="clean-btn menu__caret"></button>
-            </div>
-            <ul class="menu__list">
-              <li class="menu__list-item">
-                <a class="menu__link menu__link--active" href="#url">
-                  Child Link Number One
-                </a>
-              </li>
-              <li class="menu__list-item">
-                <a class="menu__link" href="#url">
-                  Child Link Number Two
-                </a>
-              </li>
-              <li class="menu__list-item">
-                <a class="menu__link" href="#url">
-                  Child Link Number Three
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu__list-item menu__list-item--collapsed">
-            <div class="menu__list-item-collapsible">
-              <a class="menu__link" href="#url">
-                A Very Long Default-Collapsed Category
-              </a>
-              <button
-                type="button"
-                class="clean-btn menu__caret"></button>
-            </div>
-            <ul class="menu__list">
-              <li class="menu__list-item">
-                <a class="menu__link" href="#url">Child Link</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu__list-item menu__list-item--collapsed">
-            <div class="menu__list-item-collapsible">
-              <a class="menu__link menu__link--sublist" href="#url">
-                Another Category With Links
-              </a>
-              <button
-                type="button"
-                class="clean-btn menu__caret"></button>
-            </div>
-            <ul class="menu__list">
-              <li class="menu__list-item">
-                <a class="menu__link" href="#url">Child Link One</a>
-              </li>
-            </ul>
-          </li>
+          {{ for item of menuItems }}
+            {{ if item.data.url }}
+              {{ if item.data.url !== url }}
+              <li class="meny__list--item">
+                <a class="menu__link" href="{{ item.data.url }}">{{ item.data.title || item.slug }}</a></li>
+              {{ /if }}
+            {{ else if item.slug }}
+              <li class="menu__list-item"><strong>{{ item.slug }}</strong></li>
+            {{ /if }}
+          {{ /for }}
+          
         </ul>
       </div>
     </div>
     <div class="col col--6">
+      <nav aria-label="breadcrumbs">
+        <ul class="breadcrumbs">
+
+        </ul>
+      </nav>
       <div class="markdown">
-      {{ content || "Markdown Goes Here" }}
+        {{ content || "Markdown Goes Here" }}
       </div>
       <nav class="pagination-nav margin-top--lg">
         <div class="pagination-nav__item">
