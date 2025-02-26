@@ -6,20 +6,7 @@
         <ul class="menu__list">
           {{ for item of breadCrumbs }}
             {{ if item.data.url }}
-              {{ if item.data.url !== url }}
-              <li class="meny__list--item">
-                <a class="menu__link" href="{{ item.data.url }}">&laquo; {{ item.data.title || item.slug }}</a></li>
-              {{ /if }}
-            {{ else if item.slug }}
-              <li class="menu__list-item"><strong>{{ item.slug }}</strong></li>
-            {{ /if }}
-          {{ /for }}
-          <li class="menu__list-item">
-            <a class="menu__link" href="{{ page.url }}">{{ title }}</a>
-          </li>
-          {{ for item of menuItems }}
-            {{ if item.data.url }}
-              {{ if item.data.url !== url }}
+              {{ if item.data.url != "/" }}
               <li class="meny__list--item">
                 <a class="menu__link" href="{{ item.data.url }}">{{ item.data.title || item.slug }}</a></li>
               {{ /if }}
@@ -27,7 +14,14 @@
               <li class="menu__list-item"><strong>{{ item.slug }}</strong></li>
             {{ /if }}
           {{ /for }}
-          
+          {{ for item of menuItems }}
+            {{ if item.data.url }}
+              <li class="meny__list--item">
+                <a class="menu__link" href="{{ item.data.url }}">{{ item.data.title || item.slug }}</a></li>
+            {{ else if item.slug }}
+              <li class="menu__list-item"><strong>{{ item.slug }}</strong></li>
+            {{ /if }}
+          {{ /for }}
         </ul>
       </div>
     </div>
