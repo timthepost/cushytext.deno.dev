@@ -30,7 +30,5 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "timpost-lume-infima-68"
-          entrypoint: "/src/_serve.ts"
+          entrypoint: "src/_serve.ts"
           root: ""
-          
-          
