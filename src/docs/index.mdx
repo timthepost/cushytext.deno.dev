@@ -1,28 +1,49 @@
 ---
-title: Docs Index Page
+title: Documentation Home
 ---
 
-# Welcome To Your /docs Index Page!
+# Welcome to your /docs Index Page!
 
-This is some content. Obviously, some more media queries
-and thought into design is needed here. Should make the 
-left nav a child of the hamburger one?
+You'll probably want to replace this with something fancy. Also,
+all those links? They exist to show you how auto generation works.
 
-## We need headings to test the TOC, ignore this title.
+## A primer on how /docs currently works:
 
-Perhaps a two-column design for `docs` is better, 
-where the side begins with "on this page .." then the TOC,
-then "In this collection" with the docs nav.
+This page is just here as a quick primer for what works.
+Currently, `/docs` has the following data (from `docs/_data.yml`):
 
-## Same thing about the headings ...
-This then becomes the hamburger "child" nav (with a Link
-back to the main hamburger nav)?
+```yml
+layout: layouts/docupage.vto
+docs_basedir: /docs/
+docs_title: Cushu Docs Documentation
+sidebar: auto
+```
 
-### Also, Ignore this heading.
+The `layout` is what loads the docs template. You can modify it however
+you like. The `docs_basedir` value is important because it tells the nav
+generator where to anchor itself. `docs_title` is how the top level 
+nav link to the docs folder should appear.
 
-I like option 2 better so far. Thinking about it.
+Finally, `sidebar` can either be `auto` (default) which auto-generates a
+basic but very flat sidebar navigation link structure.
 
-## Finally, this heading
+## Custom sidebars, sort order and TOC coming soon
 
-Hopefully soon I can stop writing gibberish and go back
-to writing good stuff.
+You can soon pass a custom sidebar as the value for `sidebar`. This 
+will be available once the existing auto generation is broken out into 
+its own template. Not sure if .json or .vto at this point.
+
+There should also be some kind of sort order for the way the nav is 
+built, which is planned but not urgent.
+
+TOC will go on the left, which makes it all easier to vanish ito the 
+hamburger.
+
+## Bottom next / prev not yet functional
+
+Possible with `nav.breadcrumbs()` I think, but still just prototype HTML.
+
+## Changed from 3 to 2 column
+
+It just made more sense. The third column only had the TOC, which can be 
+floated or just kept on the left sidebar.
