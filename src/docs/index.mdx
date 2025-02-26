@@ -2,14 +2,18 @@
 title: Documentation Home
 ---
 
-# Welcome to your /docs Index Page!
+# Welcome to your documentation Index Page!
 
 You'll probably want to replace this with something fancy. Also,
 all those links? They exist to show you how auto generation works.
 
 ## A primer on how /docs sidebars currently work:
 
-Currently, `/docs` has the following config, in `docs/_data.yml`:
+To start with, it doesn't have to be named `/docs`! It could be 
+`/documentation` or whatever you like, or you can remove it completely.
+
+What does matter is the `_data.yml` file that you place in the directory
+with your documentation, which is what makes it all work:
 
 ```yml
 layout: layouts/docupage.vto
@@ -18,34 +22,83 @@ docs_title: Documentation Home
 docs_sidebar: auto
 ```
 
-You can have a diferent `_data.yml` in each folder inside `docs_basedir`, if 
-you want to control sidebars individually. Or you can pass a custom sidebar
-file as the value of `docs_sidebar` (coming soon)
+Line by line, we have:
 
-The `layout` is what loads the docs template. You can modify it however
-you like. The `docs_basedir` value is important because it tells the nav
-generator where to anchor itself. `docs_title` is how the top level 
-nav link to the docs folder should appear.
+ - The template used to generate docs-style pages, which you can 
+ modify in `src/_includes/layouts/docupage.vto`. 
 
-## Custom sidebars, sort order and TOC coming soon.
+ - `docs_basedir` sets the root of the documentation, which is used 
+ to anchor the auto auto nav generation, among other things. This 
+ should always match the directory that you use for documentation.
 
-Unsure if the custom value will accept JSON, a template file, or both.
-Still deciding on that. 
+ - The `docs_title` setting controls the top named anchor in the 
+ nav. This is a temporary work-around while a smarter nav generator
+ is being developed.
 
-There should also be some kind of sort order for the way the nav is 
-built, which is planned but not urgent.
+ - The  `docs_sidebar` setting controls whether the docs pages nav
+ should be automatically generated. If it's set to `auto`, the nav
+ will be automatically generated. Soon, this setting will allow you
+ to pass a custom sidebar object (JSON or JS most likely)
 
-Finally, the TOC will go on the left, which makes it all easier to vanish 
-ito the hamburger.
+***Any and all of this is subject to change, because the nav code is
+probably the most actively-changing right now.***
 
-## Bottom next / prev not yet functional.
+## Coming Soon: Auto TOC, Breadcrumbs, Next / Prev & Custom Sidebars & Sort Orders
 
-Possible with `nav.breadcrumbs()` I think, but still just prototype HTML.
+Use your own nav generator, or a static nav. More than likely, the 
+sidebar setting will accept JSON in the same format that the `Nav` 
+plugin uses. 
 
-## Changed from 3 to 2 column design.
+Next and prev links aren't yet auto-generated, but will be once sort
+orders are sorted out (every pun intended).
 
-Originally, it was modeled after Docusaurus. But two columns just made more
-sense. The third column only had the TOC, which can be floated or just kept 
-on the left sidebar. 
+## Two Column Design 
 
-We're not Docusaurus, after all :)
+Originally we had a 3-column left sidebar, a 6-column center content 
+area, and then a 3-column right sidebar. That may be the "classic"
+look, but ended up being a giant waste of space in this setting.
+
+Because docs, blog and content pages all have to fold neatly into 
+the responsive left-side nav, staying with two-columns and just 
+having the TOC and Nav share the same sidebar made the most sense.
+
+If you want to go back to three columns, you'll need to edit the 
+template, and have it look something like this (and this is just
+using Infama's [grid system](https://infima.dev/docs/layout/grid)):
+
+```HTML
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- left nav goes here -->
+        </div>
+        <div class="col-md-6">
+            <!-- content goes here -->
+        </div>
+        <div class="col-md-3">
+            <!-- Table Of Contents -->
+            <!-- right nav goes here -->
+        </div>
+    </div>
+</div>
+```
+
+Just remember, all the nav has to exist in the hamburger flyout too, 
+which keeps things interesting.
+
+You could also experiment with different sizes, just remember it
+all has to add up to 12 columns. To make the content 8 columns, you'd
+have to steal a column from both sidebars, for instance.
+
+Once sort order is all ironed out, the top and hamburger navs will be 
+auto generated, as well as the footer.
+
+## Search 
+
+Search will be global (just use `data-pagefind` as usual), but it will 
+be powered by some middleware that uses the Pagefind API to get its 
+own results, so it controls its own styles.
+
+This was not by choice, I would have reather used Pagefind out of the box
+without having to customize it, but its styles break the nav bar no 
+matter what is done to shim it in. 
