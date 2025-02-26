@@ -1,25 +1,17 @@
-{{ set menuItems = nav.menu(url, "hide_menu!=true", "order=asc title=asc-locale basename=asc-locale").children || [] }}
-{{ set breadCrumbs = nav.breadcrumb(url, `lang=${lang} hide_menu!=true`) }}
+{{ set menuItems = nav.menu(docs_basedir, "hide_menu!=true", "order=asc title=asc-locale basename=asc-locale").children || [] }}
+{{ set breadCrumbs = nav.breadcrumbs(url, `lang=${lang} hide_menu!=true`) }}
   <div class="row">
     <div class="col col--3">
       <div class="menu thin-scrollbar">
         <ul class="menu__list">
-          {{ for item of breadCrumbs }}
-            {{ if item.data.url }}
-              {{ if item.data.url != "/" }}
-              <li class="meny__list--item">
-                <a class="menu__link" href="{{ item.data.url }}">{{ item.data.title || item.slug }}</a></li>
-              {{ /if }}
-            {{ else if item.slug }}
-              <li class="menu__list-item"><strong>{{ item.slug }}</strong></li>
-            {{ /if }}
-          {{ /for }}
           {{ for item of menuItems }}
             {{ if item.data.url }}
               <li class="meny__list--item">
                 <a class="menu__link" href="{{ item.data.url }}">{{ item.data.title || item.slug }}</a></li>
             {{ else if item.slug }}
               <li class="menu__list-item"><strong>{{ item.slug }}</strong></li>
+            {{ else if item.data.children }}
+              <li class="menu__list-item"><strong>An Unknown Child</strong></li>
             {{ /if }}
           {{ /for }}
         </ul>
