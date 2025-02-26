@@ -9,6 +9,7 @@ import robots from "lume/plugins/robots.ts";
 import mdx from "lume/plugins/mdx.ts";
 import toc from "https://deno.land/x/lume_markdown_plugins@v0.7.1/toc.ts";
 import nav from "lume/plugins/nav.ts";
+import CushyDocs from "./src/_plugins/cushy-docs-conductor/mod.ts";
 
 import "lume/types.ts";
 
@@ -28,7 +29,9 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Lume.Site) => {
-    site.use(nav())
+    site
+      .use(nav())
+      .use(CushyDocs())
       .use(postcss())
       .add([".css"])
       .use(mdx({ extensions: [".mdx"] }))
