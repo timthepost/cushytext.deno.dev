@@ -1,9 +1,9 @@
 {{ set menuItems = nav.menu(docs_basedir, "hide_menu!=true", "order=asc title=asc-locale basename=asc-locale").children || [] }}
-{{ set breadCrumbs = nav.breadcrumbs(url, `lang=${lang} hide_menu!=true`) }}
   <div class="row">
     <div class="col col--3">
       <div class="menu thin-scrollbar">
         <ul class="menu__list">
+        {{ if sidebar == "auto" }}
           {{ for item of menuItems }}
             {{ if item.data.url }}
               <li class="meny__list--item">
@@ -14,6 +14,9 @@
               <li class="menu__list-item"><strong>An Unknown Child</strong></li>
             {{ /if }}
           {{ /for }}
+        {{ else }}
+          <p>Need to implement JSON parsing of file passed {{ sidebar }}</p>
+        {{ /if }}
         </ul>
       </div>
     </div>

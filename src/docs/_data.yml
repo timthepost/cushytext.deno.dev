@@ -1,2 +1,3 @@
 layout: layouts/docupage.vto
 docs_basedir: /docs/
+sidebar: auto
