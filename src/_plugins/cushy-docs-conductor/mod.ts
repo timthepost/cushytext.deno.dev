@@ -20,23 +20,21 @@ export const defaults: Options = {
 // things that go bump during the run
 const cachedWarnings = new Map<string, Set<string>>();
 
-function cushyUpdate(msg:string) : void {
+function cushyUpdate(msg: string): void {
   log.info(`☁️⠀⠀${msg}`);
 }
 
 export default function CushyDocs(userOptions?: Options) {
-  
   const options = merge(defaults, userOptions);
   cachedWarnings.clear();
-  cushyUpdate('Starting up ...');
+  cushyUpdate("Starting up ...");
 
   return (site: Site) => {
-
     // code to generate tags
     site.process(options.extensions, (pages) => {
       for (const _page of pages) {
         // do tag stuff
       }
-    }
-  )};
+    });
+  };
 }
