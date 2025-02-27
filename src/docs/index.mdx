@@ -15,11 +15,14 @@ To start with, it doesn't have to be named `/docs`! It could be
 What does matter is the `_data.yml` file that you place in the directory
 with your documentation, which is what makes it all work:
 
+`docs/_data.yml`: 
+
 ```yml
 layout: layouts/docupage.vto
-docs_basedir: /docs/
-docs_title: Documentation Home
-docs_sidebar: auto
+docs:
+  basedir: /docs/
+  title: Documentation Home
+  sidebar: auto
 ```
 
 Line by line, we have:
@@ -27,30 +30,77 @@ Line by line, we have:
  - The template used to generate docs-style pages, which you can 
  modify in `src/_includes/layouts/docupage.vto`. 
 
- - `docs_basedir` sets the root of the documentation, which is used 
- to anchor the auto auto nav generation, among other things. This 
- should always match the directory that you use for documentation.
+ - `docs.basedir` sets the root of the documentation instance, which 
+ is used to anchor the auto auto nav generation, among other things. This 
+ should always match the directory that you use for documentation.s
 
- - The `docs_title` setting controls the top named anchor in the 
+ - The `docs.title` setting controls the top named anchor in the 
  nav. This is a temporary work-around while a smarter nav generator
  is being developed.
 
- - The  `docs_sidebar` setting controls whether the docs pages nav
+ - The  `docs.sidebar` setting controls whether the docs pages nav
  should be automatically generated. If it's set to `auto`, the nav
  will be automatically generated. Soon, this setting will allow you
- to pass a custom sidebar object (JSON or JS most likely)
+ to pass a custom sidebar object.
 
-***Any and all of this is subject to change, because the nav code is
-probably the most actively-changing right now.***
+As for the docs pages, the individual frontmatter settings that are most 
+relevant to this archetype aren't in the `docs` space, but in the main 
+page frontmatter:
 
-## Coming Soon: Auto TOC, Breadcrumbs, Next / Prev & Custom Sidebars & Sort Orders
+```yml
+order: 1
+hidden: false
+draft: false
+```
+
+ - `order` is numeric and controls which place the link should appear 
+ in the nav.
+
+ - `hidden` allows the page to be generated, but keeps it out of the
+ generated nav.
+
+ - `draft` does not generate the page at all unless `LUME_DRAFTS` is 
+ set in the environment.
+
+With these settings, you get an experience that's relatively close to 
+other documentation generation themes. However, for right now: ***Any 
+and all of this is subject to change, because the nav code is probably 
+the most actively-moving target right now.*** Nav is one of those things 
+that's easy to get 80% of the way through only to realize your approach 
+is wrong and was never going to work to begin with. Ask me how I know 
+sometime!
+
+## Coming Soon: Auto TOC, Breadcrumbs, Next / Prev & Custom Sidebars
 
 Use your own nav generator, or a static nav. More than likely, the 
-sidebar setting will accept JSON in the same format that the `Nav` 
-plugin uses. 
+sidebar setting will accept some kind of JSON format. 
 
-Next and prev links aren't yet auto-generated, but will be once sort
-orders are sorted out (every pun intended).
+Next and prev links aren't yet auto-generated. I'm thinking about 
+using `site.search()` instead of the `Nav` plugin helper class
+for almost everything _but_ breadcrumbs, because `nav.breadcrumbs()`
+is extremely useful.
+
+The docs archetype is the most complicated component of having the 
+nav almost completely auto-generated everywhere, because docs have
+complicated sidebar hierarchies that have to end up in the responsive
+fly-out nav as a secondary menu.
+
+So, the very first couple of releases probably won't have the custom
+sidebar object handling yet, just because it's quite a symphony we 
+have to conduct already, without that additional complication.
+
+Anyway, once navigation works in the top menu as well as the sidebar,
+navigation is basically done. That's the good part.
+
+## Tags Will Work here
+
+The main lifting for the site tag engine will be done by the 
+`cushy-docs-conductor` plugin that's soaking in `src/_plugins/`. It 
+will handle blog, pages, docs with the subtle differences they require.
+
+Part of why we're implementing search in middleware is because we want
+to be able to limit by tags and by content-type, e.g. blogs and docs
+tagged `foo`, but exclude inner content `/pages`.
 
 ## Two Column Design 
 
@@ -76,7 +126,6 @@ using Infama's [grid system](https://infima.dev/docs/layout/grid)):
             <!-- content goes here -->
         </div>
         <div class="col-md-3">
-            <!-- Table Of Contents -->
             <!-- right nav goes here -->
         </div>
     </div>
