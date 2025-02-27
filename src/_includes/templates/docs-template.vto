@@ -1,11 +1,11 @@
-{{ set menuItems = nav.menu(docs_basedir, "hide_menu!=true", "order=asc title=asc-locale basename=asc-locale").children || [] }}
+{{ set menuItems = nav.menu(docs.basedir, "hide_menu!=true", "order=asc title=asc-locale basename=asc-locale").children || [] }}
   <div class="row">
     <div class="col col--3">
       <div class="menu thin-scrollbar">
         <ul class="menu__list">
-        {{ if docs_sidebar === "auto" }}
+        {{ if docs.sidebar === "auto" }}
           <li class="menu__list--item">
-            <a href="{{ docs_basedir }}" class="menu__link">{{ docs_title }}</a>
+            <a href="{{ docs.basedir }}" class="menu__link">{{ docs.title }}</a>
           </li>
           {{ for item of menuItems }}
             {{ if item.data.url }}
@@ -18,7 +18,7 @@
             {{ /if }}
           {{ /for }}
         {{ else }}
-          <p>Need to implement JSON parsing of file passed to {{ sidebar }}</p>
+          <p>Need to implement parsing of value passed to <code>docs.sidebar</code>: {{ docs.sidebar }}</p>
         {{ /if }}
         </ul>
       </div>

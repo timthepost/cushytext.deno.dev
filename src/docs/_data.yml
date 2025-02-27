@@ -1,5 +1,6 @@
 layout: layouts/docupage.vto
 
-docs_basedir: /docs/
-docs_title: Documentation Home
-docs_sidebar: auto
+docs:
+  basedir: /docs/
+  title: Documentation Home
+  sidebar: auto
