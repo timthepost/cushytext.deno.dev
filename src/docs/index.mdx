@@ -9,19 +9,12 @@ all those links to the left, in the sidebar? They exist to show
 you how auto generation works. Each one is a file (or folder)
 within `{docs.basedir}`, or <code>{docs.basedir}</code>.
 
-`tl;dr:` Everything in here is subject to breaking changes while
-completely auto nav generation gets worked out. Not just for this
-part, but all content.
-
-If you're curious about that, keep reading.
-
 ## A primer on how "docs" and sidebars currently work:
 
 To start with, it doesn't have to be named `/docs`! It could be 
-`/documentation` or whatever you like, or you can remove it completely.
-
-What does matter is the `_data.yml` file that you place in the directory
-with your documentation, which is what makes it all work:
+`/documentation` or whatever you like, or you can remove it completely. What
+makes it behave like a documentation site is the  `_data.yml` file in the 
+{docs.basedir} directory with your documentation, which is what makes it all work:
 
 `docs/_data.yml`: 
 
@@ -80,35 +73,28 @@ sometime!
 
 ## Coming Soon: Auto TOC, Breadcrumbs, Next / Prev & Custom Sidebars
 
-Use your own nav generator, or a static nav. More than likely, the 
-sidebar setting will accept some kind of JSON format. 
+AutoTOC will happen through the community plugin once the rest of the
+generated navigation is sorted out.
 
-Next and prev links aren't yet auto-generated. I'm thinking about 
-using `site.search()` instead of the `Nav` plugin helper class
-for almost everything _but_ breadcrumbs, because `nav.breadcrumbs()`
-is extremely useful.
+Next and prev links aren't yet auto-generated. I'm currently working
+on the whole site nav via Lume's `site.search()`. Once that's done 
+then we'll use  nav.breadcrumbs()` for the next/prev links, which 
+are hopefully turned into components by then.
 
-The docs archetype is the most complicated component of having the 
-nav almost completely auto-generated everywhere, because docs have
-complicated sidebar hierarchies that have to end up in the responsive
-fly-out nav as a secondary menu.
+There is also the need to get everything important in the docs sidebar
+into the sub-menu of the responsive flyout nav menu. That means, by the 
+time this template is even loaded, we should already have sorted nav objects
+to iterate over.
 
-So, the very first couple of releases probably won't have the custom
-sidebar object handling yet, just because it's quite a symphony we 
-have to conduct already, without that additional complication.
+## Tags Will Work Too
 
-Anyway, once navigation works in the top menu as well as the sidebar,
-navigation is basically done. That's the good part.
+Tags will work on every archetype, and be namespaced independently, but 
+in a way that they can be linked together when needed (e.g. search). Tags
+will be a big part of both site search and SEO strategy, and have a 
+separate plugin orchestrating them: `_plugins/cushy-docs-conductor`.
 
-## Tags Will Work here
-
-The main lifting for the site tag engine will be done by the 
-`cushy-docs-conductor` plugin that's soaking in `src/_plugins/`. It 
-will handle blog, pages, docs with the subtle differences they require.
-
-Part of why we're implementing search in middleware is because we want
-to be able to limit by tags and by content-type, e.g. blogs and docs
-tagged `foo`, but exclude inner content `/pages`.
+Use them how you normally would in frontmatter, the 'extra' features and 
+rendering fill follow soon.
 
 ## Two Column Design 
 
@@ -140,7 +126,7 @@ using Infama's [grid system](https://infima.dev/docs/layout/grid)):
 </div>
 ```
 
-Just remember, all the nav has to exist in the hamburger flyout too, 
+Just remember, all the nav has to exist in the responsive flyout too, 
 which keeps things interesting.
 
 You could also experiment with different sizes, just remember it
@@ -154,8 +140,7 @@ auto generated, as well as the footer.
 
 Search will be global (just use `data-pagefind` as usual), but it will 
 be powered by some middleware that uses the Pagefind API to get its 
-own results, so it controls its own styles.
+own results, so it controls its own styles and integrates tags properly.
 
-This was not by choice, I would have reather used Pagefind out of the box
-without having to customize it, but its styles break the nav bar no 
-matter what is done to shim it in. 
+To get a version-0 out, I may just modal the Pagefind div, depends on 
+how things are when it ships in a month or so.
