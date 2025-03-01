@@ -1,0 +1,9 @@
+error_404:
+  title: Content Not Found
+  heading: Content Not Found
+  content: The requested page does not exist.
+
+error_500:
+  title: Internal Server Error
+  heading: Internal Server Error
+  content: The server encountered an error while processing your request.

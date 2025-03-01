@@ -1,9 +1,6 @@
 lang: en
-title: Cushy Docs
-slogan: A "Cushy" Infima-Based Documentation Theme For Lume.
+slogan: A "Cushy" Infima-Based Content Theme For Lume.
 metas:
-  site: "=title"
-  description: "=slogan"
-  icon: /uploads/favicon.svg
-  lang: =lang
+  site: Cushy Content
+  lang: en
   generator: true

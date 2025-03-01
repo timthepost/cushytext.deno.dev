@@ -1,0 +1,14 @@
+{{ include "layouts/base.vto" }}
+  <body>
+    {{ include "partials/nav.vto" }}
+    <div class="main-wrapper">
+      <main>
+        <div class="container margin-top--lg">
+          <h1>{{ locale.error_404.heading }}</h1>
+          {{ locale.error_404.content }}
+        </div>
+      </main>
+    </div>
+    {{ include "partials/footer.vto" }}
+  </body>
+</html>
