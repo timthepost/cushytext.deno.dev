@@ -7,7 +7,6 @@ import basePath from "lume/plugins/base_path.ts";
 import metas from "lume/plugins/metas.ts";
 import robots from "lume/plugins/robots.ts";
 import mdx from "lume/plugins/mdx.ts";
-import toc from "https://deno.land/x/lume_markdown_plugins@v0.7.1/toc.ts";
 import nav from "lume/plugins/nav.ts";
 import CushyDocs from "./src/_plugins/cushy-docs-conductor/mod.ts";
 
@@ -37,7 +36,6 @@ export default function (userOptions?: Options) {
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
       .use(redirects({ output: "json" }))
-      .use(toc())
       .use(metas())
       .use(robots())
       .use(sitemap(options.sitemap))
