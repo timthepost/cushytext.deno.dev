@@ -5,7 +5,7 @@ error_404:
 
 demo:
   hero:
-    title: Cushy Content Template +
+    title: Cushy Text ++
     href: /features/
     cta: Check Out The Components & Features!
     slogans:
@@ -26,9 +26,10 @@ demo:
       href: /blog/mdx-post.mdx
       cta: Other Interactive Ideas
 
-    - title: <code>Dev.Local</code> == <code>Dev.Prod</code>
+    - title: Be Accessible.
       body: |
-        Local dev should match production without mocking or extra steps. <em>The authoring 
-        <b>and</b> visitor reading experience are equally important!</em>
+        Fully-responsive design and components that work in conjunction with the user's preferences
+        for text, theme and motion. Includes a toggle to switch to Open Dyslexic as the displayed
+        font. 
       href: /docs/
       cta: More Project Goals
