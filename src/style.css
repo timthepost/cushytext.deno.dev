@@ -129,3 +129,11 @@ html[data-theme="dark"] {
   --ifm-color-danger-contrast-background: rgb(75, 17, 19);
   --ifm-color-danger-contrast-foreground: rgb(255, 235, 236);
 }
+
+.blog_image {
+  max-height: 675px;
+  width: auto;
+  text-align: center;
+  align-items: center;
+  border-radius: 1rem;
+}
