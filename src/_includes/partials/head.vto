@@ -1,6 +1,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ title || metas.title || 'Error' }} - {{ metas.site }}</title>
+    <title>{{ title || metas.title || locale.error_404.title }} - {{ metas.site }}</title>
     <meta name="color-scheme" content="light dark">
     <link rel="canonical" href="{{ url |> url(true) }}">
     <link id="theme-stylesheet" rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/highlight.css">
