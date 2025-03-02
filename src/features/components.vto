@@ -7,15 +7,33 @@ menu:
   linkText: Infima CSS Components
 ---
 
-<h1>Popular Infima Components</h1>
+<h1>Infima: Powered By Lume3 Components!</h1>
 
-<p>Just a demonstration of the common textual features. Not as
-exhaustive as <a href="https://infima.dev">the docs</a>, but 
-plenty of examples nonetheless. The goal will be to make many
-of these accessible via Lume components and, where needed, 
-partials.</p>
-<p><strong>The framework has way more to offer than this short
-demo page</strong>, so please check out the official docs.</p>
+<p>
+This page serves both as a demonstration of what's included in 
+Infima as it does a model for building components around these
+features. If you look at the theme CSS for these items, you'll 
+see how easily it would be to load styles and scripts on-demand,
+which falls perfectly inline with how Lume3 components are 
+structured.
+</p>
+
+<p>
+For instance, to produce an alert as shown below, the planned
+component would look something like this (in a template):
+</p>
+
+<pre>
+await comp.alert({ type: "primary", text: "Text Here", dismissable: true })
+</pre>
+
+<p>
+You can imagine a similar structure for pills, tabs, breadcrumbs and
+the rest of the utilities and components shown below. This approach
+allows for use it in Vento, JSX, JS or however it makes sense in your 
+setting. Work on this will pick up speed once Lume3 is tested, released and has 
+a short time to bake. <strong>Now, on to the components!</strong>
+</p>
 
 <h2>Alerts:</h2>
 <div class="alert alert--primary margin-bottom--md" role="alert">
@@ -272,6 +290,25 @@ developers, so we try to keep it easy to keep in one's head.</p>
 
 <p>Almost every <code>&lt;h2&gt;</code> element on this page has the class <code>margin-top--lg</code> applied
 to it, for instance.</p>
+
+<h2 class="margin-top--lg">Other Text Helpers</h2>
+
+Colors, weights, etc are easily described in class attributes. To change color,
+for instance, you can add <code>class="text--color"</code>, where `color` is one
+of the theme common colors (primary, secondary, success, info, warning, danger).
+
+Produce colors like:
+
+<p class="text--primary margin-top--lg">Primary Text</p>
+<p class="text--secondary">Secondary Text</p>
+<p class="text--success">Success Text</p>
+<p class="text--info">Info Text</p>
+<p class="text--warning">Warning Text</p>
+<p class="text--danger">Danger Text</p>
+
+Font effects, transformations, weights and more all have shortcuts; see the 
+<a href="https://infima.dev/docs/utilities/text" target="_blank">Infima Docs</a>
+for more information. Just remember to watch out for dark mode.
 
 <h2 class="margin-top--lg">NEEDED: Forms</h2>
 <p>As static sites seldom take input, Infima doesn't have any

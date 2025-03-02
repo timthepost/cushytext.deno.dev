@@ -17,7 +17,7 @@ demo:
         advantage of the new component system in Lume3.
       href: /blog/mdx-post.mdx
       cta: More On Components
-      
+
     - title: Be Interactive!
       body: |
         Take advantage of the middleware in Lume3 on Deno Deploy! This theme will be shipping
@@ -30,6 +30,6 @@ demo:
       body: |
         Fully-responsive design and components that work in conjunction with the user's preferences
         for text, theme and motion. Includes a toggle to switch to Open Dyslexic as the displayed
-        font. 
+        font.
       href: /docs/
       cta: More Project Goals

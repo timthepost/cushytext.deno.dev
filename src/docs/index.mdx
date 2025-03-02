@@ -50,14 +50,17 @@ page frontmatter:
 
 ```yml
 ---
-order: 1
+sort_order: 1
 hidden: false
 draft: false
 ---
 ```
 
- - `order` is numeric and controls which place the link should appear 
- in the nav.
+ - `sort_rder` is numeric and controls which place the link should appear 
+ in the nav. Note, this _does not_ control in what order the page is
+ rendered by Lume when the site is generated, it merely affects the 
+ order of the link in the nav menu. This is added by the theme, but works
+ in all areas, not just docs, so it's part of the top-level data.
 
  - `hidden` allows the page to be generated, but keeps it out of the
  generated nav.
