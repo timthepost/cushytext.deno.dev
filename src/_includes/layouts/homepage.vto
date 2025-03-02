@@ -7,7 +7,7 @@
         <div class="container margin-top--lg">
           <h2>Main Project Goals:</h2>
           <div class="row">
-            {{ for key, value of locale.demo.goals }}
+            {{ for key, value of demo.goals }}
             <div class="col col--4">
               {{ await comp.card({ title: value.title, body: value.body, href: value.href, cta: value.cta, min_height: "275px" }) }}
             </div>

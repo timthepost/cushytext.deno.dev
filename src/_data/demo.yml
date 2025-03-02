@@ -1,0 +1,29 @@
+hero:
+  title: Cushy Text ++
+  href: /features/
+  cta: Check Out The Components & Features!
+  slogans:
+    - A "Cushy" component-driven, text-focused theme for Lume based on Infima CSS.
+goals:
+  - title: Be Component-Driven.
+    body: |
+      Use modularized CSS by default to deliver core Infima components as-needed by taking
+      advantage of the new component system in Lume3.
+    href: /blog/mdx-post.mdx
+    cta: More On Components
+
+  - title: Be Interactive!
+    body: |
+      Take advantage of the middleware in Lume3 on Deno Deploy! This theme will be shipping
+      with an interactive content rating system (and probably some kind of contact form) by
+      default.
+    href: /blog/mdx-post.mdx
+    cta: Other Interactive Ideas
+
+  - title: Be Accessible.
+    body: |
+      Fully-responsive design and components that work in conjunction with the user's preferences
+      for text, theme and motion. Includes a toggle to switch to Open Dyslexic as the displayed
+      font.
+    href: /docs/
+    cta: More Project Goals
