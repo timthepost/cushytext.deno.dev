@@ -1,11 +1,11 @@
 <div class="hero hero--primary" style="height: 25rem">
   <div class="container">
-    <h1 class="hero__title">{{ title }}</h1>
+    <h1 class="hero__title">{{ locale.demo.hero.title }}</h1>
+    {{ for slogan of locale.demo.hero.slogans }}
     <p class="hero__subtitle">{{ slogan }}</p>
-    <div>
-      <a href="/features/">
-        <button class="button button--secondary button--lg">Check Out The Components!</button>
-      </a>
-    </div>
+    {{ /for }}
+    <a href="{{ locale.demo.hero.href }}">
+      <button class="button button--secondary button--lg">{{ locale.demo.hero.cta }}</button>
+    </a>
   </div>
 </div>
