@@ -12,6 +12,7 @@ import CushyDocs from "./src/_plugins/cushy-docs-conductor/mod.ts";
 import code_highlight from "lume/plugins/code_highlight.ts";
 
 // import your favorite language
+import lang_javascript from "npm:highlight.js/lib/languages/javascript";
 import lang_bash from "npm:highlight.js/lib/languages/bash";
 import lang_xml from "npm:highlight.js/lib/languages/xml";
 import lang_yaml from "npm:highlight.js/lib/languages/yaml";
@@ -41,6 +42,8 @@ export default function (userOptions?: Options) {
       .add([".css"])
       .use(code_highlight({
         languages: {
+          javascript: lang_javascript,
+          js: lang_javascript,
           bash: lang_bash,
           sh: lang_bash,
           xml: lang_xml,
