@@ -1,4 +1,7 @@
-import { Element, HTMLDocument } from "https://deno.land/x/deno_dom@v0.1.38/deno-dom-wasm.ts";
+import {
+  Element,
+  HTMLDocument,
+} from "https://deno.land/x/deno_dom@v0.1.38/deno-dom-wasm.ts";
 import type Site from "lume/core/site.ts";
 import { Page } from "lume/core/file.ts";
 
@@ -15,29 +18,28 @@ export default (options: TocOptions = {}) => {
 
   return (site: Site) => {
     site.process([".html"], (pages) => {
-        for (const page of pages) {
-            const document = page.document;
+      for (const page of pages) {
+        const document = page.document;
 
-            if (!document) {
-                return;
-            }
-
-            // Build TOC from the page content
-            const toc = buildToc(document, headingSelector, level);
-            if(toc.children.length === 0) return; // if no headings found, don't modify page
-
-            // Find the TOC container
-            const tocContainer = document.querySelector(tocSelector);
-
-            if (tocContainer) {
-                // Clear existing TOC content
-                tocContainer.innerHTML = "";
-
-                // Replace the TOC in the HTML
-                tocContainer.appendChild(toc);
-            }
+        if (!document) {
+          return;
         }
 
+        // Build TOC from the page content
+        const toc = buildToc(document, headingSelector, level);
+        if (toc.children.length === 0) return; // if no headings found, don't modify page
+
+        // Find the TOC container
+        const tocContainer = document.querySelector(tocSelector);
+
+        if (tocContainer) {
+          // Clear existing TOC content
+          tocContainer.innerHTML = "";
+
+          // Replace the TOC in the HTML
+          tocContainer.appendChild(toc);
+        }
+      }
     });
   };
 };
@@ -45,7 +47,7 @@ export default (options: TocOptions = {}) => {
 function buildToc(
   document: HTMLDocument,
   headingSelector: string,
-  maxLevel: number
+  maxLevel: number,
 ) {
   const headings = document.querySelectorAll(headingSelector);
   const toc = document.createElement("ul");
@@ -71,12 +73,12 @@ function buildToc(
     if (level > maxLevel) continue;
 
     const id = heading.textContent
-        ?.toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/[^a-z0-9-]/g, "");
-    if(!id) continue; // skip if empty heading text
+      ?.toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "");
+    if (!id) continue; // skip if empty heading text
     heading.id = id;
-    
+
     // Adjust nesting level in the TOC
     if (level > currentLevel) {
       // We are entering a deeper level, add a new nested UL
