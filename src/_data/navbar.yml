@@ -19,7 +19,7 @@ top_nav:
         title: A Detailed Overfview Of How Lume3 Components Are Used
       - text: Built In, Customizeable Search
         href: /features/search/
-        title: Powered by included Lume3 middleware API 
+        title: Powered by included Lume3 middleware API
       - text: Interactive Features Built On DenoKV
         href: /features/interactive/
         title: Content rating system, form processing and more!
