@@ -1,4 +1,5 @@
 <!-- This will eventually need to become a component. -->
+<!-- set a secondarySidebar object to either the docs sidebar, blog sidebar or null, depending on what's set -->
 <nav class="navbar navbar--fixed-top">
   <div class="container">
     <div class="navbar__inner">
@@ -130,8 +131,9 @@
           </li>
         </ul>
       </div>
-      <!-- if docs or blog, the sidebar should go here. -->
+      <!-- only show this if the docs or blog sidebar object is not null -->
       <div class="navbar-sidebar__item menu">
+        <!-- and here we just have to display the object (link text, link) -->
         <button type="button" class="clean-btn navbar-sidebar__back">
         {{ if docs }}
           ← Back To Main
