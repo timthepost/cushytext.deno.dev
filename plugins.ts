@@ -17,7 +17,6 @@ import lang_bash from "npm:highlight.js/lib/languages/bash";
 import lang_xml from "npm:highlight.js/lib/languages/xml";
 import lang_yaml from "npm:highlight.js/lib/languages/yaml";
 
-
 import "lume/types.ts";
 
 export interface Options {
@@ -42,21 +41,21 @@ export default function (userOptions?: Options) {
       .use(postcss())
       .add([".css"])
       .use(code_highlight({
-          languages: {
-            javascript: lang_javascript,
-            js: lang_javascript,
-            bash: lang_bash,
-            sh: lang_bash,
-            xml: lang_xml,
-            html: lang_xml,
-            yaml: lang_yaml,
-            yml: lang_yaml,
-          },
-          theme: {
-            name: "an-old-hope", // The theme name to download
-            cssFile: "/highlight.css",
-          }
-        }))
+        languages: {
+          javascript: lang_javascript,
+          js: lang_javascript,
+          bash: lang_bash,
+          sh: lang_bash,
+          xml: lang_xml,
+          html: lang_xml,
+          yaml: lang_yaml,
+          yml: lang_yaml,
+        },
+        theme: {
+          name: "an-old-hope", // The theme name to download
+          cssFile: "/highlight.css",
+        },
+      }))
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
       .use(redirects({ output: "json" }))
