@@ -1,0 +1,34 @@
+top_nav:
+  - type: "link"
+    href: "/blog/"
+    text: Blog & Changelog
+
+  - type: "link"
+    href: "/docs/"
+    text: Documentation
+
+  - type: "menu"
+    href: "/features/"
+    text: Theme Features
+    links:
+      - text: Lume3 Component Oriented
+        href: /features/components/
+        title: A Detailed Overfview Of How Lume3 Components Are Used
+      - text: Built In, Customizeable Search
+        href: /features/search/
+        title: Powered by included Lume3 middleware API 
+      - text: Interactive Features Built On DenoKV
+        href: /features/interactive/
+        title: Content rating system, form processing and more!
+      - text: Fully Loaded, Configured Plugins
+        href: /features/plugins/
+        title: Including OG Image Generation, SEO, More!
+      - text: Ready For Translations
+        href: /features/internationalization/
+        title: Strings are externalized, you supply the layout.
+      - text: Responsive, Accessible, Dyslexic-friendly
+        href: /features/accessibility/
+        title: Open Dyslexic if user prefers dyslexic-friendly font.
+      - text: SEO-minded, Optimized, Minified and Fast!
+        href: /features/performance/
+        title: If no one can find it, who does it help?
