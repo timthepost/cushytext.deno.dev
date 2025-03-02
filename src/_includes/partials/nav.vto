@@ -27,7 +27,7 @@
         {{ for key, value of navbar.top_nav }}
           {{ if value.type == "menu" }}
             <div class="navbar__item dropdown dropdown--hoverable">
-              <a class="navbar__link" href="{{ value.href }}">{{ value.text }}</a>
+              <a class="navbar__link" href="{{ value.href }}" title="{{ value.title }}">{{ value.text }}</a>
               <ul class="dropdown__menu">
                 {{ for index, menuItem of value.links }}
                   <li>
