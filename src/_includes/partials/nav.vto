@@ -25,7 +25,7 @@
           <span style="font-size: 185%">☁️</span>
         </a>
         {{ for key, value of navbar.top_nav }}
-          {{ if value.type == "menu" }}
+          {{ if value.type === "menu" }}
             <div class="navbar__item dropdown dropdown--hoverable">
               <a class="navbar__link" href="{{ value.href }}" title="{{ value.title }}">{{ value.text }}</a>
               <ul class="dropdown__menu">
@@ -38,7 +38,7 @@
                 {{ /for }}
               </ul>
             </div>
-          {{ else if value.type == "link" }}
+          {{ else if value.type === "link" }}
             <a class="navbar__item navbar__link" href="{{ value.href }}" title="{{ value.title }}">
               {{ value.text }}
             </a>
