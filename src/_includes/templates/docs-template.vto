@@ -1,24 +1,15 @@
-{{ set menuItems = nav.menu(docs.basedir, "hide_menu!=true", "order=asc title=asc-locale basename=asc-locale").children || [] }}
   <div class="row">
     <div class="col col--3">
       <div class="menu thin-scrollbar">
         <ul class="menu__list">
         {{ if docs.sidebar === "auto" }}
-          <li class="menu__list--item">
-            <a href="{{ docs.basedir }}" class="menu__link">{{ docs.title }}</a>
-          </li>
-          {{ for item of menuItems }}
-            {{ if item.data.url }}
-              <li class="menu__list--item">
-                <a class="menu__link" href="{{ item.data.url }}">{{ item.data.title || item.slug }}</a></li>
-            {{ else if item.slug }}
-              <li class="menu__list-item"><strong>{{ item.slug }}</strong></li>
-            {{ else if item.data.children }}
-              <li class="menu__list-item"><strong>An Unknown Child</strong></li>
-            {{ /if }}
+          {{ for entry of search.pages(`url^=${docs.basedir}`, "order") }}
+            <li class="menu__list--item">
+              <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
+            </li>
           {{ /for }}
         {{ else }}
-          <p>Need to implement parsing of value passed to <code>docs.sidebar</code>: {{ docs.sidebar }}</p>
+          <p>Need to implement parsing custom <code>docs.sidebar</code>: {{ docs.sidebar }}</p>
         {{ /if }}
         </ul>
       </div>
