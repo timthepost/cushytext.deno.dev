@@ -1,7 +1,7 @@
 {{ include "layouts/base.vto" }}
   <body>
     {{ include "partials/nav.vto" }}
-    {{ include "partials/hero.vto" }} 
+    {{ await comp.hero({ title: demo.hero.title, slogan: demo.hero.slogan, href: demo.hero.href, cta: demo.hero.cta })}}
     <div class="main-wrapper">
       <main data-pagefind-body>
         <div class="container margin-top--lg">
