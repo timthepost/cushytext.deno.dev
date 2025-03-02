@@ -3,7 +3,32 @@ error_404:
   heading: Content Not Found
   content: The requested page does not exist.
 
-error_500:
-  title: Internal Server Error
-  heading: Internal Server Error
-  content: The server encountered an error while processing your request.
+demo:
+  hero:
+    title: Cushy Content Template +
+    href: /features/
+    cta: Check Out The Components & Features!
+    slogans:
+      - A "Cushy" component-driven, text-focused theme for Lume based on Infima CSS.
+  goals:
+    - title: Be Component-Driven.
+      body: |
+        Use modularized CSS by default to deliver core Infima components as-needed by taking
+        advantage of the new component system in Lume3.
+      href: /blog/mdx-post.mdx
+      cta: More On Components
+      
+    - title: Be Interactive!
+      body: |
+        Take advantage of the middleware in Lume3 on Deno Deploy! This theme will be shipping
+        with an interactive content rating system (and probably some kind of contact form) by
+        default.
+      href: /blog/mdx-post.mdx
+      cta: Other Interactive Ideas
+
+    - title: <code>Dev.Local</code> == <code>Dev.Prod</code>
+      body: |
+        Local dev should match production without mocking or extra steps. <em>The authoring 
+        <b>and</b> visitor reading experience are equally important!</em>
+      href: /docs/
+      cta: More Project Goals
