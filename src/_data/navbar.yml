@@ -12,6 +12,7 @@ top_nav:
   - type: "menu"
     href: "/features/"
     text: Theme Features
+    title: Many of these are currently broken ...
     links:
       - text: Lume3 Component Oriented
         href: /features/components/
