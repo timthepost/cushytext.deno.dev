@@ -1,7 +1,7 @@
 layout: layouts/post.vto
 tags:
- - "%blog"
-blog: 
+  - "%blog%"
+blog:
   basedir: /blog/
   title: Cushy Content blog
   sidebar: auto
