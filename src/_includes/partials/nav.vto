@@ -31,7 +31,7 @@
                 {{ for index, menuItem of value.links }}
                   <li>
                     <a class="dropdown__link" href="{{ menuItem.href }}" title="{{ menuItem.title }}">
-                      {{ menuItem.text }}
+                      {{ menuItem.text }} <span class="text--primary">&raquo;</span>
                     </a>
                   </li>
                 {{ /for }}
