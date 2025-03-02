@@ -1,5 +1,8 @@
 ---
 title: Blog Child Content Page
+tags:
+ - meta
+ - default-content
 ---
 
 # { title }
@@ -7,12 +10,18 @@ title: Blog Child Content Page
 We can easily use variables like `{ variable }`. That's how I can tell you the
 `{ layout }` for this post is set to { layout }.
 
-Lorem ipsum odor amet, consectetuer adipiscing elit. Luctus maximus vel turpis
-suspendisse et. Pulvinar aliquet urna metus pulvinar etiam suscipit dui
-venenatis. Sem inceptos blandit tempor scelerisque finibus pellentesque in ante.
-Platea tristique commodo vehicula ultrices dapibus nulla auctor. Vitae ornare
-maximus mollis congue porta nisi curae cras in. Rhoncus nibh metus facilisi eu
-tincidunt himenaeos? Arcu rutrum commodo quam magna ornare nunc.
+A small problem I'm having right now is that Lume's Table Of Contents plugin
+does not work with this new flavor of MDX. It does work on `.md` files that 
+use the default parser with default plugins. I have the styles there in the 
+sidebar for the ToC, just need to generate it and rewrite the headings as 
+links.
+
+I will likely just use the ReMark one (seems a way to pass it as an option) or 
+make a plugin myself to deal with this theme's archetype needs specifically.
+
+Also being flakey right now is syntax highlighting, of any kind (prisim, 
+highlight.js).
+
 ## Markdown H2 Heading
 
 Lorem ipsum odor amet, consectetuer adipiscing elit. Luctus maximus vel turpis
