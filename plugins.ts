@@ -69,7 +69,7 @@ export default function (userOptions?: Options) {
       .preprocess([".mdx"], (pages) => {
         for (const page of pages) {
           page.data.excerpt ??= (page.data.content as string).split(
-            /{\/\*<!--\s*more\s*-->\*\/}/i,
+            /{\/\*more\*\/}/i,
           )[0];
         }
       });
