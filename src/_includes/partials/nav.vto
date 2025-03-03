@@ -1,5 +1,4 @@
 <!-- This will eventually need to become a component. -->
-<!-- set a secondarySidebar object to either the docs sidebar, blog sidebar or null, depending on what's set -->
 <nav class="navbar navbar--fixed-top">
   <div class="container">
     <div class="navbar__inner">
@@ -72,9 +71,9 @@
     <div role="presentation" class="navbar-sidebar__backdrop"></div>
       <div class="navbar-sidebar">
       <div class="navbar-sidebar__brand">
-        <a class="navbar__brand" href="#" role="button">
+        <a class="navbar__brand" href="/" role="button">
           <span class="navbar__title text--truncate">
-            Site Menu String
+            ☁️ {{ metas.site }}
           </span>
         </a>
       <button type="button" class="clean-btn navbar-sidebar__close">
@@ -86,46 +85,19 @@
       </button>
     </div>
     <!-- TODO: This should match the top nav -->
-    <div
-      class="navbar-sidebar__items navbar-sidebar__items--show-secondary">
+    <div class="navbar-sidebar__items navbar-sidebar__items--show-secondary">
       <div class="navbar-sidebar__item menu">
         <ul class="menu__list">
           <li class="menu__list-item">
             <a class="menu__link" href="#url">Docs</a>
           </li>
           <li class="menu__list-item">
-            <a class="menu__link" href="#url">Tutorial</a>
-          </li>
-          <li class="menu__list-item">
-            <a
-              class="menu__link menu__link--sublist menu__link--sublist-caret"
-              href="#url"
-              >v2.0</a
-            >
-            <ul class="menu__list">
-              <li class="menu__list-item">
-                <a class="menu__link" href="#url">v1.8.0</a>
-              </li>
-              <li class="menu__list-item">
-                <a class="menu__link" href="#url">v1.7.0</a>
-              </li>
-              <li class="menu__list-item">
-                <a class="menu__link" href="#url">v1.6.0</a>
-              </li>
-              <li class="menu__list-item">
-                <a class="menu__link" href="#url">All Versions</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu__list-item">
-            <a
-              class="menu__link menu__link--sublist menu__link--sublist-caret"
-              href="#url"
-              >Community
+            <a class="menu__link menu__link--sublist menu__link--sublist-caret" href="#url">
+              Category Opener
             </a>
             <ul class="menu__list">
               <li class="menu__list-item">
-                <a class="menu__link" href="#url">Facebook</a>
+                <a class="menu__link" href="#url">Child Link</a>
               </li>
             </ul>
           </li>
@@ -135,11 +107,7 @@
       <div class="navbar-sidebar__item menu">
         <!-- and here we just have to display the object (link text, link) -->
         <button type="button" class="clean-btn navbar-sidebar__back">
-        {{ if docs }}
           ← Back To Main
-        {{ else }}
-          ← No Docs, Doc
-        {{ /if }}
         </button>
         <ul class="menu__list">
           <li class="menu__list-item">
@@ -163,12 +131,6 @@
                 <a class="menu__link" href="#url">Another Second Level</a>
               </li>
             </ul>
-          </li>
-          <li class="menu__list-item">
-            <a class="menu__link" href="#url">And The List</a>
-          </li>
-          <li class="menu__list-item">
-            <a class="menu__link" href="#url">Goes On</a>
           </li>
         </ul>
       </div>
