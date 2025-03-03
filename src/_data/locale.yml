@@ -5,3 +5,9 @@ error_404:
 
 posts:
   has_tags: "Tags:"
+
+archive:
+  latest_heading: "Latest Posts From The"
+  latest_posts: "Latest Posts"
+  feeds: "Feeds:"
+  top_tags: "Top Tags:"
