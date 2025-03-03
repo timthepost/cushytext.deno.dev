@@ -53,7 +53,6 @@
             <input class="navbar__search-input" placeholder="Search" />
           </div>
         </form>
-
         <!-- TODO: ability to turn off theme in data somewhere -->
         <div class="colorModeToggle">
           <button
@@ -70,9 +69,9 @@
             </svg> 
           </button>
         </div>
-
-        <!-- end of right side nav elements -->
+      <!-- end of right side nav elements -->
       </div>
+
     </div>
     <div role="presentation" class="navbar-sidebar__backdrop"></div>
       <div class="navbar-sidebar">
@@ -92,6 +91,7 @@
         </svg>
       </button>
     </div>
+
     <!-- 
          If we're on a page with a sidebar, show the sidebar in the flyout 
          with a way back to the main nav. If we're not on a page with a sidebar,
@@ -101,9 +101,11 @@
          isn't shown unless there's a sidebar. That makes this, tricky. Use 
          code folding when editing this.
     -->
+
     {{ if subNav }}
     <div class="navbar-sidebar__items navbar-sidebar__items--show-secondary">
     {{ /if }}
+
       <div class="navbar-sidebar__item menu">
         <ul class="menu__list">
         {{ for key, value of navbar.top_nav }}
@@ -131,6 +133,7 @@
         {{ /for }}
         </ul>
       </div>
+
       {{ if subNav }}
       <!-- this is shown whether blog or docs -->
       <div class="navbar-sidebar__item menu">
@@ -138,7 +141,7 @@
           &larr; Back To Main Menu
         </button>
 
-        <!-- are we docs? -->
+        <!-- what's up, doc? -->
         {{ if docs }}
         <ul class="menu__list">
           {{ for entry of search.pages(`url^=${docs.basedir}`, "order") }}
@@ -148,7 +151,7 @@
           {{ /for }}
         </ul>
 
-        <!-- are we a blog? -->
+        <!-- we are blog; resistance is futile. -->
         {{ else if blog }}
         <ul class="menu__list">
           {{ for entry of search.pages(`url^=${blog.basedir}`, "order=asc date=desc", 5) }}
@@ -162,9 +165,11 @@
       <!-- end of subnav wrapper -->  
       </div>
       {{ /if }}
-    {{ if subNav }}
+
     <!-- closing tag of wrapper we don't show unless we have a sidebar -->  
+    {{ if subNav }}
     </div>
     {{ /if }}
+
   </div>
 </nav>
