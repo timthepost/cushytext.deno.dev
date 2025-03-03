@@ -1,30 +1,6 @@
 ---
-title: Blog Index Page
+title: Blog Archive
 layout: layouts/post-archive.vto
+order: 9
 ---
 
-# Blog Index Page / Archive Page
-
-This will present the latest posts (and maybe some featured ones?) by
-default, or serve as an archive. It should have posts, a selection of 
-the most used tags, and the ability to drill down / search.
-
-This layout is `layouts/post-archive.vto` and `post-archive-template.vto`.
-
-**Take a look at [an example blog post](/blog/announcing-cushy-content/).**
-
-## Auto Generated 
-
-I plan to use the infima image cards to make a nice grid display of posts 
-using OG images. This is going to get a lot of help from the JSON that the
-`_plugins/cushy-docs-conductor` generates, at least for tags. The rest of
-the posts are a simple `search.pages()`, I think.
-
-## Can we do better than a list of stuff?
-
-A blog landing should be inviting and give a good breadth of things someone
-can find there. I would envision someone would want fast access to release 
-notes, easily scoped tutorials, etc. This is mostly lifting that the tag 
-engine can do.
-
-A sidebar may make sense for polls or surveys? Have to experiment and see. 
