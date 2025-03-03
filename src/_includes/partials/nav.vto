@@ -1,4 +1,5 @@
 <!-- This will eventually need to become a component. -->
+{{> const subNav = docs || blog || false }}
 <nav class="navbar navbar--fixed-top">
   <div class="container">
     <div class="navbar__inner">
@@ -84,7 +85,9 @@
         </svg>
       </button>
     </div>
+    {{ if subNav }}
     <div class="navbar-sidebar__items navbar-sidebar__items--show-secondary">
+    {{ /if }}
       <div class="navbar-sidebar__item menu">
         <ul class="menu__list">
         {{ for key, value of navbar.top_nav }}
@@ -112,6 +115,7 @@
         {{ /for }}
         </ul>
       </div>
+      {{ if subNav }}
       <div class="navbar-sidebar__item menu">
         <button type="button" class="clean-btn navbar-sidebar__back">
           &larr; Main Menu
@@ -122,6 +126,9 @@
           </li>
         </ul>
       </div>
+      {{ /if }}
+    {{ if subNav }}  
     </div>
+    {{ /if }}
   </div>
 </nav>
