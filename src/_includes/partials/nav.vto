@@ -124,12 +124,12 @@
         {{ if docs }}
         <ul class="menu__list">
           {{ for entry of search.pages(`url^=${docs.basedir}`, "order") }}
-          <li class="menu__list-item">
-            <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
-          </li>
+            <li class="menu__list-item">
+              <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
+            </li>
           {{ /for }}
         </ul>
-        <!-- soon this will be else if blog ... -->
+        <!-- soon this will be else if blog ... as soon as I build it :) -->
         {{ /if }}
       </div>
       {{ /if }}
