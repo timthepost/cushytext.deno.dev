@@ -3,6 +3,6 @@ tags:
   - "%blog%"
 blog:
   basedir: /blog/
-  title: Cushy Content blog
+  title: Cushy Text Blog
   sidebar: auto
   recent: 5
