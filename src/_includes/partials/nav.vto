@@ -74,8 +74,9 @@
       <div class="navbar-sidebar__brand">
         <a class="navbar__brand" href="/" role="button">
           <span class="navbar__title text--truncate">
-            ☁️ {{ metas.site }}
-          </span>
+            <strong>{{ metas.site }}</strong>
+          </span>&nbsp;&nbsp;
+          <span style="font-size: 185%">☁️</span>
         </a>
       <button type="button" class="clean-btn navbar-sidebar__close">
         <svg viewBox="0 0 413.348 413.348" width="20" height="20">
@@ -118,13 +119,18 @@
       {{ if subNav }}
       <div class="navbar-sidebar__item menu">
         <button type="button" class="clean-btn navbar-sidebar__back">
-          &larr; Main Menu
+          &larr; Back To Main Menu
         </button>
+        {{ if docs }}
         <ul class="menu__list">
+          {{ for entry of search.pages(`url^=${docs.basedir}`, "order") }}
           <li class="menu__list-item">
-            <a class="menu__link" href="#url">First Level</a>
+            <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
           </li>
+          {{ /for }}
         </ul>
+        <!-- soon this will be else if blog ... -->
+        {{ /if }}
       </div>
       {{ /if }}
     {{ if subNav }}  
