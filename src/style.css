@@ -143,6 +143,7 @@ html[data-theme="dark"] {
   text-align: center;
   align-items: center;
   border-radius: 1rem;
+  margin: 0 0 1rem;
 }
 
 /* Hide nav logo on small screens */

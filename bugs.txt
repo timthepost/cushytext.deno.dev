@@ -13,6 +13,9 @@ so excerpts may contain unparsed JSX. Not much I can do about that yet.
 TOC plugin for Lume currently does not work with MDX. Need to use one 
 of the remark plugins, or make one.
 
+Blog needs actual container / image styles (currently has an image
+helper you have to use manually)
+
 # documentation
 
 # nav
