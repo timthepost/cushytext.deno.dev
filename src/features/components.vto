@@ -306,11 +306,40 @@ Produce colors like:
 <p class="text--warning">Warning Text</p>
 <p class="text--danger">Danger Text</p>
 
-Font effects, transformations, weights and more all have shortcuts; see the 
+<p>Font effects, transformations, weights and more all have shortcuts; see the 
 <a href="https://infima.dev/docs/utilities/text" target="_blank">Infima Docs</a>
-for more information. Just remember to watch out for dark mode.
+for more information. Just remember to watch out for dark mode.</p>
 
-<h2 class="margin-top--lg">NEEDED: Forms</h2>
-<p>As static sites seldom take input, Infima doesn't have any
-form styles. Serverless is changing that, so we should probably
-create some to go with it.</p> 
+<h2 class="margin-tup--lg">Form Styles</h2>
+
+<p>These don't come with Infima by default (as static site frameworks)
+seldom need form elements, as they don't usually accept input. these
+have been generated based on the default theme variables.</p>
+
+<div style="max-width: 450px">
+<form>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" placeholder="Enter your name">
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" placeholder="Enter your email">
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" placeholder="Enter your password">
+
+  <label for="age">Age:</label>
+  <input type="number" id="age" name="age" placeholder="Enter your age">
+
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" placeholder="Enter your message"></textarea>
+
+  <label for="country">Country:</label>
+  <select id="country" name="country">
+    <option value="">Select your country</option>
+    <option value="us">United States</option>
+    <option value="ca">Canada</option>
+    <option value="uk">United Kingdom</option>
+  </select>
+  <button type="submit" class="button button--primary">Submit</button>
+</form>
+</div>
