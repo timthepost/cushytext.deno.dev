@@ -1,4 +1,10 @@
+/*
+ * Overrides are at the bottom.
+ * Top section is vars to control the themes (light / dark)
+ */
 @import "_includes/css/theme.css";
+
+/* Light Mode */
 
 :root {
   --ifm-color-scheme: light;
@@ -130,6 +136,7 @@ html[data-theme="dark"] {
   --ifm-color-danger-contrast-foreground: rgb(255, 235, 236);
 }
 
+/* Helper For Blog Images */
 .blog_image {
   max-height: 675px;
   width: auto;
@@ -138,6 +145,7 @@ html[data-theme="dark"] {
   border-radius: 1rem;
 }
 
+/* Hide nav logo on small screens */
 @media (max-width: 976px) {
   #navbar-logo {
     display: none;
