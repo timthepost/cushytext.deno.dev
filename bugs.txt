@@ -18,6 +18,13 @@ helper you have to use manually)
 
 # documentation
 
+# tags
+
+Need components to handle tags. We also have special archetype tags
+that have to be filtered out of views and templates aren't the place
+to do that. Not a bug yet but will be as soon as tags break because
+they're hard coded.
+
 # nav
 
 I hope to see nav become more componentized. Right now there's code that
