@@ -84,23 +84,32 @@
         </svg>
       </button>
     </div>
-    <!-- TODO: This should match the top nav -->
     <div class="navbar-sidebar__items navbar-sidebar__items--show-secondary">
       <div class="navbar-sidebar__item menu">
         <ul class="menu__list">
-          <li class="menu__list-item">
-            <a class="menu__link" href="#url">Docs</a>
-          </li>
-          <li class="menu__list-item">
-            <a class="menu__link menu__link--sublist menu__link--sublist-caret" href="#url">
-              Category Opener
-            </a>
-            <ul class="menu__list">
-              <li class="menu__list-item">
-                <a class="menu__link" href="#url">Child Link</a>
-              </li>
+        {{ for key, value of navbar.top_nav }}
+          {{ if value.type === "link" }}
+            <li class="menu__list-item">
+              <a class="menu__link" href="{{ value.href }}">{{ value.text }}</a>
+            </li>
+          {{ else if value.type === "menu" }}
+            <li class="menu__list-item">
+              <a class="menu__link menu__link--sublist menu__link--sublist-caret" 
+                href="#"
+                title="{{ value.title }}"
+              >
+                {{ value.text }}
+              </a>
+              <ul class="menu__list">
+              {{ for index, menuItem of value.links }}
+                <li class="menu__list-item">
+                  <a class="menu__link" href="{{ menuItem.href }}">{{ menuItem.text }}</a>
+                </li>
+              {{ /for }}
             </ul>
           </li>
+          {{ /if }}
+        {{ /for }}
         </ul>
       </div>
       <!-- only show this if the docs or blog sidebar object is not null -->
