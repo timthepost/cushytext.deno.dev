@@ -1,4 +1,11 @@
-<div class="card margin-top--md">
+<div class="card margin-top--lg padding--md">
     <a href="{{ entry.url }}"><h1>{{ entry.title }}</h1></a>
-    {{ entry.excerpt |> md }}
+    <div class="padding--md">
+        {{ entry.excerpt |> md }}
+    </div>
+    <div class="card__footer padding--xs">
+    <a href="{{ entry.url }}">
+        <button class="button button--secondary button--block button--lg">Read More &raquo;&raquo;</button>
+    </a>
+    </div>
 </div>  
