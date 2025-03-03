@@ -2,3 +2,6 @@ error_404:
   title: Content Not Found
   heading: Content Not Found
   content: The requested page does not exist.
+
+posts:
+  has_tags: "Tags:"

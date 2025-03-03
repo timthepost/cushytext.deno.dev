@@ -2,10 +2,10 @@
     <div class="col col--10">
       <h1 class="margin-top--md">{{ title }}</h1>
       {{ if tags }}
-      <p><strong>Tagged:</strong>&nbsp;
+      <p><strong>{{ locale.posts.has_tags }}</strong>
         {{ for tag of tags }}
           {{ if tag[0] != '%' }}
-          <button class="button button--secondary button--sm">{{ tag }}</button>&nbsp;
+          <button class="button button--secondary button--sm margin-horiz--xs">{{ tag }}</button>
           {{ /if }}
         {{ /for }}
       </p>
