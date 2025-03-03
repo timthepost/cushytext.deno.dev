@@ -1,5 +1,5 @@
 hero:
-  title: Cushy Text ++
+  title: Cushy Text <sup>++</sup>
   href: /features/
   cta: Components &amp; Features &raquo;
   slogan: A component-driven, text-focused-yet-interactive theme for Lume3 based on InfimaCSS.
@@ -13,9 +13,9 @@ goals:
 
   - title: Be Interactive!
     body: |
-      Take advantage of the middleware in Lume3 on Deno Deploy! This theme will be shipping
-      with an interactive content rating system (and probably some kind of contact form) by
-      default.
+      Take advantage of the middleware in Lume3 on Deno Deploy with DenoKV! Static doesn't have
+      to mean stagnate. This theme ships with a content rating system, contact form handlers and
+      more, but no need for functions!
     href: /blog/mdx-post.mdx
     cta: Other Interactive Ideas
 
