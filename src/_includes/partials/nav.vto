@@ -47,11 +47,14 @@
         {{ /for }}
       </div>
       <div class="navbar__items navbar__items--right">
+        <!-- TODO: ability to turn off search in data somewhere -->
         <form>
           <div class="navbar__search">
             <input class="navbar__search-input" placeholder="Search" />
           </div>
         </form>
+
+        <!-- TODO: ability to turn off theme in data somewhere -->
         <div class="colorModeToggle">
           <button
             id="mode-toggle"
@@ -67,6 +70,8 @@
             </svg> 
           </button>
         </div>
+
+        <!-- end of right side nav elements -->
       </div>
     </div>
     <div role="presentation" class="navbar-sidebar__backdrop"></div>
@@ -87,6 +92,15 @@
         </svg>
       </button>
     </div>
+    <!-- 
+         If we're on a page with a sidebar, show the sidebar in the flyout 
+         with a way back to the main nav. If we're not on a page with a sidebar,
+         just show the main nav. 
+
+         the --show-secondary div wrapper, plus the code to navigate back to main
+         isn't shown unless there's a sidebar. That makes this, tricky. Use 
+         code folding when editing this.
+    -->
     {{ if subNav }}
     <div class="navbar-sidebar__items navbar-sidebar__items--show-secondary">
     {{ /if }}
@@ -118,10 +132,13 @@
         </ul>
       </div>
       {{ if subNav }}
+      <!-- this is shown whether blog or docs -->
       <div class="navbar-sidebar__item menu">
         <button type="button" class="clean-btn navbar-sidebar__back">
           &larr; Back To Main Menu
         </button>
+
+        <!-- are we docs? -->
         {{ if docs }}
         <ul class="menu__list">
           {{ for entry of search.pages(`url^=${docs.basedir}`, "order") }}
@@ -130,6 +147,8 @@
             </li>
           {{ /for }}
         </ul>
+
+        <!-- are we a blog? -->
         {{ else if blog }}
         <ul class="menu__list">
           {{ for entry of search.pages(`url^=${blog.basedir}`, "date, order", 5) }}
@@ -139,9 +158,11 @@
           {{ /for }}
         </ul>
         {{ /if }}
+      <!-- end of subnav wrapper -->  
       </div>
       {{ /if }}
-    {{ if subNav }}  
+    {{ if subNav }}
+    <!-- closing tag of wrapper we don't show unless we have a sidebar -->  
     </div>
     {{ /if }}
   </div>
