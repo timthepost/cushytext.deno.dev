@@ -1,7 +1,7 @@
 hero:
   title: Cushy Text ++
   href: /features/
-  cta: Check Out The Components & Features!
+  cta: Components &amp; Features &raquo;
   slogan: A "Cushy" component-driven, text-focused theme for Lume based on Infima CSS.
 goals:
   - title: Be Component-Driven.
