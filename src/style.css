@@ -137,3 +137,9 @@ html[data-theme="dark"] {
   align-items: center;
   border-radius: 1rem;
 }
+
+@media (max-width: 650px) {
+  #navbar-logo {
+    display: none;
+  }
+}
