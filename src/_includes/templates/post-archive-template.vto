@@ -1,12 +1,20 @@
   <div class="row">
     <div class="col col--9">
-    <h1 class="margin-top--md">{{ blog.title }}</h1>
-    <p>Image cards with nice links, is what I was thinking.</p>
+      <h1 class="margin-top--md">{{ blog.title }}</h1>
+      <p>Image cards with nice links, is what I was thinking.</p>
     </div>
     <div class="col col--3">
-    <h3 class="margin-top--md">Feeds:</h3>
-    <p>RSS | JSON | FeedBurner</p>
-    <h3 class="margin-top--lg">Latest Posts:</h3>
-    <p>Also, author avatars? Tag cloud?</p>
+      <h3 class="margin-top--md">Feeds:</h3>
+      <p>RSS | JSON | Mailing List</p>
+      <h3 class="margin-top--md">Latest Posts:</h3>
+      <ul class="menu__list">
+          {{ for entry of search.pages(`url^=${blog.basedir}`, "order=asc date=desc", 5) }}
+            <li class="menu__list--item">
+              <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
+            </li>          
+          {{ /for }}
+        </ul>
+      <h3 class="margin-top--md">Top Tags:</h3>
+      <p>Tags coming soon ...</p>
     </div>
   </div>
