@@ -138,7 +138,7 @@ html[data-theme="dark"] {
   border-radius: 1rem;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 976px) {
   #navbar-logo {
     display: none;
   }
