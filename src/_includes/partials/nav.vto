@@ -145,9 +145,11 @@
         {{ if docs }}
         <ul class="menu__list">
           {{ for entry of search.pages(`url^=${docs.basedir}`, "order") }}
+          {{ if entry.menu?.visible !== false }}
             <li class="menu__list-item">
               <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
             </li>
+          {{ /if }}
           {{ /for }}
         </ul>
 
@@ -155,9 +157,11 @@
         {{ else if blog }}
         <ul class="menu__list">
           {{ for entry of search.pages(`url^=${blog.basedir}`, "order=asc", 5) }}
+            {{ if entry.menu?.visible !== false }}
             <li class="menu__list--item">
               <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
             </li>          
+            {{ /if }}
           {{ /for }}
         </ul>
         {{ /if }}
