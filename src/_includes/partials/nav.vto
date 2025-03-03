@@ -21,7 +21,7 @@
               d="M4 7h22M4 15h22M4 23h22"></path>
           </svg>
         </button>
-        <!-- TODO: media query to hide this, and move it into data -->
+        <!-- TODO: put strings into locale, proper styles -->
         <a class="navbar__brand" href="/" id="navbar-logo">
           <span style="font-size: 185%">☁️</span>
         </a>
@@ -73,6 +73,7 @@
       <div class="navbar-sidebar">
       <div class="navbar-sidebar__brand">
         <a class="navbar__brand" href="/" role="button">
+          <!-- TODO: put strings into locale, proper styles -->
           <span class="navbar__title text--truncate">
             <strong>{{ metas.site }}</strong>
           </span>&nbsp;&nbsp;
@@ -129,7 +130,14 @@
             </li>
           {{ /for }}
         </ul>
-        <!-- soon this will be else if blog ... as soon as I build it :) -->
+        {{ else if blog }}
+        <ul class="menu__list">
+          {{ for entry of search.pages(`url^=${blog.basedir}`, "date, order", 5) }}
+            <li class="menu__list-item">
+              <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
+            </li>          
+          {{ /for }}
+        </ul>
         {{ /if }}
       </div>
       {{ /if }}
