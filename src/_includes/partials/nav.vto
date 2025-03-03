@@ -151,14 +151,14 @@
         <!-- are we a blog? -->
         {{ else if blog }}
         <ul class="menu__list">
-          {{ for entry of search.pages(`url^=${blog.basedir}`, "date, order", 5) }}
+          {{ for entry of search.pages(`url^=${blog.basedir}`, "order=asc date=desc", 5) }}
             <li class="menu__list-item">
               <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
             </li>          
           {{ /for }}
         </ul>
         {{ /if }}
-        
+
       <!-- end of subnav wrapper -->  
       </div>
       {{ /if }}
