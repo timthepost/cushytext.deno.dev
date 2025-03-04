@@ -8,6 +8,7 @@
     "build": "deno task lume",
     "serve": "deno task lume -s",
     "dev": "LUME_DRAFTS=true deno task lume -s",
+    "mock": "deno run -A --watch src/_serve.ts",
     "clean": "rm -rf _site || true; rm -rf .netlify || true; rm -rf _cache || true",
     "maintainer-clean": "deno task clean || true; rm -rf node_modules || true",
     "update-deps": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.8/cli.ts' update plugins.ts deno.json"
