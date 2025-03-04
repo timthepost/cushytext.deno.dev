@@ -1,8 +1,8 @@
 ---
 title: "Meet Cushy Text: An Infima Content Theme For Lume"
-date: 2025-02-28
+date: 2025-03-03
 author: Tim Post
-draft: true
+draft: false
 layout: layouts/post.vto
 menu:
   visible: true
@@ -17,41 +17,133 @@ metas:
     - Infima Theme For Lume
     - Static blog generator
     - Static documentation generator
-  image: /uploads/announcing-cushy-content.jpg
+  image: /uploads/announcing-cushy-text.jpg
   robots: true
   generator: true
 ---
 
-I've built dozens of documentation sites for everything from software to on-prem enterprise
-versions of Stack Overflow. My favorite tool to get something documented quickly has always 
-been Docusaurus, mostly because of how easy it is to make presentable, accessible and
-fully-responsive sites with Infima CSS.
+My career in DevRel & Comminity made me responsible for setting up dozens of documentation
+sites, blogs and community portals for developer tools. Spending almost a decade working 
+for Stack Overflow gave me a special sensitivity for the kind of experience that people who
+create or maintain a lot of documentation want out of their tools.
 
-Lately, I've been working primarily with Deno because I'm just tired of Node, and in my
-semi-retired years where I just do this stuff for fun and tips, I'd rather work with things
-that "spark joy", if you know what I mean?
+<img class="blog_image" src="/uploads/announcing-cushy-text.jpg" alt="" title="" />
 
-So what if I took Infima, shoe-horned it into Lume, built a mini docs and blog system on
-top of both, and then added interactive features backed by Lume3's new Router middleware,
-DenoKV and Deno Deploy? And, no edge functions to mess with, or database strings to manage?
+I spent years as an early-stage consultant with newly-funded companies that needed help
+spreading the word about their tools, which gave me a lot of experience with different kinds
+of text-focused platforms. Gatsby, Docusaurus, Astro and many others are great at what they
+do, but I found myself only using and knowing about 35% of their overall features, despite 
+lofty sizes.
 
-<img class="blog_image" src="/uploads/announcing-cushy-content.jpg" alt="" title="" />
-
-***Yeah! That's what I said!!!!*** Read on, let me show you what I've got going here.
+Other Preact-based alternates like Deno's Fresh framework began to look promising, but they
+didn't have all the automatic comforts that the established Node-based frameworks did. That's
+when I found Lume and realized just how easy it would be to port Infima CSS over to it, and 
+create the minimum features that I wanted in a "go to" self-publishing framework.
 
 {/*more*/}
 
-When I set out to make Cushy Text, I thought about every time that I was hired as a 
-consultant for a new developer tool that needed a website, documentation and lots of 
-blog / tutorial content ***in a hurry***. My role usually entailed serving as the 
-initial DevRel, Marketing Manager, Support Specialist and doc site maintainer all-in-one.
+I wanted to be able to have an easy blog, the ability to throw a bunch of markdown files
+in a directory and end up with a nice auto-generated documentation section independent 
+of the blog, easy component-driven landing and content pages, interactive content feedback
+features and form handlers, a comprehensive and fully-customizeable search and the familiar
+and vetted Infima CSS framework.
 
-Sound familiar? 
+I also wanted to have all the great plugins already installed and optimally configured to 
+work together, like OG Image auto-generation, Image processing and re-sizing plugins,
+all of the SEO-related plugins, MDX with SSX, and pre-configured middleware that Works
+the same locally as it does remotely.
 
-## Another Heading
+Finally, I knew it would need a plugin to help provide some of the functionality and 
+provide safety so that people don't get confusing errors if they use features incorrectly.
 
-Some text.
+## It Began As Cushy Docs, Quickly Went To Cushy Text
 
-## Another Heading
+I wanted something I would have been happy to have in my hands each time I was tasked with 
+setting up a presence to support something new. That's not always documentation, I also like
+to write serial fiction and biography content, too. I wanted something nice for anyone that 
+works with a lot of, well, text.
 
-Last filler text.
+Rather than think of using a different theme for each kind of thing, I decided to put Infima
+to task on creating archetypes to support lots of things in the same place. So far, we have
+the following archetypes:
+
+ - Documentation Style Site
+ - Blog With Archive, Tag & Author Pages
+ - Blog With No Archive (a special release-notes archetype)
+ - Inner Content Page (MDX) with navigation
+ - Landing Page (MDX) without navigation (grid demo)
+
+The archetypes rely on a few special settings in the per-directory `_data.yml` files that
+apply a default layout and special archetype tag `%archetype_name%`, like `%docs%` which 
+isn't shown, but can be used to build navigation and filter searches. A base directory is
+also set up, which serves as a navigation anchor for auto-generation.
+
+This lets you have, say, 4 independent documentation archetypes and two blogs going at once, 
+all with independent nav and tags, but searchable and filterable together as one along with
+inner content pages.
+
+Wanna make a new landing page? Easy! Type:
+
+```bash
+lume new landing_page "try our new widget"
+```
+
+The file will be created with all the necessary frontmatter, and a little demo content with 
+components you can use if you need a base to start with.
+
+## If There's A Framework For Building Around Lume3 Components, It's Infima.
+
+(Arguably, this could be said about many, but I picked Infima)
+
+Infima breaks out all styles and supporting JS to individual modules for every componenent
+that it comes with. Lume3, now supporting async components by default, also recently went 
+with a structure where components can ship a template, css, and js file which all get loaded
+just-in-time when the component is used.
+
+This means for brand new sites (if you're not going to import a lot of HTML using infima 
+component classes directly), your pages will only have component scripts and styles if 
+components get loaded on the page.
+
+This, combined with plugins that garbage collect any unused classes and optimize scripts
+plus brotli compression will result in performance as a feature.
+
+## A Little Interactivity Is Good!
+
+The theme will ship with a content-rating system that utilzes local storage and DenoKV as
+its backend. It'll ask users how they felt about what they read, allow for voting and even
+some free-form feedback. There's no need to worry about edge functions, as Lume's built-in
+server middlware makes processing form submissions and KV querying pretty easy. 
+
+There will also be a generic contact form and handler, and maybe even a feature logger.
+
+Don't worry - it all works the same locally as it does in production. 
+
+## Responsive + Accessible = Enjoyable.
+
+Infima makes creating accessible and responsive websites easier than most framworks of its 
+type, but mostly through example (e.g. Docusaurus). I wanted to make sure that wasn't lost 
+when I brought it over to Infima. 
+
+When it comes to accessibility, being disabled myself, I'm a major stickler. Out of the box, 
+it's ideal to offer dark and light themes, reduced motion, proper semantic structure for readers
+and all while obeying the user's system preferences.
+
+This theme additionally offers users a dyslexic-friendly font for longer text, called Open Dyslexic,
+which can be toggled just like light / dark mode. In fact, the button is a D in a circle, and located
+right next to the dark / light switcher.
+
+## You Keep The Ability To "Just Make It Work".
+
+While we'll have nice auto-loading components and efficient use of scripts and CSS, sometimes,
+you just need to cobble something presentable together quickly and just make it work.
+
+Infima ships with plenty of helper classes to tweak margins and padding and placement of things,
+but you can also use a variety of third-party Markdown plugins, just like you could use in any 
+other Lume site. There's no guarded, rigid configuration to contend with. 
+
+You could totally drop everything and load jQuery; the theme will still work just fine. While
+it ships with a lot of cool features, it's still just a theme, and meant to be completely 
+changed and customized so it works as well for you as it does for me. 
+
+You won't feel like you're going "against" a platform, unless you do something to make Lume 
+mad at you, but that goes with any theme.

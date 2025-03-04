@@ -1,116 +1,59 @@
 ---
-title: Documentation Home
-order: 0
+title: Overview, Status & Getting Started
+menu:
+  visible: false
+  order: 0
 ---
 
-# Welcome to your documentation Index Page!
+# Current Status: <span class="text--danger">Alpha</span>
 
-You'll probably want to replace this with something fancy. Also,
-all those links to the left, in the sidebar? They exist to show 
-you how auto generation works. Each one is a file (or folder)
-within `{docs.basedir}`, or <code>{docs.basedir}</code>.
+I'm building the site about Cushy Text with Cushy Text while I build Cushy Text.
 
-## A primer on how "docs" and sidebars currently work:
+You can't get any more meta than that. Well, I guess you could, but let's get to
+the point - ***Cushy Text Is About 45% Baked***. Here's a list of things that, 
+while ever-changing, is currently the best roadmap.
 
-To start with, it doesn't have to be named `/docs`! It could be 
-`/documentation` or whatever you like, or you can remove it completely. What
-makes it behave like a documentation site is the  `_data.yml` file in the 
-{docs.basedir} directory with your documentation, which is what makes it all work:
+The theme is fine to play with, but it's not ready for any kind of serious 
+use yet.
 
-`docs/_data.yml`: 
+## Installing 
 
-```yml
-layout: layouts/docupage.vto
-docs:
-  basedir: /docs/
-  title: Documentation Home
-  sidebar: auto
-```
+The easiest way to use the theme is to clone the git repository, for now.
 
-Line by line, we have:
+Eventually, it will be a remote theme anyone can use when they initialize
+Lume.
 
- - The template used to generate docs-style pages, which you can 
- modify in `src/_includes/layouts/docupage.vto`. 
+## Current Focus
 
- - `docs.basedir` sets the root of the documentation instance, which 
- is used to anchor the auto auto nav generation, among other things. This 
- should always match the directory that you use for documentation.s
+Right now I'm working on finishing the blog archetype with a nice archive
+page, tag and author pages, and working pagination / forward / next links.
 
- - The `docs.title` setting controls the top named anchor in the 
- nav. This is a temporary work-around while a smarter nav generator
- is being developed.
+After that, the documentation archetype needs pagination / forward / next 
+links. Creating re-usable components through this process is part of the 
+process.
 
- - The  `docs.sidebar` setting controls whether the docs pages nav
- should be automatically generated. If it's set to `auto`, the nav
- will be automatically generated. Soon, this setting will allow you
- to pass a custom sidebar object.
+There are also a lot of plugins that have to be installed and configured
+to work with everything else (OG Image, Image Resizing, Optimization & 
+minimizing, etc.)
 
-As for the docs pages, the individual frontmatter settings that are most 
-relevant to this archetype aren't in the `docs` space, but in the main 
-page frontmatter:
+## Known Issues
 
-```yml
----
-order: 1
-hidden: false
-draft: false
----
-```
+ - Lume TOC plugins don't yet work with the new SSX flavor of MDX. I expect
+   this to change before Lume3 is officially released.
 
- - `sort_rder` is numeric and controls which place the link should appear 
- in the nav. Note, this _does not_ control in what order the page is
- rendered by Lume when the site is generated, it merely affects the 
- order of the link in the nav menu. This is added by the theme, but works
- in all areas, not just docs, so it's part of the top-level data.
+ - Code highlighting plugins don't yet work with the new SSX flavor of MDX. Like
+   the TOC issue, I expect this to be fixed before Lume3, so I'm not doing anything
+   to work around it.
 
- - `hidden` allows the page to be generated, but keeps it out of the
- generated nav.
-
- - `draft` does not generate the page at all unless `LUME_DRAFTS` is 
- set in the environment.
-
-With these settings, you get an experience that's relatively close to 
-other documentation generation themes. However, for right now: ***Any 
-and all of this is subject to change, because the nav code is probably 
-the most actively-moving target right now.*** Nav is one of those things 
-that's easy to get 80% of the way through only to realize your approach 
-is wrong and was never going to work to begin with. Ask me how I know 
-sometime!
-
-## Coming Soon: Auto TOC, Breadcrumbs, Next / Prev & Custom Sidebars
-
-AutoTOC will happen through the community plugin once the rest of the
-generated navigation is sorted out.
-
-Next and prev links aren't yet auto-generated. I'm currently working
-on the whole site nav via Lume's `search.pages()`. Once that's done 
-then we'll use  nav.breadcrumbs()` for the next/prev links, which 
-are hopefully turned into components by then.
-
-There is also the need to get everything important in the docs sidebar
-into the sub-menu of the responsive flyout nav menu. That means, by the 
-time this template is even loaded, we should already have sorted nav objects
-to iterate over.
-
-## Tags Will Work Too
-
-Tags will work on every archetype, and be namespaced independently, but 
-in a way that they can be linked together when needed (e.g. search). Tags
-will be a big part of both site search and SEO strategy, and have a 
-separate plugin orchestrating them: `_plugins/cushy-docs-conductor`.
-
-Use them how you normally would in frontmatter, the 'extra' features and 
-rendering fill follow soon.
-
-## Two Column Design 
+## Two Column Design For Most Things
 
 Originally we had a 3-column left sidebar, a 6-column center content 
-area, and then a 3-column right sidebar. That may be the "classic"
-look, but ended up being a giant waste of space in this setting.
+area, and then a 3-column right sidebar. This is the classic "Infima"
+look that people are used to.
 
-Because docs, blog and content pages all have to fold neatly into 
-the responsive left-side nav, staying with two-columns and just 
-having the TOC and Nav share the same sidebar made the most sense.
+A single sidebar that can move to the responsive flyout "hamburger"
+menu quickly surfaced as the most logical way forward, so that's what
+was used.
 
 If you want to go back to three columns, you'll need to edit the 
 template, and have it look something like this (and this is just
@@ -119,34 +62,39 @@ using Infama's [grid system](https://infima.dev/docs/layout/grid)):
 ```html
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col col--3">
             <!-- left nav goes here -->
         </div>
-        <div class="col-md-6">
+        <div class="col col--6">
             <!-- content goes here -->
         </div>
-        <div class="col-md-3">
+        <div class="col col--3">
             <!-- right nav goes here -->
         </div>
     </div>
 </div>
 ```
 
-Just remember, all the nav has to exist in the responsive flyout too, 
-which keeps things interesting.
-
 You could also experiment with different sizes, just remember it
 all has to add up to 12 columns. To make the content 8 columns, you'd
-have to steal a column from both sidebars, for instance.
-
-Once sort order is all ironed out, the top and hamburger navs will be 
-auto generated, as well as the footer.
+have to steal a column from both sidebars, for instance, or remove one.
 
 ## Search 
 
-Search will be global (just use `data-pagefind` as usual), but it will 
-be powered by some middleware that uses the Pagefind API to get its 
-own results, so it controls its own styles and integrates tags properly.
+Search will use Pagefind like most other Lume sites, but it will be 
+implemented a little differently:
 
-To get a version-0 out, I may just modal the Pagefind div, depends on 
-how things are when it ships in a month or so.
+ - Search gets submitted to an async middlware function that uses the
+   Pagefind API under the hood.
+
+ - This function also uses Lume's comprehensive tag search to help with
+   results.
+
+ - 100% of the search experience is customizeable. If you wanted to, say,
+   also pull in results from Elastic or other providers, you could easily 
+   do so in the middlware (see `/src/_server_routes.ts`)
+
+For the first version, it's very likely that a modal will open when the
+nav searchbar has focus, which just uses the Pagefind UI. Hopefully the
+full stack search will be done by then, but if not, we can still launch
+everything else.
