@@ -2,7 +2,6 @@
 title: Overview, Status & Getting Started
 menu:
   visible: false
-  order: 0
 ---
 
 # Current Status: <span class="text--danger">Alpha</span>
@@ -54,12 +53,15 @@ itself, or redirects; it's not necssary for testing router middleware.
 
 ## Current Focus
 
-Right now I'm working on finishing the blog archetype with a nice archive
-page, tag and author pages, and working pagination / forward / next links.
+The blog and docs archetypes need working prev/next links, breadcrumbs 
+and (for blog) pagination. That's the last "shared" feature between the
+two.
 
-After that, the documentation archetype needs pagination / forward / next 
-links. Creating re-usable components through this process is part of the 
-process.
+Once that's done, docs needs a way to load a custom sidebar, and it will
+be feature complete.
+
+Blog needs an archive page, tag pages, author pages, working feeds
+and reading time to be initially feature-complete.
 
 There are also a lot of plugins that have to be installed and configured
 to work with everything else (OG Image, Image Resizing, Optimization & 
@@ -76,15 +78,15 @@ I also need to finish the open dyslexic font switcher.
    the TOC issue, I expect this to be fixed before Lume3, so I'm not doing anything
    to work around it.
 
-## Two Column Design For Most Things
+## Went With Two Columns For Most Things
 
-Originally we had a 3-column left sidebar, a 6-column center content 
+Originally, I had a 3-column left sidebar, a 6-column center content 
 area, and then a 3-column right sidebar. This is the classic "Infima"
 look that people are used to.
 
 A single sidebar that can move to the responsive flyout "hamburger"
-menu quickly surfaced as the most logical way forward, so that's what
-was used.
+menu quickly as a submenu surfaced as the most logical way forward, 
+so that's what was used.
 
 If you want to go back to three columns, you'll need to edit the 
 template, and have it look something like this (and this is just
@@ -110,6 +112,8 @@ You could also experiment with different sizes, just remember it
 all has to add up to 12 columns. To make the content 8 columns, you'd
 have to steal a column from both sidebars, for instance, or remove one.
 
+See media queries in `src/style.css` if you find the need to add more. 
+
 ## Search 
 
 Lume search is easy with this template. For instance, if I only want to
@@ -132,20 +136,30 @@ aren't displayed anywhere but in advanced search options (or will be).
 So, one could (in theory) have 5 completely separate documentation directories
 with independent nav and tagging, but still visible and filterable in site-wide
 search. The same (almost) goes for blogs. I was going to call these "meta" tags, 
-but that's a name most people apply to tags filled out for SEO.
+but most people understand those as something completely different now.
 
 Search will use Pagefind like most other Lume sites, but it will be 
 implemented a little differently:
+
+ - Still use the Pagefind data tags in containers that need indexing. 
+   Nothing about pagefind but the UI options change from that perspective.
 
  - Search gets submitted to an async middlware function that uses the
    Pagefind API under the hood.
 
  - This function also uses Lume's comprehensive search to help Pagefind
-   only see page indexes that are relevant to the query.
+   only see page indexes that are relevant to the query. Think of it 
+   like pre-searching.
 
  - 100% of the search experience is customizeable. If you wanted to, say,
    also pull in results from Elastic or other providers, you could easily 
-   do so in the middlware (see `/src/_server_routes.ts`).
+   do so in the middlware (see `/src/_server_routes.ts`). Since it's 
+   all just data coming back from a `fetch()` call, you can handle it 
+   any way you like. 
+
+ - ***Or*** You can (if you want) just use the default Pagefind UI and 
+   a modal. This will probably ship like that, and I'll keep it as an 
+   option for anyone who doesn't want to use middleware.
 
 For the first version, it's very likely that a modal will open when the
 nav searchbar has focus, which just uses the Pagefind UI. Hopefully the
