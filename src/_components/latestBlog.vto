@@ -1,0 +1,14 @@
+{{ for post of search.pages("%blog%", "date", 1) }}
+    <div class="card">
+        <div class="card__header">
+            <h2>{{ post.title }}</h2>
+        </div>
+        <div class="card__footer">
+            <div class="button-group button-group--block">
+                <button class="button button--secondary">Read</button>
+                <button class="button button--secondary">More Like This</button>
+                <button class="button button--secondary">More By {{ post.author }}</button>
+            </div>
+        </div>
+    </div>     
+{{ /for }}
