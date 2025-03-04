@@ -3,7 +3,7 @@
         <h2>Latest From Our Blog:</h2>
         <div class="card__header">
             <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-            <p><strong>By {{ post.author }}</strong></p>
+            <p><strong>By {{ post.author }} on {{ post.date }}</strong>.</p>
              {{> const teaser = post.excerpt.replace(/<img[^>]*>/g, '') }}
              {{ teaser |> md }}
         </div>
