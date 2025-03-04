@@ -4,25 +4,25 @@ hero:
   cta: Components &amp; Features &raquo;
   slogan: A component-driven, text-focused-yet-interactive theme for Lume3 based on InfimaCSS.
 goals:
-  - title: Be Component-Driven.
+  - title: Be Comfortable To Build With.
     body: |
-      Use modularized CSS by default to deliver core Infima components as-needed by taking
-      advantage of the new component system in Lume3.
+      Easy components. Easy interactive features. Just enough structure. Forgiving MDX lets 
+      you "just get it done" with an easy framework well-known for handling enormous amounts
+      of text.
     href: /blog/mdx-post.mdx
     cta: More On Components
 
-  - title: Be Interactive!
+  - title: Be A Little Interactive!
     body: |
       Take advantage of the middleware in Lume3 on Deno Deploy with DenoKV! Static doesn't have
-      to mean stagnate. This theme ships with a content rating system, contact form handlers and
-      more, but no need for functions!
+      to mean stagnate. Comes with a content rating system and form handlers, no edge functions 
+      needed!
     href: /blog/mdx-post.mdx
     cta: Other Interactive Ideas
 
-  - title: Be Accessible.
+  - title: Accessible & Responsive
     body: |
-      Fully-responsive design and components that work in conjunction with the user's preferences
-      for text, theme and motion. Includes a toggle to switch to Open Dyslexic as the displayed
-      font.
+       And translation-ready. Infima makes creating responsive sites very easy. Be
+       sure reading is comfortable on any device, in whatever languages you want to offer.
     href: /docs/
-    cta: More Project Goals
+    cta: More About Accessibility

@@ -1,14 +1,13 @@
 {{ for post of search.pages("%blog%", "date", 1) }}
-    <div class="card">
+    <div class="card padding-vert--xs">
+        <h2>Latest From Our Blog:</h2>
         <div class="card__header">
-            <h2>{{ post.title }}</h2>
+            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+             {{> const teaser = post.excerpt.replace(/<img[^>]*>/g, '') }}
+             {{ teaser |> md }}
         </div>
         <div class="card__footer">
-            <div class="button-group button-group--block">
-                <button class="button button--secondary">Read</button>
-                <button class="button button--secondary">More Like This</button>
-                <button class="button button--secondary">More By {{ post.author }}</button>
-            </div>
+            <a href="{{ post.url }}"><button class="button button--primary button--outline button--block">Continue Reading &raquo;</button></a>
         </div>
     </div>     
 {{ /for }}
