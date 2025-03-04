@@ -14,24 +14,30 @@ top_nav:
     text: Theme Features
     title: Many of these are currently broken ...
     links:
-      - text: Lume3 Component Oriented
+      - text: Easy-to-Use Components
         href: /features/components/
         title: A Detailed Overfview Of How Lume3 Components Are Used
-      - text: Built In, Customizeable Search
+
+      - text: Search With Batteries Included
         href: /features/search/
-        title: Powered by included Lume3 middleware API
-      - text: Interactive Features Built On DenoKV
+        title: Powered with Pagefind & Lume3 Middleware
+
+      - text: Content Rating System Included
         href: /features/interactive/
         title: Content rating system, form processing and more!
-      - text: Fully Loaded, Configured Plugins
+
+      - text: Fully-Loaded Plugin Ensemble
         href: /features/plugins/
         title: Including OG Image Generation, SEO, More!
+
       - text: Ready For Translations
         href: /features/internationalization/
         title: Strings are externalized, you supply the layout.
-      - text: Responsive, Accessible, Dyslexic-friendly
+
+      - text: Responsive And Accessible
         href: /features/accessibility/
         title: Open Dyslexic if user prefers dyslexic-friendly font.
-      - text: SEO-minded, Optimized, Minified and Fast!
+
+      - text: SEO-Minded, Optimized & Fast!
         href: /features/performance/
         title: If no one can find it, who does it help?
