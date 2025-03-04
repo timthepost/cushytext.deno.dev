@@ -18,10 +18,39 @@ use yet.
 
 ## Installing 
 
-The easiest way to use the theme is to clone the git repository, for now.
+The easiest way to use the theme is to clone the git repository, for now. Eventually, 
+it will be a remote theme anyone can use when they initialize Lume.
 
-Eventually, it will be a remote theme anyone can use when they initialize
-Lume.
+Once installed, you can:
+
+```bash
+deno task dev
+```
+
+This is my most commonly run task; it sets `LUME_DRAFTS` in the environment and then
+runs the live-reloading local Lume server. Middleware will work just like it does on
+the production site, except SQLite3 will be used instead of DenoKV for any database
+interaction (this is how DenoKV works).
+
+You also have the usual `deno task serve` which doesn't set any environmental variables,
+so you won't see drafts. You also have `deno task clean` which removes all Lume and Deno
+caches, but leaves `node_modules` alone. `deno task maintainer-clean` runs clean, and 
+also takes out `node_modules` (which is set to `auto` in `deno.json`).
+
+Note that two unstable Deno features are enabled by default in this repo, they are 
+DenoKV and the temporal API. The interactive features require DenoKV, and Lume 3 is 
+requiring the temporal API.
+
+To run the production server as it would be run on Deno Deploy, you can type:
+
+```bash
+deno task mock
+```
+
+This will listen on port 8000, and reload itself as you make changes to ***it***, 
+and ***only it***: `_serve.ts`. Content will not live-update. You will need to 
+of course run build first, so it has something to serve. Use this to debug the server
+itself, or redirects; it's not necssary for testing router middleware.
 
 ## Current Focus
 
@@ -35,6 +64,8 @@ process.
 There are also a lot of plugins that have to be installed and configured
 to work with everything else (OG Image, Image Resizing, Optimization & 
 minimizing, etc.)
+
+I also need to finish the open dyslexic font switcher.
 
 ## Known Issues
 
@@ -81,20 +112,44 @@ have to steal a column from both sidebars, for instance, or remove one.
 
 ## Search 
 
+Lume search is easy with this template. For instance, if I only want to
+find visible blog posts with the foo tag, I could:
+
+```js
+search.pages("%blog% foo menu.visible=true", "date menu.order")
+```
+
+Or if I wanted to find everything tagged `foo` ***but*** landing pages:
+
+```js
+search.pages("!%landing-pages% foo menu.visible=true", "date menu.order")
+```
+
+These "archetype tags" are applied in the `_data.yml` file inside the feature
+directories so they get merged and applied to everything under them. They 
+aren't displayed anywhere but in advanced search options (or will be).
+
+So, one could (in theory) have 5 completely separate documentation directories
+with independent nav and tagging, but still visible and filterable in site-wide
+search. The same (almost) goes for blogs. I was going to call these "meta" tags, 
+but that's a name most people apply to tags filled out for SEO.
+
 Search will use Pagefind like most other Lume sites, but it will be 
 implemented a little differently:
 
  - Search gets submitted to an async middlware function that uses the
    Pagefind API under the hood.
 
- - This function also uses Lume's comprehensive tag search to help with
-   results.
+ - This function also uses Lume's comprehensive search to help Pagefind
+   only see page indexes that are relevant to the query.
 
  - 100% of the search experience is customizeable. If you wanted to, say,
    also pull in results from Elastic or other providers, you could easily 
-   do so in the middlware (see `/src/_server_routes.ts`)
+   do so in the middlware (see `/src/_server_routes.ts`).
 
 For the first version, it's very likely that a modal will open when the
 nav searchbar has focus, which just uses the Pagefind UI. Hopefully the
 full stack search will be done by then, but if not, we can still launch
 everything else.
+
+However, it will ship shortly after, as it's an important feature.
