@@ -3,5 +3,6 @@ tags:
   - "%docs%"
 docs:
   basedir: /docs/
+  archetypeTag: "%docs%"
   title: Documentation Home
   sidebar: auto
