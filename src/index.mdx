@@ -7,82 +7,24 @@ menu:
   linkText: Home (Index)
 ---
 
-## Additional Project Goals And Aspirations:
+## Being A Joy To Use Produces Better Content Results
 
-No-one likes cookie banners, and an explicit goal of this theme is to
-offer islands of interactivity without requiring the use of cookies. Local
-storage is utilized with graceful checks to store interaction data (votes, 
-ratings, and other things), but always treated as ephemeral. Sure, people 
-might vote twice for the same post. Is stopping that worth forcing people
-to sign in? I don't believe it is.
+No one likes a content system that blows up in your face or 
+one that doesn't consider creation and curation as important
+as consumption. We like systems that let us get things done
+without imposing a lot of structure or restriction, but that
+also effectively brings order to chaos.
 
-The authoring experience is equally as important as the user's reading experience,
-because one leads to the other. Local development should match what's in
-production without mocking or additional configuration. Try to make it easier to do
-the correct thing than not, wherever possible. 
- 
-Tags and search should be gracefully integrated. Remember that some government 
-and NGO websites, like those that list data about medications, can be tens of thousands 
-of nodes long. Research projects can be thousands of nodes with hundreds of tags. But,
-the average user will have a hundred pages and 20 tags or fewer. Think big, but make 
-any size a joy to navigate. 
+You like to be able to tweak styles in markup when you have 
+to, but appreciate well-planned CSS so that you don't have
+too many kludges waiting to blow. You want guardrails, but 
+not imposition or being forced to use someone else's idea of
+a site layout. You don't want a cookie banner or the headache
+of debugging edge functions, but you want some interactive 
+features.
 
-<div class="alert alert--info margin-bottom--md" role="alert">
-<h3>Current Status (As Of February 2025):</h3>
-<strong><code>tl;dr:</code> 30% Done; Should Be Done Shortly After Lume 3 Ships.</strong>
-</div>
+You're not a designer, but somehow, you can make Infima look
+like anything. You don't want to use Yarn again. Ever.
 
-### Progress So Far:
-
-  - Infima has been imported (`src/_includes/css/theme.css` with color and main variable
-  definitions found in `src/style.css`). The `src/style.css` is what's loaded by the theme,
-  which loads the `theme.css` file. `_includes/js/infima` has all of the component JS 
-  broken out into individual files, but there's some shared functions to resolve. The only 
-  generated nav right now is in `docs/`. 
-
-  - Basic structure (pages in `/pages`, documentation-style files in `/docs`, posts in `/blog`
-  ) has been set up. Current focus is getting the nav auto generated with some yaml tweaks for
-  it where appropriate.
-
-  - Now running Lume 3 Dev
-
-  - Internationalization in-progress
-
-  - Components in-progress (mostly async vento at this point, until Lume3 bakes more)
-
-  - Focusing on making nav elegant, additional plugins and setup they require, blog functionality
-    as well as some kind of tag engine. I'm working on code that doesn't depend on a lot of brand 
-    new Lume code while the dust settles in Lume 3.
-
-  - Building out the project site (site for this template) using this template. 
-
-### Installing:
-
-This is not yet a usable theme. It's available to those who want to help build the remaining parts 
-needed for the theme to be usable. 
-
-If that sounds like you, or if you just want to poke around, clone this repository and then type:
-
-```bash
-$ deno task dev
-```
-
-This starts the lume server that reloads on changes, and also sets the `LUME_DRAFTS` environmental
-variable high so you can see your drafts as you write them. Don't want drafts? Type:
-
-```bash
-$ deno task serve
-```
-
-This will start the Lume server (without drafts being processed).
-
-#### Contributing:
-
-If you're interested in helping out, send a PR, open an issue, or feel free to coordinate with me 
-at:
-
-```
-timthepost@protonmail.com
-```
-
-If this seems like it's going to be active, I'll set up a Discord server.
+If that sounds like you and you use Deno, you might want to 
+give Cushy Text + Lume a try!
