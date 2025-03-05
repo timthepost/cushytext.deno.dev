@@ -53,21 +53,25 @@ itself, or redirects; it's not necssary for testing router middleware.
 
 ## Current Focus
 
-The blog and docs archetypes need working prev/next links, breadcrumbs 
-and (for blog) pagination. That's the last "shared" feature between the
-two.
+- The blog and archetype needs working prev/next links, breadcrumbs 
+and (for blog) pagination.
 
-Once that's done, docs needs a way to load a custom sidebar, and it will
-be feature complete.
+ - Docs builds a nav just fine, but doesn't differentiate folders as 
+headings or trees very well. There should also be some way to pass
+a custom sidebar? 
 
-Blog needs an archive page, tag pages, author pages, working feeds
+ - Blog needs an archive page, tag pages, author pages, working feeds
 and reading time to be initially feature-complete.
 
-There are also a lot of plugins that have to be installed and configured
+ - There are also a lot of plugins that have to be installed and configured
 to work with everything else (OG Image, Image Resizing, Optimization & 
 minimizing, etc.)
 
-I also need to finish the open dyslexic font switcher.
+ - I also need to finish the open dyslexic font switcher.
+
+ - `dist/` needs to be created with files to pull in for new installs
+(two docs pages, a blog page, one content page, etc) and `mod.ts` 
+needs to be created.
 
 ## Known Issues
 
@@ -77,6 +81,8 @@ I also need to finish the open dyslexic font switcher.
  - Code highlighting plugins don't yet work with the new SSX flavor of MDX. Like
    the TOC issue, I expect this to be fixed before Lume3, so I'm not doing anything
    to work around it.
+
+ - Lots of pages on this site are missing or incomplete.
 
 ## Went With Two Columns For Most Things
 
