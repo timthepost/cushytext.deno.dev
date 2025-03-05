@@ -9,11 +9,13 @@
       {{ /for }}
     </div>
     <div class="col col--3">
-      <!-- TODO: these need real styles (badges great, inline style="" : yuck) -->
       <h3 class="margin-top--md">{{ locale.archive.feeds }}</h3>
       <p>
-        <a href="/feed.rss">
+        <a href="/feed.rss" class="navbar__link">
           <span class="badge badge--warning" style="font-size: 12pt">RSS</span>
+        </a> |
+        <a href="/feed.rss" class="navbar__link">
+          <span class="badge badge--success" style="font-size: 12pt">JSON</span>
         </a>
       </p>
       <h3 class="margin-top--md">{{ locale.archive.latest_posts }}</h3>
@@ -27,6 +29,5 @@
           {{ /for }}
         </ul>
       <h3 class="margin-top--md">{{ locale.archive.top_tags }}</h3>
-      <p>Tags coming soon ...</p>
     </div>
   </div>
