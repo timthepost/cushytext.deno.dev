@@ -20,5 +20,5 @@ documentation:
 archive:
   latest_heading: "Latest Posts From The"
   latest_posts: "Latest Posts"
-  feeds: "Feeds:"
-  top_tags: "Top Tags:"
+  feeds: "Grab A Feed:"
+  top_tags: "Recent Tags:"
