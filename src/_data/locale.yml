@@ -6,6 +6,10 @@ error_404:
 posts:
   has_tags: "Tags:"
 
+documentation: 
+  next_link: "Next >>"
+  prev_link: "<< Previous"
+
 archive:
   latest_heading: "Latest Posts From The"
   latest_posts: "Latest Posts"
