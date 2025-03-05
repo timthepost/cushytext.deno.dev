@@ -1,12 +1,12 @@
 top_nav:
   - type: "link"
     href: "/blog/"
-    text: Blog & Changelog
+    text: Blog
     title: Best Way To Stay Up To Date
 
   - type: "link"
     href: "/docs/"
-    text: Documentation
+    text: Theme Docs
     title: Documentation for this theme, using this theme.
 
   - type: "menu"
