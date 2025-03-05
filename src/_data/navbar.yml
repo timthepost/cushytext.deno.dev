@@ -31,7 +31,7 @@ top_nav:
         title: Including OG Image Generation, SEO, More!
 
       - text: Ready For Translations
-        href: /features/internationalization/
+        href: /features/localization/
         title: Strings are externalized, you supply the layout.
 
       - text: Responsive And Accessible
