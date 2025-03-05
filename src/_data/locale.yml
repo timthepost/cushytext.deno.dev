@@ -18,9 +18,9 @@ documentation:
   prev_link: "<< Previous"
 
 archive:
-  heading: "Blog Archives"
-  posts: "Posts"
-  tags: "Tags"
+  heading: "Blog Archive"
+  slogan: "<em>So many posts to write, so few Posts to write them! -- Tim Post (Template Maintainer)</em>"
+  tags: "Go By Tag:"
   previous: "<< Previous"
   next: "Next >>"
 
