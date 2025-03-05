@@ -22,3 +22,7 @@ archive:
   latest_posts: "Latest Posts"
   feeds: "Grab A Feed:"
   top_tags: "Recent Tags:"
+
+comp:
+  latestBlog:
+    heading: "Latest From The Blog:"

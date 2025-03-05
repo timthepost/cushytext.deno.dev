@@ -40,7 +40,7 @@ export default function (userOptions?: Options) {
       .use(nav())
       .use(postcss())
       .add([".css"])
-      .use(feed({ output: ["/feed.rss"]}))
+      .use(feed({ output: ["/feed.rss"], query: "%blog%" }))
       .use(code_highlight({
         languages: {
           javascript: lang_javascript,

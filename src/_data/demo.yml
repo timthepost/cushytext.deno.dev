@@ -1,8 +1,8 @@
 hero:
-  title: Cushy Text <sup>++</sup>
+  title: Cushy Text
   href: /features/
   cta: Components &amp; Features &raquo;
-  slogan: A component-driven, text-focused-yet-interactive theme for Lume3 based on InfimaCSS.
+  slogan: An Infima-based, component-driven, text-focused interactive and accessible theme for Lume 3.
 
 goals:
   - title: Comfortable To Build With.
