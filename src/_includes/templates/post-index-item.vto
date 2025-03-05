@@ -1,9 +1,9 @@
-<div class="card margin-top--lg padding--md">
-    <h2 class="margin-horiz--md">
+<div class="card margin-top--md padding--md">
+    <h2 class="margin-top--sm">
         <a href="{{ entry.url }}">{{ entry.title }}</a>
     </h2>
     <p class="margin-horiz--md">
-    {{ locale.posts.written_by }} <strong>{{ entry.author }}</strong> 
+    {{ locale.posts.written_by }} <strong><a href="/author/{{ entry.author.replace(/\ /g, "-") }}/">{{ entry.author }}</a></strong> 
     {{ locale.posts.written_on }} {{ entry.date }}.
     </p>
     <div class="padding-horiz--md">

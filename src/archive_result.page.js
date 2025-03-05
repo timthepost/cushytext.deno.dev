@@ -17,7 +17,7 @@ export default function* ({ search, _locale }) {
   // Generate a page for each author
   for (const author of search.values("author")) {
     yield {
-      url: `/author/${author.replace(/\ /g, "-").toLowerCase()}/`,
+      url: `/author/${author.replace(/\ /g, "-")}/`,
       title: `Posts By ${author}`,
       type: "author",
       search_query: `'%blog%' author='${author}'`,
