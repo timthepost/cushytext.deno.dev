@@ -1,5 +1,6 @@
 <div class="card margin-top--lg padding--md">
     <a href="{{ entry.url }}"><h2 class="margin-horiz--md">{{ entry.title }}</h2></a>
+    <p class="margin-horiz--md">{{ locale.posts.written_by }} <strong>{{ entry.author }}</strong> {{ locale.posts.written_on }} {{ entry.date }}.</p>
     <div class="padding--md">
         {{ entry.excerpt |> md }}
     </div>
