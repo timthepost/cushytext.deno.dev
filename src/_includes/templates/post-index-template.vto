@@ -35,6 +35,7 @@
             {{ /if }}          
           {{ /for }}
       </ul>
+      <p class="margin-top--md"><strong>{{ locale.blog_index.older_posts }} <a href="/archive">{{ locale.blog_index.older_posts_link }}</a></strong>.</p>
       <h3 class="margin-top--md">{{ locale.blog_index.top_tags }}</h3>
       {{ set postTags = search.pages("type=tag", "tag date", 10) }}
       {{ if postTags.length }}

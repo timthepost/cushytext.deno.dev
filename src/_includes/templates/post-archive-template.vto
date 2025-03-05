@@ -10,14 +10,16 @@
         {{ /if }}
       {{ /for }}
       {{ if pagination.totalPages !== 1 }}
-        <!--
+        <!-- for reference for now while debugging 
           page.pagination.page;         // The current page
           page.pagination.totalPages;   // Total pages
           page.pagination.totalResults; // Total results
           page.pagination.previous;     // The URL of the previous page
           page.pagination.next;         // The URL of the next page
         -->
-        <p>Page {{ pagination.page }} of {{ pagination.totalPages }} {{ pagination.totalResults }} total results.</p>
+        <p>
+        {{ locale.archive.page }} {{ pagination.page }} {{ locale.archive.page_of }} {{ pagination.totalPages }} {{ pagination.totalResults }} {{ locale.archive.total_results }}
+        </p>
         <p>
         {{ if pagination.previous }}
           <a href="{{ pagination.previous }}" class="margin-horiz--sm" rel="prev">{{ locale.archive.previous }}</a>
@@ -31,13 +33,24 @@
     <div class="col col--3">
       <h3 class="margin-top--md">{{ locale.blog_index.feeds }}</h3>
       <p>
-        <a href="/feed.rss" class="navbar__link">
-          <span class="badge badge--warning" style="font-size: 12pt">RSS</span>
-        </a> |
-        <a href="/feed.rss" class="navbar__link">
+        <a href="/feed.xml" class="navbar__link">
+          <span class="badge badge--warning" style="font-size: 12pt">Atom</span>
+        </a> 
+        <!-- clever, or lazy? you decide! -->
+        <span class="margin-horiz--sm">|</span>
+        <a href="/feed.json" class="navbar__link">
           <span class="badge badge--success" style="font-size: 12pt">JSON</span>
         </a>
       </p>
+      <h3 class="margin-top--md">{{ locale.archive.authors }}</h3>
+      {{ set authors = search.values("author") }}
+      {{ if authors.length }}
+        <ul>
+        {{ for author of authors }}
+          <li><a href="/author/{{ author.replace(/\ /g, "-") }}/"><strong>{{ author }}</strong></a></li>
+        {{ /for }}
+        </ul>
+      {{ /if }}
       <h3 class="margin-top--md">{{ locale.archive.tags }}</h3>
       {{ set postTags = search.pages("type=tag", "tag") }}
       {{ if postTags.length }}
