@@ -10,6 +10,8 @@ posts:
   has_tags: "Tags:"
   written_by: "Written By"
   written_on: "On"
+  read_more: "Read More"
+  read_time: "Minute Read"
 
 documentation: 
   next_link: "Next >>"
