@@ -3,8 +3,14 @@
     {{ include "partials/nav.vto" }}
     <div class="main-wrapper">
       <main>
-        <div class="container margin-top--sm">
-            Stub
+        <div class="container">
+            <h1 class="margin-top--md">{{ title }}</h1>
+            {{ if search_query }}
+              {{ for item of search.pages(search_query) }}
+              <h2 class="margin-top--md"><a href="{{ item.url }}">{{ item.title }}</a></h2>
+              {{ /for }}
+            {{ /if }}
+            <p><a href="/archive"><< Back</a></p>
         </div>
       </main>
     </div>
