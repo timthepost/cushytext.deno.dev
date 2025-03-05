@@ -1,10 +1,15 @@
 error_404:
   title: "Content Not Found"
   heading: "Content Not Found"
-  content: "The requested page does not exist.""
+  content: "The requested page does not exist."
+
+subnav:
+  return: "&larr; Back To Main"
 
 posts:
   has_tags: "Tags:"
+  written_by: "Written By"
+  written_on: "On"
 
 documentation: 
   next_link: "Next >>"
