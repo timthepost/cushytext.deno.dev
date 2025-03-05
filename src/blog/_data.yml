@@ -1,5 +1,6 @@
 layout: layouts/post.vto
 tags:
+  # This is a hidden "archetype" tag. See the docs before changing.
   - "%blog%"
 blog:
   basedir: /blog/
