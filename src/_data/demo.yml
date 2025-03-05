@@ -10,7 +10,7 @@ goals:
       Easy components. Easy interactive features. Just enough structure. Forgiving MDX lets 
       you "just get it done" with an easy framework well-known for handling enormous amounts
       of text.
-    href: /blog/mdx-post.mdx
+    href: /features/components/
     cta: More On Components
 
   - title: A Little Interactive!
@@ -18,12 +18,12 @@ goals:
       Take advantage of the middleware in Lume3 on Deno Deploy with DenoKV! Static doesn't have
       to mean stagnate. Comes with a content rating system and form handlers, no edge functions 
       needed!
-    href: /blog/mdx-post.mdx
+    href: /features/interactive/
     cta: Other Interactive Ideas
 
   - title: Accessible & Responsive.
     body: |
        And translation-ready. Infima makes creating responsive sites very easy. Be
        sure reading is comfortable on any device, in whatever languages you want to offer.
-    href: /docs/
+    href: /features/accessibility/
     cta: More About Accessibility
