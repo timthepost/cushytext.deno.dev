@@ -8,7 +8,6 @@ import metas from "lume/plugins/metas.ts";
 import robots from "lume/plugins/robots.ts";
 import mdx from "lume/plugins/mdx.ts";
 import nav from "lume/plugins/nav.ts";
-import CushyDocs from "./src/_plugins/cushy-docs-conductor/mod.ts";
 import code_highlight from "lume/plugins/code_highlight.ts";
 import feed from "lume/plugins/feed.ts";
 import readingInfo from "lume/plugins/reading_info.ts";
@@ -39,10 +38,9 @@ export default function (userOptions?: Options) {
   return (site: Lume.Site) => {
     site
       .use(nav())
-      .use(CushyDocs())
       .use(postcss())
       .add([".css"])
-      .use(feed())
+      .use(feed({ output: ["/feed.rss"]}))
       .use(code_highlight({
         languages: {
           javascript: lang_javascript,
