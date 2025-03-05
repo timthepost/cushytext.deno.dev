@@ -20,15 +20,21 @@ documentation:
 archive:
   heading: "Blog Archive"
   slogan: "<em>So many posts to write, so few Posts to write them! -- Tim Post (Template Maintainer)</em>"
-  tags: "Go By Tag:"
+  tags: "Search By Tag:"
+  authors: "Search By Author:"
   previous: "<< Previous"
   next: "Next >>"
+  page: "Page"
+  page_of: "of"
+  total_results: "total results."
 
 blog_index:
   latest_heading: "Latest Posts From The"
   latest_posts: "Latest Posts"
   feeds: "Grab A Feed:"
   top_tags: "Recent Tags:"
+  older_posts: "Older posts are "
+  older_posts_link: "in the archive"
 
 comp:
   latestBlog:
