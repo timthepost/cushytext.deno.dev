@@ -11,7 +11,7 @@ Things that need done before the first release:
   so excerpts may contain unparsed JSX. Not much I can do about that yet.
 
 - TOC plugin for Lume currently does not work with MDX. Need to use one 
-  of the remark plugins, or make one.
+  of the remark plugins, or make one?
 
 - Blog needs actual container / image styles (currently has an image
   helper you have to use manually)
@@ -22,9 +22,9 @@ Things that need done before the first release:
 
 # documentation
 
- - Prev / Next links, breadcrumbs.
+ - breadcrumbs.
 
- - Show page tags and links, but no "docs" archive or tag pages.
+ - doesn't handle categories or sub-folders so well.
 
 # tags
 
