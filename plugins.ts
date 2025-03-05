@@ -10,6 +10,8 @@ import mdx from "lume/plugins/mdx.ts";
 import nav from "lume/plugins/nav.ts";
 import CushyDocs from "./src/_plugins/cushy-docs-conductor/mod.ts";
 import code_highlight from "lume/plugins/code_highlight.ts";
+import feed from "lume/plugins/feed.ts";
+import readingInfo from "lume/plugins/reading_info.ts";
 
 // import your favorite language
 import lang_javascript from "npm:highlight.js/lib/languages/javascript";
@@ -40,6 +42,7 @@ export default function (userOptions?: Options) {
       .use(CushyDocs())
       .use(postcss())
       .add([".css"])
+      .use(feed())
       .use(code_highlight({
         languages: {
           javascript: lang_javascript,
@@ -58,6 +61,7 @@ export default function (userOptions?: Options) {
       }))
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
+      .use(readingInfo({ extensions: [".mdx"] }))
       .use(redirects({ output: "json" }))
       .use(metas())
       .use(robots())
