@@ -18,6 +18,13 @@ documentation:
   prev_link: "<< Previous"
 
 archive:
+  heading: "Blog Archives"
+  posts: "Posts"
+  tags: "Tags"
+  previous: "<< Previous"
+  next: "Next >>"
+
+blog_index:
   latest_heading: "Latest Posts From The"
   latest_posts: "Latest Posts"
   feeds: "Grab A Feed:"
