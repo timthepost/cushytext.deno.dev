@@ -41,6 +41,7 @@ export default function (userOptions?: Options) {
       .use(postcss())
       .add([".css"])
       .use(feed({ output: ["/feed.rss"], query: "%blog%" }))
+      .use(feed({ output: ["/feed.json"], query: "%blog%" }))
       .use(code_highlight({
         languages: {
           javascript: lang_javascript,
