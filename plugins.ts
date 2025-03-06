@@ -46,7 +46,7 @@ export default function (userOptions?: Options) {
       .add([".css"])
       .use(feed({ output: ["/feed.xml"], query: "%blog%" }))
       .use(feed({ output: ["/feed.json"], query: "%blog%" }))
-      .use(mdx({ extensions: [".mdx"] }))
+      .use(mdx({ extensions: [".mdx", ".jsx", ".tsx"] }))
       .use(basePath())
       .use(readingInfo({ extensions: [".mdx"] }))
       .use(redirects({ output: "json" }))
