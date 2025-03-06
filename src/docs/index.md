@@ -23,7 +23,7 @@ it will be a remote theme anyone can use when they initialize Lume.
 Once installed, you can:
 
 ```bash
-deno task dev
+$ deno task dev
 ```
 
 This is my most commonly run task; it sets `LUME_DRAFTS` in the environment and then
@@ -43,7 +43,7 @@ requiring the temporal API.
 To run the production server as it would be run on Deno Deploy, you can type:
 
 ```bash
-deno task mock
+$ deno task mock
 ```
 
 This will listen on port 8000, and reload itself as you make changes to ***it***, 
