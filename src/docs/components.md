@@ -1,6 +1,6 @@
 ---
 title: Working With And Making Components
-order: 3
+order: 1
 ---
 
 # How Do I Use And Create New Feature Components?

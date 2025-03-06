@@ -6,72 +6,51 @@ menu:
 
 # Current Status: <span class="text--danger">Alpha & Unstable.</span>
 
-I'm building the site about Cushy Text with Cushy Text while I build Cushy Text.
+I'm building the site about Cushy Text with Cushy Text while I build Cushy 
+Text. That's so ... meta. I'm doing my best to keep this documentation up-to-date
+as I go from one breaking change to another. 
 
-You can't get any more meta than that. Well, I guess you could, but let's get to
-the point - ***Cushy Text Is About 45% Baked***. Here's a list of things that, 
-while ever-changing, is currently the best roadmap.
-
-The theme is fine to play with, but it's not ready for any kind of serious 
-use yet.
+This is not yet ready for use. Feel free to poke around, but this needs a lot 
+of finishing work before it's ready for prime time, regardless of how complete
+things are starting to look.
 
 ## Installing 
 
-The easiest way to use the theme is to clone the git repository, for now. Eventually, 
-it will be a remote theme anyone can use when they initialize Lume.
+For now, clone the repo. I'll have a `mod.ts` file and a generator to make some 
+default content pages so that it works as a proper remote theme, but not until
+a lot more stuff is finished.
 
-Once installed, you can:
+Once you have the repo, 
 
-```bash
+```sh
 $ deno task dev
 ```
 
-This is my most commonly run task; it sets `LUME_DRAFTS` in the environment and then
-runs the live-reloading local Lume server. Middleware will work just like it does on
-the production site, except SQLite3 will be used instead of DenoKV for any database
-interaction (this is how DenoKV works).
+This sets `LUME_DRAFTS` and starts the Lume local server.
 
-You also have the usual `deno task serve` which doesn't set any environmental variables,
-so you won't see drafts. You also have `deno task clean` which removes all Lume and Deno
-caches, but leaves `node_modules` alone. `deno task maintainer-clean` runs clean, and 
-also takes out `node_modules` (which is set to `auto` in `deno.json`).
-
-Note that two unstable Deno features are enabled by default in this repo, they are 
-DenoKV and the temporal API. The interactive features require DenoKV, and Lume 3 is 
-requiring the temporal API.
-
-To run the production server as it would be run on Deno Deploy, you can type:
-
-```bash
+```sh
 $ deno task mock
 ```
 
-This will listen on port 8000, and reload itself as you make changes to ***it***, 
-and ***only it***: `_serve.ts`. Content will not live-update. You will need to 
-of course run build first, so it has something to serve. Use this to debug the server
-itself, or redirects; it's not necssary for testing router middleware.
+This starts the _production_ server locally, on port 8000. If you edit the server
+source, it will automatically reload itself, but _content will not auto-refresh
+unless you're serving Lume in the background on port 3000 too. Use this for testing
+changes to the production server, or redirects. It's not necessary for testing 
+middleware.
 
 ## Current Focus
 
-- The blog and archetype needs working prev/next links, breadcrumbs 
-and (for blog) pagination.
+ - Blog / Tag archive pages need some love. I just created rough stubs.
 
- - Docs builds a nav just fine, but doesn't differentiate folders as 
-headings or trees very well. There should also be some way to pass
-a custom sidebar? 
+ - Docs auto nav doesn't deal with nested directories very well. Also
+   need some way to pass custom sidebar designs? thinking about it.
 
- - Blog needs an archive page, tag pages, author pages, working feeds
-and reading time to be initially feature-complete.
-
- - There are also a lot of plugins that have to be installed and configured
-to work with everything else (OG Image, Image Resizing, Optimization & 
-minimizing, etc.)
+ - A long list of additional plugins, like the OG Image Generator 
 
  - I also need to finish the open dyslexic font switcher.
 
- - `dist/` needs to be created with files to pull in for new installs
-(two docs pages, a blog page, one content page, etc) and `mod.ts` 
-needs to be created.
+ - Make remote themes work with sparse initial content generated (two example 
+   blog posts, three markdown document pages, one landing page). 
 
 ## Known Issues
 
@@ -82,94 +61,9 @@ needs to be created.
    the TOC issue, I expect this to be fixed before Lume3, so I'm not doing anything
    to work around it.
 
- - Lots of pages on this site are missing or incomplete.
+ - Lots of pages on this site are incomplete.
 
-## Went With Two Columns For Most Things
+## Contributing
 
-Originally, I had a 3-column left sidebar, a 6-column center content 
-area, and then a 3-column right sidebar. This is the classic "Infima"
-look that people are used to.
-
-A single sidebar that can move to the responsive flyout "hamburger"
-menu quickly as a submenu surfaced as the most logical way forward, 
-so that's what was used.
-
-If you want to go back to three columns, you'll need to edit the 
-template, and have it look something like this (and this is just
-using Infama's [grid system](https://infima.dev/docs/layout/grid)):
-
-```html
-<div class="container">
-    <div class="row">
-        <div class="col col--3">
-            <!-- left nav goes here -->
-        </div>
-        <div class="col col--6">
-            <!-- content goes here -->
-        </div>
-        <div class="col col--3">
-            <!-- right nav goes here -->
-        </div>
-    </div>
-</div>
-```
-
-You could also experiment with different sizes, just remember it
-all has to add up to 12 columns. To make the content 8 columns, you'd
-have to steal a column from both sidebars, for instance, or remove one.
-
-See media queries in `src/style.css` if you find the need to add more. 
-
-## Search 
-
-Lume search is easy with this template. For instance, if I only want to
-find visible blog posts with the foo tag, I could:
-
-```js
-search.pages("%blog% foo menu.visible=true", "date menu.order")
-```
-
-Or if I wanted to find everything tagged `foo` ***but*** landing pages:
-
-```js
-search.pages("!%landing-pages% foo menu.visible=true", "date menu.order")
-```
-
-These "archetype tags" are applied in the `_data.yml` file inside the feature
-directories so they get merged and applied to everything under them. They 
-aren't displayed anywhere but in advanced search options (or will be).
-
-So, one could (in theory) have 5 completely separate documentation directories
-with independent nav and tagging, but still visible and filterable in site-wide
-search. The same (almost) goes for blogs. I was going to call these "meta" tags, 
-but most people understand those as something completely different now.
-
-Search will use Pagefind like most other Lume sites, but it will be 
-implemented a little differently:
-
- - Still use the Pagefind data tags in containers that need indexing. 
-   Nothing about pagefind but the UI options change from that perspective.
-
- - Search gets submitted to an async middlware function that uses the
-   Pagefind API under the hood.
-
- - This function also uses Lume's comprehensive search to help Pagefind
-   only see page indexes that are relevant to the query. Think of it 
-   like pre-searching.
-
- - 100% of the search experience is customizeable. If you wanted to, say,
-   also pull in results from Elastic or other providers, you could easily 
-   do so in the middlware (see `/src/_server_routes.ts`). Since it's 
-   all just data coming back from a `fetch()` call, you can handle it 
-   any way you like. 
-
- - ***Or*** You can (if you want) just use the default Pagefind UI and 
-   a modal. This will probably ship like that, and I'll keep it as an 
-   option for anyone who doesn't want to use middleware.
-
-For the first version, it's very likely that a modal will open when the
-nav searchbar has focus, which just uses the Pagefind UI. Hopefully the
-full stack search will be done by then, but if not, we can still launch
-everything else.
-
-However, it will ship shortly after, as it's an important feature.
+Feel free to email me at `timthepost@protonmail.com` if you'd like to collaborate, or open 
+an issue or discussion on Github. 
