@@ -2,21 +2,16 @@ export default function (title: string) {
   const slug = title.replace(/\s+/g, "-").toLowerCase();
   const pageContent = `
 
-Opening Text
+  <!-- At this point you're in the main container --> 
+  <h1>${title}</h1>
+  <p>Content goes here.</p>
 
-<img src="/uploads/${slug}.jpg" alt="TODO: Description" title="TODO: Title" />
-
-<!--more-->
-  
-Supportive text.
-  
-## First Heading
-
-Additional supportive text.
+  {/* TODO: Show MDX Component Use Here */}
 
 `;
+  /* TODO: Sanity Check The Path */
   return {
-    path: `/blog/${slug}.mdx`,
+    path: `${slug}.mdx`,
     content: {
       title: title,
       date: new Date().toISOString().slice(0, 10),
