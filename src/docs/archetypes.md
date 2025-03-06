@@ -1,9 +1,9 @@
 ---
-title: Archetypes & Theme Archetype Extensions
+title: Extensions To The Archetype Concept
 order: 3
 ---
 
-# Archetypes & Theme Archetype Extensions
+# Extensions To The Archetype Concept
 
 Many Lume themes let you produce a great looking wiki, or a great looking
 blog, or landing pages for events, or even an e-book. There's really no 
