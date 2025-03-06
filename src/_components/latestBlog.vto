@@ -4,8 +4,12 @@
         <div class="card__header">
             <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
             <p><strong>By {{ post.author }} on {{ post.date }}</strong>.</p>
-             {{> const teaser = post.excerpt.replace(/<img[^>]*>/g, '') }}
-             {{ teaser |> md }}
+            {{ if post.excerpt }}
+                {{> const teaser = post.excerpt.replace(/<img[^>]*>/g, '') }}
+                {{ teaser |> md }}
+            {{ else }}
+                <p>An error occurred while fetching an excerpt of this post.</p>
+            {{ /if }}
         </div>
         <div class="card__footer">
             <a href="{{ post.url }}" class="navbar__link">
