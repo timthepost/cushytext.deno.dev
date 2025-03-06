@@ -102,9 +102,10 @@ blog index page, but the pattern is the same as far as fundamental mechanics.
 
 ## Creating Content In Archetypes
 
-Just use `lume new <archetype> <path>/<slug>`. 
+Just use `lume new <archetype> <path>/<slug>` and a file with all needed frontmatter 
+appropriate for the archetype will be generated for you.
 
-A file with all needed frontmatter will be generated for you.
+Soon, scripts (lume scripts) will go in to make this smarter.
 
 
 
