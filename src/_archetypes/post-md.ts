@@ -2,17 +2,17 @@ export default function (title: string) {
   const slug = title.replace(/\s+/g, "-").toLowerCase();
   const pageContent = `
 
-Opening teaser here
+Opening Text
 
-<img src="/uploads/${slug}.jpg" alt="" title="" />
+<img src="/uploads/${slug}.jpg" alt="TODO: Description" title="TODO: Title" />
 
 <!--more-->
   
-More Text here
+Supportive text.
   
-## Heading 
+## First Heading
 
-More text comes next ...
+Additional supportive text.
 
 `;
   return {
@@ -28,7 +28,7 @@ More text comes next ...
         description: "Short meta description (up to 170 chars)",
         tags: ["meta tag one", "meta tag two"],
         image: "/uploads/" + slug + ".jpg",
-        robots: false,
+        robots: true,
         generator: true,
       },
       content: pageContent,
