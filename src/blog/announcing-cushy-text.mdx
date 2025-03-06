@@ -41,9 +41,31 @@ So, I created one! And, I named it Cushy Text!
 
 ## Multi-Instance / Multi-Archetype / Central Search & Design
 
-The theme allows you to run multiple blogs independent tags, archive pages, author 
-pages, feeds and even designs all on the same URL. I wanted to be able to have a 
-very basic status blog, release notes blog, and main blog, as an example.
+The theme allows you to run multiple independent blogs with the ability to separate
+tags out from between them, but all sharing a common archive and author page. This
+is accomplished by adding a hidden "archetype" tag (my term) in the `_data.*` file 
+in the folder where you want it to live, an example from this blog:
+
+```yml
+layout: layouts/post.vto
+tags:
+  - "%blog%"
+blog:
+  basedir: /blog/
+  archetypeTag: "%blog%"
+  title: Cushy Text Blog
+  sidebar: auto
+  recent: 5
+```
+
+And, depending on how noisy you like your `plugins.ts` file, you can even run
+independent feeds. Because of the `%blog%` tag, which never gets displayed, 
+you can easily scope posts _just_ from this blog. If I had another blog in 
+`/blog2/`, with a similar file, but adding `%blog2%` as the tag, then it's 
+easy to exclude or include either.
+
+This works for every directory, and is being built into the tag helper components
+so it's easy to keep straight.
 
 But blogs are only one content archetype that Cushy Text supports, it also supports
 multi-instance documentation folders, similar to wiki themes, as well as MDX powered
