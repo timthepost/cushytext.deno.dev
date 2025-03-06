@@ -65,10 +65,19 @@ export default function (userOptions?: Options) {
       .add("_includes/js", "js")
       .add("_includes/css", "css")
       .add("uploads")
-      .preprocess([".mdx"], (pages) => {
+      // MDX doesn't permit <!- ->
+      .preprocess([".mdx", ".jsx", ".tsx"], (pages) => {
         for (const page of pages) {
           page.data.excerpt ??= (page.data.content as string).split(
             /{\/\*more\*\/}/i,
+          )[0];
+        }
+      })
+      // MD, however, only has that option.
+      .preprocess([".md"], (pages) => {
+        for (const page of pages) {
+          page.data.excerpt ??= (page.data.content as string).split(
+            /<!--\s*more\s*-->/i,
           )[0];
         }
       });
