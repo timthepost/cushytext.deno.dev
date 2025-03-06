@@ -17,10 +17,10 @@ import "lume/types.ts";
 import "npm:prismjs@1.29.0/components/prism-git.js";
 import "npm:prismjs@1.29.0/components/prism-json.js";
 import "npm:prismjs@1.29.0/components/prism-markdown.js";
-import "npm:prismjs@1.29.0/components/prism-sass.js";
-import "npm:prismjs@1.29.0/components/prism-scss.js";
 import "npm:prismjs@1.29.0/components/prism-typescript.js";
 import "npm:prismjs@1.29.0/components/prism-yaml.js";
+import "npm:prismjs@1.29.0/components/prism-bash.js";
+
 
 
 export interface Options {
