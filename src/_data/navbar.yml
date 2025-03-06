@@ -10,7 +10,7 @@ top_nav:
     title: Documentation for this theme, using this theme.
 
   - type: "menu"
-    href: "/features/"
+    href: "#"
     text: Theme Features
     title: Many of these are currently broken ...
     links:

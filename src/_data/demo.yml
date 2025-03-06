@@ -1,7 +1,9 @@
+# Cushy Text Site Data
+# AKA Demo, since that's what it is to anyone else using it.
 hero:
   title: Cushy Text
-  href: /features/
-  cta: Components &amp; Features &raquo;
+  href: /blog/announcing-cushy-text/
+  cta: Read The Announcement Post &raquo;
   slogan: An Infima-based, component-driven, text-focused interactive and accessible theme for Lume 3.
 
 goals:
