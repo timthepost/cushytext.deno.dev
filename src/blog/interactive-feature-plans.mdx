@@ -1,6 +1,6 @@
 ---
 title: "Here Are Some Interactive Features Planned For The First Release:"
-date: 2025-03-01
+date: 2025-03-05
 author: Tim Post
 draft: true
 layout: layouts/post.vto
@@ -24,33 +24,53 @@ metas:
   generator: true
 ---
 
-One of my favorite things about Lume is how easy it makes adding a touch of interactivity
-to static sites through the new router middleware. From a documentarian perspective, this
-gives many the ability to communicate with their audiences more directly, outside of what 
-you can infer from analytics and data.
-
 I wanted to share more about ideas I had for additional islands of interactivity that
 text-heavy sites could use, with some thoughts on which ones I'm planning to try to bring
-to Cushy Text by default. 
+to Cushy Text by default.
+
+This isn't a final list, yet, but what I'm narrowing in on. If you have some ideas, let 
+me know! I don't want to ship moving parts just for the sake of having more things to 
+fidget with, so I'm really looking at ways to grab more signal from visitors.
 
 <img class="blog_image" src="/uploads/interactive-feature-planning.jpg" alt="" title="" />
 
-First, we should probably talk about the decision to have Deno Deploy as a dependency, 
-because it wasn't easy. But, the benefits of the tight coupling between bare-metal Deno,
-plus DenoKV, made it the right choice because it unlocks so many other possibilities.
+For most of us, an understanding of our anonymous readers only comes from analytics data;
+they're like cosmic objects that we can't directly observe, just infer with math. I'd like
+to change that for static sites, at least a little!
 
 {/*more*/}
 
-It would be much more work to maintain features that would be less convenient to 
-use in order to maintain a theme that worked everywhere, so the decision was made
-to take full advantage of running on Deno Deploy and deliver a great experience 
-there, rather than an underwhelming experience everywhere that requires lots of 
-configuration.  
 
-## Another Heading
+## Document Rating System
 
-Some text.
+Most document systems have a thumbs up / thumbs down sort of voting mechanism, along with a 
+small form where additional free-form feedback can go. This is okay, but something I learned
+about rating and reputation systems is _always give people a "meh" vote_. 
 
-## Another Heading
+So, we'll make sure we don't force people into polar categories when we ask them for things. 
 
-Last filler text.
+Additionally, _micro_ asks are helpful. Let's say you use a recipe site where you offer
+ingredient volume conversions for different sized batches. You don't necessarily want people 
+to fill out a book report on your recipe, _you just want to know if a specific conversion 
+worked well_. That's something else I'm going to be tackling.
+
+It will likely also have PostHog integration.
+
+## Extensible Search
+
+Using Pagefind under the hood, search queries will be submitted to router middleware on the
+back-end and handled by code that interacts with the Pagefind API and can bring in results 
+from other indexes (like if your company has a main site). It can also take advantage of the
+tag isolation between each archetype in different folders, by including or excluding results
+from them.
+
+Because we're not using the Pagefind UI, search is easy to fully customize.
+
+## Form Handlers & KV Operations
+
+A handler to process and validate the included content page will also be included that inserts
+the data into DenoKV. I'll include captcha and basic honeypot protection. You could easily change
+it to go to email, or even to Discord - it's up to you.
+
+How stored feedback is later displayed and eventually deleted is still up in the air, but I'm 
+leaning toward hooks in Lume's CMS. 
