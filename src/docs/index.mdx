@@ -11,37 +11,66 @@ I'm building the site about Cushy Text with Cushy Text while I build Cushy
 Text. That's so ... meta. I'm doing my best to keep this documentation up-to-date
 as I go from one breaking change to another. 
 
-This is not yet ready for use. Feel free to poke around, but this needs a lot 
-of finishing work before it's ready for prime time, regardless of how complete
-things are starting to look.
+## Installing
 
-## Installing 
+<span class="text--danger">
+  <strong>
+    This is not yet ready for any kind of serious use. Expect breaking changes daily.
+  </strong>
+</span>
 
 For now, clone the repo. I'll have a `mod.ts` file and a generator to make some 
 default content pages so that it works as a proper remote theme, but not until
 a lot more stuff is finished.
 
-Once you have the repo, 
+Once you have the repo, the following sets `LUME_DRAFTS` true and starts the Lume 
+local server:
 
-```sh
+```bash
 $ deno task dev
 ```
 
-This sets `LUME_DRAFTS` and starts the Lume local server.
+There's also a special task for starting the production server (`src/_serve.ts`),
+which you should only have to do if you're changing the server code or testing 
+redirects:
 
-```sh
+```bash
 $ deno task mock
 ```
 
-This starts the _production_ server locally, on port 8000. If you edit the server
-source, it will automatically reload itself, but _content will not auto-refresh
-unless you're serving Lume in the background on port 3000 too. Use this for testing
-changes to the production server, or redirects. It's not necessary for testing 
-middleware.
+This starts the _production_ server locally, on port 8000, and then watches
+the _server_ code (`_serve.ts`) for changes and reloads. 
+
+Middleware works locally the same as remotely, you don't need this to test that. 
+This option is here to debug changes to the server before pushing them, or
+things like testing redirects.
+
+Also note you have two cleaning tasks available:
+
+```bash
+$ deno task clean
+$ deno task maintainer-clean
+```
+
+The first one removes `_site` and local cache items, but does not remove `node_modules`; 
+the second task will first run the first, and then also remove `node_modules`.
 
 ## Current Focus
 
- - Blog / Tag archive pages need some love. I just created rough stubs.
+ - Blog / Tag archive pages need some love under each heading result:
+    - Show meta description as a teaser text.
+    - Show tags
+    - Show date & author
+    - Show reading time
+
+ - Blog and Docs need a TOC plugin. Looking at `mdast-util-toc` which
+   powers a remark plugin that I unfortunately can't use (I need one 
+   that just sets the page `toc` object), which this one easily does.
+   I should have a plugin soon.
+
+ - The `_data/navbar.yml` file controls the static navigation, which is
+   the main top navbar, and the main section of the fly-out nav. It also
+   needs to control the footer. Everything else is auto-generated.
 
  - Docs auto nav doesn't deal with nested directories very well.
 
@@ -51,11 +80,13 @@ middleware.
  - I also need to finish the open dyslexic font switcher.
 
  - Make remote themes work with sparse initial content generated (two example 
-   blog posts, three markdown document pages, one landing page). 
+   blog posts, three markdown document pages, one landing page).
 
-## Known Issues
+ - Template markup has a lot of inline `style="..."` that smells. Most places
+   where that's found need refactored and proper classes.
 
- - Lots of pages on this site are incomplete.
+ - Aria labels, roles, tab indexes all need to be straightened out now that the 
+   DOM is structurally more stable.
 
 ## Contributing
 
