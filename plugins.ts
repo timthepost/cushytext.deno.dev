@@ -14,7 +14,6 @@ import prism from "lume/plugins/prism.ts";
 
 import "lume/types.ts";
 
-import "npm:prismjs@1.29.0/components/prism-less.js";
 import "npm:prismjs@1.29.0/components/prism-git.js";
 import "npm:prismjs@1.29.0/components/prism-json.js";
 import "npm:prismjs@1.29.0/components/prism-markdown.js";
