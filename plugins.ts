@@ -8,17 +8,21 @@ import metas from "lume/plugins/metas.ts";
 import robots from "lume/plugins/robots.ts";
 import mdx from "lume/plugins/mdx.ts";
 import nav from "lume/plugins/nav.ts";
-import code_highlight from "lume/plugins/code_highlight.ts";
 import feed from "lume/plugins/feed.ts";
 import readingInfo from "lume/plugins/reading_info.ts";
-
-// import your favorite language
-import lang_javascript from "npm:highlight.js/lib/languages/javascript";
-import lang_bash from "npm:highlight.js/lib/languages/bash";
-import lang_xml from "npm:highlight.js/lib/languages/xml";
-import lang_yaml from "npm:highlight.js/lib/languages/yaml";
+import prism from "lume/plugins/prism.ts";
 
 import "lume/types.ts";
+
+import "npm:prismjs@1.29.0/components/prism-less.js";
+import "npm:prismjs@1.29.0/components/prism-git.js";
+import "npm:prismjs@1.29.0/components/prism-json.js";
+import "npm:prismjs@1.29.0/components/prism-markdown.js";
+import "npm:prismjs@1.29.0/components/prism-sass.js";
+import "npm:prismjs@1.29.0/components/prism-scss.js";
+import "npm:prismjs@1.29.0/components/prism-typescript.js";
+import "npm:prismjs@1.29.0/components/prism-yaml.js";
+
 
 export interface Options {
   sitemap?: Partial<SitemapOptions>;
@@ -42,22 +46,6 @@ export default function (userOptions?: Options) {
       .add([".css"])
       .use(feed({ output: ["/feed.xml"], query: "%blog%" }))
       .use(feed({ output: ["/feed.json"], query: "%blog%" }))
-      .use(code_highlight({
-        languages: {
-          javascript: lang_javascript,
-          js: lang_javascript,
-          bash: lang_bash,
-          sh: lang_bash,
-          xml: lang_xml,
-          html: lang_xml,
-          yaml: lang_yaml,
-          yml: lang_yaml,
-        },
-        theme: {
-          name: "an-old-hope", // The theme name to download
-          cssFile: "/highlight.css",
-        },
-      }))
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
       .use(readingInfo({ extensions: [".mdx"] }))
@@ -66,6 +54,14 @@ export default function (userOptions?: Options) {
       .use(robots())
       .use(sitemap(options.sitemap))
       .use(favicon(options.favicon))
+      .use(prism({
+        theme: [
+          {
+            name: "tomorrow",
+            cssFile: "css/prism.css",
+          }
+        ]
+      }))
       .add("_includes/js", "js")
       .add("_includes/css", "css")
       .add("uploads")
