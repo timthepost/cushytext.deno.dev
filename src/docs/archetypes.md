@@ -5,45 +5,61 @@ order: 3
 
 # Extensions To The Archetype Concept
 
+In Lume, _archetypes_ are scripts that Lume runs which can create base 
+content for (blog posts, content pages, photo galleries, whatever). This
+lets you automate quite a few things about content creation.
+
+In this theme, we also extend archetypes to the folder-level `_data.yml`
+files, to inform our generators and templates of details around how the 
+content within the folder should be handled.
+
+## What Problem Does Extending Archetypes Solve?
+
+Versatility. This theme is built on Infima, which is a content style 
+framework developed specifically for content-heavy static sites, tested
+and vetted by thousands of open source projects. Infima has enough tools
+to do practically anything with text responsively and accessibly. 
+
 Many Lume themes let you produce a great looking wiki, or a great looking
-blog, or landing pages for events, or even an e-book. There's really no 
-limit to creativity when it comes to the kinds of sites that Lume can 
-produce.
+blog, or landing pages for events, or even an e-book. But, there's really
+no coherent, centrally-searchable theme that lets you do _all_ of those 
+things under a single design and site.
 
-However, I found that there weren't many options that let you do a wiki, 
-a blog _and_ some landing and branding pages. So, I created this theme 
-that doesn't try to be the perfect wiki, or the perfect blog, but rather
-focuses on making it easy to do multiple things at once.
+I wanted to be able to run a blog, a dedicated release notes feed, a 
+docs generator that took unsorted markdown and made something nice out
+of it automatically, and an easy way to make content and landing pages.
 
-To do that, the theme embraces the concept of archetypes, and extends
-them through the data model.
+This was originally named "Cushy Docs"; I changed it because I don't want
+to put disproportionate weight on any of the archetypes: this is a good
+theme _for lots of text_, however you want to organize it.
 
 # What are the supported archetypes?
 
 The three supported archetypes are:
 
- - `blog` : A basic blog. Generates a blog index page, archive page, 
-   tag pages and author pages. You can have multiple blogs with 
-   isolated tags and archive pages, but all searchable together.
-   Maybe you want a product blog, and a release notes feed? It's 
-   easy.
+ - `blogs` : A blog with a working tag system, feeds, archive, tag and 
+    author pages. Supports multiple instances with independent tags.
 
  - `docs` : Like a blog, but sidebar is auto generated, no archive pages, 
    tag pages, or author pages. Tags can be applied to help guide search, 
-   but are only used for taxonomy. Can have many independently working
-   in the same site, all centrally searchable / filterable. 
- 
- - `pages` : Full-page, sidebar-less MDX pages that aren't auto-linked, but 
-    searchable and can be tagged. No archives, no author pages, and is set 
-    up with demo landing page content with available helpers and components.
+   but are only used for taxonomy. Supports multiple instances with 
+   independent tags.
 
-What defines them is the `_data.yml` file in the folder. For instance, let's 
-take a look at `_data.yml` in `/docs` on this site:
+ - `pages` : Full-page, sidebar-less MDX pages that aren't auto-linked, but
+    can be tagged and are searchable. Meant for creating long-form content, 
+    galleries, presentations, landing pages, company branding or whatever.
+    Essentially the default when no archetype is specified in data.
+
+Let's take a look at the `_data.yml` file in `/docs` on this site:
 
 ```yml
+# This makes it a documentation page with a sidebar 
 layout: layouts/docupage.vto
+# This lets searches include or exclude content from this folder
 tags:
-  - "%docs%"
+  - "%docs%" 
+
+# This controls the behavior of this docs folder
 docs:
   basedir: /docs/
   archetypeTag: "%docs%"
@@ -53,18 +69,36 @@ docs:
 
 Not only does this set the default layout, and apply a special _archetype_ tag
 called `%docs%` to each child page in the folder, it also contains some configuration
-options about how the feature should work (in this case, auto-generate the sidebars).
+options about how the feature should work (in this case, auto-generate the sidebar,
+specify a title for the top category).
 
 What's also interesting is that it self-references its location, so it can build
-its nav independently. 
+its nav independently without having to talk to the OS to find out where it is. 
 
-Special `%archetype%` tags aren't shown, they're just used behind the scenes to 
+Special `%archetype%` tags aren't generated, they're just used behind the scenes to 
 include or exclude various parts of the site from different kinds of searches, including
-(coming soon) the main site search. Get results from documentation and the blog, but
-not landing pages, for instance. 
+user searches from the search bar.
 
-We could make a copy of `docs/` called `docs-2/` and change the archetype tag to the 
-same, and filter it in / out of page searches. So go ahead, publish your recipes too.
+You could have 10 different installs of documentation, as long as the `basedir` values
+and `archetypeTag` are unique (for some reason, I can't get `"=other_value"` to work in 
+YAML on Lume 3; it'll be cleaner once I do.
+
+See also the one from the blog:
+
+```yml
+layout: layouts/post.vto
+tags:
+  - "%blog%"
+
+blog:
+  basedir: /blog/
+  archetypeTag: "%blog%"
+  title: Cushy Text Blog
+  recent: 5
+```
+
+This looks slightly different, because it needs to know how many posts should go on the 
+blog index page, but the pattern is the same as far as fundamental mechanics. 
 
 ## Creating Content In Archetypes
 
