@@ -1,4 +1,4 @@
-layout: layouts/docupage.vto
+layout: layouts/docs.vto
 tags:
   - "%docs%"
 docs:
