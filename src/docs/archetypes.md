@@ -83,7 +83,9 @@ You could have 10 different installs of documentation, as long as the `basedir` 
 and `archetypeTag` are unique (for some reason, I can't get `"=other_value"` to work in 
 YAML on Lume 3; it'll be cleaner once I do.
 
-See also the one from the blog:
+Likewise, you could have 10 independent blogs sharing one common archive page, or ten 
+independent archives / tag / author pages. I'm not sure why you'd ever want to do that, 
+but it's flexible enough:
 
 ```yml
 layout: layouts/post.vto
@@ -98,7 +100,16 @@ blog:
 ```
 
 This looks slightly different, because it needs to know how many posts should go on the 
-blog index page, but the pattern is the same as far as fundamental mechanics. 
+blog index page, but the pattern is the same as far as fundamental mechanics. Make sure
+two values are unique.
+
+Behind the scenes, you might want to do something like this with Lume:
+
+```js
+const postGroup = search.pages("%blog1% %blog2% !%docs%", "order title");
+```
+
+This gives you great control over results.
 
 ## Creating Content In Archetypes
 
