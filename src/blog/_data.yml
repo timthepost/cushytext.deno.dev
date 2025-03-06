@@ -1,9 +1,9 @@
 layout: layouts/post.vto
 tags:
-  # This is a hidden "archetype" tag. See the docs before changing.
   - "%blog%"
 blog:
   basedir: /blog/
+  archetypeTag: "%blog%"
   title: Cushy Text Blog
   sidebar: auto
   recent: 5
