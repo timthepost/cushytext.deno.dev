@@ -1,6 +1,6 @@
 {
   "imports": {
-    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3ca4e1ff0077bc5239d853e9efdc60889546ce30/",
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@25cf3bb052bc6df695da206ad2251dac8d7a5635/",
     "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.7.3/"
   },
   "tasks": {
