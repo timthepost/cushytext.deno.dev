@@ -5,7 +5,9 @@
       <p><strong>{{ locale.posts.has_tags }}</strong>
         {{ for tag of tags }}
           {{ if tag[0] != '%' }}
-          <button class="button button--secondary button--sm margin-horiz--xs">{{ tag }}</button>
+          <a href="/archive/{{ tag }}/">
+            <button class="button button--secondary button--sm margin-horiz--xs">{{ tag }}</button>
+          </a>
           {{ /if }}
         {{ /for }}
       </p>
@@ -15,6 +17,18 @@
       </div>
     </div>
     <div class="col col--2">
+      <h3 class="margin-top--md">{{ locale.blog_index.feeds }}</h3>
+      <p>
+        <a href="/feed.xml" class="navbar__link">
+          <span class="badge badge--warning" style="font-size: 12pt">Atom</span>
+        </a> 
+        <!-- clever, or lazy? you decide! -->
+        <span class="margin-horiz--sm">|</span>
+        <a href="/feed.json" class="navbar__link">
+          <span class="badge badge--success" style="font-size: 12pt">JSON</span>
+        </a>
+      </p>
+      <h4 class="margin-top--md">{{ locale.blog_index.toc }}</h4>
       <ul
         class="table-of-contents thin-scrollbar margin-top--xs">
         <li>
