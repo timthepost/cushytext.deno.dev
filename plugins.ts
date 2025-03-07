@@ -21,8 +21,6 @@ import "npm:prismjs@1.29.0/components/prism-typescript.js";
 import "npm:prismjs@1.29.0/components/prism-yaml.js";
 import "npm:prismjs@1.29.0/components/prism-bash.js";
 
-
-
 export interface Options {
   sitemap?: Partial<SitemapOptions>;
   favicon?: Partial<FaviconOptions>;
@@ -58,8 +56,8 @@ export default function (userOptions?: Options) {
           {
             name: "tomorrow",
             cssFile: "css/prism.css",
-          }
-        ]
+          },
+        ],
       }))
       .add("_includes/js", "js")
       .add("_includes/css", "css")
