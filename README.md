@@ -1,4 +1,4 @@
-# A Port of Infima Over to Lume + Vento
+# A Port of Infima Over to Lume 3+ & Vento
 
 This is a theme for Lume built on Infima CSS, the same styles that Docusaurus
 uses. This is not an attempt to be Docusaurus, but rather make Infima available
