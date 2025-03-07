@@ -15,6 +15,7 @@ import nav from "lume/plugins/nav.ts";
 import feed from "lume/plugins/feed.ts";
 import readingInfo from "lume/plugins/reading_info.ts";
 import prism from "lume/plugins/prism.ts";
+import conductor from "./src/_plugins/site_conductor/mod.ts";
 
 import "lume/types.ts";
 
@@ -42,6 +43,7 @@ export default function (userOptions?: Options) {
   return (site: Lume.Site) => {
     site
       .use(nav())
+      .use(conductor())
       .use(postcss())
       .add([".css"])
       .use(feed({ output: ["/feed.xml"], query: "%blog%" }))

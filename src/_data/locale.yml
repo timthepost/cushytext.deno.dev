@@ -17,6 +17,8 @@ documentation:
   next_link: "Next >>"
   prev_link: "<< Previous"
   topics: "Topics:"
+  toc_heading: "On This Page:"
+
 
 archive:
   heading: "Blog Archive"

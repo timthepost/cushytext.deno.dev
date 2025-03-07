@@ -30,11 +30,8 @@ function cushyUpdate(msg: string): void {
 export default function conductor(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  cachedWarnings.clear();
-  cushyUpdate("Starting up ...");
-
   function generateTOC(containerSelector: string, 
-      tocSelector: string, headingSelectors: string, document: Document) {
+    tocSelector: string, headingSelectors: string, document: Document) {
 
     const container = document.querySelector(containerSelector);
     const toc = document.querySelector(tocSelector);
@@ -45,30 +42,35 @@ export default function conductor(userOptions?: Options) {
     if (headings.length === 0) {
       return;
     }
-    const tocList = document.createElement('ul');
+    let tocListHTML = '<ul>';
     headings.forEach((heading, index) => {
       const headingId = heading.id || `heading-${index}`;
       heading.id = headingId;
-      const listItem = document.createElement('li');
-      const link = document.createElement('a');
-      link.href = `#${headingId}`;
-      link.textContent = heading.textContent;
-      listItem.appendChild(link);
-      tocList.appendChild(listItem);
+      tocListHTML += `<li><a href="#${headingId}">${heading.textContent}</a></li>`;
     });
-    toc.appendChild(tocList);
+    tocListHTML += '</ul>';
+    toc.innerHTML = tocListHTML;
   }
 
+  cachedWarnings.clear();
+  cushyUpdate("Starting up ...");
+
   return (site: Site) => {
-    site.process([".html"], (pages) => {
-      for (const page of pages) {
-      
-        // generate a table of contents for blogs and docs
-        generateTOC(options.toc_container, 
-          options.toc_selector, 
-          options.toc_heading_selectors, 
-          page.document);
-      }
+    // pre-render stuff
+    site.addEventListener("beforeRender", () => { 
+      site.process([".html"], (pages) => {
+        for (const page of pages) {
+          
+          // Table Of Contents (Docs & Blogs)
+          generateTOC(options.toc_container, 
+            options.toc_selector, 
+            options.toc_heading_selectors, 
+            page.document);
+        }
+      });
     });
+
+    // post-render stuff
+
   };
 }
