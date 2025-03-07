@@ -25,7 +25,8 @@
       </nav>
     </div>
     <div class="col col--3">
-      <div class="menu thin-scrollbar margin-top--lg">
+      <h3 class="margin-vert--md">{{ locale.documentation.topics }}</h3>
+      <div class="menu thin-scrollbar margin-top--xs">
         <ul class="menu__list">
         {{ if docs.sidebar === "auto" }}
           {{ for entry of search.pages(`url^=${docs.basedir}`, "menu.order") }}
