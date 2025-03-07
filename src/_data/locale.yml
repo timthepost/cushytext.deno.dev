@@ -16,6 +16,7 @@ posts:
 documentation: 
   next_link: "Next >>"
   prev_link: "<< Previous"
+  topics: "Topics:"
 
 archive:
   heading: "Blog Archive"
