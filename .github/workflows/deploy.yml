@@ -31,6 +31,6 @@ jobs:
         with:
           project: "timpost-cushytext-92"
           entrypoint: "src/_serve.ts"
-          root: "_site/"
+          root: ""
           
           
