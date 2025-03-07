@@ -32,5 +32,3 @@ jobs:
           project: "cushydocs"
           entrypoint: "src/_serve.ts"
           root: ""
-          
-          

@@ -4,13 +4,13 @@ export default function* ({ search, _locale }) {
   // Generate a page for each tag
   for (const tag of search.values("tags")) {
     if (tag[0] !== "%") {
-        yield {
+      yield {
         url: `/archive/${tag}/`,
         title: `Things Tagged:  “${tag}”`,
         type: "tag",
         search_query: `'%blog%' '${tag}'`,
         tag,
-        };
+      };
     }
   }
 
