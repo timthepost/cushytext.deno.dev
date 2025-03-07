@@ -6,7 +6,9 @@
             <p><strong>By {{ post.author }} on {{ post.date }}</strong>.</p>
             {{ if post.excerpt }}
                 {{> const teaser = post.excerpt.replace(/<img[^>]*>/g, '') }}
-                {{ teaser |> md }}
+                <div class="font-selectable">
+                    {{ teaser |> md }}
+                </div>
             {{ else }}
                 <p>An error occurred while fetching an excerpt of this post.</p>
             {{ /if }}

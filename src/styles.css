@@ -3,6 +3,7 @@
  * Top section is vars to control the themes (light / dark)
  */
 @import "_includes/css/theme.css";
+@import "_includes/css/opendyslexic.css";
 
 /* Light Mode */
 

@@ -6,7 +6,7 @@
     {{ locale.posts.written_by }} <strong><a href="/author/{{ entry.author.replace(/\ /g, "-") }}/">{{ entry.author }}</a></strong> 
     {{ locale.posts.written_on }} {{ entry.date }}.
     </p>
-    <div class="padding-horiz--md">
+    <div class="padding-horiz--md font-selectable">
     {{ entry.excerpt |> md }}
     </div>
     <div class="card__footer padding--xs">

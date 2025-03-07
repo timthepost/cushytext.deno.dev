@@ -8,7 +8,12 @@ function getLocalStorageOrDefault(key, defaultValue) {
   }
 }
 
-function sync() {
+const availableFonts = {
+  system: "system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans",
+  user: "opendyslexic"
+}
+
+function syncColorTheme() {
   const html = document.documentElement;
   const userTheme = getLocalStorageOrDefault("theme", "light");
   html.setAttribute("data-theme", userTheme === "dark" ? "dark" : "light");
@@ -17,7 +22,25 @@ function sync() {
 function toggleColorTheme() {
   const userTheme = localStorage.getItem("theme");
   localStorage.setItem("theme", userTheme === "dark" ? "light" : "dark");
-  sync();
+  syncColorTheme();
+}
+
+function syncUserFont() { 
+  const html = document.documentElement;
+  const userFont = localStorage.getItem("font") || "system";
+  html.setAttribute("data-font", userFont);
+  const affectedElements = document.querySelectorAll(".font-selectable");
+  if (affectedElements) {
+    affectedElements.forEach((element) => {
+      element.style.fontFamily = availableFonts[userFont];
+    });
+  }
+}
+
+function toggleUserFont() {
+  const userFont = localStorage.getItem("font");
+  localStorage.setItem("font", userFont === "system" ? "user" : "system");
+  syncUserFont();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -31,7 +54,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const themeSwitcher = document.getElementById("mode-toggle");
   if (themeSwitcher) {
-    sync();
+    syncColorTheme();
     themeSwitcher.addEventListener("click", toggleColorTheme);
+  }
+
+  const fontSwitcher = document.getElementById("font-toggle");
+  if (fontSwitcher) {
+    syncUserFont();
+    fontSwitcher.addEventListener("click", toggleUserFont);
   }
 });
