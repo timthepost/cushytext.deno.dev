@@ -16,7 +16,7 @@ interface Options {
 export const defaults: Options = {
   toc_selector: "#toc",
   toc_container: ".toc-enabled",
-  toc_heading_selectors: "h1, h2, h3, h4, h5, h6",
+  toc_heading_selectors: "h2, h3, h4, h5, h6",
 };
 
 // Report warnings
