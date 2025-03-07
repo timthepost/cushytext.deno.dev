@@ -136,28 +136,6 @@ html[data-theme="dark"] {
   --ifm-color-danger-contrast-foreground: rgb(255, 235, 236);
 }
 
-/* Table of Contents Styles */
-#toc ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-#toc li {
-  margin-bottom: 0.5em;
-  padding-left: 1em;
-}
-
-#toc a {
-  font-weight: bold; 
-  font-size: 0.9em; 
-  text-decoration: none; 
-}
-
-#toc a:hover {
-  text-decoration: underline;
-}
-
 /* Helper For Blog Images */
 .blog_image {
   max-height: 675px;
