@@ -30,6 +30,15 @@ function cushyUpdate(msg: string): void {
 export default function conductor(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
+  /**
+   * A *very* basic TOC generator.
+   * I'll take PRs that improve this.
+   * 
+   * @param containerSelector Content in this selector will be scanned for headings
+   * @param tocSelector This is where the resulting list of links will be placed
+   * @param headingSelectors A list of headings to include ("h1 h2 ... h6")
+   * @param document Document object (e.g. from page.document)
+   */
   function generateTOC(containerSelector: string, 
     tocSelector: string, headingSelectors: string, document: Document) {
 
@@ -70,7 +79,7 @@ export default function conductor(userOptions?: Options) {
       });
     });
 
-    // post-render stuff
+    // post-render stuff (like tag exports to json)
 
   };
 }
