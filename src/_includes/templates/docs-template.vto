@@ -39,4 +39,19 @@
         {{ /if }}
         </ul>
       </div>
+      {{ if docs.sidebar === "auto" }}
+      <h3 class="margin-vert--md">From The Blog:</h3>
+      <div class="menu thin-scrollbar margin-top--xs">
+        <ul class="menu__list">
+
+          {{ for entry of search.pages('%blog% menu.visible=true', "date=desc", 4) }}
+            <li class="menu__list--item">
+              <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
+            </li>
+          {{ /for }}
+
+        </ul>
+      </div>
+      {{ /if }}
     </div>
+  </div>
