@@ -1,21 +1,26 @@
 ---
-title: Archetypes & Archetype Tags
+title: Data Files & Special Hidden Tags
 menu:
   visible: true
   order: 1
 ---
 
-# Extensions To The Archetype Concept
+# Data Files & Special Hidden Tags:
 
 ***Warning: This is a rapidly-evolving feature and changing quickly. I
 may switch to a `_data.ts` format for docs (and maybe blogs).***
+
+## What Are Archetypes?
 
 In Lume, _archetypes_ are scripts that Lume runs which can create base 
 content for blog posts, content pages, photo galleries, or whatever other
 content you have. 
 
+## Cushy Text Extends Archetypes To Directories
+
 In addition to scripts, this theme also uses hints from directory-level
-`_data.yml` files that help provide three distinct types of content:
+`_data.yml` files that help trigger the generation of three distinct 
+types of content:
 
  - `blogs` : A blog with a working tag system, feeds, archive, tag and 
     author pages. Supports multiple instances with independent tags.
@@ -31,7 +36,10 @@ In addition to scripts, this theme also uses hints from directory-level
     Essentially the default when no archetype is specified in data.
 
 
-Let's take a look at the `_data.yml` file in `/docs` directory on this site:
+To give you an idea of how this works, right now, you're actually in `/docs`,
+which is a `docs` archetype (a documentation area, not robust like a blog). 
+Let's take a look at the `_data.yml` file inside this directory, which affects
+this directory, and all directories within it:
 
 ```yml
 # This makes it a documentation page with a sidebar 
@@ -39,7 +47,6 @@ layout: layouts/docs.vto
 # This lets searches include or exclude content from this folder
 tags:
   - "%docs%" 
-
 # This controls the behavior of this docs folder
 docs:
   basedir: /docs/
@@ -56,7 +63,7 @@ This means every file in the `/docs` directory will:
 
 That special `%docs%` tag is what I call an archetype tag. It allows each instance
 to be independently searched and filtered in both site searches and nav building, 
-and is only used behind the scenes, visitors won't see it.
+and is only used behind the scenes, visitors won't see it. 
 
 Now, let's take a look at the `blog` directory `_data.yml` file:
 
@@ -72,23 +79,34 @@ blog:
   recent: 5
 ```
 
-## Creating Content With Archetypes
+This works similarly to docs, but gives me a separate tag to scope the 
+content with behind the scenes: `%blog%`. These special tags aren't shown
+anywhere, just used to build the site and will be available as search
+options once that's fully-baked.
 
-Use `lume new <archetype> <path>/<slug>` and a file with all needed frontmatter 
-appropriate for the archetype will be generated for you. I'm working on a CLI 
-tool that does more sanity and error checking.
+Conceivably, you could have as many independent blogs as you want, provided
+that you're willing to dirty your `plugins.ts` with lots of custom feeds. I 
+don't recommend going overboard, again, the impetus was just being able to 
+use one site for many different things.
 
-This will create a new file with all the frontmatter and starter content you 
-need. For instance, if you decide you want image galleries, your `gallery` 
-archetype would need a script that produced a `.vto` file with a 12x12 grid
-or a carousel.
+The `pages` archetype is under construction and will depend on finishing 
+all of the components so that they can be made available as MDX elements.
 
-## Why Archetypes? Why Add Complexity?
+## Creation Scripts Included
 
-I wanted a setup where I can just drop different kinds of content in folders
-and have it come out beautifully, and where creating new content is just a few
-keystrokes before I'm writing and editing. 
+You'll find `blog.ts`, `doc.ts` and `page.ts` included in `src/_archetypes`;
+I plan to also make a CLI tool to trigger some of these scripts which also
+accepts and validates the proposed paths. 
 
+Like, `cushy create blog "some title here" docs/` should error, because
+docs has no `blog` key, but would work if you ran it on `blog/`. 
+
+## This Is Still A Theme, Not A Platform
+
+We're out to give "a good start" with lots of room to grow and customize, 
+not solve every problem every writer ever had. More complexity means 
+harder to maintain, so keeping things obvious and simple benefits 
+everyone.
 
 
 

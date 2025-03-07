@@ -1,14 +1,98 @@
 ---
-title: Working With And Making Components
+title: Infima And Lume 3 Components
 menu:
   visible: true
   order: 2
 ---
 
-# How Do I Use And Create New Feature Components?
+# {title}
 
-Also, ***BAR FOOOOOOOOO!***
+In the simplest form, a [component in Lume][1] is just a bit of 
+HTML with some variables that is returned by an asynchronous 
+function; great for creating the little utilities that make
+creating pages easier and more maintainable.
 
-This is some content. There is more like this.
+An example of a component used in the site right now is the one
+that fetches the latest blog post on this site's index page, 
+which comes from `src/_components/latestBlog.vto`:
 
-La la la, this is content.
+```html
+{{ for post of search.pages("%blog% menu.visible=true", "date=desc", 1) }}
+<div class="card padding--md">
+    <h2>{{ locale.comp.latestBlog.heading }}</h2>
+    <div class="card__header">
+        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        <p><strong>By {{ post.author }} on {{ post.date }}</strong>.</p>
+        {{ if post.excerpt }}
+            {{> const teaser = post.excerpt.replace(/<img[^>]*>/g, '') }}
+            {{ teaser |> md }}
+        {{ else }}
+            <p>An error occurred while fetching an excerpt of this post.</p>
+        {{ /if }}
+    </div>
+    <div class="card__footer">
+      <a href="{{ post.url }}" class="navbar__link">
+        <button class="button button--primary button--outline button--block">
+        Continue Reading 
+        ({{ post.readingInfo.minutes }} {{ locale.posts.read_time }}) &raquo;
+        </button>
+      </a>
+    </div>
+</div>     
+{{ /for }}
+```
+
+This is called in the index template with the following code:
+
+```js
+  {{ await comp.latestBlog() }}
+```
+
+Neat, right? And I totally need to make the number returned a 
+variable, now that I'm staring right at it. But with Lume 3, we 
+can do even better!
+
+## New Component Layout In Lume 3
+
+Right now, `_/components` for most of us is just a collection of those
+little bits of template with assignable variables. But what if components
+could be smarter, and automatically load their own CSS and JS when used?
+
+In Lume 3, they can! Imagine this:
+
+```
+  _components/
+      - _latestBlog
+          - comp.vto
+          - comp.css
+          - comp.js
+```
+
+So, when you used `comp.latestBlog()`, it would automatically load what it
+needs, no need to load all the styles for [all of the infima components and 
+helpers][2]. We'll still have a way for those who have existing code and 
+need all the styles to be global, but for new sites starting out, the goal 
+is very little unused template code.
+
+Optimization and removing unused classes is of course going to happen in 
+plugins, but there's still a lot of potential per-page savings. And, these
+components easily transcend into MDX, which will be well-documented once
+Lume 3 is stable.
+
+Right now, development is happening against `v3-dev`, which is actually 
+rather stable, but there's a ton of new stuff for those not already caught 
+up.
+
+## The Goal: Slowly Component-ize Most Features
+
+Eventually, all of the Infima components as well as things like tag 
+and navigation helpers will be available as components. When writing
+something that runs more than once, or in more than one place, think
+strongly about making it a component. 
+
+The `pages` archetype is the last one to be finished, and it will be the 
+result of being able to produce real results with very little markup or
+deep programming or design knowledge. 
+ 
+  [1]: https://lume.land/docs/core/components/
+  [2]: /features/components/
