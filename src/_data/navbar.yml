@@ -14,13 +14,13 @@ top_nav:
     text: Theme Features
     title: Many of these are currently broken ...
     links:
+      - text: Interactive Features Included
+        href: /blog/interactive-feature-plans/
+        title: Content rating system, form processing and more!
+
       - text: Component And Archetype Driven
         href: /features/components/
         title: A Detailed Overview Of How Lume3 Components Are Used
-
-      - text: Interactive Features Included
-        href: /features/interactive/
-        title: Content rating system, form processing and more!
 
       - text: Ready For Translations
         href: /features/localization/
