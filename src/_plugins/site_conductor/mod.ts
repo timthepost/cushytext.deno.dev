@@ -24,7 +24,7 @@ function cushyUpdate(msg: string): void {
 }
 
 // this may be removed.
-export default function CushyDocs(userOptions?: Options) {
+export default function site_conductor(userOptions?: Options) {
   const options = merge(defaults, userOptions);
   cachedWarnings.clear();
   cushyUpdate("Starting up ...");
