@@ -1,0 +1,41 @@
+---
+title: Understanding The "conductor" Plugin
+menu:
+  visible: true
+  order: 4
+---
+
+# {title}
+
+The _conductor_ plugin is a plugin that does little things to make 
+the theme work nicely, but things that are also a little too small
+to warrant their own plugin.
+
+For instance, it generates the table of contents for both the Blog
+and Documentation archetypes through an event that runs at pre-render.
+
+## Options
+
+Once things settle I'll create a nice table here, but for now it's
+easiest to just show you the code and defaults:
+
+```js
+interface Options {
+  toc_selector?: string;
+  toc_container?: string;
+  toc_heading_selectors?: string;
+}
+
+export const defaults: Options = {
+  toc_selector: "#toc",
+  toc_container: ".toc-enabled",
+  toc_heading_selectors: "h2, h3, h4, h5, h6",
+};
+```
+
+## Roadmap
+
+This will likely also create JSON data that other features need, or 
+do things like update a back-end report for the content rating plugins, 
+or things like that. Not really a kitchen sink plugin, but just something
+that keeps things running smoothly.
