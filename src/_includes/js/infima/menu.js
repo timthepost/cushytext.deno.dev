@@ -1,3 +1,4 @@
+// deno-lint-ignore-file
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
