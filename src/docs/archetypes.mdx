@@ -55,11 +55,15 @@ docs:
   sidebar: auto
 ```
 
-This means every file in the `/docs` directory will:
+This means every file in the `/docs` directory:
 
- - Use the `layouts/docs.vto` template when rendering
- - Have the hidden "archetype" tag  `%docs%` (more on that later)
- - Has some additional configuration options to support the docs archetype
+ - Uses the `layouts/docs.vto` template when rendering (unless another 
+   is specified in the individual frontmatter layout key)
+ - Has the hidden "archetype" tag `%docs%` applied to it (more on this later) 
+   no matter what is specified in the individual frontmatter tags thanks to 
+   how merging works in Lume. We take advantage of this.
+ - Has some additional configuration options to support the docs archetype, 
+   like if the sidebar should be auto-generated
 
 That special `%docs%` tag is what I call an archetype tag. It allows each instance
 to be independently searched and filtered in both site searches and nav building, 
@@ -82,12 +86,36 @@ blog:
 This works similarly to docs, but gives me a separate tag to scope the 
 content with behind the scenes: `%blog%`. These special tags aren't shown
 anywhere, just used to build the site and will be available as search
-options once that's fully-baked.
+options once that's fully-baked. These tags become anchors to search or
+exclude specific parts of the site.
 
 Conceivably, you could have as many independent blogs as you want, provided
 that you're willing to dirty your `plugins.ts` with lots of custom feeds. I 
 don't recommend going overboard, again, the impetus was just being able to 
-use one site for many different things.
+use one site for many different things. 
+
+In my case, I often want a mini-blog with a feed just for release notes, with 
+a conversational blog designed very differently. Or maybe you want an easy 
+"app status" mechanism.
+
+<span class="text--danger">
+  <strong>
+  I do not encourage multiple independent archive & tag page areas being generated. 
+  </strong>
+</span>
+
+While you _could_ modify the archive generators to take the archetype 
+data into consideration and adjust their yield location, I _strongly_
+advise not doing that. Grab the tags and authors from the areas that 
+you want, and display them centrally.
+
+These pages have very little content or informational value, they seldom
+get indexed anyway, and they could (if you had a lot of them) get you
+penalized under scrutiny of algorithms. I understand that there are 
+perfectly valid use cases for doing this, but it's up to you to implement
+if you want to do it that way.
+
+## What About "pages"?
 
 The `pages` archetype is under construction and will depend on finishing 
 all of the components so that they can be made available as MDX elements.
@@ -96,17 +124,12 @@ all of the components so that they can be made available as MDX elements.
 
 You'll find `blog.ts`, `doc.ts` and `page.ts` included in `src/_archetypes`;
 I plan to also make a CLI tool to trigger some of these scripts which also
-accepts and validates the proposed paths. 
+accepts and validates the proposed paths. That's out of scope for what the 
+Lume CLI tool does, so I plan to offer / include one.
 
 Like, `cushy create blog "some title here" docs/` should error, because
 docs has no `blog` key, but would work if you ran it on `blog/`. 
 
-## This Is Still A Theme, Not A Platform
-
-We're out to give "a good start" with lots of room to grow and customize, 
-not solve every problem every writer ever had. More complexity means 
-harder to maintain, so keeping things obvious and simple benefits 
-everyone.
 
 
 
