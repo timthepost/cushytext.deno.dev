@@ -43,7 +43,13 @@ export default function (userOptions?: Options) {
   return (site: Lume.Site) => {
     site
       .use(nav())
-      .use(conductor())
+      .use(conductor({
+        toc_selector: "#toc",
+        toc_container: ".toc-enabled",
+        toc_heading_selectors: "h2, h3, h4, h5, h6",
+        toc_link_class: "table-of-contents__link",
+        toc_list_class: "table-of-contents padding-top--none" }
+      ))
       .use(postcss())
       .add([".css"])
       .use(feed({ output: ["/feed.xml"], query: "%blog%" }))

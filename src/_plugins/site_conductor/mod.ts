@@ -19,8 +19,8 @@ export const defaults: Options = {
   toc_selector: "#toc",
   toc_container: ".toc-enabled",
   toc_heading_selectors: "h2, h3, h4, h5, h6",
-  toc_link_class: "table-of-contents__link",
-  toc_list_class: "table-of-contents padding-top--none",
+  toc_link_class: "",
+  toc_list_class: "",
 };
 
 // Report warnings
@@ -29,7 +29,6 @@ const cachedWarnings = new Map<string, Set<string>>();
 function cushyUpdate(msg: string): void {
   log.info(`☁️⠀⠀${msg}`);
 }
-
 
 export default function conductor(userOptions?: Options) {
   const options = merge(defaults, userOptions);
