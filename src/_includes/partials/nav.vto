@@ -156,7 +156,7 @@
         <!-- what's up, doc? -->
         {{ if docs }}
         <ul class="menu__list">
-          {{ for entry of search.pages(`url^=${docs.basedir}`, "order") }}
+          {{ for entry of search.pages(`url^=${docs.basedir}`, "menu.order") }}
           {{ if entry.menu?.visible !== false }}
             <li class="menu__list-item">
               <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
