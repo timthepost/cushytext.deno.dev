@@ -1,3 +1,7 @@
+/**
+ * Some of this is from Simple Blog, by Óscar Otero.
+ * https://lume.land/theme/simple-blog/ (Same License)
+ */
 import { Options as SitemapOptions, sitemap } from "lume/plugins/sitemap.ts";
 import { favicon, Options as FaviconOptions } from "lume/plugins/favicon.ts";
 import { merge } from "lume/core/utils/object.ts";
@@ -32,7 +36,6 @@ export const defaults: Options = {
   },
 };
 
-/** Configure the site */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
@@ -43,7 +46,7 @@ export default function (userOptions?: Options) {
       .add([".css"])
       .use(feed({ output: ["/feed.xml"], query: "%blog%" }))
       .use(feed({ output: ["/feed.json"], query: "%blog%" }))
-      .use(mdx({ extensions: [".mdx", ".jsx", ".tsx"] }))
+      .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
       .use(readingInfo({ extensions: [".mdx"] }))
       .use(redirects({ output: "json" }))
