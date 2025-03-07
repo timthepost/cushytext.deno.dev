@@ -23,9 +23,6 @@ export const defaults: Options = {
   toc_list_class: "",
 };
 
-// Report warnings
-const cachedWarnings = new Map<string, Set<string>>();
-
 function cushyUpdate(msg: string): void {
   log.info(`☁️⠀⠀${msg}`);
 }
@@ -34,9 +31,7 @@ export default function conductor(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   /**
-   * A *very* basic TOC generator.
-   * I'll take PRs that improve this.
-   * 
+   * A *very* basic TOC generator. I'll take PRs that improve this.
    * @param containerSelector Content in this selector will be scanned for headings
    * @param tocSelector This is where the resulting list of links will be placed
    * @param headingSelectors A list of headings to include ("h1 h2 ... h6")
@@ -65,7 +60,6 @@ export default function conductor(userOptions?: Options) {
     toc.innerHTML = tocListHTML;
   }
 
-  cachedWarnings.clear();
   cushyUpdate("Starting up ...");
 
   return (site: Site) => {
