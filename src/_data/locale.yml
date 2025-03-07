@@ -38,7 +38,7 @@ blog_index:
   top_tags: "Recent Tags:"
   older_posts: "Older posts are "
   older_posts_link: "in the archive"
-  toc: "Table Of Contents:"
+  toc: "In This Article:"
 
 comp:
   latestBlog:
