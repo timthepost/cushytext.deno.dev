@@ -11,12 +11,16 @@ interface Options {
   toc_selector?: string;
   toc_container?: string;
   toc_heading_selectors?: string;
+  toc_list_class?: string;
+  toc_link_class?: string;
 }
 
 export const defaults: Options = {
   toc_selector: "#toc",
   toc_container: ".toc-enabled",
   toc_heading_selectors: "h2, h3, h4, h5, h6",
+  toc_link_class: "table-of-contents__link",
+  toc_list_class: "table-of-contents",
 };
 
 // Report warnings
@@ -51,11 +55,11 @@ export default function conductor(userOptions?: Options) {
     if (headings.length === 0) {
       return;
     }
-    let tocListHTML = '<ul>';
+    let tocListHTML = `<ul class="${options.toc_list_class}">`;
     headings.forEach((heading, index) => {
       const headingId = heading.id || `heading-${index}`;
       heading.id = headingId;
-      tocListHTML += `<li><a href="#${headingId}">${heading.textContent}</a></li>`;
+      tocListHTML += `<li><a href="#${headingId}" class="${options.toc_link_class}">${heading.textContent}</a></li>`;
     });
     tocListHTML += '</ul>';
     toc.innerHTML = tocListHTML;
