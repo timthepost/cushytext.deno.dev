@@ -54,6 +54,7 @@ export default function conductor(userOptions?: Options) {
     if (headings.length === 0) {
       return;
     }
+    // this only seems to work if you set the InnerHTML; I've tried other ways.
     let tocListHTML = `<ul class="${options.toc_list_class}">`;
     headings.forEach((heading, index) => {
       const headingId = heading.id || `heading-${index}`;
