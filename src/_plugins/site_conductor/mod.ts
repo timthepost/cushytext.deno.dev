@@ -20,7 +20,7 @@ export const defaults: Options = {
   toc_container: ".toc-enabled",
   toc_heading_selectors: "h2, h3, h4, h5, h6",
   toc_link_class: "table-of-contents__link",
-  toc_list_class: "table-of-contents",
+  toc_list_class: "table-of-contents padding-top--none",
 };
 
 // Report warnings
