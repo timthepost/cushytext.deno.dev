@@ -15,7 +15,7 @@ goals:
     href: /features/components/
     cta: More On Components
 
-  - title: A Little Interactive!
+  - title: Static, But Interactive!
     body: |
       Take advantage of the middleware in Lume3 on Deno Deploy with DenoKV! Static doesn't have
       to mean stagnate. Comes with a content rating system and form handlers, no edge functions
