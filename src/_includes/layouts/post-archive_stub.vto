@@ -4,10 +4,23 @@
     <div class="main-wrapper">
       <main>
         <div class="container">
-            <h1 class="margin-top--md">{{ title }}</h1>
+            <h1 class="margin-top--md">{{ title }}:</h1>
             {{ if search_query }}
-              {{ for item of search.pages(search_query) }}
-              <h2 class="margin-top--md"><a href="{{ item.url }}">{{ item.title }}</a></h2>
+              {{ for post of search.pages(search_query) }}
+                {{ if post.menu.visible !== false }}
+                <div class="card margin-vert--md padding--md">
+                  <h2 class="margin-top--md"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                  <p><em>{{ post.metas.description }}</em></p>
+                  <p>Written on {{ post.date }} by <a href="/author/{{post.author.replace(/\ /g, "-")}}">{{ post.author }}</a></p>
+                  <p><strong>{{ post.readingInfo.minutes }} Minute Read:</strong> 
+                  {{ for tag of post.tags }}
+                    {{ if tag[0] != "%" }}
+                    <a href="/archive/{{tag}}/" class="button button--sm button--outline button--secondary margin--sm">{{ tag }}</a>
+                    {{ /if }}
+                  {{ /for }}
+                  </p>
+                </div>
+                {{ /if }}
               {{ /for }}
             {{ /if }}
             <p><a href="/archive"><< Archive</a></p>
