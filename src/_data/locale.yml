@@ -6,6 +6,10 @@ error_404:
 subnav:
   return: "&larr; Back To Main"
 
+feeds:
+  rss: "RSS"
+  json: "JSON"
+
 posts:
   has_tags: "Tags:"
   written_by: "Written By"
