@@ -6,7 +6,7 @@
         {{ for tag of tags }}
           {{ if tag[0] != '%' }}
           <a href="/archive/{{ tag }}/" class="navbar__link">
-            <code class="padding--sm margin--xs">{{ tag }}</code>
+            <button class="padding--sm margin--xs button button--secondary button--sm">{{ tag }}</button>
           </a>
           {{ /if }}
         {{ /for }}
