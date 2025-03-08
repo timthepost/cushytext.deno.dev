@@ -1,6 +1,6 @@
 {{ for post of search.pages("%blog% menu.visible=true", "date=desc", 1) }}
     <div class="card padding--md">
-        <h2>{{ locale.comp.latestBlog.heading }}</h2>
+        <h2 class="margin-horiz--md">{{ locale.comp.latestBlog.heading }}</h2>
         <div class="card__header">
             <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
             <p><strong>By {{ post.author }} on {{ post.date }}</strong>.</p>
