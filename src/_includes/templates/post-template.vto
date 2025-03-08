@@ -2,11 +2,11 @@
     <div class="col col--9">
       <h1 class="margin-top--md">{{ title }}</h1>
       {{ if tags }}
-      <p><strong>{{ locale.posts.has_tags }}</strong>
+      <p>
         {{ for tag of tags }}
           {{ if tag[0] != '%' }}
-          <a href="/archive/{{ tag }}/">
-            <button class="button button--secondary button--sm margin-horiz--xs">{{ tag }}</button>
+          <a href="/archive/{{ tag }}/" class="navbar__link">
+            <code class="padding--sm">{{ tag }}</code>
           </a>
           {{ /if }}
         {{ /for }}
