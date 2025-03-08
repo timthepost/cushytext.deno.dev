@@ -1,57 +1,16 @@
 <footer class="footer margin-top--xl">
   <div class="container container--fluid">
     <div class="row footer__links">
+    {{ for key, value of navbar.footer }}
       <div class="col footer__col">
-        <h4 class="footer__title">Theme Basics</h4>
-        <ul class="footer__items">
+        <h4 class="footer__title">{{ value.category }}</h4>
+        {{ for index, element of value.links }}
           <li class="footer__item">
-            <a class="footer__link-item" href="#url">Archetypes &amp; Folders</a>
+            <a class="footer__link-item" href="{{ element.href }}">{{ element.text}}</a>
           </li>
-          <li class="footer__item">
-            <a class="footer__link-item" href="#url">Creating &amp; Using Components</a>
-          </li>
-          <li class="footer__item">
-            <a class="footer__link-item" href="#url">Middleware &amp; DenoKV Setup</a>
-          </li>
-        </ul>
+        {{ /for}}
       </div>
-      <div class="col footer__col">
-        <h4 class="footer__title">Community</h4>
-        <ul class="footer__items">
-          <li class="footer__item">
-            <a class="footer__link-item" href="#url">Conduct &amp; Contributing</a>
-          </li>
-          <li class="footer__item">
-            <a class="footer__link-item" href="#url">Lume Discord</a>
-          </li>
-          <li class="footer__item">
-            <a class="footer__link-item" href="#url">Theme Discord</a>
-          </li>
-        </ul>
-      </div>
-      <div class="col footer__col">
-        <h4 class="footer__title">Social</h4>
-        <ul class="footer__items">
-          <li class="footer__item">
-            <a class="footer__link-item" 
-              href="https://github.com/timthepost/cushytext" 
-              target="_blank">GitHub</a>
-          </li>
-          <li class="footer__item">
-            <a class="footer__link-item" href="#url">Tim's Personal Site</a>
-          </li>
-      </div>
-      <div class="col footer__col">
-        <h4 class="footer__title">Useful Resources</h4>
-        <ul class="footer__items">
-          <li class="footer__item">
-            <a class="footer__link-item" href="#url">Lume Documentation</a>
-          </li>
-          <li class="footer__item">
-            <a class="footer__link-item" href="#url">Other Lume Themes</a>
-          </li>
-        </ul>
-      </div>
+    {{ /for }}
     </div>
   </div>
 </footer>

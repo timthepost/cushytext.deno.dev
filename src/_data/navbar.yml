@@ -29,3 +29,33 @@ top_nav:
       - text: Responsive And Accessible
         href: /features/accessibility/
         title: Open Dyslexic if user prefers dyslexic-friendly font.
+
+footer:
+  - category: Theme Basics 
+    links:
+      - text: Archetypes &amp; Folders
+        href: /docs/archetypes/
+
+      - text: Working With Components
+        href: /docs/components/
+
+      - text: Lume 3 Router Middleware
+        href: /docs/middleware/
+
+  - category: Community
+    links:
+      - text: Lume Discord Server
+        href: "https://discord.gg/YbTmpACHWB"
+
+  - category: People Behind Cushy text
+    links:
+      - text: Tim's Personal blog
+        href: "#"
+
+  - category: Useful Resources
+    links:
+      - text: Lume Documentation
+        href: "https://lume.land/docs/overview/about-lume/"
+
+      - text: Other Lume Themes
+        href: "https://lume.land/themes/"
