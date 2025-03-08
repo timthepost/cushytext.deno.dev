@@ -17,7 +17,7 @@ that fetches the latest blog post on this site's index page,
 which comes from `src/_components/latestBlog.vto`:
 
 ```html
-{{ for post of search.pages("%blog% menu.visible=true", "date=desc", 1) }}
+{{ for post of search.pages("waypoint=%blog% menu.visible=true", "date=desc", 1) }}
 <div class="card padding--md">
     <h2>{{ locale.comp.latestBlog.heading }}</h2>
     <div class="card__header">

@@ -5,7 +5,7 @@ export const layout = "layouts/post-archive.vto";
  * https://lume.land/theme/simple-blog/
  */
 export default function* ({ search, paginate, locale }) {
-  const posts = search.pages("%blog%", "date=desc");
+  const posts = search.pages("waypoint=%blog%", "date=desc");
 
   for (
     const data of paginate(posts, { url, size: 10 })

@@ -1,4 +1,4 @@
-{{ for post of search.pages("%blog% menu.visible=true", "date=desc", 1) }}
+{{ for post of search.pages("waypoint=%blog% menu.visible=true", "date=desc", 1) }}
     <div class="card padding--md">
         <h2 class="margin-horiz--md">{{ locale.comp.latestBlog.heading }}</h2>
         <div class="card__header">

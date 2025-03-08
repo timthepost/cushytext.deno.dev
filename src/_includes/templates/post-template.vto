@@ -4,11 +4,9 @@
       {{ if tags }}
       <p>
         {{ for tag of tags }}
-          {{ if tag[0] != '%' }}
           <a href="/archive/{{ tag }}/" class="navbar__link">
             <button class="padding--sm margin--xs button button--secondary button--sm">{{ tag }}</button>
           </a>
-          {{ /if }}
         {{ /for }}
       </p>
       {{ /if }}

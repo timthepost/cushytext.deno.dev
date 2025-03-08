@@ -12,9 +12,7 @@
           <p>Written on {{ post.date }} by <a href="/author/{{post.author.replace(/\ /g, "-")}}">{{ post.author }}</a></p>
           <p><strong>{{ post.readingInfo.minutes }} Minute Read:</strong> 
           {{ for tag of post.tags }}
-            {{ if tag[0] != "%" }}
             <a href="/archive/{{tag}}/" class="button button--sm button--outline button--secondary margin--sm">{{ tag }}</a>
-            {{ /if }}
           {{ /for }}
           </p>
         </div>

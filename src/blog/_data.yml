@@ -1,6 +1,7 @@
 layout: layouts/post.vto
+waypoint: "%blog%"
 tags:
-  - "%blog%"
+
 blog:
   basedir: /blog/
   archetypeTag: "%blog%"
