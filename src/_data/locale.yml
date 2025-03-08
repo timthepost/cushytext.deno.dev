@@ -12,12 +12,17 @@ posts:
   written_on: "On"
   read_more: "Read More"
   read_time: "Minute Read"
+  read_next: "After This, Check Out:"
+  read_prev: "This One Is Also Great:"
+  archive_prompt: "More Posts Might Be Found In"
+  archive_text: "The Archive"
 
 documentation:
   next_link: "Next >>"
   prev_link: "<< Previous"
   topics: "Available Topics:"
   toc_heading: "On This Page:"
+  no_custom_sidebars: "Custom Sidebars Are Not Yet Implemented"
 
 
 archive:
