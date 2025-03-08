@@ -4,9 +4,9 @@
  */
 @import "_includes/css/theme.css";
 @import "_includes/css/opendyslexic.css";
+@import "_includes/css/forms.css";
 
 /* Light Mode */
-
 :root {
   --ifm-color-scheme: light;
   --ifm-color-primary: #3578e5;
@@ -96,7 +96,6 @@
 }
 
 /* Dark Mode */
-
 html[data-theme="dark"] {
   --ifm-color-scheme: dark;
   --ifm-color-emphasis-0: var(--ifm-color-gray-1000);
@@ -115,8 +114,7 @@ html[data-theme="dark"] {
   --ifm-hover-overlay: rgba(255, 255, 255, 0.05);
   --ifm-color-content: #e3e3e3;
   --ifm-color-content-secondary: rgba(255, 255, 255, 1);
-  --ifm-breadcrumb-separator-filter: invert(64%) sepia(11%) saturate(0%)
-    hue-rotate(149deg) brightness(99%) contrast(95%);
+  --ifm-breadcrumb-separator-filter: invert(64%) sepia(11%) saturate(0%) hue-rotate(149deg) brightness(99%) contrast(95%);
   --ifm-code-background: rgba(255, 255, 255, 0.1);
   --ifm-scrollbar-track-background-color: #444444;
   --ifm-scrollbar-thumb-background-color: #686868;
@@ -137,6 +135,16 @@ html[data-theme="dark"] {
   --ifm-color-danger-contrast-foreground: rgb(255, 235, 236);
 }
 
+/* Override for TOC list type */
+.table-of-contents,
+.table-of-contents ul {
+  list-style: "» ";
+  list-style-position: outside;
+}
+.table-of-contents li {
+  margin: 15px 15px;
+}
+
 /* Helper For Blog Images */
 .blog_image {
   max-height: 675px;
@@ -153,98 +161,4 @@ html[data-theme="dark"] {
     display: none;
   }
 }
-
-/* Form Styles (generated) */
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-textarea,
-select,
-input[type="checkbox"],
-input[type="radio"] {
-  background-color: var(--ifm-background-surface-color);
-  border: var(--ifm-global-border-width) solid var(--ifm-color-emphasis-300);
-  border-radius: var(--ifm-global-radius);
-  color: var(--ifm-color-content);
-  font-family: var(--ifm-font-family-base);
-  font-size: var(--ifm-font-size-base);
-  padding: var(--ifm-spacing-vertical) var(--ifm-spacing-horizontal);
-  width: 100%;
-  margin-bottom: var(--ifm-spacing-vertical);
-  box-sizing: border-box; 
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="number"]:focus,
-textarea:focus,
-select:focus,
-input[type="checkbox"]:focus,
-input[type="radio"]:focus {
-  outline: none; 
-  border-color: var(--ifm-color-primary); 
-  box-shadow: var(--ifm-global-shadow-lw); 
-}
-
-textarea {
-  height: 10rem; /* Adjust as needed */
-  resize: vertical; 
-}
-
-select {
-  -webkit-appearance: none; 
-  -moz-appearance: none; 
-  appearance: none;
-  padding-right: 2rem; 
-}
-
-select::-ms-expand {
-  display: none; /* Remove default arrow in IE/Edge */
-}
-
-select::after {
-  content: "\279C"; /* Unicode for dropdown arrow */
-  position: absolute;
-  right: var(--ifm-spacing-horizontal);
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none; 
-}
-
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: var(--ifm-font-weight-semibold);
-}
-
-.error {
-  color: var(--ifm-color-danger);
-  font-size: 0.8rem;
-  margin-top: 0.2rem;
-}
-
-/* Checkbox/Radio Styles */
-input[type="checkbox"],
-input[type="radio"] {
-  margin-right: 0.5rem; 
-  vertical-align: middle;
-}
-
-input[type="checkbox"]:checked + label::before,
-input[type="radio"]:checked + label::before {
-  content: "\2713"; /* Check mark */
-  display: inline-block;
-  position: relative;
-  left: -20px; 
-  top: 0px;
-  font-size: 1.2em;
-  background-color: var(--ifm-color-primary); /* Checkmark color */
-  border-radius: 50%; 
-  padding: 0.2rem;
-  margin-right: 5px;
-}
-
 

@@ -1,0 +1,92 @@
+/* Form Styles (generated) */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select,
+input[type="checkbox"],
+input[type="radio"] {
+  background-color: var(--ifm-background-surface-color);
+  border: var(--ifm-global-border-width) solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  color: var(--ifm-color-content);
+  font-family: var(--ifm-font-family-base);
+  font-size: var(--ifm-font-size-base);
+  padding: var(--ifm-spacing-vertical) var(--ifm-spacing-horizontal);
+  width: 100%;
+  margin-bottom: var(--ifm-spacing-vertical);
+  box-sizing: border-box; 
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus,
+input[type="checkbox"]:focus,
+input[type="radio"]:focus {
+  outline: none; 
+  border-color: var(--ifm-color-primary); 
+  box-shadow: var(--ifm-global-shadow-lw); 
+}
+
+textarea {
+  height: 10rem; /* Adjust as needed */
+  resize: vertical; 
+}
+
+select {
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  appearance: none;
+  padding-right: 2rem; 
+}
+
+select::-ms-expand {
+  display: none; /* Remove default arrow in IE/Edge */
+}
+
+select::after {
+  content: "\279C"; /* Unicode for dropdown arrow */
+  position: absolute;
+  right: var(--ifm-spacing-horizontal);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; 
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+.error {
+  color: var(--ifm-color-danger);
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+/* Checkbox/Radio Styles */
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 0.5rem; 
+  vertical-align: middle;
+}
+
+input[type="checkbox"]:checked + label::before,
+input[type="radio"]:checked + label::before {
+  content: "\2713"; /* Check mark */
+  display: inline-block;
+  position: relative;
+  left: -20px; 
+  top: 0px;
+  font-size: 1.2em;
+  background-color: var(--ifm-color-primary); /* Checkmark color */
+  border-radius: 50%; 
+  padding: 0.2rem;
+  margin-right: 5px;
+}
