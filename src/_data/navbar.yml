@@ -10,9 +10,7 @@ top_nav:
     title: Documentation for this theme, using this theme.
 
   - type: "menu"
-    href: "#"
     text: Theme Features
-    title: Many of these are currently broken ...
     links:
       - text: Interactive Features Included
         href: /blog/interactive-feature-plans/

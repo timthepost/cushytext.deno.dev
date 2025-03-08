@@ -28,11 +28,11 @@
         {{ for key, value of navbar.top_nav }}
           {{ if value.type === "menu" }}
             <div class="navbar__item dropdown dropdown--hoverable">
-              <a class="navbar__link" href="{{ value.href }}" title="{{ value.title }}">{{ value.text }}</a>
+              <a class="navbar__link" href="{{ value.href || "" }}" title="{{ value.title || "" }}">{{ value.text }}</a>
               <ul class="dropdown__menu">
                 {{ for index, menuItem of value.links }}
                   <li>
-                    <a class="dropdown__link" href="{{ menuItem.href }}" title="{{ menuItem.title }}">
+                    <a class="dropdown__link" href="{{ menuItem.href }}" title="{{ menuItem.title || "" }}">
                       {{ menuItem.text }} <span class="text--primary">&raquo;</span>
                     </a>
                   </li>
@@ -40,7 +40,7 @@
               </ul>
             </div>
           {{ else if value.type === "link" }}
-            <a class="navbar__item navbar__link" href="{{ value.href }}" title="{{ value.title }}">
+            <a class="navbar__item navbar__link" href="{{ value.href }}" title="{{ value.title || "" }}">
               {{ value.text }}
             </a>
           {{ /if }}
