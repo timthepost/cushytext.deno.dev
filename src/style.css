@@ -33,3 +33,14 @@
     display: none;
   }
 }
+
+/* Example of adapting design to a font-switch */
+.homepage_card {
+  min-height: 275px;
+}
+
+[data-font="user"] {
+  .homepage_card {
+    min-height: 365px;
+  }
+}
