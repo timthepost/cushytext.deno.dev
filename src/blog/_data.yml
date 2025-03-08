@@ -1,10 +1,8 @@
 layout: layouts/post.vto
 waypoint: "%blog%"
-tags:
+tags: []
 
 blog:
   basedir: /blog/
-  archetypeTag: "%blog%"
   title: Cushy Text Blog
-  sidebar: auto
   recent: 5
