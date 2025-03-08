@@ -5,7 +5,7 @@
       </div>
       <nav class="pagination-nav margin-top--lg">
         <div class="pagination-nav__item">
-          {{ set previousPost = search.previousPage(url, docs.archetypeTag, "menu.order") }}
+          {{ set previousPost = search.previousPage(url, `waypoint=${waypoint}`, "menu.order") }}
           {{ if previousPost }}
             <a class="pagination-nav__link" href="{{ previousPost.url }}">
               <div class="pagination-nav__sublabel">{{ locale.documentation.prev_link }}</div>
@@ -14,7 +14,7 @@
           {{ /if }}
         </div>
         <div class="pagination-nav__item pagination-nav__item--next">
-          {{ set nextPost = search.nextPage(url, docs.archetypeTag, "menu.order") }}
+          {{ set nextPost = search.nextPage(url, `waypoint=${waypoint}`, "menu.order") }}
           {{ if nextPost }}
             <a class="pagination-nav__link" href="{{ nextPost.url }}">
               <div class="pagination-nav__sublabel" style="text-align: right">{{ locale.documentation.next_link }}</div>

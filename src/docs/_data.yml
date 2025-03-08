@@ -1,8 +1,7 @@
 layout: layouts/docs.vto
-tags:
-  - "%docs%"
+waypoint: "%docs%"
+
 docs:
   basedir: /docs/
-  archetypeTag: "%docs%"
   title: Documentation Home
   sidebar: auto
