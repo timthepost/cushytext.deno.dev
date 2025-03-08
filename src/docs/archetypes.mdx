@@ -7,8 +7,32 @@ menu:
 
 # Data Files & Special Hidden Tags:
 
-***Warning: This is a rapidly-evolving feature and changing quickly. I
-may switch to a `_data.ts` format for docs (and maybe blogs).***
+<span class="text--danger">
+***Warning: This will be changing very soon.*** From the [index](/docs/):
+</span>
+
+> Re-designing archetype tags like `%blog%` to be something called _waypoints_
+> instead, which won't pollute `tags` but still provide the same functionality 
+> when it comes to scoping individual archetype installations expressively. 
+
+So expect the following:
+
+ - No more meddling with `tags`
+ - `waypoints` will work just like `tags`, except we only ever touch them 
+    in `_data.yml` (conductor can do sanity checks).
+ - can use `waypoints` in _addition_ to tags now in searches, which is way better.
+ - No more need to special-case `tag[0]` in view code.
+ - No need for tag helpers
+
+This change came about as a result of talking with Óscar Otero and 
+explaining that the choice of using tags for beacons was because of the 
+merge behavior mentioned specifically for tags. He told me that it's 
+also guaranteed to be the same for other data, tags aren't unique in
+that regard, so we can hop into our own space for this.
+
+The rest of the docs here still _mostly_ apply, with that change in mind, 
+but the `_data` files will likely be simpler. This doesn't affect how the 
+generators work. 
 
 ## What Are Archetypes?
 
