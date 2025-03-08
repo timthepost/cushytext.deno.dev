@@ -138,7 +138,7 @@ html[data-theme="dark"] {
 /* Override for TOC list type */
 .table-of-contents,
 .table-of-contents ul {
-  list-style: "» ";
+  list-style: "»  ";
   list-style-position: outside;
 }
 .table-of-contents li {
