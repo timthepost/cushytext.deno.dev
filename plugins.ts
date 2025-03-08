@@ -48,12 +48,19 @@ export default function (userOptions?: Options) {
         toc_container: ".toc-enabled",
         toc_heading_selectors: "h2, h3, h4, h5, h6",
         toc_link_class: "table-of-contents__link",
-        toc_list_class: "table-of-contents padding-top--none" }
-      ))
+        toc_list_class: "table-of-contents padding-top--none",
+      }))
       .use(postcss())
       .add([".css"])
-      .use(feed({ output: ["/feed.xml", "/feed.json"], query: "waypoint=%blog%" }))
-      .use(feed({ output: ["/docs/feed.xml", "/docs/feed.json"], query: "waypoint=%docs%" }))
+      .use(
+        feed({ output: ["/feed.xml", "/feed.json"], query: "waypoint=%blog%" }),
+      )
+      .use(
+        feed({
+          output: ["/docs/feed.xml", "/docs/feed.json"],
+          query: "waypoint=%docs%",
+        }),
+      )
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
       .use(readingInfo({ extensions: [".mdx"] }))

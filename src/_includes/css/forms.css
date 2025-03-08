@@ -17,7 +17,7 @@ input[type="radio"] {
   padding: var(--ifm-spacing-vertical) var(--ifm-spacing-horizontal);
   width: 100%;
   margin-bottom: var(--ifm-spacing-vertical);
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 input[type="text"]:focus,
@@ -28,21 +28,21 @@ textarea:focus,
 select:focus,
 input[type="checkbox"]:focus,
 input[type="radio"]:focus {
-  outline: none; 
-  border-color: var(--ifm-color-primary); 
-  box-shadow: var(--ifm-global-shadow-lw); 
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: var(--ifm-global-shadow-lw);
 }
 
 textarea {
   height: 10rem; /* Adjust as needed */
-  resize: vertical; 
+  resize: vertical;
 }
 
 select {
-  -webkit-appearance: none; 
-  -moz-appearance: none; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
-  padding-right: 2rem; 
+  padding-right: 2rem;
 }
 
 select::-ms-expand {
@@ -55,7 +55,7 @@ select::after {
   right: var(--ifm-spacing-horizontal);
   top: 50%;
   transform: translateY(-50%);
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 label {
@@ -73,7 +73,7 @@ label {
 /* Checkbox/Radio Styles */
 input[type="checkbox"],
 input[type="radio"] {
-  margin-right: 0.5rem; 
+  margin-right: 0.5rem;
   vertical-align: middle;
 }
 
@@ -82,11 +82,11 @@ input[type="radio"]:checked + label::before {
   content: "\2713"; /* Check mark */
   display: inline-block;
   position: relative;
-  left: -20px; 
+  left: -20px;
   top: 0px;
   font-size: 1.2em;
   background-color: var(--ifm-color-primary); /* Checkmark color */
-  border-radius: 50%; 
+  border-radius: 50%;
   padding: 0.2rem;
   margin-right: 5px;
 }

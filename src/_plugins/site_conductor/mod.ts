@@ -37,9 +37,12 @@ export default function conductor(userOptions?: Options) {
    * @param headingSelectors A list of headings to include ("h1 h2 ... h6")
    * @param document Document object (e.g. from page.document)
    */
-  function generateTOC(containerSelector: string, 
-    tocSelector: string, headingSelectors: string, document: Document) {
-
+  function generateTOC(
+    containerSelector: string,
+    tocSelector: string,
+    headingSelectors: string,
+    document: Document,
+  ) {
     const container = document.querySelector(containerSelector);
     const toc = document.querySelector(tocSelector);
     if (!container || !toc) {
@@ -54,9 +57,10 @@ export default function conductor(userOptions?: Options) {
     headings.forEach((heading, index) => {
       const headingId = heading.id || `heading-${index}`;
       heading.id = headingId;
-      tocListHTML += `<li><a href="#${headingId}" class="${options.toc_link_class}">${heading.textContent}</a></li>`;
+      tocListHTML +=
+        `<li><a href="#${headingId}" class="${options.toc_link_class}">${heading.textContent}</a></li>`;
     });
-    tocListHTML += '</ul>';
+    tocListHTML += "</ul>";
     toc.innerHTML = tocListHTML;
   }
 
@@ -64,20 +68,20 @@ export default function conductor(userOptions?: Options) {
 
   return (site: Site) => {
     // pre-render stuff
-    site.addEventListener("beforeRender", () => { 
+    site.addEventListener("beforeRender", () => {
       site.process([".html"], (pages) => {
         for (const page of pages) {
-          
           // Table Of Contents (Docs & Blogs)
-          generateTOC(options.toc_container, 
-            options.toc_selector, 
-            options.toc_heading_selectors, 
-            page.document);
+          generateTOC(
+            options.toc_container,
+            options.toc_selector,
+            options.toc_heading_selectors,
+            page.document,
+          );
         }
       });
     });
 
     // post-render stuff (like tag exports to json)
-
   };
 }

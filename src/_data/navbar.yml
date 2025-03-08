@@ -28,7 +28,7 @@ top_nav:
         href: /features/accessibility/
         title: Open Dyslexic if user prefers dyslexic-friendly font.
 footer:
-  - category: Theme Basics 
+  - category: Theme Basics
     links:
       - text: Archetypes &amp; Folders
         href: /docs/archetypes/

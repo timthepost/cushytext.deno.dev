@@ -9,9 +9,10 @@ function getLocalStorageOrDefault(key, defaultValue) {
 }
 
 const availableFonts = {
-  system: "system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans",
-  user: "opendyslexic"
-}
+  system:
+    "system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans",
+  user: "opendyslexic",
+};
 
 function syncColorTheme() {
   const html = document.documentElement;
@@ -25,7 +26,7 @@ function toggleColorTheme() {
   syncColorTheme();
 }
 
-function syncUserFont() { 
+function syncUserFont() {
   const html = document.documentElement;
   const userFont = localStorage.getItem("font") || "system";
   html.setAttribute("data-font", userFont);
