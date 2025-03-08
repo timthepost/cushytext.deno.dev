@@ -4,7 +4,7 @@ hero:
   title: Cushy Text ☁️
   href: /blog/announcing-cushy-text/
   cta: Read The Announcement &raquo;
-  slogan: An Infima-based, component-driven, text-focused interactive and accessible theme for Lume 3.
+  slogan: An Infima-based, component-driven, text-focused interactive and accessible theme for <span class="text--danger">Lume 3</span>.
 
 goals:
   - title: Comfortable To Build With.
