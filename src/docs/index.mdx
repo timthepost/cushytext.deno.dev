@@ -51,6 +51,8 @@ the second task will first run the first, and then also remove `node_modules`.
 
 ## Current Focus
 
+ - Search! (See whole section below this one)
+
  - Blog / Tag archive pages need some love under each heading result:
     - Show meta description as a teaser text.
     - Show tags
@@ -70,6 +72,26 @@ the second task will first run the first, and then also remove `node_modules`.
 
  - Aria labels, roles, tab indexes all need to be straightened out now that the 
    DOM is structurally more stable.
+
+## Search 
+
+Integrating Pagefind's UI into Infima's top nav architecture is just not going to
+happen without breaking one or the other. That's actually not a big problem for 
+me, because I want to do more than "just Pagefind" with a theme that's supposed
+to be about managing text and interactive features.
+
+The idea is, have any search input trigger an as-they-type set of results with an
+easy way to expand results for advanced options. This will be powered by Router 
+middleware and the Pagefind JS API, which can also do the job of mixing in other 
+search sources (maybe from a main company site? an ad server? whatever, you do you!)
+
+Results will then be returned according to tag preferences, and the UI does whatever 
+is appropriate for the setting and screen size. Being able to offer complete 
+search without the need for any third parties is a major goal for me.
+
+That's the idea, anyway. The very first version may just open a modal any time a
+search box gets focus and show the default Pagefind UI - if that's all that's holding
+up a release. But I'm still doing the back-end search no matter what.
 
 ## Contributing
 
