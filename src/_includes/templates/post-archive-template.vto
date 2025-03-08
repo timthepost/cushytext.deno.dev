@@ -5,6 +5,8 @@
         <p>{{ locale.archive.slogan }}</p>
       {{ /if }}      
       {{ for post of results }}
+        <!-- TODO - This *exact* code exists in layouts/post-archive_stub.vto - make a component! -->
+        <!-- TODO - style class for this -->
         {{ if post.menu.visible !== false }}
         <div class="card margin-vert--md padding--md">
           <h2 class="margin-top--md"><a href="{{ post.url }}">{{ post.title }}</a></h2>
@@ -38,7 +40,6 @@
         <a href="/feed.xml" class="navbar__link">
           <span class="badge badge--warning" style="font-size: 12pt">{{ locale.feeds.rss }}</span>
         </a> 
-        <!-- clever, or lazy? you decide! -->
         <span class="margin-horiz--sm">|</span>
         <a href="/feed.json" class="navbar__link">
           <span class="badge badge--success" style="font-size: 12pt">{{ locale.feeds.json }}</span>
@@ -49,15 +50,15 @@
       {{ if authors.length }}
         <ul>
         {{ for author of authors }}
+          <!-- TODO: This replace() happens in a lot of places. Just store it somewhere, perhaps in conductor plugin? -->
           <li><a href="/author/{{ author.replace(/\ /g, "-") }}/"><strong>{{ author }}</strong></a></li>
         {{ /for }}
         </ul>
       {{ /if }}
       <h3 class="margin-top--md">{{ locale.archive.tags }}</h3>
-      {{ set postTags = search.pages("type=tag", "tag") }}
-      {{ if postTags.length }}
-        <!-- Post Tags -->
-        {{ for tag of postTags }}
+      {{ set recentTags = search.pages("type=tag", "tag") }}
+      {{ if recentTags.length }}
+        {{ for tag of recentTags }}
           <a href="{{ tag.url }}" class="button button--sm button--secondary margin--sm">{{ tag.tag }}</a>
         {{ /for }}
       {{ /if }}
