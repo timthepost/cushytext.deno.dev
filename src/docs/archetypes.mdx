@@ -5,36 +5,7 @@ menu:
   order: 1
 ---
 
-# Data Files & Special Hidden Tags:
-
-<span class="text--danger">
-***Warning: This will be changing very soon.*** From the [index](/docs/):
-</span>
-
-> Re-designing archetype tags like `%blog%` to be something called _waypoints_
-> instead, which won't pollute `tags` but still provide the same functionality 
-> when it comes to scoping individual archetype installations expressively. 
-
-So expect the following:
-
- - No more meddling with `tags`
- - `waypoints` will work just like `tags`, except we only ever touch them 
-    in `_data.yml` (conductor can do sanity checks).
- - can use `waypoints` in _addition_ to tags now in searches, which is way better.
- - No more need to special-case `tag[0]` in view code.
- - No need for tag helpers
-
-This change came about as a result of talking with Óscar Otero and 
-explaining that the choice of using tags for beacons was because of the 
-merge behavior mentioned specifically for tags. He told me that it's 
-also guaranteed to be the same for other data, tags aren't unique in
-that regard, so we can hop into our own space for this.
-
-The rest of the docs here still _mostly_ apply, with that change in mind, 
-but the `_data` files will likely be simpler. This doesn't affect how the 
-generators work. 
-
-## What Are Archetypes?
+# What Are Archetypes?
 
 In Lume, _archetypes_ are scripts that Lume runs which can create base 
 content for blog posts, content pages, photo galleries, or whatever other
@@ -46,7 +17,7 @@ In addition to scripts, this theme also uses hints from directory-level
 `_data.yml` files that help trigger the generation of three distinct 
 types of content:
 
- - `blogs` : A blog with a working tag system, feeds, archive, tag and 
+ - `blog` : A blog with a working tag system, feeds, archive, tag and 
     author pages. Supports multiple instances with independent tags.
 
  - `docs` : Like a blog, but sidebar is auto generated, no archive pages, 
@@ -66,52 +37,53 @@ Let's take a look at the `_data.yml` file inside this directory, which affects
 this directory, and all directories within it:
 
 ```yml
-# This makes it a documentation page with a sidebar 
 layout: layouts/docs.vto
-# This lets searches include or exclude content from this folder
-tags:
-  - "%docs%" 
-# This controls the behavior of this docs folder
+waypoint: "%docs%"
+
 docs:
   basedir: /docs/
-  archetypeTag: "%docs%"
   title: Documentation Home
   sidebar: auto
+
 ```
 
 This means every file in the `/docs` directory:
 
  - Uses the `layouts/docs.vto` template when rendering (unless another 
    is specified in the individual frontmatter layout key)
- - Has the hidden "archetype" tag `%docs%` applied to it (more on this later) 
-   no matter what is specified in the individual frontmatter tags thanks to 
-   how merging works in Lume. We take advantage of this.
+ - Has a waypoint applied to it that internal searching to build navigation,
+   archives, feeds and more can use in order to include or exclude it.
  - Has some additional configuration options to support the docs archetype, 
    like if the sidebar should be auto-generated
+ - Knows what the root install of its instance is, so it can re-think relative
+   links and paths as necessary. No extra JS cwd() in templates needed.
 
-That special `%docs%` tag is what I call an archetype tag. It allows each instance
-to be independently searched and filtered in both site searches and nav building, 
-and is only used behind the scenes, visitors won't see it. 
+That special `waypoint` key is what I call a, well, _waypoint_. It lets me 
+run multiple installations of `docs` while including or excluding some 
+or all from the site feed, navigation, archive pages, etc.
 
 Now, let's take a look at the `blog` directory `_data.yml` file:
 
 ```yml
 layout: layouts/post.vto
-tags:
-  - "%blog%"
+waypoint: "%blog%"
+tags: []
 
 blog:
   basedir: /blog/
-  archetypeTag: "%blog%"
   title: Cushy Text Blog
   recent: 5
 ```
 
-This works similarly to docs, but gives me a separate tag to scope the 
-content with behind the scenes: `%blog%`. These special tags aren't shown
-anywhere, just used to build the site and will be available as search
-options once that's fully-baked. These tags become anchors to search or
-exclude specific parts of the site.
+This works similarly to docs, but gives me a separate way to scope the 
+content with behind the scenes: `%blog%`. It also makes sure `tags` is 
+at least _set_, even if it's just an empty array, to avoid onerous 
+checks in templates.
+
+You can run multiple independent, or even coupled blogs and documentation
+installations on the same site like this. I highly recommend reading up 
+on Lume's [powerful Search Plugin](https://lume.land/plugins/search/) to
+see what inspiration hits!
 
 ## What About "pages"?
 
