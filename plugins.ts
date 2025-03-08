@@ -53,6 +53,7 @@ export default function (userOptions?: Options) {
       .use(postcss())
       .add([".css"])
       .use(feed({ output: ["/feed.xml", "/feed.json"], query: "waypoint=%blog%" }))
+      .use(feed({ output: ["/docs/feed.xml", "/docs/feed.json"], query: "waypoint=%docs%" }))
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
       .use(readingInfo({ extensions: [".mdx"] }))

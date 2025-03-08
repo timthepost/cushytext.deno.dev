@@ -25,7 +25,17 @@
       </nav>
     </div>
     <div class="col col--3">
-      <h3 class="margin-top--xl">{{ locale.documentation.toc_heading }}</h3>
+      <h3 class="margin-top--md">{{ locale.documentation.feeds }}</h3>
+      <p>
+        <a href="/feed.xml" class="navbar__link">
+          <span class="badge badge--warning" style="font-size: 12pt">{{ locale.feeds.rss }}</span>
+        </a> 
+        <span class="margin-horiz--sm">|</span>
+        <a href="/feed.json" class="navbar__link">
+          <span class="badge badge--success" style="font-size: 12pt">{{ locale.feeds.json }}</span>
+        </a>
+      </p>
+      <h3 class="margin-top--md">{{ locale.documentation.toc_heading }}</h3>
       <div id="toc"></div>
       <h3 class="margin-vert--md">{{ locale.documentation.topics }}</h3>
       <div class="menu thin-scrollbar margin-top--xs">

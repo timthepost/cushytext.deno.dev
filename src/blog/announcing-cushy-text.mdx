@@ -42,7 +42,7 @@ So, I created one! And, I named it Cushy Text!
 
 {/* more */}
 
-## Multi-Instance / Multi-Archetype / Central Search & Design
+## Multi-Instance / Multi-Archetype But Central Search Design
 
 The theme allows you to run multiple independent blogs with the ability to separate
 tags out from between them, but all sharing a common archive and author page. This
@@ -64,11 +64,11 @@ to assign itself a key called a `waypoint` that is used behind the scenes to
 scope, include or exclude each blog or documentation instance from search,
 navigation, feeds and more. 
 
-To control how feeds work, see `plugins.ts`:
+To control how feeds work, see `plugins.ts` (below is what's live on this site):
 
 ```js
-  site.use(feed({ output: ["/feed.xml"], query: "waypoint=%blog%" }))
-  site.use(feed({ output: ["/feed.json"], query: "waypoint=%blog%" }))
+  site.use(feed({ output: ["/feed.xml", "/feed.json"], query: "waypoint=%blog%" }))
+  site.use(feed({ output: ["/docs/feed.xml", "/docs/feed.json"], query: "waypoint=%docs%" }))
 ```
 
 As long as each separate blog and documentation folder has a unique waypoint,
