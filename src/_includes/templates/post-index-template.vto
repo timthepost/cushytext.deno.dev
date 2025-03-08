@@ -1,4 +1,4 @@
-  {{ set pageSearch = search.pages(`url^=${blog.basedir}`, "date=desc", blog.recent + 1) }}
+  {{ set pageSearch = search.pages(`url^=${blog.basedir}`, "date=desc", blog.recent) }}
   <div class="row">
     <div class="col col--9">
       <h1 class="margin-top--md">{{ locale.blog_index.latest_heading }} {{ blog.title }}:</h1>
@@ -35,7 +35,7 @@
       </ul>
       <p class="margin-top--md"><strong>{{ locale.blog_index.older_posts }} <a href="/archive">{{ locale.blog_index.older_posts_link }}</a></strong>.</p>
       <h3 class="margin-top--md">{{ locale.blog_index.top_tags }}</h3>
-      <!-- TODO: This needs tweaked, but might do something new here instead -->
+      <!-- TODO: Component & CSS -->
       {{ set recentTags = search.pages("type=tag", "waypoint=%blog% tag date", 10) }}
       {{ if recentTags.length }}
         {{ for tag of recentTags }}
