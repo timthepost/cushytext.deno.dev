@@ -24,12 +24,16 @@ interface Options {
   toc_selector?: string;
   toc_container?: string;
   toc_heading_selectors?: string;
+  toc_list_class?: string;
+  toc_link_class?: string;
 }
 
 export const defaults: Options = {
   toc_selector: "#toc",
   toc_container: ".toc-enabled",
   toc_heading_selectors: "h2, h3, h4, h5, h6",
+  toc_link_class: "",
+  toc_list_class: "",
 };
 ```
 
