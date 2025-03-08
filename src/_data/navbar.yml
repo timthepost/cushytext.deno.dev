@@ -29,7 +29,6 @@ top_nav:
       - text: Responsive And Accessible
         href: /features/accessibility/
         title: Open Dyslexic if user prefers dyslexic-friendly font.
-
 footer:
   - category: Theme Basics 
     links:
@@ -47,10 +46,10 @@ footer:
       - text: Lume Discord Server
         href: "https://discord.gg/YbTmpACHWB"
 
-  - category: People Behind Cushy text
+  - category: People Behind Cushy Text
     links:
-      - text: Tim's Personal blog
-        href: "#"
+      - text: Tim's Personal Site
+        href: "#soon"
 
   - category: Useful Resources
     links:
