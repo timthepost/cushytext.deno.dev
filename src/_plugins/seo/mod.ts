@@ -1,3 +1,8 @@
+/**
+ * Early version of a SEO plugin. Don't use this one, 
+ * it's problematic for a number of reasons. Here for 
+ * reference so I can rewrite it.
+ */
 import { merge } from "lume/core/utils/object.ts";
 import { log } from "lume/core/utils/log.ts";
 import type Site from "lume/core/site.ts";
