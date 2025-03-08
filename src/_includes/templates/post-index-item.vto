@@ -3,8 +3,10 @@
         <a href="{{ entry.url }}">{{ entry.title }}</a>
     </h2>
     <p class="margin-horiz--md">
+    <em>
     {{ locale.posts.written_by }} <strong><a href="/author/{{ entry.author.replace(/\ /g, "-") }}/">{{ entry.author }}</a></strong> 
     {{ locale.posts.written_on }} {{ entry.date }}.
+    </em>
     </p>
     <div class="padding-horiz--md font-selectable">
     {{ entry.excerpt |> md }}

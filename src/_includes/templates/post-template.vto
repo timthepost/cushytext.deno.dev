@@ -10,7 +10,7 @@
         {{ /for }}
       </p>
       {{ /if }}
-      <p><em>By <a href="/author/{{ author.replace(/\ /g, "-") }}"><strong>{{ author }}</strong></a> on {{ date }}</em></p>
+      <p><em>{{ locale.posts.written_by }} <a href="/author/{{ author.replace(/\ /g, "-") }}"><strong>{{ author }}</strong></a> on {{ date }}</em></p>
       <div class="markdown toc-enabled font-selectable">
         {{ content }}
       </div>
