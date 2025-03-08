@@ -1,8 +1,14 @@
   <div class="row">
     <div class="col col--9">
-      <h1 class="margin-top--md">{{ locale.archive.heading }}</h1>
+      <h1 class="margin-top--lg">{{ locale.archive.heading }}</h1>
       {{ if pagination.page == 1 }}
-        <p>{{ locale.archive.slogan }}</p>
+        <nav aria-label="breadcrumbs">
+          <ul class="breadcrumbs">
+            <li class="breadcrumbs__item breadcrumbs__item--active">
+              <a class="breadcrumbs__link" href="{{ url }}">{{ locale.posts.archive_text }}</a>
+            </li>
+          </ul>
+        </nav>
       {{ /if }}      
       {{ for post of results }}
         <!-- TODO - This *exact* code exists in layouts/post-archive_stub.vto - make a component! -->

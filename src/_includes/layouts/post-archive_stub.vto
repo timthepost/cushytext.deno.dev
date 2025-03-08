@@ -4,7 +4,17 @@
     <div class="main-wrapper">
       <main>
         <div class="container">
-            <h1 class="margin-top--md">{{ title }}:</h1>
+            <h1 class="margin-top--lg">{{ title }}:</h1>
+            <nav aria-label="breadcrumbs">
+              <ul class="breadcrumbs">
+                <li class="breadcrumbs__item">
+                  <a class="breadcrumbs__link" href="/archive">{{ locale.posts.archive_text }}</a>
+                </li>
+                <li class="breadcrumbs__item breadcrumbs__item--active">
+                  <a class="breadcrumbs__link" href="{{ url }}">{{ title }}</a>
+                </li>
+              </ul>
+            </nav>
             {{ if search_query }}
               {{ for post of search.pages(search_query) }}
                 {{ if post.menu.visible !== false }}
