@@ -5,8 +5,8 @@
       </div>
       <nav class="pagination-nav margin-top--lg">
         <div class="pagination-nav__item">
-          {{- set previousPost = search.previousPage(url, docs.archetypeTag, "menu.order") }}
-          {{- if previousPost }}
+          {{ set previousPost = search.previousPage(url, docs.archetypeTag, "menu.order") }}
+          {{ if previousPost }}
             <a class="pagination-nav__link" href="{{ previousPost.url }}">
               <div class="pagination-nav__sublabel">{{ locale.documentation.prev_link }}</div>
               <div class="pagination-nav__label">{{ previousPost.title }}</div>
@@ -14,8 +14,8 @@
           {{ /if }}
         </div>
         <div class="pagination-nav__item pagination-nav__item--next">
-          {{- set nextPost = search.nextPage(url, docs.archetypeTag, "menu.order") }}
-          {{- if nextPost }}
+          {{ set nextPost = search.nextPage(url, docs.archetypeTag, "menu.order") }}
+          {{ if nextPost }}
             <a class="pagination-nav__link" href="{{ nextPost.url }}">
               <div class="pagination-nav__sublabel" style="text-align: right">{{ locale.documentation.next_link }}</div>
               <div class="pagination-nav__label" style="text-align: right">{{ nextPost.title }}</div>
@@ -45,13 +45,11 @@
       <h3 class="margin-vert--md">From The Blog:</h3>
       <div class="menu thin-scrollbar margin-top--xs">
         <ul class="menu__list">
-
           {{ for entry of search.pages('%blog% menu.visible=true', "date=desc", 4) }}
             <li class="menu__list--item">
               <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
             </li>
           {{ /for }}
-
         </ul>
       </div>
       {{ /if }}
