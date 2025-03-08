@@ -1,3 +1,2 @@
 layout: layouts/page.vto
-tags:
-  - "%page%"
+waypoint: "%page%"
