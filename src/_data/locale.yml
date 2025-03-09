@@ -30,7 +30,7 @@ documentation:
   feeds: "Feed:"
 
 archive:
-  heading: "Blog Archive"
+  heading: "All Posts"
   slogan: "<em>So many posts to write, so few Posts to write them! -- Tim Post (Template Maintainer)</em>"
   tags: "Search By Tag:"
   authors: "Search By Author:"
