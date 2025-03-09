@@ -10,14 +10,13 @@ export default function* ({ search, paginate, locale }) {
   for (
     const data of paginate(posts, { url, size: 10 })
   ) {
-    // Show the first page in the menu
+    // Allow the archive page to be picked up by auto-nav
     if (data.pagination.page === 1) {
       data.menu = {
         visible: true,
-        order: 1,
+        order: 0,
       };
     }
-
     yield {
       ...data,
       title: locale.archive.heading,
@@ -29,6 +28,5 @@ function url(n) {
   if (n === 1) {
     return "/archive/";
   }
-
   return `/archive/${n}/`;
 }
