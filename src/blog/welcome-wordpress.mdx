@@ -1,0 +1,109 @@
+---
+title: I Welcome WordPress Users To Hybrid Static Sites!
+date: '2025-03-09'
+author: Tim Post
+draft: false
+tags:
+  - opinion
+  - wordpress
+  - lume-3
+  - static-sites
+  - hybrid-sites
+metas:
+  lang: en
+  description: An essay on why indecision and lack of vision in the WordPress world will lead to a growth in static site adoption.
+  tags:
+    - WordPress
+    - Static Site Generator
+    - Self Publishing
+    - WordPress With Lume
+    - WordPress Static Generator
+    - Lume With WordPress
+  image: /uploads/static-websites.jpg
+  robots: true
+  generator: true
+---
+
+One of the smartest things a self-publisher can do is decouple
+how they _write_ from how they _publish_. The writing flow is 
+something writers keep guarded once they find something that 
+works, and are very reluctant to change their grooves. 
+
+If you use WordPress, de-coupling means taking a hard look at a 
+hybrid setup, where you use your familiar WordPress to write and 
+edit, but export your content and use something like Lume to generate 
+the site.
+
+<img src="/uploads/static-websites.jpg"
+  alt="A digital oak tree comprised of individual file nodes" 
+  title="Some blogs that have been around since 2003 are like giant redwoods in this analogy ..." 
+  class="blog_image"
+  />
+
+That's not as hard to do as you might think. I'd like to talk 
+through it, just as a thought exercise. Plus, you could save a ton
+of money on your hosting, so .. game?
+
+{/* more */} 
+
+Now that it's easy to export your content in WordPress (even automatically),
+[options to generate lots of markdown](https://github.com/lonekorean/wordpress-export-to-markdown)
+are increasing in both stability and number.
+
+There's also [an API for interactive stuff](https://developer.wordpress.org/rest-api/using-the-rest-api/)
+that could let you extend comments through proxy middleware.
+
+## Your Workflow Is What Matters Most
+
+It's simply not possible for a large number of WordPress authors to use anything
+but WordPress to create. It's not just a matter of preference, it's an entire 
+workflow and collection of media that's been built up over time.
+
+The headless systems that are popular with static sites are great, but they're
+not going to help someone used to WordPress want to get out of bed ever again.
+
+Start thinking about WordPress not as something that _serves_ your site, but as
+something that just organizes your content so static site generators can create
+each individual page. Think of each post as a physical file, in a tree of others.
+
+## Not Breaking Engagement Matters Most, Too
+
+Making sure users can conveniently interact with your site in the manner that
+they're used to is also really important, or you'll be doing all this neat stuff 
+for your own amusement. I personally like the idea of moving comments to Mastodon 
+or X, or using a third-party service. 
+
+Content rating plugins, voting, rating, ect are all straightforward if you use 
+Lume 3, in fact this theme ships with some of that already set up.
+
+But you might want to _first_ help your users manage changing over to third-party
+comments, and once they're at home with them, changes to the structure of your 
+blog shouldn't disrupt them anymore as long as that third-party loads.
+
+## It's Worth The Investment
+
+If you only use the database for interactive stuff and allow the static content
+to be efficiently cached by the kernel and file system, then you'll find that 
+one web server goes a _lot_ farther than it did previously. 
+
+Yes, you're going to spend a solid week getting your WordPress theme into a template
+your static site generator can use, but you're paying yourself a few hundred bucks 
+a day while doing it in hosting savings, in some cases.
+
+Linux does best with being allowed to manage files as it sees fit. Relational database
+servers aren't needed to fulfill every request, and it's refreshing to see the world 
+waking up to that.
+
+## It's Great For WordPress To Embrace
+
+I've been helping high-traffic WordPress sites keep from toppling over since 2005, 
+when I was working as a kernel hacker and integrator in the hosting industry. Every 
+_single_ time I've seen someone taken advantage of in that ecosystem, it's been
+through a flunky SEO or Performance plugin, or through overpriced hosting.
+
+If WordPress just naturally embraced the idea of static generation with small 
+islands of interactivity, it would blow the doors off of many of the managed hosts, 
+who are essentially just providing that. 
+
+I hope it's at least part of the vision going forward, anyway. 
+
