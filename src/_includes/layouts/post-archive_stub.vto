@@ -8,10 +8,10 @@
             <nav aria-label="breadcrumbs">
               <ul class="breadcrumbs">
                 <li class="breadcrumbs__item">
-                  <a class="breadcrumbs__link" href="/archive">{{ locale.posts.archive_text }}</a>
+                  <a class="breadcrumbs__link" href="/archive/">{{ locale.posts.archive_text }}</a>
                 </li>
                 <li class="breadcrumbs__item breadcrumbs__item--active">
-                  <a class="breadcrumbs__link" href="{{ url }}">{{ title }}</a>
+                  <a class="breadcrumbs__link" href="{{ url }}">{{ query || author }}</a>
                 </li>
               </ul>
             </nav>
