@@ -16,8 +16,8 @@ posts:
   written_on: "On"
   read_more: "Read More"
   read_time: "Minute Read"
-  read_next: "After This, Check Out:"
-  read_prev: "This One Is Also Great:"
+  read_next: "Published After This:"
+  read_prev: "Published Previously To This:"
   archive_prompt: "More Posts Might Be Found In"
   archive_text: "The Archive"
 
