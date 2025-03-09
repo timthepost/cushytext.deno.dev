@@ -45,11 +45,13 @@
       {{ /if }}
       <p class="margin-top--md"><strong>{{ locale.blog_index.older_posts }} <a href="/archive">{{ locale.blog_index.older_posts_link }}</a></strong>.</p>
       <h3 class="margin-top--md">{{ locale.blog_index.top_tags }}</h3>
+      <div class="text--justify">
       {{ set recentTags = search.pages("type=tag", "waypoint=%blog% tag date", 10) }}
       {{ if recentTags.length }}
         {{ for tag of recentTags }}
           <a href="{{ tag.url }}" class="button button--sm button--secondary margin--sm">{{ tag.tag }}</a>
         {{ /for }}
       {{ /if }}
+      </div>
     </div>
   </div>
