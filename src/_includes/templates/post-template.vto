@@ -10,7 +10,8 @@
         {{ /for }}
       </p>
       {{ /if }}
-      <p><em>{{ locale.posts.written_by }} <a href="/author/{{ safe_author }}"><strong>{{ author }}</strong></a> on {{ date }}</em></p>
+      <p><em>{{ locale.posts.written_by }} <a href="/author/{{ safe_author }}">
+        <strong>{{ author }}</strong></a> on {{ date }}</em></p>
       <div class="markdown toc-enabled font-selectable">
         {{ content }}
       </div>
@@ -28,22 +29,24 @@
       </p>
       <h4 class="margin-top--md">{{ locale.blog_index.toc }}</h4>
       <div id="toc"></div>
-      <!-- 
-           I don't suggest a "Next / Prev" in blogs, I just try to enthusiastically 
-           suggest the next titles. There's no "order" to read a blog unless you're
-           reading serialized fiction. 
-        -->
-      {{ set previousPost = search.previousPage(url, `waypoint=${waypoint}`, "menu.order") }}
-      {{ if previousPost && previousPost.url != blog.basedir }}
-        <p><strong>{{locale.posts.read_prev }}</strong><br />
-        <a href="{{ previousPost.url }}">{{ previousPost.title }}</a></p>
-      {{ /if }}
-      {{ set nextPost = search.nextPage(url, `waypoint=${waypoint}`, "menu.order") }}
-      {{ if nextPost && nextPost.url != blog.basedir }}
+
+      {{ set nextPost = search.nextPage(url, `waypoint="${waypoint}" menu.visible=true`, 'date=asc') }}
+      {{ if nextPost }}
         <p><strong>{{ locale.posts.read_next }}</strong><br />
         <a href="{{ nextPost.url }}">{{ nextPost.title }}</a></p>
       {{ /if }}
-      <p class="margin-top--md"><strong>{{ locale.blog_index.older_posts }} <a href="/archive">{{ locale.blog_index.older_posts_link }}</a></strong>.</p>
+      
+      {{ set previousPost = search.previousPage(url, `waypoint="${waypoint}" menu.visible=true`, 'date=asc') }}
+      {{ if previousPost }}
+        <p><strong>{{locale.posts.read_prev }}</strong><br />
+        <a href="{{ previousPost.url }}">{{ previousPost.title }}</a></p>
+      {{ /if }}
+
+      <p class="margin-top--md">
+        <strong>{{ locale.blog_index.older_posts }} 
+          <a href="/archive">{{ locale.blog_index.older_posts_link }}</a>
+        </strong>.
+      </p>
       <h3 class="margin-top--md">{{ locale.blog_index.top_tags }}</h3>
       <div class="text--justify">
       {{ set recentTags = search.pages("type=tag", "waypoint=%blog% tag date", 10) }}
