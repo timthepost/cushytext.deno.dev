@@ -41,6 +41,7 @@ archive:
   total_results: "total results."
   things_tagged: "Things Tagged"
   posts_by: "Posts By"
+  all_posts: "All Posts"
 
 blog_index:
   latest_heading: "Latest Posts From The"

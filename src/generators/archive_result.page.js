@@ -2,7 +2,7 @@
  * Borrowed from simple blog, modified a bit.
  * https://lume.land/theme/simple-blog/
  */
-export const layout = "layouts/post-archive_stub.vto";
+export const layout = "layouts/post-archive.vto";
 
 export default function* ({ search, locale }) {
   // Generate a page for each tag
