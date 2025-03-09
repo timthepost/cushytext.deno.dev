@@ -1,13 +1,13 @@
 top_nav:
   - type: "link"
+    href: "/"
+    text: Home
+    title: Home
+
+  - type: "link"
     href: "/blog/"
     text: Blog
     title: Best Way To Stay Up To Date
-
-  - type: "link"
-    href: "/docs/"
-    text: Theme Docs
-    title: Documentation for this theme, using this theme.
 
   - type: "menu"
     text: Theme Features
@@ -27,6 +27,12 @@ top_nav:
       - text: Responsive And Accessible
         href: /features/accessibility/
         title: Open Dyslexic if user prefers dyslexic-friendly font.
+
+  - type: "link"
+    href: "/docs/"
+    text: Documentation
+    title: Documentation for this theme, using this theme.
+
 footer:
   - category: Theme Basics
     links:
