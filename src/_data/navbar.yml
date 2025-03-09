@@ -41,6 +41,8 @@ footer:
 
   - category: Community
     links:
+      - text: Cushy Text Discord Server
+        href: "https://discord.gg/ETx8S8cWwH"
       - text: Lume Discord Server
         href: "https://discord.gg/YbTmpACHWB"
 
