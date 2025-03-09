@@ -67,11 +67,12 @@ export default function conductor(userOptions?: Options) {
   cushyUpdate("Starting up ...");
 
   return (site: Site) => {
-    // pre-render stuff
+
+    cushyUpdate("Creating Tables Of Contents ...");
+    // TOC Generation should run pre-render
     site.addEventListener("beforeRender", () => {
       site.process([".html"], (pages) => {
         for (const page of pages) {
-          // Table Of Contents (Docs & Blogs)
           generateTOC(
             options.toc_container,
             options.toc_selector,
@@ -82,6 +83,17 @@ export default function conductor(userOptions?: Options) {
       });
     });
 
-    // post-render stuff (like tag exports to json)
+    cushyUpdate("Setting Up Auxiliary Page Data ...");
+    // Data-setting and supervising as-needed
+    site.preprocess([".html"], (pages) => {
+      for (const page of pages) {
+        /**
+         * This is the author's name without spaces, suitable to be 
+         * a directory name for /author/{safe_author}/{title: author}
+         */
+        page.data.safe_author = page.data.author?.replace(/\ /g, "-") || "";
+      }
+    });
+
   };
 }
