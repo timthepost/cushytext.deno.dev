@@ -4,7 +4,7 @@
  */
 export const layout = "layouts/post-archive_stub.vto";
 
-export default function* ({ search, locale, blog }) {
+export default function* ({ search, locale}) {
   // Generate a page for each tag
   for (const tag of search.values("tags", "waypoint=%blog%")) {
     yield {
