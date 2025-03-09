@@ -62,13 +62,19 @@ blog:
 This (among setting some base values) tells every page what layout to use, and 
 to assign itself a key called a `waypoint` that is used behind the scenes to 
 scope, include or exclude each blog or documentation instance from search,
-navigation, feeds and more. 
+navigation, feeds and more. I just called this one `%blog%` for simplicity;
+it could have just as easily been `%main-blog%`, or `%opinions%`, or even 
+`%shitposts%` if I'm really being honest with myself. All that matters is 
+it becomes a friendly, unique way to scope content _in that directory_.
+
+the `blog:` key is what actually turns on the archetype, with `blog.basedir`
+being the most important setting.
 
 To control how feeds work, see `plugins.ts` (below is what's live on this site):
 
 ```js
-  site.use(feed({ output: ["/feed.xml", "/feed.json"], query: "waypoint=%blog%" }))
-  site.use(feed({ output: ["/docs/feed.xml", "/docs/feed.json"], query: "waypoint=%docs%" }))
+  .use(feed({ output: ["/feed.xml", "/feed.json"], query: "waypoint=%blog%" }))
+  .use(feed({ output: ["/docs/feed.xml", "/docs/feed.json"], query: "waypoint=%docs%" }))
 ```
 
 As long as each separate blog and documentation folder has a unique waypoint,
@@ -93,6 +99,9 @@ docs:
 Think of it like a very light version of a blog that generates its own sidebar based on 
 the directory. It will soon support custom sidebars and more complex nesting. I really
 like using one theme for everything, in a way that feels planned instead of bolted together.
+
+Again, I picked `%docs%` just because I'm lazy. It could have been `%theme-docs%`, or 
+`%api-docs%`, however you want to 'grab' it when you build nav, feeds and content.
 
 ## Interactive Features Included
 
