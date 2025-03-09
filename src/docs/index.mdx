@@ -55,6 +55,12 @@ the second task will first run the first, and then also remove `node_modules`.
 
  - Docs auto nav doesn't deal with nested directories very well.
 
+ - Need to come up with a waypoint -> directory map that the `src/generator/*`
+   scripts can use to look up paths. Those scripts need to be able to know 
+   that `page.data.waypoint` correlates to `/path`, and some of the values
+   set in `path/_data.yml`. So I'm thinking of using `generators/_data.ts` 
+   that generates this, possibly from a manually-edited list for now. 
+
  - Blog & Docs sidebars don't collapse as well as they should: there should be 
    a TOC at the top of the post on small screens, with the one in the sidebar hidden
    (for both blogs and docs). Also make sure the rest of the stuff that ends up at 
