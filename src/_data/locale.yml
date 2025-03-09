@@ -39,6 +39,8 @@ archive:
   page: "Page"
   page_of: "of"
   total_results: "total results."
+  things_tagged: "Things Tagged"
+  posts_by: "Posts By"
 
 blog_index:
   latest_heading: "Latest Posts From The"
