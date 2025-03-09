@@ -67,8 +67,13 @@ it could have just as easily been `%main-blog%`, or `%opinions%`, or even
 `%shitposts%` if I'm really being honest with myself. All that matters is 
 it becomes a friendly, unique way to scope content _in that directory_.
 
-the `blog:` key is what actually turns on the archetype, with `blog.basedir`
-being the most important setting.
+Why the `%`? Why `%foo%` and not just `foo`? Because it allows for easy
+visual distinction between actual tags and other values that tend to 
+stack up in page search query strings. Nothing in the code enforces using
+`%`, just make sure you can spot a waypoint from a tag easily.
+
+Also, the `blog:` key is what actually turns on the archetype, with `blog.basedir`
+being the most important setting in this example.
 
 To control how feeds work, see `plugins.ts` (below is what's live on this site):
 
