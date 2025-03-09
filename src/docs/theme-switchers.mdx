@@ -1,0 +1,69 @@
+---
+title: How Do The Theme Switchers Work?
+menu:
+  visible: true
+  order: 5
+---
+
+# What are data-theme and data-font? 
+
+At the right of the top navigation bar, there are two switches, 
+one that toggles light and dark mode, and another that toggles
+between the default system font and a user-preferred font, which
+in this case is OpenDyslexic.
+
+This is designed to help you understand how they are set so you 
+don't have to do a lot of digging. 
+
+In `src/_includes/js/main.js` there are events that run when the
+buttons are clicked, which toggles the theme or the font. The 
+preference is stored in local storage, and synchronized when the
+document loads. There's also a dictionary to translate `system` to 
+the default Infima font family, and `user` to OpenDyslexic, in
+case you want to change the font it toggles.
+
+## Working With Light / Dark Mode In CSS
+
+Sometimes, you need to adjust how something looks when dark mode 
+is on. In order to scope that, use `data-theme`, e.g:
+
+```css {
+.foo {
+    color: blue;
+    margin: 1rem;
+}
+
+[data-theme="dark"]
+    .foo {
+        color: red;
+    }
+}
+```
+
+You can find a list of default color variables for both light and
+dark mode in `src/_includes/css/theme-variables.css`.
+
+## Adjusting CSS Automatically For Font Changes
+
+Much like dark mode, larger fonts with thicker borders tend to wreak
+unanticipated havoc. Sometimes you want a slightly larger `min-height`
+or perhaps less padding. This is possible in a similar way to scoping
+the theme, except we're going by the font value.
+
+Here's an example from the [front page of this site](/) where the cards
+line up under the hero:
+
+```css
+/* Example of adapting design to a font-switch */
+.homepage_card {
+  min-height: 275px;
+}
+
+[data-font="user"] {
+  .homepage_card {
+    min-height: 365px;
+  }
+}
+```
+
+Otherwise, the page would not transform well when switched.
