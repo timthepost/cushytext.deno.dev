@@ -1,5 +1,3 @@
-import { localTime } from "https://jsr.io/@std/toml/1.0.2/_parser.ts";
-
 /**
  * Borrowed from simple blog, modified a bit.
  * https://lume.land/theme/simple-blog/
