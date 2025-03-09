@@ -23,7 +23,7 @@
                   <p><em>{{ post.metas.description }}</em></p>
                   <p>{{ locale.posts.written_by }} 
                   <strong>
-                    <a href="/author/{{post.author.replace(/\ /g, "-")}}">{{ post.author }}</a>
+                    <a href="/author/{{ post.safe_author }}">{{ post.author }}</a>
                   </strong> 
                   {{ locale.posts.written_on }} {{ post.date }}.</p>
                   <p><strong>{{ post.readingInfo.minutes }} {{ locale.posts.read_time }}:</strong> 
