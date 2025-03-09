@@ -17,12 +17,14 @@
         <div class="card margin-vert--md padding--md">
           <h2 class="margin-top--md"><a href="{{ post.url }}">{{ post.title }}</a></h2>
           <p class="font-selectable"><em>{{ post.metas.description }}</em></p>
-          <p>{{ locale.posts.written_by }} <strong><a href="/author/{{ post.safe_author }}">{{ post.author }}</a></strong> {{ locale.posts.written_on }} {{ post.date }}.</p>
-          <p><strong>{{ post.readingInfo.minutes }} {{ locale.posts.read_time }}:</strong> 
+          <p><strong>{{ post.readingInfo.minutes }} {{ locale.posts.read_time }}</strong> ::
+          {{ locale.posts.written_by }} <a href="/author/{{ post.safe_author }}">{{ post.author }}</a>  
+          {{ locale.posts.written_on }} {{ post.date }}</p>
+          <div class="post-tags">
           {{ for tag of post.tags }}
-            <a href="/archive/{{tag}}/" class="button button--sm button--outline button--primary margin--sm">{{ tag }}</a>
+            <a href="/archive/{{tag}}/" class="post-tag">{{ tag }}</a>
           {{ /for }}
-          </p>
+          </div>
         </div>
         {{ /if }}
       {{ /for }}
@@ -64,9 +66,11 @@
       <h3 class="margin-top--md">{{ locale.archive.tags }}</h3>
       {{ set recentTags = search.pages("type=tag", "tag") }}
       {{ if recentTags.length }}
+      <div class="post-tags">
         {{ for tag of recentTags }}
-          <a href="{{ tag.url }}" class="button button--sm button--secondary margin--sm">{{ tag.tag }}</a>
+          <a href="{{ tag.url }}" class="post-tag">{{ tag.tag }}</a>
         {{ /for }}
+      </div>
       {{ /if }}
     </div>
   </div>

@@ -24,7 +24,8 @@
   text-align: center;
   align-items: center;
   border-radius: 1rem;
-  margin: 0 0 1rem;
+  margin:  0 0 .25rem 0;
+  padding: 0 .5rem 0;
 }
 
 /* Hide nav logo on small screens */
@@ -43,4 +44,25 @@
   .homepage_card {
     min-height: 365px;
   }
+}
+
+
+.post-tags {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.post-tag {
+  border: 1px solid var(--ifm-color-content-secondary);
+  border-radius: 4px;
+  color: var(--ifm-color-content);
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  text-decoration: none;
+}
+.post-tag:hover {
+  color: var(--ifm-color-content);
+  text-decoration: underline;
 }

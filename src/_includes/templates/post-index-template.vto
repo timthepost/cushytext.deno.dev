@@ -39,9 +39,11 @@
       <div class="text--justify">
       {{ set recentTags = search.pages("type=tag", "waypoint=%blog% tag date", 10) }}
       {{ if recentTags.length }}
+      <div class="post-tags">
         {{ for tag of recentTags }}
-          <a href="{{ tag.url }}" class="button button--sm button--secondary margin--sm">{{ tag.tag }}</a>
+          <a href="{{ tag.url }}" class="post-tag">{{ tag.tag }}</a>
         {{ /for }}
+      </div>
       {{ /if }}
       </div>
     </div>
