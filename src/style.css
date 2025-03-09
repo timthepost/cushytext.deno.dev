@@ -46,11 +46,11 @@
   }
 }
 
-
+/* Post tags (and example of flipping styles in dark mode) */
 .post-tags {
   display: flex;
   flex-flow: row wrap;
-  gap: 0.5em;
+  gap: 0.75em;
   align-items: center;
 }
 
@@ -62,7 +62,16 @@
   padding: 0.2em 0.6em;
   text-decoration: none;
 }
+
 .post-tag:hover {
-  color: var(--ifm-color-content);
-  text-decoration: underline;
+  background-color: var(--ifm-color-secondary);
+  color: var(--ifm-color-black);
+  text-decoration: none;
+}
+
+[data-theme="dark"] {
+  .post-tag:hover {
+    border: 1px solid var(--ifm-color-gray-700);
+    background-color: var(--ifm-color-info);
+  }
 }
