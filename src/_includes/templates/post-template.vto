@@ -1,8 +1,10 @@
   <div class="row">
     <div class="col col--9">
       <h1 class="margin-top--md">{{ title }}</h1>
+      <p class="margin-vert--md"><em>{{ locale.posts.written_by }} <a href="/author/{{ safe_author }}">
+        <strong>{{ author }}</strong></a> on {{ date }}</em></p>
       {{ if tags }}
-      <div class="post-tags">
+      <div class="post-tags margin-vert--md">
         {{ for tag of tags }}
           <a href="/archive/{{ tag }}/" class="post-tag">
             {{ tag }}
@@ -10,8 +12,6 @@
         {{ /for }}
       </div>
       {{ /if }}
-      <p class="margin-top--md"><em>{{ locale.posts.written_by }} <a href="/author/{{ safe_author }}">
-        <strong>{{ author }}</strong></a> on {{ date }}</em></p>
       <div class="markdown toc-enabled font-selectable">
         {{ content }}
       </div>
