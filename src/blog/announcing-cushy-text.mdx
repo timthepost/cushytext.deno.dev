@@ -51,21 +51,28 @@ I call waypoints. Let's look at the `_data.yml` from [this site's blog instance]
 
 ```yml
 layout: layouts/post.vto
+# Name this descriptively. It could be %minecraft-blog%, or %recipe-blog%.
+# It's the anchor you'll use to include content from this directory.
 waypoint: "%blog%"
 tags: []
+
 blog:
+  # This must match the directory the blog files are in.
   basedir: /blog/
   title: Cushy Text Blog
+  # This sets how many posts to show in the nav / blog index
   recent: 5
 ```
 
 This (among setting some base values) tells every page what layout to use, and 
 to assign itself a key called a `waypoint` that is used behind the scenes to 
 scope, include or exclude each blog or documentation instance from search,
-navigation, feeds and more. I just called this one `%blog%` for simplicity;
-it could have just as easily been `%main-blog%`, or `%opinions%`, or even 
-`%shitposts%` if I'm really being honest with myself. All that matters is 
-it becomes a friendly, unique way to scope content _in that directory_.
+navigation, feeds and more. 
+
+I just called this one `%blog%` for simplicity; it could have just as easily been 
+`%main-blog%`, or `%opinions%`, or even `%shitposts%` if I'm really being honest 
+with myself. All that matters is it becomes a friendly, unique way to scope content 
+_in that directory_.
 
 Why the `%`? Why `%foo%` and not just `foo`? Because it allows for easy
 visual distinction between actual tags and other values that tend to 
@@ -94,10 +101,16 @@ top level:
 
 ```yml
 layout: layouts/docs.vto
+# It could be %api-docs% or %quickstart% or whatever you want.
+# This is how you'll grab content from this directory in searches / nav
 waypoint: "%docs%"
+
 docs:
+  # This should match the folder the docs are in.
   basedir: /docs/
   title: Documentation Home
+  # Right now auto is the only option. A way to pass a custom sidebar
+  # is planned at some point.
   sidebar: auto
 ```
 

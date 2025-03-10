@@ -1,8 +1,12 @@
 layout: layouts/post.vto
+# Name this descriptively. It could be %minecraft-blog%, or %recipe-blog%.
+# It's the anchor you'll use to include content from this directory.
 waypoint: "%blog%"
 tags: []
 
 blog:
+  # This must match the directory the blog files are in.
   basedir: /blog/
   title: Cushy Text Blog
+  # This sets how many posts to show in the nav / blog index
   recent: 5

@@ -1,7 +1,12 @@
 layout: layouts/docs.vto
+# It could be %api-docs% or %quickstart% or whatever you want.
+# This is how you'll grab content from this directory in searches / nav
 waypoint: "%docs%"
 
 docs:
+  # This should match the folder the docs are in.
   basedir: /docs/
   title: Documentation Home
+  # Right now auto is the only option. A way to pass a custom sidebar
+  # is planned at some point.
   sidebar: auto
