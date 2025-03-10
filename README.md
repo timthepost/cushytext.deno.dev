@@ -11,9 +11,6 @@ extremely flexible when it comes to laying out lots and lots of text.
 
 ## Status:
 
-The basic template functionality is done, in that it has a fully-functional
-blog, wiki and content pages to offer.
-
 There is a **[Live Demo](https://cushytext.deno.dev)** of progress deployed from
 `main` on Deno Deploy. See the [docs section](https://cushytext.deno.dev/docs/)
 for the current status and focus.
