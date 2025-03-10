@@ -11,7 +11,7 @@ feeds:
   json: "JSON"
 
 posts:
-  has_tags: "Tags:"
+  has_tags: "Tagged:"
   written_by: "Written By"
   written_on: "On"
   read_more: "Read More"
