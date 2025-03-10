@@ -56,12 +56,21 @@ And, here's how the plugin is loaded in the theme (from `plugins.ts`):
 A very basic TOC that gets generated automatically by heading tags found within the 
 container element on the page. 
 
-It goes by the `id=""` attribute to the heading tags, and creates one based on the 
-depth of the document if one isn't supplied. Since markdown links don't provide a way 
-to set this, just use the heading tag itself, e.g.:
+The auto-linking goes by the `id=""` attribute on the heading tags, if present. Otherwise,
+the plugin creates the ID automatically based on the depth of the document. Since markdown 
+links don't provide a way to set the ID attribute, just use the heading tag itself if 
+you need to make one permanent. For instance:
+
+Don't do this if you need the generated link to always be the same:
+
+```md
+### I have no way of controlling the ID attribute of this heading. Boo.
+```
+
+Do this instead:
 
 ```html
-<h3 id="permanent-link">This will always be at #permanent-link</h3>
+<h3 id="permanent-link">This will always be generated at #permanent-link</h3>
 ```
 
 Remember, it's _all_ MDX, so don't fret the markup!
