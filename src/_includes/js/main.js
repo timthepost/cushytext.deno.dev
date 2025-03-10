@@ -14,10 +14,24 @@ const availableFonts = {
   user: "opendyslexic",
 };
 
+const prefersDark = globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
+
 function syncColorTheme() {
   const html = document.documentElement;
-  const userTheme = getLocalStorageOrDefault("theme", "light");
-  html.setAttribute("data-theme", userTheme === "dark" ? "dark" : "light");
+  const userTheme = localStorage.getItem("theme");
+  // we have no knowledge 
+  if (userTheme == null) {
+    if (prefersDark) {
+      localStorage.setItem("theme", "dark");
+      html.setAttribute("data-theme", "dark");
+    } else {
+      localStorage.setItem("theme", "light");
+      html.setAttribute("data-theme", "light");
+    }
+  } else {
+    // we have knowledge
+    html.setAttribute("data-theme", userTheme)
+  }
 }
 
 function toggleColorTheme() {
