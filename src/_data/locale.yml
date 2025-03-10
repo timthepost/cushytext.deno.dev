@@ -44,7 +44,7 @@ archive:
   all_posts: "All Posts"
 
 blog_index:
-  latest_heading: "Latest Posts From The"
+  latest_heading: "Latest From The"
   latest_posts: "Latest Posts"
   feeds: "Grab A Feed:"
   top_tags: "Recent Tags:"
