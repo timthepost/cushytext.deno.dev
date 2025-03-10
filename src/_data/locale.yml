@@ -12,7 +12,7 @@ feeds:
 
 posts:
   has_tags: "Tagged:"
-  written_by: "Written By"
+  written_by: "By"
   written_on: "On"
   read_more: "Read More"
   read_time: "Minute Read"
