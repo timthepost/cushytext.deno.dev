@@ -56,7 +56,7 @@ the second task will first run the first, and then also remove `node_modules`.
 
  - Docs auto nav doesn't deal with nested directories very well.
 
- - The conductor plugin needs to export a list of `waypoint -> folder`,
+ - The conductor plugin needs to export a list of `waypoints -> directories`,
    and the reverse, so that it can be imported in `generators/_data.ts`.
    This is what's going to allow flexibility on how, when and where 
    tag and author archive pages are generated.
@@ -124,10 +124,16 @@ following table:
 
 | Plugin | Description | Type | Author | Installed? | Configured? |
 |:-:|:-:|:-:|:-:|:-:|:-:|
+| expires | Server Middleware | base | Lume Official | Yes | Yes |
+| router | Server Middleware | base | Lume Official | Yes | Yes |
 | conductor  | Required Theme Plugin | base | Tim Post | Yes | Yes |
+| og-images | Generate OG Images From Templates | base | Lume Official | No | No |
+| picture | Create Responsive Images Automatically | base | Lume Official | No | No |
 | basepath   | Core Lume Plugin       | base | Lume Official | Yes | Yes |
 | nav        | Nav helper for Lume    | base | Lume Official | Yes | N/A |
+| transform-images | Transform Images | base | Lume Official | No | No |
 | mdx        | Default Document, Built On SSX | base | Lume Official | Yes | N/A |
+| google-fonts | Font Manager | base | Lume Official | No | No |
 | postcss    | CSS Processor          | css | Lume Official | Yes | No |
 | purgecss   | CSS Cleaner            | css | Lume Official | No | No |
 | sourcemaps | Source Map Generator   | css | Lume Official | No | No |
@@ -142,14 +148,7 @@ following table:
 | terser | JavaScript Minifier | perf | Lume Official | No | No |
 | brotli | Compression | perf | Lume Official | No | No |
 | minify-html | HTML Minification | perf | Lume Official | No | No |
-| og-images | Generate OG Images From Templates | base | Lume Official | No | No |
-| google-fonts | Font Manager | base | Lume Official | No | No |
-| picture | Create Responsive Images Automatically | base | Lume Official | No | No |
-| transform-images | Transform Images | base | Lume Official | No | No |
 | pagefind | Provides Search | search | Lume Official | Yes | No |
-| expires | Server Middleware | base | Lume Official | Yes | Yes |
-| router | Server Middleware | base | Lume Official | Yes | Yes |
-
 
 Those listed as `No` are either being left out deliberately for now 
 due to development, or require some effort to include properly.
