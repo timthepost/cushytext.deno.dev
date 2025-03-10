@@ -10,3 +10,8 @@ docs:
   # Right now auto is the only option. A way to pass a custom sidebar
   # is planned at some point.
   sidebar: auto
+  # Pull in posts from another waypoint?
+  guest:
+    heading: "From Our Blog:"
+    waypoint: "%blog%"
+    posts: 3
