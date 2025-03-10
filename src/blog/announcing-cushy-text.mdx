@@ -43,11 +43,13 @@ So, I created one! And, I named it Cushy Text!
 
 {/* more */}
 
-## Multi-Instance / Multi-Archetype But Central Search Design
+## Multi-Instance / Multi-Archetype With Central Search
 
-The theme allows you to run multiple independent blogs with the ability to separate
-tags out from between them, but all sharing a common archive and author page. This
-is accomplished through directory-level configuration and the use of special keys 
+You can run multiple instances of whatever you have on the same site independently; this 
+includes blogs, documentation, collections of pages, or whatever. They have separate 
+folders, independent tags and independent navigation if you want.
+
+This is accomplished through directory-level configuration and the use of special keys 
 I call waypoints. Let's look at the `_data.yml` from [this site's blog instance](/blog/):
 
 ```yml
@@ -70,20 +72,32 @@ to assign itself a key called a `waypoint` that is used behind the scenes to
 scope, include or exclude each blog or documentation instance from search,
 navigation, feeds and more. 
 
-I just called this one `%blog%` for simplicity; it could have just as easily been 
-`%main-blog%`, or `%opinions%`, or even `%shitposts%` if I'm really being honest 
-with myself. All that matters is it becomes a friendly, unique way to scope content 
-_in that directory_.
+An example use is how I pull titles from the blog over to the documentation 
+sidebar:
 
-Why the `%`? Why `%foo%` and not just `foo`? Because it allows for easy
-visual distinction between actual tags and other values that tend to 
-stack up in page search query strings. Nothing in the code enforces using
-`%`, just make sure you can spot a waypoint from a tag easily.
+```html
+  <ul class="menu__list">
+    {{ for entry of search.pages('waypoint=%blog% menu.visible=true', "date=desc", 4) }}
+      <li class="menu__list--item">
+        <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
+      </li>
+    {{ /for }}
+  </ul>
+```
 
-Also, the `blog:` key is what actually turns on the archetype, with `blog.basedir`
-being the most important setting in this example.
+If I had `%gaming-blog%` or `%recipes%` installed as blogs, I could easily pull
+content from either or both, too. This is different than just having _types_, this
+lets you scope specific _sources_.
 
-To control how feeds work, see `plugins.ts` (below is what's live on this site):
+`%` is used because it's easy to visually-distinguish waypoints from tags in back-end 
+search queries; it can be changed if you want. It's the `blog:` key in `_data.yml` that 
+turns on the archetype. The theme looks for `data.blog`, `data.docs` and `data.pages` 
+while processing, so it knows how to treat each page.
+
+## What About Feeds And Archives?
+
+To control how feeds work, see `plugins.ts` (below is what's live on this site, notice
+that documentation has its own independent feed):
 
 ```js
   .use(feed({ output: ["/feed.xml", "/feed.json"], query: "waypoint=%blog%" }))
@@ -93,9 +107,24 @@ To control how feeds work, see `plugins.ts` (below is what's live on this site):
 As long as each separate blog and documentation folder has a unique waypoint,
 you can build navigation and search any way you like!
 
-Speaking of documentation ..
+Right now, a single archive is generated for tags and authors. This will be configurable
+per-instance by specifying the locations in `_data.yml`:
 
-## Basic Docs/Wiki Archetype Built-In!
+```yml
+layout: layouts/post.vto
+waypoint: "%gaming-blog%"
+
+blog:
+  basedir: /minecraft-blog/
+  title: Cushy Text Blog
+  recent: 5
+  archive: /gaming-archive/
+  authors: /author/
+```
+
+Hey, wait! _Speaking of documentation .._
+
+## A Documentation / Wiki Engine Archetype Is Also Built-In!
 
 You can [drop a bunch of markdown in a folder](/docs/), and add this `_data.yml` at the 
 top level:
@@ -119,8 +148,11 @@ Think of it like a very light version of a blog that generates its own sidebar b
 the directory. It will soon support custom sidebars and more complex nesting. I really
 like using one theme for everything, in a way that feels planned instead of bolted together.
 
-Again, I picked `%docs%` just because I'm lazy. It could have been `%theme-docs%`, or 
-`%api-docs%`, however you want to 'grab' it when you build nav, feeds and content.
+Again, I picked `%docs%` for familiarity; it could have been `%theme-docs%`, or 
+`%api-docs%` - however you want to 'grab' it when you build nav, feeds and content. What 
+turns on the archetype is the presence of the `docs:` key in `_data.yml`.
+
+Normally, docs installs won't have archives or author pages generated.
 
 ## Interactive Features Included
 
@@ -135,7 +167,7 @@ More things may get added as a generally-available release nears.
 
 It's time for static sites to liven things up a bit!
 
-## Deno Deploy + Deno KV Required
+## Deno Deploy + Deno KV Ready! (And, Required)
 
 Originally, I wanted to build an interactive theme that would conceivably work on any
 host that offered Deno in some form (like Netlify), but two key things drove the decision
@@ -180,3 +212,13 @@ like "Open Dyslexic", obeys user preferences for theme and motion and is easy to
 
 All of that's baked into goals from the start, even if it takes a few versions of massive
 DOM reorganizations before we can say it's living up to it.
+
+## Ready To Ship March / April 2025
+
+This theme depends on _a lot_ of new functionality in Lume 3, and will most likely ship 
+two weeks after Lume 3 does. This repo is upgraded to `v3-dev` almost nightly and stays
+in-sync with Lume development.
+
+You're welcome to [grab the code](https://github.com/timthepost/cushytext) and look around, 
+but don't build anything serious with it until the actual release. I think most breaking 
+changes are over, but you _never quite know_ ...
