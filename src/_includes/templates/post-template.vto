@@ -1,16 +1,16 @@
   <div class="row">
     <div class="col col--9">
-      <h1 class="margin-top--md">{{ title }}</h1>
       <nav aria-label="breadcrumbs">
-        <ul class="breadcrumbs breadcrumbs--md">
+        <ul class="breadcrumbs breadcrumbs--sm margin-vert--md">
           <li class="breadcrumbs__item">
-            <a class="breadcrumbs__link" href="{{ blog.basedir }}">{{ blog.title }}</a>
+            &gt;&nbsp;<a class="breadcrumbs__link" href="{{ blog.basedir }}">{{ blog.title }}</a>
           </li>
           <li class="breadcrumbs__item breadcrumbs__item--active">
             <a class="breadcrumbs__link" href="{{ url }}">{{ title }}</a>
           </li>
         </ul>
       </nav>
+      <h1 class="margin-top--md">{{ title }}</h1>
       <p class="margin-vert--md"><em>{{ locale.posts.written_by }} <a href="/author/{{ safe_author }}">
         <strong>{{ author }}</strong></a> on {{ date }}</em></p>
       {{ if tags }}
