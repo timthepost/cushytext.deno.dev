@@ -56,25 +56,32 @@ the second task will first run the first, and then also remove `node_modules`.
 
  - Docs auto nav doesn't deal with nested directories very well.
 
- - Need to come up with a waypoint -> directory map that the `src/generator/*`
-   scripts can use to look up paths. Those scripts need to be able to know 
-   that `page.data.waypoint` correlates to `/path`, and some of the values
-   set in `path/_data.yml`. So I'm thinking of using `generators/_data.ts` 
-   that generates this, possibly from a manually-edited list for now. 
+ - The conductor plugin needs to export a list of `waypoint -> folder`,
+   and the reverse, so that it can be imported in `generators/_data.ts`.
+   This is what's going to allow flexibility on how, when and where 
+   tag and author archive pages are generated.
+
+ - There should be some kind of `authors.yml` that contains at least a short
+   biography and maybe even social links per-author. This isn't _just_ for 
+   vanity, generated pages have no SEO value without content.
+
+ - Similarly to `authors.yml`, we need `tagInfo.yml`, so that each tag can have 
+   some content about what it's for. Some tags can obviously take more advantage 
+   of this than others, but we should have it.
 
  - Blog & Docs sidebars don't collapse as well as they should: there should be 
    a TOC at the top of the post on small screens, with the one in the sidebar hidden
    (for both blogs and docs). Also make sure the rest of the stuff that ends up at 
    the bottom is necessary on small screens and use a media query to hide some of it.
 
- - A long list of additional plugins, like the OG Image Generator, need 
-   installed, configured, tested and tweaked.
+ - See section about plugins below.
 
  - Make remote themes work with sparse initial content generated (two example 
    blog posts, three markdown document pages, one landing page).
 
- - Template markup has a lot of inline `style="..."` that smells. Most places
-   where that's found need refactored and proper classes.
+ - Template markup has a lot of inline `style="..."` that could probably be put 
+   into an actual class. There's also traces of "designed in place" style markup
+   that should be refactored into a class. 
 
  - Aria labels, roles, tab indexes all need to be straightened out now that the 
    DOM is structurally more stable.
@@ -98,6 +105,54 @@ search without the need for any third parties is a major goal for me.
 That's the idea, anyway. The very first version may just open a modal any time a
 search box gets focus and show the default Pagefind UI - if that's all that's holding
 up a release. But I'm still doing the back-end search no matter what.
+
+## Plugins
+
+I'm not out to make a "kitchen sink" theme, but there are a number of plugins that I 
+consider pretty essential for a performant, convenient and discoverable site. Those
+three things are equally important to me when I work.
+
+I'm the author and maintainer of the `seo` and `conductor` plugins, which are Included
+and enabled (the conductor is actually required).
+
+The rest of these are official Lume plugins that, due to their nature, can't all be
+installed and enabled because they can hide subtle development issues. To keep track
+of all that are installed, and all that still need to be enabled, I've created the 
+following table:
+
+### List & Status Of All Planned Plugins:
+
+| Plugin | Description | Type | Author | Installed? | Configured? |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| conductor  | Required Theme Plugin | base | Tim Post | Yes | Yes |
+| basepath   | Core Lume Plugin       | base | Lume Official | Yes | Yes |
+| nav        | Nav helper for Lume    | base | Lume Official | Yes | N/A |
+| mdx        | Default Document, Built On SSX | base | Lume Official | Yes | N/A |
+| postcss    | CSS Processor          | css | Lume Official | Yes | No |
+| purgecss   | CSS Cleaner            | css | Lume Official | No | No |
+| sourcemaps | Source Map Generator   | css | Lume Official | No | No |
+| feed       | Generate Feeds         | seo | Lume Official | Yes | Yes |
+| sitemap    | Generate Sitemap       | seo | Lume Official | Yes | Yes |
+| robots     | Generate robots.txt    | seo | Lume Official | Yes | Yes |
+| redirects  | Manage Redirects       | seo | Lume Official | Yes | Yes |
+| seo        | Static SEO Analysis    | seo | Tim Post | Yes | No |
+| metas      | Meta Tag Generation    | seo | Lume Official | Yes | Yes |
+| readinginfo | Display Reading Time  | user | Lume Official | Yes | Yes |
+| prism | Fancy Code Highlighting | user | Lume Official | Yes | Yes |
+| terser | JavaScript Minifier | perf | Lume Official | No | No |
+| brotli | Compression | perf | Lume Official | No | No |
+| minify-html | HTML Minification | perf | Lume Official | No | No |
+| og-images | Generate OG Images From Templates | base | Lume Official | No | No |
+| google-fonts | Font Manager | base | Lume Official | No | No |
+| picture | Create Responsive Images Automatically | base | Lume Official | No | No |
+| transform-images | Transform Images | base | Lume Official | No | No |
+| pagefind | Provides Search | search | Lume Official | Yes | No |
+| expires | Server Middleware | base | Lume Official | Yes | Yes |
+| router | Server Middleware | base | Lume Official | Yes | Yes |
+
+
+Those listed as `No` are either being left out deliberately for now 
+due to development, or require some effort to include properly.
 
 ## Contributing
 
