@@ -138,10 +138,15 @@ waypoint: "%docs%"
 docs:
   # This should match the folder the docs are in.
   basedir: /docs/
-  title: Documentation Home
+  title: Cushy Theme Docs
   # Right now auto is the only option. A way to pass a custom sidebar
   # is planned at some point.
   sidebar: auto
+  # Pull in posts from another waypoint?
+  guest:
+    heading: "From Our Blog:"
+    waypoint: "%blog%"
+    posts: 3
 ```
 
 Think of it like a very light version of a blog that generates its own sidebar based on 
@@ -150,9 +155,12 @@ like using one theme for everything, in a way that feels planned instead of bolt
 
 Again, I picked `%docs%` for familiarity; it could have been `%theme-docs%`, or 
 `%api-docs%` - however you want to 'grab' it when you build nav, feeds and content. What 
-turns on the archetype is the presence of the `docs:` key in `_data.yml`.
+turns on the archetype is the presence of the `docs:` key in `_data.yml`. And, in this
+instance, I'm using the blog's waypoint to show a few posts in the docs sidebar.
 
-Normally, docs installs won't have archives or author pages generated.
+Normally, docs installs won't have tag archives or author pages generated. They can _use_ 
+tags to help aid search, but there's no display by default. Happy to add more use to tags
+in docs if people have a stronger use case than my imagination.
 
 ## Interactive Features Included
 
