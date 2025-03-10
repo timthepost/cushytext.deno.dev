@@ -1,6 +1,16 @@
   <div class="row">
     <div class="col col--9">
-      <div class="markdown toc-enabled font-selectable margin-top--md">
+      <div class="markdown toc-enabled font-selectable">
+        <nav aria-label="breadcrumbs margin-top--none padding-top--none">
+          <ul class="breadcrumbs breadcrumbs--sm margin-vert--md">
+            <li class="breadcrumbs__item">
+              &gt;&nbsp;<a class="breadcrumbs__link" href="{{ docs.basedir }}">{{ docs.title }}</a>
+            </li>
+            <li class="breadcrumbs__item breadcrumbs__item--active">
+              <a class="breadcrumbs__link" href="{{ url }}">{{ title }}</a>
+            </li>
+          </ul>
+        </nav>
         {{ content }}
       </div>
       <nav class="pagination-nav margin-top--lg">
