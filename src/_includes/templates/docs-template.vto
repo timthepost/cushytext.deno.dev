@@ -4,7 +4,8 @@
         <nav aria-label="breadcrumbs margin-top--none padding-top--none">
           <ul class="breadcrumbs breadcrumbs--sm margin-vert--md">
             <li class="breadcrumbs__item">
-              &gt;&nbsp;<a class="breadcrumbs__link" href="{{ docs.basedir }}">{{ docs.title }}</a>
+              &gt;&nbsp;<a class="breadcrumbs__link" href="{{ docs.basedir }}">
+              {{ docs.title || locale.documentation.topics }}</a>
             </li>
             <li class="breadcrumbs__item breadcrumbs__item--active">
               <a class="breadcrumbs__link" href="{{ url }}">{{ title }}</a>
