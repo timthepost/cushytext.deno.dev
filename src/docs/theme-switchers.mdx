@@ -5,15 +5,26 @@ menu:
   order: 5
 ---
 
-# What are data-theme and data-font? 
+# How Does Theme / Font Switching Work?
+
+In an ideal world, the user doesn't have to toggle things on a 
+site, because _everything_ about their preferences can be known
+in advance. We're not there yet, but the strategy is obey what
+we can get correct automatically, and provide controls as 
+fallback.
+
+Some settings (like prefers dyslexic font) don't quite exist yet
+in the form `prefers-color-scheme` does, and some don't even have
+a universal designation for what icon should enable them.
+
+So we just try to do our best. 
+
+## What are data-theme and data-font? 
 
 At the right of the top navigation bar, there are two switches, 
 one that toggles light and dark mode, and another that toggles
 between the default system font and a user-preferred font, which
 in this case is OpenDyslexic.
-
-This is designed to help you understand how they are set so you 
-don't have to do a lot of digging. 
 
 In `src/_includes/js/main.js` there are events that run when the
 buttons are clicked, which toggles the theme or the font. The 
@@ -24,19 +35,28 @@ case you want to change the font it toggles.
 
 ## Working With Light / Dark Mode In CSS
 
-Sometimes, you need to adjust how something looks when dark mode 
-is on. In order to scope that, use `data-theme`, e.g:
+We try to go by `prefers-color-scheme`, if it's available, so 
+we know if they want a darker theme by default. Selecting one 
+or the other stores their preference in local storage. 
 
-```css {
-.foo {
-    color: blue;
-    margin: 1rem;
+As you design with both themes in mind, you'll find that you 
+need to adjust how something looks but only in a specific mode.
+In order to scope that, use `data-theme`. 
+
+Here's an example from the tags in this theme:
+
+```css 
+.post-tag:hover {
+  background-color: var(--ifm-color-secondary);
+  color: var(--ifm-color-black);
+  text-decoration: none;
 }
 
-[data-theme="dark"]
-    .foo {
-        color: red;
-    }
+[data-theme="dark"] {
+  .post-tag:hover {
+    border: 1px solid var(--ifm-color-gray-700);
+    background-color: var(--ifm-color-info);
+  }
 }
 ```
 
