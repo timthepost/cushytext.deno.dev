@@ -2,7 +2,7 @@
     <div class="col col--9">
       <h1 class="margin-top--md">{{ title }}</h1>
       <nav aria-label="breadcrumbs">
-        <ul class="breadcrumbs breadcrumbs--sm">
+        <ul class="breadcrumbs breadcrumbs--md">
           <li class="breadcrumbs__item">
             <a class="breadcrumbs__link" href="{{ blog.basedir }}">{{ blog.title }}</a>
           </li>
@@ -15,6 +15,7 @@
         <strong>{{ author }}</strong></a> on {{ date }}</em></p>
       {{ if tags }}
       <div class="post-tags margin-vert--md">
+        <em>{{ locale.posts.has_tags }}</em>
         {{ for tag of tags }}
           <a href="/archive/{{ tag }}/" class="post-tag">
             {{ tag }}

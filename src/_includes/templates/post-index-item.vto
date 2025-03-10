@@ -1,16 +1,15 @@
-<div class="card margin-top--md padding--md">
-    <h2 class="margin-top--sm">
+<div class="card padding--md margin-vert--md">
+    <h2 class="margin-top--sm margin-left--md">
         <a href="{{ entry.url }}">{{ entry.title }}</a>
     </h2>
-    <!-- TODO: component and css class -->
     <p class="margin-horiz--md">
-    <em>
-    {{ locale.posts.written_by }} <strong><a href="/author/{{ entry.safe_author }}/">{{ entry.author }}</a></strong> 
-    {{ locale.posts.written_on }} {{ entry.date }}.
-    </em>
+        <em>
+            {{ locale.posts.written_by }} <strong><a href="/author/{{ entry.safe_author }}/">{{ entry.author }}</a></strong> 
+            {{ locale.posts.written_on }} {{ entry.date }}.
+        </em>
     </p>
     <div class="padding-horiz--md font-selectable">
-    {{ entry.excerpt |> md }}
+        {{ entry.excerpt |> md }}
     </div>
     <div class="card__footer padding--xs">
         <a href="{{ entry.url }}" class="navbar__link">

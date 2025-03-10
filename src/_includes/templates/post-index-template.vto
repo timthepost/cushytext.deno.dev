@@ -2,13 +2,6 @@
   <div class="row">
     <div class="col col--9">
       <h1 class="margin-top--md">{{ locale.blog_index.latest_heading }} {{ blog.title }}:</h1>
-      <nav aria-label="breadcrumbs">
-        <ul class="breadcrumbs breadcrumbs--sm">
-          <li class="breadcrumbs__item breadcrumbs__item--active">
-            <a class="breadcrumbs__link" href="{{ blog.basedir }}">{{ blog.title }}</a>
-          </li>
-        </ul>
-      </nav>
       {{ for entry of pageSearch }}
         {{ if entry.url != blog.basedir }}
           {{ include "templates/post-index-item.vto" { entry: entry } }}
@@ -42,8 +35,6 @@
       </ul>
       <p class="margin-top--md"><strong>{{ locale.blog_index.older_posts }} <a href="/archive">{{ locale.blog_index.older_posts_link }}</a></strong>.</p>
       <h3 class="margin-top--md">{{ locale.blog_index.top_tags }}</h3>
-      <!-- TODO: Component & CSS -->
-      <div class="text--justify">
       {{ set recentTags = search.pages("type=tag", "waypoint=%blog% tag date", 10) }}
       {{ if recentTags.length }}
       <div class="post-tags">
@@ -52,6 +43,5 @@
         {{ /for }}
       </div>
       {{ /if }}
-      </div>
     </div>
   </div>
