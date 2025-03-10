@@ -1,12 +1,21 @@
 import lumeCMS from "lume/cms/mod.ts";
 
-const cms = lumeCMS();
+const cms = lumeCMS({ 
+  site: {
+    name: "Cushy Text",
+    description: "This is the back-end to Cushy Text",
+    body: `
+      <h2>Post Feedback Management:</h2>
+      <p>
+        We need a way to view feedback and other DenoKV data.
+      </p>
+    `
+  }
+});
 
 /**
- * This is only sparse support, I have to 
- * configure the fields and stuff. Also 
- * have to figure out how to write CMS 
- * plugins to view the submitted feedback.
+ * Very sparse initial support - fields need setup before this 
+ * is useful. 
  */
 cms.collection("blogs", "src:blog/*.mdx", [
     "title: text",
