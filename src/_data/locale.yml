@@ -16,8 +16,8 @@ posts:
   written_on: "On"
   read_more: "Read More"
   read_time: "Minute Read"
-  read_next: "Published After This:"
-  read_prev: "Published Previously To This:"
+  read_next: "Written After This:"
+  read_prev: "Written Before This:"
   archive_prompt: "More Posts Might Be Found In"
   archive_text: "The Archive"
 
@@ -48,7 +48,7 @@ blog_index:
   latest_posts: "Latest Posts"
   feeds: "Grab A Feed:"
   top_tags: "Recent Tags:"
-  older_posts: "Older posts are "
+  older_posts: '<span style="color:coral">Older posts are</span>' 
   older_posts_link: "in the archive"
   toc: "In This Article:"
 
