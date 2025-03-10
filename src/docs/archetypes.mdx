@@ -5,7 +5,7 @@ menu:
   order: 1
 ---
 
-# What Are Lume Archetypes?
+# Waypoints & Archetypes
 
 In Lume, _archetypes_ are scripts that Lume runs which can create base 
 content for blog posts, content pages, photo galleries, or whatever other
@@ -38,13 +38,22 @@ this directory, and all directories within it:
 
 ```yml
 layout: layouts/docs.vto
+# It could be %api-docs% or %quickstart% or whatever you want.
+# This is how you'll grab content from this directory in searches / nav
 waypoint: "%docs%"
 
 docs:
+  # This should match the folder the docs are in.
   basedir: /docs/
-  title: Documentation Home
+  title: Cushy Theme Docs
+  # Right now auto is the only option. A way to pass a custom sidebar
+  # is planned at some point.
   sidebar: auto
-
+  # Pull in posts from another waypoint?
+  guest:
+    heading: "From Our Blog:"
+    waypoint: "%blog%"
+    posts: 3
 ```
 
 This means every file in the `/docs` directory:
@@ -54,13 +63,18 @@ This means every file in the `/docs` directory:
  - Has a waypoint applied to it that internal searching to build navigation,
    archives, feeds and more can use in order to include or exclude it.
  - Has some additional configuration options to support the docs archetype, 
-   like if the sidebar should be auto-generated
+   like if the sidebar should be auto-generated, and if posts from another 
+   content source on the site should also be shown
  - Knows what the root install of its instance is, so it can re-think relative
    links and paths as necessary. No extra JS cwd() in templates needed.
 
 That special `waypoint` key is what I call a, well, _waypoint_. It lets me 
 run multiple installations of `docs` while including or excluding some 
 or all from the site feed, navigation, archive pages, etc.
+
+But, it works _in conjunction_ with the `_data.yml` configuration, in addition
+to the content generation scripts in `src/_archetypes/`, corresponding to each
+archetype.
 
 Now, let's take a look at the `blog` directory `_data.yml` file:
 
@@ -92,13 +106,12 @@ all of the components so that they can be made available as MDX elements.
 
 ## Creation Scripts Included
 
-You'll find `blog.ts`, `doc.ts` and `page.ts` included in `src/_archetypes`;
-I plan to also make a CLI tool to trigger some of these scripts which also
-accepts and validates the proposed paths. That's out of scope for what the 
-Lume CLI tool does, so I plan to offer / include one.
+You'll find `blog.ts`, `doc.ts` and `page.ts` included in `src/_archetypes`,
+they're the bare minimum needed to qualify for having them. I plan to add
+some additional arguments, or the ability to create by waypoint, but it's 
+low on the priority list. 
 
-Like, `cushy create blog "some title here" docs/` should error, because
-docs has no `blog` key, but would work if you ran it on `blog/`. 
+
 
 
 
