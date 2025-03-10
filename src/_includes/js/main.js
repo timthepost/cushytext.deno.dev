@@ -28,7 +28,7 @@ function toggleColorTheme() {
 
 function syncUserFont() {
   const html = document.documentElement;
-  const userFont = localStorage.getItem("font") || "system";
+  const userFont = getLocalStorageOrDefault("font", "system");
   html.setAttribute("data-font", userFont);
   const affectedElements = document.querySelectorAll(".font-selectable");
   if (affectedElements) {
