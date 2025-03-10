@@ -33,7 +33,8 @@ $ deno task mock
 ```
 
 This starts the _production_ server locally, on port 8000, and then watches
-the _server_ code (`_serve.ts`) for changes and reloads. 
+the _server_ code (`_serve.ts`) for changes and reloads. This does not live-reload
+_content_, just the server _itself_ if the server code changes.
 
 Middleware works locally the same as remotely, you don't need this to test that. 
 This option is here to debug changes to the server before pushing them, or
