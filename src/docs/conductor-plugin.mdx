@@ -20,28 +20,21 @@ parts of the site.
 
 ## Options
 
-Once things settle I'll create a nice table here, but for now it's
-easiest to just show you the code and defaults:
+This plugin does a number of things from filling in for markdown 
+plugins that aren't compatible with the new MDX in Lume 3, to 
+making sure all theme-specific data ends up where it needs to go.
 
-```js
-interface Options {
-  toc_selector?: string;
-  toc_container?: string;
-  toc_heading_selectors?: string;
-  toc_list_class?: string;
-  toc_link_class?: string;
-}
+There are some configurable options to control generation:
 
-export const defaults: Options = {
-  toc_selector: "#toc",
-  toc_container: ".toc-enabled",
-  toc_heading_selectors: "h2, h3, h4, h5, h6",
-  toc_link_class: "",
-  toc_list_class: "",
-};
-```
+| Function | Name | Type | Description | Default Value | Configured Value |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| TOC | `toc_selector` | string | ID of the container where the generated TOC will land. | `#toc` | `#toc` |
+| TOC | `toc_container` | string | Class name of the container to scan for headings. | `.toc-enabled` | `.toc-enabled` |
+| TOC | `toc_heading_selectors` | string | Comma-separated list of headings to process. | `h2, h3, h4, h5, h6` | `h2, h3, h4, h5, h6` |
+| TOC | `toc_list_class` | string | Class name to apply to the generated TOC list. | empty | `table-of-contents padding-top--none` |
+| TOC | `toc_link_class` | string | Class name to apply to generated TOC links. | empty | `table-of-contents__link` |
 
-And, here's how it's loaded in the theme:
+And, here's how the plugin is loaded in the theme (from `plugins.ts`):
 
 ```js
   .use(conductor({
@@ -57,11 +50,46 @@ And, here's how it's loaded in the theme:
     toc_list_class: "table-of-contents padding-top--none",
   }))
 ```
+
+## Table Of Contents Generation
+
+A very basic TOC that gets generated automatically by heading tags found within the 
+container element on the page. 
+
+It goes by the `id=""` attribute to the heading tags, and creates one based on the 
+depth of the document if one isn't supplied. Since markdown links don't provide a way 
+to set this, just use the heading tag itself, e.g.:
+
+```html
+<h3 id="permanent-link">This will always be at #permanent-link</h3>
+```
+
+Remember, it's _all_ MDX, so don't fret the markup!
+
+I'm really not interested in a TOC that does multi-depth lists as this list needs to be
+compact. If you think of some clever way of not making it cluttered with additional
+indentation and want to code up the css changes, send me a PR.
+
+If you want to disable the TOC checking, just set the `toc_selector` value to an empty
+string (`""`). I plan on adding per-page overriding in frontmatter sometime in the not 
+too distant future, but not having the selector available is a very efficient way of 
+disabling it per-page for now.
+
 ## Data Preprocessing
 
-Right now, the plugin examines the `author` key, transforms spaces to dashes, 
-and then saves it as `safe_author` so it's easy to use without constantly 
-calling `.replace()` in templates.
+  - The plugin examines the `author` key, transforms spaces to dashes, 
+    and then saves it as `safe_author` so it's easy to use without constantly 
+    calling `.replace()` in templates.
+
+  - The plugin will soon be generating a list of `waypoint` -> `archetype.basedir` indexes
+    that is needed by `generators/_data.ts` to power the archive, tag and author page 
+    generators independently per-install.
+
+  - The plugin will be soon be generating a "global" tags file that will be used by the search 
+    UI.
+
+  - Most likely some kind of checks to catch common misconfiguration and warn with something 
+    useful before undefined behavior happens.
 
 ## Roadmap
 
