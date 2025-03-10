@@ -1,5 +1,5 @@
 <div class="card padding--md margin-vert--md">
-    <h2 class="margin-top--sm margin-left--md">
+    <h2 class="margin-top--sm margin-horiz--md">
         <a href="{{ entry.url }}">{{ entry.title }}</a>
     </h2>
     <p class="margin-horiz--md">
@@ -8,10 +8,10 @@
             {{ locale.posts.written_on }} {{ entry.date }}.
         </em>
     </p>
-    <div class="padding-horiz--md font-selectable">
+    <div class="margin-horiz--md font-selectable">
         {{ entry.excerpt |> md }}
     </div>
-    <div class="card__footer padding--xs">
+    <div class="card__footer">
         <a href="{{ entry.url }}" class="navbar__link">
             <button class="button button--primary button--block button--md">
             {{ locale.posts.read_more }} ({{ entry.readingInfo.minutes }} {{ locale.posts.read_time }}) 
