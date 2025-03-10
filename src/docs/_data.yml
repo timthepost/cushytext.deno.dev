@@ -6,7 +6,7 @@ waypoint: "%docs%"
 docs:
   # This should match the folder the docs are in.
   basedir: /docs/
-  title: Documentation Home
+  title: Cushy Theme Docs
   # Right now auto is the only option. A way to pass a custom sidebar
   # is planned at some point.
   sidebar: auto
