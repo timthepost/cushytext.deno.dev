@@ -17,6 +17,10 @@
   margin: 15px 15px;
 }
 
+#toc {
+  display: block;
+}
+
 /* Helper For Blog Images */
 .blog_image {
   max-height: 675px;
@@ -71,15 +75,25 @@
   display: block;
 }
 
+.toc-heading {
+  display: block;
+  margin: 1rem 0 0;
+}
+
 /* Hide various things on smaller screens */
 @media (max-width: 976px) {
   /* Top nav logo */
   #navbar-logo {
     display: none;
   }
-  
+
   /* Feed links on blog and docs pages */
   .feed-links {
     display: none;
+  }
+
+  /* With feed links gone, TOC needs buffered */
+  .toc-heading {
+    margin: 2rem 0 0;
   }
 }
