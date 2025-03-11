@@ -71,6 +71,12 @@
   }
 }
 
+.archive-fueller {
+  display: block;
+  margin-top: 2.5rem;
+  font-size: 145%;
+}
+
 .feed-links {
   display: block;
 }
@@ -95,5 +101,11 @@
   /* With feed links gone, TOC needs buffered */
   .toc-heading {
     margin: 2rem 0 0;
+  }
+
+  /* The bottom "more in the archive" is redundant when
+     the sidebar links it. */
+  .archive-fueller {
+    display: none;
   }
 }
