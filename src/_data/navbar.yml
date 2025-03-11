@@ -48,23 +48,23 @@ footer:
   - category: Community
     links:
       - text: Theme Github Repository
-      - href: "https://github.com/timthepost/cushytext"
+        href: "https://github.com/timthepost/cushytext"
 
       - text: Cushy Text Discord Server
         href: "https://discord.gg/ETx8S8cWwH"
 
       - text: Lume Discord Server
         href: "https://discord.gg/YbTmpACHWB"
-
+  
   - category: People Behind Cushy Text
     links:
       - text: Tim's Personal Site
         href: "#soon"
-
+ 
   - category: Useful Resources
     links:
       - text: Lume Documentation
         href: "https://lume.land/docs/overview/about-lume/"
-
+ 
       - text: Other Lume Themes
         href: "https://lume.land/themes/"

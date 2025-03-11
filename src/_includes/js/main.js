@@ -14,12 +14,13 @@ const availableFonts = {
   user: "opendyslexic",
 };
 
-const prefersDark = globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
+const prefersDark =
+  globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
 
 function syncColorTheme() {
   const html = document.documentElement;
   const userTheme = localStorage.getItem("theme");
-  // we have no knowledge 
+  // we have no knowledge
   if (userTheme == null) {
     if (prefersDark) {
       localStorage.setItem("theme", "dark");
@@ -30,7 +31,7 @@ function syncColorTheme() {
     }
   } else {
     // we have knowledge
-    html.setAttribute("data-theme", userTheme)
+    html.setAttribute("data-theme", userTheme);
   }
 }
 
