@@ -8,6 +8,7 @@ import { log } from "lume/core/utils/log.ts";
 import type Site from "lume/core/site.ts";
 
 interface Options {
+  // TODO: Make this a string [] so multiple TOCs work
   toc_selector?: string;
   toc_container?: string;
   toc_heading_selectors?: string;
