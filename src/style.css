@@ -26,13 +26,6 @@
   border-radius: 1rem;
 }
 
-/* Hide nav logo on small screens */
-@media (max-width: 976px) {
-  #navbar-logo {
-    display: none;
-  }
-}
-
 /* Example of adapting design to a font-switch */
 .homepage_card {
   min-height: 275px;
@@ -71,5 +64,22 @@
   .post-tag:hover {
     border: 1px solid skyblue;
     background-color: var(--ifm-color-info);
+  }
+}
+
+.feed-links {
+  display: block;
+}
+
+/* Hide various things on smaller screens */
+@media (max-width: 976px) {
+  /* Top nav logo */
+  #navbar-logo {
+    display: none;
+  }
+  
+  /* Feed links on blog and docs pages */
+  .feed-links {
+    display: none;
   }
 }
