@@ -59,7 +59,7 @@ footer:
   - category: People Behind Cushy Text
     links:
       - text: Tim's Personal Site
-        href: "#soon"
+        href: "https://timthepost.deno.dev"
  
   - category: Useful Resources
     links:
