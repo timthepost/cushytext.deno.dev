@@ -47,7 +47,7 @@ $ deno task maintainer-clean
 The first one removes `_site` and local cache items, but does not remove `node_modules`; 
 the second task will first run the first, and then also remove `node_modules`.
 
-## Current Focus
+## Current Focus (All must be done before `0.0.1` testing release)
 
  - Search! (See whole section below this one)
 
@@ -63,11 +63,18 @@ the second task will first run the first, and then also remove `node_modules`.
 
  - See section about plugins below.
 
- - Make remote themes work with sparse initial content generated (two example 
-   blog posts, three markdown document pages, one landing page).
+ - We need `mod.ts` but ideally not just a reproduction of this whole site. This
+   will be a regular remote theme, even with interactive stuff. Maybe ship `docs/`, 
+   `features` and the announcement blog post, along with `demo` and all the components
+   and archetypes? I think that covers it, but still learning about how that's going 
+   to work.
 
  - Aria labels, roles, tab indexes all need to be straightened out now that the 
    DOM is structurally more stable.
+ 
+ - Interactive Features (start with docs rating), see also `_cms.ts` for back-end.
+
+ - Need a `/types.ts` to export types for interactive features & other stuff.
 
 ## Search 
 
@@ -138,5 +145,5 @@ due to development, or require some effort to include properly.
 
 ## Contributing
 
-Feel free to email me at `timthepost@protonmail.com` if you'd like to collaborate, or open 
-an issue or discussion on Github. 
+Feel free to email me at `timthepost@protonmail.com` if you'd like to 
+collaborate, or open an issue or discussion on Github. 
