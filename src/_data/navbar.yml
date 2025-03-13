@@ -25,7 +25,7 @@ top_nav:
 
   - type: "link"
     href: "/docs/"
-    text: Documentation
+    text: Docs
     title: Documentation for this theme, using this theme.
 
   - type: "link"
