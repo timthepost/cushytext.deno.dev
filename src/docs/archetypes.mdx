@@ -99,6 +99,24 @@ installations on the same site like this. I highly recommend reading up
 on Lume's [powerful Search Plugin](https://lume.land/plugins/search/) to
 see what inspiration hits!
 
+## Plans For Tag & Author Pages
+
+Right now, the generator functions live in `src/generators` and are fixated on 
+the demo `%blog%` archetype. You can make copies of them to generate pages in 
+other locations based on other waypoints or searches, and just name them
+descriptively (the generators themselves never get copied to `_site`).
+
+In a future release, you'll control the archive and author locations in the 
+same `_data` file that you define the archetype, but this requires a bit of 
+work still. In Lume, generators can be set to run after pages that they 
+need to search are generated - that's a simple render order tweak. 
+
+The generators need to search all pages themselves, extract all the waypoints,
+resolve those to folders, parse the `_data.*` file in the folder, and then 
+they know where and how to generate the archives. Or, you'd just need lots of 
+copies of generators, which is not ideal at all. It's a trickier problem than 
+it appears to be, at least from my investigating.
+
 ## What About "pages"?
 
 The `pages` archetype is under construction and will depend on finishing 
