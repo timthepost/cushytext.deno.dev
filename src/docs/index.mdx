@@ -61,19 +61,10 @@ the second task will first run the first, and then also remove `node_modules`.
    some content about what it's for. Some tags can obviously take more advantage 
    of this than others, but we should have it.
 
- - Blog & Docs sidebars don't collapse as well as they should: there should be 
-   a TOC at the top of the post on small screens, with the one in the sidebar hidden
-   (for both blogs and docs). Also make sure the rest of the stuff that ends up at 
-   the bottom is necessary on small screens and use a media query to hide some of it.
-
  - See section about plugins below.
 
  - Make remote themes work with sparse initial content generated (two example 
    blog posts, three markdown document pages, one landing page).
-
- - Template markup has a lot of inline `style="..."` that could probably be put 
-   into an actual class. There's also traces of "designed in place" style markup
-   that should be refactored into a class. 
 
  - Aria labels, roles, tab indexes all need to be straightened out now that the 
    DOM is structurally more stable.
