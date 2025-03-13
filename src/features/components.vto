@@ -3,20 +3,39 @@ layout: layouts/page.vto
 title: Framework Features
 menu:
   visible: true
-  align: left
   linkText: Infima CSS Components
 ---
 
-<h1>Infima Components Easily Accessible Via Lume Components</h1>
-<p><em>Actually</em>, they soon will be. Take a look at the <a href="/docs/components/">
-docs entry</a> about them; they're as much an aspiration right now as 
-a reality.</p>
+<h1>What Is Component-Driven?</h1>
 
-<p>What's useful right now is to see this page, which is 
-<code>src/features/components.vto</code>, so you know how to use the 
-various elements.</p>
+<p>
+Component-driven means a philosophy of loading only what you need, 
+when you need it, while also not repeating yourself unnecessarily
+in code or markup.
+</p>
 
-<p>I'll go on a marathon creating these, sooner or later!</p>
+<p>
+In Lume, a <a href="https://lume.land/docs/core/components/">component</a> is
+template code, or code that generates template code, that you can use in other
+templates. In Lume2, they were just limited to that. However, in Lume 3, 
+<a href="/docs/components/">they're way more pluggable</a>.
+</p>
+
+<p>
+In Infima, a component is <a href="https://infima.dev/docs/getting-started/introduction">
+a pre-designed building block</a> for you to arrange content with. It could be part of the
+layout, like breadcrumbs or columns, or part of the design, like buttons and tabs. Infima
+is designed so each part, each component, can be used completely separately from other
+components.
+</p>
+
+<p>
+This theme aims to make it easy to use the components wth comfortable syntax; currently, 
+the following infima features will be component-ized and available in async template
+calls as well as JSX elements. Here are the components below for browsing, this is 
+<code>src/features/components.vto</code> if you want to access the HTML:
+</p>
+
 
 <h2>Alerts:</h2>
 <div class="alert alert--primary margin-bottom--md" role="alert">

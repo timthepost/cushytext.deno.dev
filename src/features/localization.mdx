@@ -5,14 +5,26 @@ layout: layouts/page.vto
 
 # Ready For Translation!
 
-This site will, soon, also be available in more than the default 
-English. All strings have been kept in external files and have 
-context in comments where needed.
+While it does not (yet) ship with a multi-language plugin configured
+and installed, Cushy Text is ready for translation.
 
-## Not Sure How To Structure Internationalization
+## Locale And Demo Strings 
 
-I'm still haggling over how best to implement a language 
-switcher. As versioning isn't planned, this helps to simplify how
-we go about it.
+I've done my best to keep all strings that define the site navigation,
+architecture, and sections into a YAML file found in `src/_data/locale.yml`.
+This includes things like "Previous", "Next", "Archive" and those sorts 
+of things. I've tried to keep the context as specific as I can with area
+and variable names. 
 
-If you're interested in helping out with this, get in touch!
+There's also `demo.yml` in the same directory, which is what contains 
+all of _this site's_ strings and content customizations outside of 
+markdown files.
+
+Both files ship by default, but `demo` is only included so you have 
+a base from which to edit and create your own navigation and setup.
+
+## I Also Welcome Translations
+
+If you're interested in translating _this_ site, or helping with a 
+default multi-language setup, feel free to reach out to me on Discord
+or GH!

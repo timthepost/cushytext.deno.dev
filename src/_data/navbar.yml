@@ -4,11 +4,6 @@ top_nav:
     text: Home
     title: Home
 
-  - type: "link"
-    href: "/blog/"
-    text: Blog
-    title: Best Way To Stay Up To Date
-
   - type: "menu"
     text: Theme Features
     links:
@@ -32,6 +27,11 @@ top_nav:
     href: "/docs/"
     text: Documentation
     title: Documentation for this theme, using this theme.
+
+  - type: "link"
+    href: "/blog/"
+    text: Blog
+    title: Best Way To Stay Up To Date
 
 footer:
   - category: Theme Basics

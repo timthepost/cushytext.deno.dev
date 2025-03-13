@@ -5,43 +5,39 @@ layout: layouts/page.vto
 
 # {title}
 
-As a disabled person, accessibility matters a lot to me. It feels
-bad when you know that, with not a lot of effort, web sites could be
-making your experience so much better, but they choose not to.
+If the user can't comfortably enjoy what we write, what's the point of 
+all of this? It's important to be responsive, so that content is available
+on any screen, and it's important for people to be able to use the site in 
+a way that works for them.
 
-Here's where the theme is with accessibility:
+Here's what this theme does to try and accomplish those goals:
 
-## Theming (Dark / Light)
+## Light And Dark Color Schemes
 
-This is good. I improved a little on the default way the theme managed
-both light and dark styles.
+The site has comfortable light and dark themes and looks for the user's preferences
+when deciding which to show initially. Clicking on the switcher creates a persistent
+preference setting in local storage.
 
-## Theming (Font)
+## Font Selection
 
-I'll have a font selector to switch configurable text to Open Dyslexic
-on demand. This helps people with dyslexia immensely, as it's much harder
-to mix up characters when reading, and allows us to read faster.
-
-## Proper Labels & Hiding
-
-Work needs done here. The theme isn't yet reader friendly because the 
-structure of the DOM itself just recently settled. 
-
-## Tab Indexes / Keyboard Shortcuts
-
-This is completely lacking and needs to be implemented
+Clicking on the encircled `D` next to the theme switcher loads the 
+<a href="https://opendyslexic.org/" target="_blank">OpenDyslexic</a> font for any long-form, 
+non-UI text. I plan to apply it to additional elements once I'm sure DOM shaking isn't a 
+problem with the introduction.
 
 ## Motion Reduction
 
-This is done, just permanently off for most things. If you look at Infima
-you'll see more available transitions and you can enable them by setting 
-longer times in `src/_includes/css/theme.css`. 
-
-I personally don't like motion at all (I have a traumatic brain injury), 
-so I'm not going to maintain transition-rich things.
+Infima has the capability of _considerably_ more animation and effects; these have been 
+turned down to a minimum by default. You can add this back in the `style.css` override 
+file.
 
 ## Responsiveness
 
-We're doing really good here, for the most part. Always room for improvement,
-though, but perhaps that's effort spent on more lacking things.
+This theme is fully-responsive and aims to stay that way. Infima's grid system and baked-in
+responsive architecture with responsive components makes this easy to maintain.
+
+## We Need To Do Better With:
+
+Labels, tab navigation, keyboard shortcuts. We need this too, and it's on the roadmap. 
+
 
