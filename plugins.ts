@@ -1,7 +1,3 @@
-/**
- * Some of this is from Simple Blog, by Óscar Otero.
- * https://lume.land/theme/simple-blog/ (Same License)
- */
 import { Options as SitemapOptions, sitemap } from "lume/plugins/sitemap.ts";
 import { favicon, Options as FaviconOptions } from "lume/plugins/favicon.ts";
 import { merge } from "lume/core/utils/object.ts";
@@ -15,6 +11,8 @@ import nav from "lume/plugins/nav.ts";
 import feed from "lume/plugins/feed.ts";
 import readingInfo from "lume/plugins/reading_info.ts";
 import prism from "lume/plugins/prism.ts";
+import picture from "lume/plugins/picture.ts";
+import transformImages from "lume/plugins/transform_images.ts";
 import conductor from "./src/_plugins/site_conductor/mod.ts";
 
 import "lume/types.ts";
@@ -25,6 +23,11 @@ import "npm:prismjs@1.29.0/components/prism-markdown.js";
 import "npm:prismjs@1.29.0/components/prism-typescript.js";
 import "npm:prismjs@1.29.0/components/prism-yaml.js";
 import "npm:prismjs@1.29.0/components/prism-bash.js";
+
+/**
+ * Some of this is from Simple Blog, by Óscar Otero.
+ * https://lume.land/theme/simple-blog/ (Same License)
+ */
 
 export interface Options {
   sitemap?: Partial<SitemapOptions>;
@@ -68,6 +71,8 @@ export default function (userOptions?: Options) {
       )
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
+      .use(picture())
+      .use(transformImages())
       .use(readingInfo({ extensions: [".mdx"] }))
       .use(redirects({ output: "json" }))
       .use(metas())
