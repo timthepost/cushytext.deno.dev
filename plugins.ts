@@ -52,24 +52,20 @@ export default function (userOptions?: Options) {
     site
       .use(nav())
       .use(conductor({
-        // Container where the TOC is deposited once generated
         toc_selector: "#toc",
-        // Content within this container is scanned for headings
         toc_container: ".toc-enabled",
-        // Headings to scan for and extract / anchor
         toc_heading_selectors: "h2, h3, h4, h5, h6",
-        // class to apply to generated TOC links
         toc_link_class: "table-of-contents__link",
-        // class to apply to generated TOC list
         toc_list_class: "table-of-contents padding-top--none",
       }))
       .use(postcss())
       .add([".css"])
-      .use(
-        feed({ output: ["/feed.xml", "/feed.json"], query: "waypoint=%blog%" }),
+      .use(feed({ 
+          output: ["/feed.xml", "/feed.json"], 
+          query: "waypoint=%blog%" 
+        }),
       )
-      .use(
-        feed({
+      .use(feed({
           output: ["/docs/feed.xml", "/docs/feed.json"],
           query: "waypoint=%docs%",
         }),
