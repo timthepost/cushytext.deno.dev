@@ -17,6 +17,7 @@ import brotli from "lume/plugins/brotli.ts";
 import minifyHTML from "lume/plugins/minify_html.ts";
 import terser from "lume/plugins/terser.ts";
 import purgecss from "lume/plugins/purgecss.ts";
+import ogImages from "lume/plugins/og_images.ts";
 import conductor from "./src/_plugins/site_conductor/mod.ts";
 
 import "lume/types.ts";
@@ -95,6 +96,7 @@ export default function (userOptions?: Options) {
           },
         ],
       }))
+      .use(ogImages({ satori: { width: 1200, height: 630 }}))
       .add("_includes/js", "js")
       .add("_includes/css", "css")
       .add("uploads")
