@@ -96,28 +96,19 @@ That's the idea, anyway. The very first version may just open a modal any time a
 search box gets focus and show the default Pagefind UI - if that's all that's holding
 up a release. But I'm still doing the back-end search no matter what.
 
-## Status Of Pre-Configured Plugins:
 
-I'm not out to make a "kitchen sink" theme, but there are a number of plugins that I 
-consider pretty essential for a performant, convenient and discoverable site. Those
-three things are equally important to me when I work.
+<h2 id="plugin-status">Status Of Included Plugins:</h2>
 
-I'm the author and maintainer of the `seo` and `conductor` plugins, which are Included
-and enabled (the conductor is actually required).
-
-The rest of these are official Lume plugins that, due to their nature, can't all be
-installed and enabled because they can hide subtle development issues. To keep track
-of all that are installed, and all that still need to be enabled, I've created the 
-following table:
-
-<h3 id="plugin-status">List & Status Of All Planned Plugins:</h3>
+As of now, all plugins are installed, configured and working properly. The
+table below shows the status of what's included, as well as which ones have
+custom configurations in order to perform optimally in this theme:
 
 | Plugin | Description | Type | Author | Installed? | Custom Configured? |
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | expires | Server Middleware | base | Lume Official | Yes | No |
 | router | Server Middleware | base | Lume Official | Yes | Yes |
 | conductor  | Required Theme Plugin | base | Tim Post | Yes | Yes |
-| og-images | Generate OG Images From Templates | base | Lume Official | No | No |
+| og-images | Generate OG Images From Templates | base | Lume Official | Yes | Yes |
 | picture | Create Responsive Images Automatically | base | Lume Official | Yes | No |
 | basepath   | Core Lume Plugin       | base | Lume Official | Yes | No |
 | nav        | Nav helper for Lume    | base | Lume Official | Yes | No |
@@ -138,8 +129,8 @@ following table:
 | minify-html | HTML Minification | perf | Lume Official | Yes | No |
 | pagefind | Provides Search | search | Lume Official | Yes | No |
 
-Those listed as `No` are either being left out deliberately for now 
-due to development, or require some effort to include properly.
+This may change slightly before the first release, but to include more,
+_most likely_ not to remove any.
 
 <h2 id="contributing">Contributing</h2>
 
