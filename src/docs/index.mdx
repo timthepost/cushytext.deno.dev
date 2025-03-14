@@ -51,23 +51,10 @@ the second task will first run the first, and then also remove `node_modules`.
 
  - Search! (See whole section below this one)
 
- - Docs auto nav doesn't deal with nested directories very well.
-
- - There should be some kind of `authors.yml` that contains at least a short
-   biography and maybe even social links per-author. This isn't _just_ for 
-   vanity, generated pages have no SEO value without content.
-
- - Similarly to `authors.yml`, we need `tagInfo.yml`, so that each tag can have 
-   some content about what it's for. Some tags can obviously take more advantage 
-   of this than others, but we should have it.
-
  - See section about plugins below.
 
- - We need `mod.ts` but ideally not just a reproduction of this whole site. This
-   will be a regular remote theme, even with interactive stuff. Maybe ship `docs/`, 
-   `features` and the announcement blog post, along with `demo` and all the components
-   and archetypes? I think that covers it, but still learning about how that's going 
-   to work.
+ - Everything needed to be a remote theme (`mod.ts` for remote files, 
+   `init.ts` to generate default content)
 
  - Aria labels, roles, tab indexes all need to be straightened out now that the 
    DOM is structurally more stable.
@@ -75,6 +62,24 @@ the second task will first run the first, and then also remove `node_modules`.
  - Interactive Features (start with docs rating), see also `_cms.ts` for back-end.
 
  - Need a `/types.ts` to export types for interactive features & other stuff.
+
+<h2 id="roadmap">Near-Term Roadmap: (`0.0.2 - 0.0.3`)</h2>
+
+ - Docs needs a custom sidebar option in order to deal with nested directories.
+   This can be done like simple wiki, with custom HTML elements, or even done 
+   client-side. It's not possible to do with internal search alone.
+
+ - Blogs should be able to have per-instance archive and tag pages, with control
+   over layouts used for each one.
+
+ - Have a default localization plugin / setup.
+
+ - Finish porting all the components to Lume 3 structure.
+
+ - Have author bios and tag info content for tag and author pages so they're
+   indexed better.
+
+ - SEO Plugin v1 should be ready by then.
 
 ## Search 
 
