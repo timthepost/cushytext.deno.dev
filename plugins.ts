@@ -13,6 +13,10 @@ import readingInfo from "lume/plugins/reading_info.ts";
 import prism from "lume/plugins/prism.ts";
 import picture from "lume/plugins/picture.ts";
 import transformImages from "lume/plugins/transform_images.ts";
+import brotli from "lume/plugins/brotli.ts";
+import minifyHTML from "lume/plugins/minify_html.ts";
+import terser from "lume/plugins/terser.ts";
+import purgecss from "lume/plugins/purgecss.ts";
 import conductor from "./src/_plugins/site_conductor/mod.ts";
 
 import "lume/types.ts";
@@ -36,7 +40,7 @@ export interface Options {
 
 export const defaults: Options = {
   favicon: {
-    input: "uploads/favicon.svg",
+    input: "uploads/_favicon.svg",
   },
 };
 
@@ -71,6 +75,10 @@ export default function (userOptions?: Options) {
       )
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
+      .use(purgecss())
+      .use(minifyHTML())
+      // .use(terser())
+      .use(brotli())
       .use(picture())
       .use(transformImages())
       .use(readingInfo({ extensions: [".mdx"] }))
