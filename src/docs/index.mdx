@@ -4,18 +4,23 @@ menu:
   visible: true
   order: 0
 ---
-# Current Status: <span class="text--danger">Incomplete & Unstable.</span>
 
-I'm doing my best to keep this documentation up-to-date as I go from one breaking 
-change to another. 
+# Current Status: <span class="text--danger">Incomplete</span>
 
-## Installing
+The site builds, things are fairly stable and the blog and docs sections are mostly 
+functional, but not all features (like search) work yet. Additionally, there's no 
+`mod.ts` or `init.ts` yet to provide a "bare" version of the theme, so the only way to 
+work with it is to clone this entire site. 
 
-For now: [just clone the repo](https://github.com/timthepost/cushytext).
+## Cloning & Starting Lume
 
-I'll have a `mod.ts` file and a generator to make some default content pages so that it 
-works as a proper remote theme, but not until a lot more stuff is finished. Once you have 
-he repo, the following sets `LUME_DRAFTS` true and starts the Lume local server:
+There's no remote-file support yet, or theme initializer, so the only way to 
+check things out right now is to **[clone the repo](https://github.com/timthepost/cushytext)**.
+Be advised that scripts and template files are prone to _frequent_ updates right 
+now, so be careful doing anything more than poking around.
+
+Once you have a working copy of the repo, the following sets `LUME_DRAFTS` true and starts the Lume 
+local server:
 
 ```bash
 $ deno task dev
@@ -36,16 +41,6 @@ _content_, just the server _itself_ if the server code changes.
 Middleware works locally the same as remotely, you don't need this to test that. 
 This option is here to debug changes to the server before pushing them, or
 things like testing redirects.
-
-Also note you have two cleaning tasks available:
-
-```bash
-$ deno task clean
-$ deno task maintainer-clean
-```
-
-The first one removes `_site` and local cache items, but does not remove `node_modules`; 
-the second task will first run the first, and then also remove `node_modules`.
 
 <h2 id="current_focus">Current Focus (All must be done before `0.0.1` testing release)</h2>
 
@@ -81,7 +76,7 @@ the second task will first run the first, and then also remove `node_modules`.
 
  - SEO Plugin v1 should be ready by then.
 
-## Search 
+## Status Of Search:
 
 Integrating Pagefind's UI into Infima's top nav architecture is just not going to
 happen without breaking one or the other. That's actually not a big problem for 
@@ -101,7 +96,7 @@ That's the idea, anyway. The very first version may just open a modal any time a
 search box gets focus and show the default Pagefind UI - if that's all that's holding
 up a release. But I'm still doing the back-end search no matter what.
 
-## Plugins
+## Status Of Pre-Configured Plugins:
 
 I'm not out to make a "kitchen sink" theme, but there are a number of plugins that I 
 consider pretty essential for a performant, convenient and discoverable site. Those
@@ -148,7 +143,16 @@ following table:
 Those listed as `No` are either being left out deliberately for now 
 due to development, or require some effort to include properly.
 
-## Contributing
+<h2 id="contributing">Contributing</h2>
 
-Feel free to email me at `timthepost@protonmail.com` if you'd like to 
-collaborate, or open an issue or discussion on Github. 
+I've set up a [low-volume Discord server](https://discord.gg/ETx8S8cWwH) to coordinate efforts. You can
+also open an issue on Github for anything from reporting a bug to proposing
+a new idea. If you prefer to communicate via email, I'm `tinkertim@gmail.com`.
+
+Please ***expect frequent breaking changes***. I don't knowingly push bugs 
+live, but it does happen - if it's still broken in a few days please open an 
+issue.
+
+Standard [contributing guidelines](https://www.contributor-covenant.org/version/2/1/code_of_conduct/) apply.
+
+
