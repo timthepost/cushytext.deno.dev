@@ -77,7 +77,7 @@ export default function (userOptions?: Options) {
       .use(basePath())
       .use(purgecss())
       .use(minifyHTML())
-      // .use(terser())
+      .use(terser({ options: { module: false }}))
       .use(brotli())
       .use(picture())
       .use(transformImages())
