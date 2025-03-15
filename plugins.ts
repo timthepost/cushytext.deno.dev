@@ -90,6 +90,7 @@ export default function (userOptions?: Options) {
       .use(checkUrls({
         external: true,
         output: "_broken_links.json",
+        ignore: ["/api"],
       }))
       .use(sitemap(options.sitemap))
       .use(favicon(options.favicon))
