@@ -50,9 +50,6 @@ things like testing redirects.
 
  - Search! (See whole section below this one)
 
- - Re-doing the docs auto nav with the [Nav plugin](https://lume.land/plugins/nav/), which
-   I think also helps solve the custom sidebar import blocker too.
-
  - Everything needed to be a remote theme (`mod.ts` for remote files, 
    `init.ts` to generate default content)
 
@@ -65,9 +62,9 @@ things like testing redirects.
 
 <h2 id="roadmap">Near-Term Roadmap: (`0.0.2 - 0.0.3`)</h2>
 
- - Docs needs a custom sidebar option in order to deal with nested directories.
-   This can be done like simple wiki, with custom HTML elements, or even done 
-   client-side. It's not possible to do with internal search alone.
+ - Re-doing the docs auto nav with the [Nav plugin](https://lume.land/plugins/nav/), 
+   which I think also helps solve the nested sections and custom sidebar import 
+   complications (though custom would have to follow the nav plugin output format).
 
  - Blogs should be able to have per-instance archive and tag pages, with control
    over layouts used for each one.
@@ -127,6 +124,7 @@ custom configurations in order to perform optimally in this theme:
 | sitemap    | Generate Sitemap       | seo | Lume Official | Yes | No |
 | robots     | Generate robots.txt    | seo | Lume Official | Yes | No |
 | check_urls | Check link validity    | seo | Lume Official | Yes | Yes |
+| slugify_urls | Slugify URLs         | seo | Lume Official | Yes | Yes |
 | redirects  | Manage Redirects       | seo | Lume Official | Yes | No |
 | seo        | Static SEO Analysis    | seo | Tim Post | Yes | No |
 | metas      | Meta Tag Generation    | seo | Lume Official | Yes | No |

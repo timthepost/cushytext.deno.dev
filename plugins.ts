@@ -20,6 +20,7 @@ import purgecss from "lume/plugins/purgecss.ts";
 import ogImages from "lume/plugins/og_images.ts";
 import icons from "lume/plugins/icons.ts";
 import checkUrls from "lume/plugins/check_urls.ts";
+import slugifyUrls from "lume/plugins/slugify_urls.ts";
 import sourceMaps from "lume/plugins/source_maps.ts";
 
 import conductor from "./src/_plugins/site_conductor/mod.ts";
@@ -76,6 +77,23 @@ export default function (userOptions?: Options) {
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
       .use(purgecss())
+      .use(slugifyUrls({ 
+        extensions: "*",
+        lowercase: false, // Converts all characters to lowercase
+        alphanumeric: true, // Replace non-alphanumeric characters with their equivalent. Example: ñ to n.
+        separator: "-", // Character used as separator for words
+        stopWords: ["and", "or", "the"], // A list of words not included in the slug
+        replace: { // An object with individual character replacements
+          "Ð": "D", // eth
+          "ð": "d",
+          "Đ": "D", // crossed D
+          "đ": "d",
+          "ø": "o",
+          "ß": "ss",
+          "æ": "ae",
+          "œ": "oe"
+        }
+      }))
       .use(minifyHTML())
       .use(terser({ options: { module: false } }))
       .use(brotli())

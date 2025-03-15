@@ -83,16 +83,13 @@ export default function conductor(userOptions?: Options) {
       });
     });
 
+    /*
     cushyUpdate("Setting Up Auxiliary Page Data ...");
-    // Data-setting and supervising as-needed
     site.preprocess([".html"], (pages) => {
       for (const page of pages) {
-        /**
-         * This is the author's name without spaces, suitable to be
-         * a directory name for /author/{safe_author}/{title: author}
-         */
-        page.data.safe_author = page.data.author?.replace(/\ /g, "-") || "";
+        // set up data here
       }
     });
+    */
   };
 }

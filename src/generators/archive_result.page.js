@@ -19,11 +19,9 @@ export default function* ({ search, locale }) {
 
   // Generate a page for each author
   for (const author of search.values("author", "waypoint=%blog%")) {
-    const safe_author = author.replace(/\ /g, "-");
     yield {
-      url: `/author/${safe_author}/`,
+      url: `/author/${author}/`,
       title: `${locale.archive.posts_by} ${author}`,
-      safe_author: safe_author,
       type: "author",
       search_query: `waypoint=%blog% author='${author}'`,
       author,

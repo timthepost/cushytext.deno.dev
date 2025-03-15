@@ -89,10 +89,6 @@ disabling it per-page for now.
 
 ## Data Preprocessing
 
-  - The plugin examines the `author` key, transforms spaces to dashes, 
-    and then saves it as `safe_author` so it's easy to use without constantly 
-    calling `.replace()` in templates.
-
   - The plugin will soon be generating a list of `waypoint` -> `archetype.basedir` indexes
     that is needed by `generators/_data.ts` to power the archive, tag and author page 
     generators independently per-install.

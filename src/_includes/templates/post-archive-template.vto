@@ -60,8 +60,7 @@
       {{ if authors.length }}
         <ul>
         {{ for author of authors }}
-          {{# We have to use .replace() here as it runs in a loop for every author #}}
-          <li><a href="/author/{{ author.replace(/\ /g, "-") }}"><strong>{{ author }}</strong></a></li>
+          <li><a href="/author/{{ author }}"><strong>{{ author }}</strong></a></li>
         {{ /for }}
         </ul>
       {{ /if }}
