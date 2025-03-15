@@ -4,3 +4,4 @@
  * last by the template, and is here so you don't have to edit the
  * template scripts directly.
  */
+export const _script = "/script.js";
