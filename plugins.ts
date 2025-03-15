@@ -65,21 +65,19 @@ export default function (userOptions?: Options) {
       .use(postcss())
       .use(sourceMaps())
       .add([".css"])
-      .use(feed({ 
-          output: ["/feed.xml", "/feed.json"], 
-          query: "waypoint=%blog%" 
-        }),
-      )
       .use(feed({
-          output: ["/docs/feed.xml", "/docs/feed.json"],
-          query: "waypoint=%docs%",
-        }),
-      )
+        output: ["/feed.xml", "/feed.json"],
+        query: "waypoint=%blog%",
+      }))
+      .use(feed({
+        output: ["/docs/feed.xml", "/docs/feed.json"],
+        query: "waypoint=%docs%",
+      }))
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
       .use(purgecss())
       .use(minifyHTML())
-      .use(terser({ options: { module: false }}))
+      .use(terser({ options: { module: false } }))
       .use(brotli())
       .use(picture())
       .use(transformImages())
@@ -103,7 +101,7 @@ export default function (userOptions?: Options) {
           },
         ],
       }))
-      .use(ogImages({ satori: { width: 1200, height: 630 }}))
+      .use(ogImages({ satori: { width: 1200, height: 630 } }))
       .add("_includes/js", "js")
       .add("_includes/css", "css")
       .add("uploads")

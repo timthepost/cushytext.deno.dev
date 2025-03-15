@@ -55,16 +55,16 @@ footer:
 
       - text: Lume Discord Server
         href: "https://discord.gg/YbTmpACHWB"
-  
+
   - category: People Behind Cushy Text
     links:
       - text: Tim's Personal Site
         href: "https://timthepost.deno.dev"
- 
+
   - category: Useful Resources
     links:
       - text: Lume Documentation
         href: "https://lume.land/docs/overview/about-lume/"
- 
+
       - text: Other Lume Themes
         href: "https://lume.land/themes/"
