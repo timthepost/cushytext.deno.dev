@@ -2,6 +2,7 @@ import Server from "lume/core/server.ts";
 import expires from "lume/middlewares/expires.ts";
 import notFound from "lume/middlewares/not_found.ts";
 import router from "./_server_routes.ts";
+import cacheBusting from "lume/middlewares/cache_busting.ts";
 
 const server = new Server({
   port: 8000,
@@ -10,6 +11,7 @@ const server = new Server({
 
 server.use(router.middleware());
 server.use(expires());
+server.use(cacheBusting());
 server.use(notFound({
   root: `${Deno.cwd()}/_site`,
   page404: "/404.html",

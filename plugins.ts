@@ -18,6 +18,8 @@ import minifyHTML from "lume/plugins/minify_html.ts";
 import terser from "lume/plugins/terser.ts";
 import purgecss from "lume/plugins/purgecss.ts";
 import ogImages from "lume/plugins/og_images.ts";
+import icons from "lume/plugins/icons.ts";
+import checkUrls from "lume/plugins/check_urls.ts";
 import conductor from "./src/_plugins/site_conductor/mod.ts";
 
 import "lume/types.ts";
@@ -82,8 +84,13 @@ export default function (userOptions?: Options) {
       .use(redirects({ output: "json" }))
       .use(metas())
       .use(robots())
+      .use(checkUrls({
+        external: true,
+        output: "_broken_links.json",
+      }))
       .use(sitemap(options.sitemap))
       .use(favicon(options.favicon))
+      .use(icons())
       .use(prism({
         theme: [
           {
