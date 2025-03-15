@@ -20,6 +20,8 @@ import purgecss from "lume/plugins/purgecss.ts";
 import ogImages from "lume/plugins/og_images.ts";
 import icons from "lume/plugins/icons.ts";
 import checkUrls from "lume/plugins/check_urls.ts";
+import sourceMaps from "lume/plugins/source_maps.ts";
+
 import conductor from "./src/_plugins/site_conductor/mod.ts";
 
 import "lume/types.ts";
@@ -61,6 +63,7 @@ export default function (userOptions?: Options) {
         toc_list_class: "table-of-contents padding-top--none",
       }))
       .use(postcss())
+      .use(sourceMaps())
       .add([".css"])
       .use(feed({ 
           output: ["/feed.xml", "/feed.json"], 
