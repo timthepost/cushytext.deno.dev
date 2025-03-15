@@ -60,7 +60,7 @@
       {{ if authors.length }}
         <ul>
         {{ for author of authors }}
-          <li><a href="/author/{{ author }}"><strong>{{ author }}</strong></a></li>
+          <li><a href="/author/{{ author |> slugify }}"><strong>{{ author }}</strong></a></li>
         {{ /for }}
         </ul>
       {{ /if }}
@@ -69,7 +69,7 @@
       {{ if recentTags.length }}
       <div class="post-tags">
         {{ for tag of recentTags }}
-          <a href="{{ tag.url }}" class="post-tag">{{ tag.tag }}</a>
+          <a href="{{ tag.url |> slugify }}" class="post-tag">{{ tag.tag }}</a>
         {{ /for }}
       </div>
       {{ /if }}

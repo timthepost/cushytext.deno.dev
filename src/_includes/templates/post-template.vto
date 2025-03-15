@@ -11,13 +11,13 @@
         </ul>
       </nav>
       <h1 class="margin-top--md">{{ title }}</h1>
-      <p class="margin-vert--md"><em>{{ locale.posts.written_by }} <a href="/author/{{ author }}">
+      <p class="margin-vert--md"><em>{{ locale.posts.written_by }} <a href="/author/{{ author |> slugify }}">
         <strong>{{ author }}</strong></a> on {{ date }}</em></p>
       {{ if tags }}
       <div class="post-tags margin-vert--md">
         <em>{{ locale.posts.has_tags }}</em>
         {{ for tag of tags }}
-          <a href="/archive/{{ tag }}/" class="post-tag">
+          <a href="/archive/{{ tag |> slugify }}/" class="post-tag">
             {{ tag }}
           </a>
         {{ /for }}
@@ -65,7 +65,7 @@
       {{ if recentTags.length }}
       <div class="post-tags">
         {{ for tag of recentTags }}
-          <a href="{{ tag.url }}" class="post-tag">{{ tag.tag }}</a>
+          <a href="{{ tag.url |> slugify }}" class="post-tag">{{ tag.tag }}</a>
         {{ /for }}
       </div>
       {{ /if }}
