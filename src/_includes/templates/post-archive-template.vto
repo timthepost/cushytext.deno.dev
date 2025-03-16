@@ -15,9 +15,12 @@
         </ul>
       </nav>
       {{ if tag && tagWiki[tag] }}
-      <div class="tagInfo padding-vert--md margin-horiz--md">
+      <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
         {{ tagWiki[tag].summary |> md }}
       </div>
+      <!--
+      <a class="margin-horiz--md padding-vert--sm">Edit This Tag Wiki On Github</a>
+      -->
       {{ /if }}
       {{ if results }}      
         {{ for post of results }}
