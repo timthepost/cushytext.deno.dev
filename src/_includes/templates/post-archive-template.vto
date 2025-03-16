@@ -60,12 +60,22 @@
           </a>
         </p>
       </div>
+      {{ if tagWiki[tag] && tagWiki[tag].related_tags }}
+      <h3 class="margin-top--md">Related Tags:</h3>
+      <div class="post-tags">
+      {{ for relatedTag of tagWiki[tag].related_tags }}
+         <a href="/archive/{{ relatedTag |> slugify }}" class="post-tag">{{ relatedTag }}</a>
+      {{ /for }}
+      </div>
+      {{ /if }}
       <h3 class="margin-top--md">{{ locale.archive.authors }}</h3>
       {{ set authors = search.values("author") }}
       {{ if authors.length }}
-        <ul>
+        <ul class="menu__list">
         {{ for author of authors }}
-          <li><a href="/author/{{ author |> slugify }}"><strong>{{ author }}</strong></a></li>
+          <li class="menu__list--item">
+            <a class="menu__link" href="/author/{{ author |> slugify }}"><strong>{{ author }}</strong></a>
+          </li>
         {{ /for }}
         </ul>
       {{ /if }}
