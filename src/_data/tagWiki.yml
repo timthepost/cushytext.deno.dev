@@ -1,0 +1,8 @@
+announcements:
+  summary: >
+    The `announcements` tag is applied when there's a major announcement
+    to make, such as a new release or other major news about the project.
+
+    It's not used very often, so if you subscribe to a feed and see
+    the tag, it's probably worth checking out.
+  related_tags: ["updates"]

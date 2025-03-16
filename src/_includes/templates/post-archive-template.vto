@@ -14,6 +14,28 @@
           </li>
         </ul>
       </nav>
+      {{ if tag && tagWiki[tag] }}
+      <div>
+      <div class="tagInfo padding--md margin-vert--md">
+        {{ tagWiki[tag].summary |> md }}
+      </div>
+        {{ if tagWiki[tag].related_tags }}
+          <p class="tagInfo padding--md margin-vert--sm">If you're interested in <a href="/archive/{{ tag |> slugify }}/" class="post-tag">{{ tag }}</a>, you might also like:  
+          {{ for relatedTag of tagWiki[tag].related_tags }}
+            <a href="/archive/{{ relatedTag |> slugify }}" class="post-tag">{{ relatedTag }}</a>&nbsp;
+          {{ /for }}
+          </p>
+        </div>
+        {{ /if }}
+      {{ /if }}
+      {{ if tag && tagWiki }}
+      <p class="tagInfo padding--md margin-vert--sm">
+        <a href="https://github.com/timthepost/cushytext/edit/main/src/_data/tagWiki.yml"
+          target="_blank"
+          title="Edit this tag wiki on Github"
+          >Edit This Tag Wiki On Github</a> &raquo;&raquo;
+      </p>
+      {{ /if }}
       {{ if results }}      
         {{ for post of results }}
           {{ if post.menu && post.menu.visible !== false }}
