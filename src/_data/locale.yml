@@ -31,6 +31,7 @@ documentation:
 
 archive:
   heading: "All Posts"
+  posts_tagged: "All Posts Tagged "
   slogan: "<em>So many posts to write, so few Posts to write them! -- Tim Post (Template Maintainer)</em>"
   tags: "Search By Tag:"
   authors: "Search By Author:"
@@ -39,9 +40,12 @@ archive:
   page: "Page"
   page_of: "of"
   total_results: "total results."
-  things_tagged: "Things Tagged"
+  things_tagged: "Information About "
   posts_by: "Posts By"
   all_posts: "All Posts"
+  related_tags: "Related Tags:"
+  edit_wiki: "Edit This Tag Wiki On Github &raquo;"
+  edit_wiki_url: "https://github.com/timthepost/cushytext/blob/main/src/_data/tagWiki.yml"
 
 blog_index:
   blog_home: "Blog Home"

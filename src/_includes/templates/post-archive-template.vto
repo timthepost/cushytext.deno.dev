@@ -14,13 +14,23 @@
           </li>
         </ul>
       </nav>
-      {{ if tag && tagWiki[tag] }}
-      <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
-        {{ tagWiki[tag].summary |> md }}
-      </div>
-      <!--
-      <a class="margin-horiz--md padding-vert--sm">Edit This Tag Wiki On Github</a>
-      -->
+      {{ if tag }}
+        {{ if tagWiki[tag] }}
+          <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
+            {{ tagWiki[tag].summary |> md }}
+          </div>
+        {{ else if tag.length }}
+          <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
+            <p>No tag wiki for "{{ tag }}" has been created yet; would you like to create it?</p>
+          </div>    
+        {{ /if }}
+        {{ if tag.length && tagWiki && locale.archive.edit_wiki_url }}
+          <a
+            target="_blank" 
+            class="margin-horiz--md padding-vert--sm" 
+            href="{{ locale.archive.edit_wiki_url }}">{{ locale.archive.edit_wiki }}</a>
+            <h2 class="margin-top--xl">{{ locale.archive.posts_tagged }} <em>{{ tag }}</em>:</h2>
+        {{ /if }}
       {{ /if }}
       {{ if results }}      
         {{ for post of results }}
