@@ -45,7 +45,7 @@ archive:
   all_posts: "All Posts"
   related_tags: "Related Tags:"
   edit_wiki: "Edit This Tag Wiki On Github &raquo;"
-  edit_wiki_url: "https://github.com/timthepost/cushytext/blob/main/src/_data/tagWiki.yml"
+  edit_wiki_url: "https://github.com/timthepost/cushytext/edit/main/src/_data/tagWiki.yml"
 
 blog_index:
   blog_home: "Blog Home"
