@@ -6,21 +6,23 @@ top_nav:
 
   - type: "menu"
     text: Theme Features
+    href: /features/
+    title: Surprisingly Functional For A Theme!
     links:
       - text: Interactive Features Included
-        href: /blog/interactive-feature-plans/
+        href: /features/#interactive
         title: Content rating system, form processing and more!
 
       - text: Component And Archetype Driven
-        href: /features/components/
+        href: /features/#components
         title: A Detailed Overview Of How Lume3 Components Are Used
 
       - text: Ready For Translations
-        href: /features/localization/
+        href: /features/#localization
         title: Strings are externalized, you supply the layout.
 
       - text: Responsive And Accessible
-        href: /features/accessibility/
+        href: /features/#responsive
         title: Open Dyslexic if user prefers dyslexic-friendly font.
 
   - type: "link"

@@ -1,5 +1,5 @@
 ---
-title: Cushy Text Features
+title: More Features Than You'd Expect From A Mere Theme!
 layout: layouts/page.vto
 description: Features Of Cushy Text - An Infima-Powered, Interactive, Responsive & Accessible Theme For Lume 3+
 menu:
@@ -8,3 +8,87 @@ menu:
 metas:
   image: /features/index.png
 ---
+# {title}
+
+The developer of this theme worked in the technology industry, in a position
+known as Developer Relations. In early-stage startup companies, the "DevRel" 
+usually gets the honor of owning ***all*** of the documentation, and this 
+theme was made out of the experiences of helping companies get set up.
+
+This theme is designed for anyone who has to deal with a large amount of 
+text content, who is comfortable working with Markdown, and is adventurous 
+enough to try some components to ease the workload.
+
+These are the _main_ features, though there are perks built into unexpected
+places.
+
+<h2 id="documentation">A Mini Documentation Engine</h2>
+
+Not as fully-featured as other software that uses the same CSS framework, but 
+more than adequate to organize a few directories of documentation with independent
+feeds and automatic layouts / sidebar generation.
+
+This is a work-in-progress, but already captures the essence of what I hoped to 
+accomplish in a single theme / design umbrella. 
+
+<h2 id="Fully Featured Blog">Fully Featured Blog</h2>
+
+Complete with archives, feeds, tags with community-editable tag wiki, MDX and 
+everything else you need to get your writing in front of your audience. The 
+theme will soon support multiple, completely independent but globally searchable
+blogs and documentation instances. 
+
+<h2 id="responsive">Responsive &amp; Accessible</h2>
+
+Infima makes creating 100% responsive themes easier than many frameworks, because it
+mostly handles it behind the scenes for you. The theme includes Infima CSS plus a 
+style sheet for overrides and some classes to make everything work. Content looks
+great on screens of all sizes.
+
+This theme also features light and dark themes with auto detection, the ability to 
+toggle [Open Dyslexic](https://opendyslexic.org) for long blocks of content, which
+you can apply by just adding a `font-selectable` class to the text container.
+
+There's still some labels and roles to sort out in the early version, as the structure
+settles down, but accessibility and responsiveness are major goals.
+
+<h2 id="interactive">Includes Interactive Features!</h2>
+
+When it ships, it will come with features that get user feedback and store it in a 
+DenoKV database. Things that ask _Did this help you?_ with the option to add 
+free-form feedback. This is powered by the new Router middleware in Lume 3, so no 
+edge functions are needed!
+
+Check out the [blog update about additional features](/blog/interactive-feature-plans/) that are likely to also ship
+with the early release candidates!
+
+<h2 id="localization">Ready For Translation</h2>
+
+No localization plugin has been installed _yet_, but all strings have been separated into 
+two different locale files: `locale.yml` and `demo.yml`, located in the main `_data/`
+directory. 
+
+The `locale.yml` file contains strings that you're probably going to keep no matter how much
+you customize the template. That's the file you should build on and take time to curate.
+
+The other file `demo.yml` contains all the strings that make _this_ website's features work,
+like the front page cards and such. Do whatever you want with those, they were kept out because
+they would most likely be noise for translators.
+
+<h2 id="components">Includes Infima Design Components</h2>
+
+Take a look at [the Infima documentation site](https://infima.dev/docs/getting-started/introduction) 
+to see everything included with the framework. You have everything from a grid and 
+markup-friendly spacing system to alerts and buttons, pills, tabs and many other
+components that technical / text sites need.
+
+_Many_ of those components are also in the process of becoming Lume 3 components, which
+will allow new sites to load only the CSS and JS they need from the framework as components
+insert it through being used. Sites that already use component markup everywhere are also
+fine, both ways work.
+
+<h2 id="plugins">Includes A Ton Of Pre-Configured Plugins!</h2>
+
+Everything from automatic OG image generation to broken link detection and plenty of 
+optimization. Have a look at the [docs](/docs/#plugin-status) to see more about
+what's shipping under the hood.
