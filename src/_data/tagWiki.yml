@@ -5,4 +5,17 @@ announcements:
 
     It's not used very often, so if you subscribe to a feed and see
     the tag, it's probably worth checking out.
-  related_tags: ["updates"]
+  related_tags: [ "updates" ]
+
+updates:
+  summary: >
+    The `updates` tag is similar to the `announcements` tag in that it 
+    is accompanied by news about Cushy Text, however it's used much more
+    frequently than announcements. 
+
+    
+    Part of the process of building Cushy Text has also been learning a 
+    lot about Lume, and I like to do my learning "out loud", so frequent
+    updates are planned along with tutorials when I figure out things 
+    worth sharing.
+  related_tags: [ "announcements" ]
