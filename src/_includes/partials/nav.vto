@@ -184,3 +184,30 @@
     {{ /if }}
   </div>
 </nav>
+
+<div id="searchModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-top"><a id="modal-close" href="#">Close</a></div>
+    <div id="search"></div>
+  </div>
+</div>
+
+<script>
+  var modal = document.getElementById("searchModal");
+  var searchInput = document.querySelector("#nav-search .navbar__search-input");
+  var close = document.getElementById("modal-close");
+
+  searchInput.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  close.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
