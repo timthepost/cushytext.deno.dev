@@ -1,17 +1,25 @@
-{{ for post of search.pages("waypoint=%blog% menu.visible=true", "date=desc", 1) }}
+{{ for post of search.pages("waypoint=%blog% menu.visible=true", "date=desc", max_posts) }}
     <div class="card padding--md">
         <h2 class="margin-horiz--md">{{ locale.comp.latestBlog.heading }}</h2>
         <div class="card__header">
             <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-            <p><strong>By {{ post.author }} on {{ post.date }}</strong>.</p>
-            {{ if post.excerpt }}
-                {{> const teaser = post.excerpt.replace(/<img[^>]*>/g, '') }}
-                <div class="font-selectable">
-                    {{ teaser |> md }}
-                </div>
-            {{ else }}
-                <p>An error occurred while fetching an excerpt of this post.</p>
+            <p class="margin-vert--md">
+                <em>{{ locale.posts.written_by }} <a href="/author/{{ post.author |> slugify }}">
+            {{> const relativeDate = new Date(post.date) }}
+            <strong>{{ post.author }}</strong></a> on {{ relativeDate.toISOString().slice(0, 10) }}</em>
+            {{ if post.tags }}
+                <em>&nbsp;|&nbsp;{{ locale.posts.has_tags }}</em>
+                {{ for tag of post.tags }}
+                <a href="/archive/{{ tag |> slugify }}/" class="post-tag">
+                    {{ tag }}
+                </a>
+                {{ /for }}
             {{ /if }}
+            </p>
+            {{> const teaser = post.excerpt.replace(/<img[^>]*>/g, '') }}
+            <div class="markdown toc-enabled font-selectable">
+            {{ teaser |> md }}
+            </div>   
         </div>
         <div class="card__footer">
             <a href="{{ post.url }}" class="navbar__link">
