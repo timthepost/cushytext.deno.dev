@@ -20,8 +20,10 @@ that fetches the latest blog post on this site's index page,
 which comes from `src/_components/latestBlog.vto`:
 
 ```js
-{{ for post of search.pages("waypoint=%blog% menu.visible=true", "date=desc", (max_posts || 1)) }}
-    .... show the content of max_posts posts ....
+{{ for post of search.pages(
+    "waypoint=%blog% menu.visible=true", 
+    "date=desc", (max_posts || 1)) }}
+    <!--  show the content of max_posts posts -->
 {{ /for }}
 ```
 
