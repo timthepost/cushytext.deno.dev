@@ -34,7 +34,7 @@ top_nav:
     title: Best Way To Stay Up To Date
 
 footer:
-  - category: Theme Basics
+  - category: "Theme Basics:"
     links:
       - text: Archetypes &amp; Folders
         href: /docs/archetypes/
@@ -45,9 +45,9 @@ footer:
       - text: Lume 3 Router Middleware
         href: /docs/middleware/
 
-  - category: Community
+  - category: "Cushy Text Community:"
     links:
-      - text: Theme Github Repository
+      - text: Cushy Text Github
         href: "https://github.com/timthepost/cushytext"
 
       - text: Cushy Text Discord Server
@@ -56,15 +56,15 @@ footer:
       - text: Lume Discord Server
         href: "https://discord.gg/YbTmpACHWB"
 
-  - category: People Behind Cushy Text
+  - category: "People Behind Cushy Text:"
     links:
-      - text: Tim's Personal Site
+      - text: Tim Post's Fiction & Essays
         href: "https://timthepost.deno.dev"
 
-  - category: Useful Resources
+  - category: "Other Useful Resources:"
     links:
       - text: Lume Documentation
         href: "https://lume.land/docs/overview/about-lume/"
 
-      - text: Other Lume Themes
+      - text: Lume Theme Gallery
         href: "https://lume.land/themes/"
