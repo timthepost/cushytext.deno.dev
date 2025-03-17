@@ -40,8 +40,14 @@
           </a>
         </p>
       </div>
-      <h4 class="toc-heading">{{ locale.blog_index.toc }}</h4>
+      <h3 class="toc-heading">{{ locale.blog_index.toc }}</h3>
       <div id="toc"></div>
+      <p class="margin-top--sm">
+        <strong>{{ locale.blog_index.older_posts }} 
+          <a href="/archive">{{ locale.blog_index.older_posts_link }}</a>
+        </strong>.
+      </p>
+
       {{ set nextPost = search.nextPage(url, `waypoint="${waypoint}" menu.visible=true`, 'date=asc') }}
       {{ if nextPost }}
         <p><strong>{{ locale.posts.read_next }}</strong><br />
@@ -54,12 +60,7 @@
         <a href="{{ previousPost.url }}">{{ previousPost.title }}</a></p>
       {{ /if }}
 
-      <p class="margin-top--md">
-        <strong>{{ locale.blog_index.older_posts }} 
-          <a href="/archive">{{ locale.blog_index.older_posts_link }}</a>
-        </strong>.
-      </p>
-      <h3 class="margin-top--md">{{ locale.blog_index.top_tags }}</h3>
+      <h4 class="margin-top--md">{{ locale.blog_index.top_tags }}</h4>
       <div class="text--justify">
       {{ set recentTags = search.pages("type=tag", "waypoint=%blog% tag date", 10) }}
       {{ if recentTags.length }}
