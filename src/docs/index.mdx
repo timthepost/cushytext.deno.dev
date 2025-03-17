@@ -14,14 +14,21 @@ metas:
 The site builds, things are fairly stable and the blog and docs sections are mostly 
 functional, but not all features (like search) work yet. Additionally, there's no 
 `mod.ts` or `init.ts` yet to provide a "bare" version of the theme, so the only way to 
-work with it is to clone this entire site. 
+work with it is to clone this entire site. Interactive features haven't been added yet, 
+and there's still some work on design components that needs to happen first.
 
-## Cloning & Starting Lume
+***I expect the first testing release (`0.0.1-rc1`) to be ready around the first week of April, 2025.***
 
-There's no remote-file support yet, or theme initializer, so the only way to 
-check things out right now is to **[clone the repo](https://github.com/timthepost/cushytext)**.
-Be advised that scripts and template files are prone to _frequent_ updates right 
-now, so be careful doing anything more than poking around.
+## Cloning & Starting Up Locally
+
+The only way to check things out right now is to **[clone the repo](https://github.com/timthepost/cushytext)**.
+
+_Please_ keep in mind that this project is very much a moving target
+right now, and many things are the way that they are just because that's 
+how they exist at the moment. While the design and functionality are 
+pretty well laid out, how things work, are worded, ordered, etc is still
+a major work-in-progress. Likewise, only start something long-term with this
+if you know what you're doing.
 
 Once you have a working copy of the repo, the following sets `LUME_DRAFTS` true and starts the Lume 
 local server:
@@ -80,23 +87,24 @@ things like testing redirects.
 
 ## Status Of Search:
 
-Integrating Pagefind's UI into Infima's top nav architecture is just not going to
-happen without breaking one or the other. That's actually not a big problem for 
-me, because I want to do more than "just Pagefind" with a theme that's supposed
-to be about managing text and interactive features.
+Pagefind (even if you tweak every CSS element it uses) just does _not_ integrate
+well into the Infima nav bar without breaking either Pagefind or Infima. To get 
+around this, I plan to put the Pagefind search div in a modal that opens when 
+the navigation bar gets focus. Similar to how lume.land does it with Algolia.
 
-The idea is, have any search input trigger an as-they-type set of results with an
-easy way to expand results for advanced options. This will be powered by Router 
-middleware and the Pagefind JS API, which can also do the job of mixing in other 
-search sources (maybe from a main company site? an ad server? whatever, you do you!)
+***However, and this is a big however ...***
 
-Results will then be returned according to tag preferences, and the UI does whatever 
-is appropriate for the setting and screen size. Being able to offer complete 
-search without the need for any third parties is a major goal for me.
+I don't want to leave it at "just pagefind" even though that alone is already
+quite good. People often want to be able to bring in more sources, or create 
+feeds from searches - these are things we could do if searches went through
+the Router middleware. Middleware can talk to the Pagefind JS API directly, 
+`fetch()` anything else that might be relevant from, say, your main site,
+do any additional merging and return a nice result array, with a UI that 
+allows for more filtering options.
 
-That's the idea, anyway. The very first version may just open a modal any time a
-search box gets focus and show the default Pagefind UI - if that's all that's holding
-up a release. But I'm still doing the back-end search no matter what.
+In order to ship, and for probably the first couple of versions, it'll just
+be Pagefind in a modal. But I don't want to lose traction on the idea of 
+implementing search in a more integrator-friendly way.
 
 
 <h2 id="plugin-status">Status Of Included Plugins:</h2>
@@ -137,12 +145,20 @@ custom configurations in order to perform optimally in this theme:
 | source maps | Source Maps (Dev Plugin) | devEx | Lume Official | Yes | No |
 
 
-***This list is unlikely to change.*** While more could conceivably
-go in, this is already quite a few plugins, and people will of course
-add more and further customize things.
+***This list is unlikely to change.***
 
-If you really think I missed an important one, open an issue on Github
-and let me know which one.
+Order of plugin loading matters considerably more in Lume 3, which is 
+what Cushy Text is being built on. Right now, the project is working
+on making sure all _currently_ installed plugins are configured to 
+work optimally together. Adding another  plugin that affects output
+in any way would just complicate the last stages of development for 
+the first release.
+
+If you _really_ think I missed one that should _absolutely_ be part
+of the very first release, please find me on the Cushy Text Discord
+(link in footer) and let me know, or open a GH issue.
+
+Speaking of issues ...
 
 <h2 id="contributing">Contributing</h2>
 
