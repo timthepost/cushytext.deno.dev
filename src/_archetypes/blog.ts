@@ -4,7 +4,7 @@ export default function (title: string) {
 
 Opening Text
 
-<img src="/uploads/${slug}.jpg" alt="TODO: Description" title="TODO: Title" />
+<img src="/uploads/${slug}-regular.jpg" alt="TODO: Description" title="TODO: Title" />
 
 Supportive text.
 
@@ -34,7 +34,7 @@ Heading support text.
         lang: "en",
         description: "\"=description\"",
         tags: ["meta tag one", "meta tag two"],
-        image: "/uploads/" + slug + ".jpg",
+        image: "/uploads/" + slug + "-regular.jpg",
         robots: true,
         generator: true,
       },
