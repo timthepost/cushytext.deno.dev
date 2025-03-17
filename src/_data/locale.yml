@@ -50,7 +50,7 @@ archive:
 blog_index:
   blog_home: "Blog Home"
   latest_heading: "Latest From The"
-  latest_posts: "Latest Posts"
+  latest_posts: "Latest Posts:"
   feeds: "/blog Feeds:"
   top_tags: "Recent Tags:"
   older_posts: '<span style="color:coral">Older posts are</span>'
