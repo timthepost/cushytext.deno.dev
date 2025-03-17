@@ -65,10 +65,9 @@ export default function conductor(userOptions?: Options) {
     toc.innerHTML = tocListHTML;
   }
 
-  cushyUpdate("Starting up ...");
+  cushyUpdate("Starting up.");
 
   return (site: Site) => {
-    cushyUpdate("Creating Tables Of Contents ...");
     // TOC Generation should run pre-render
     site.addEventListener("beforeRender", () => {
       site.process([".html"], (pages) => {
@@ -83,13 +82,6 @@ export default function conductor(userOptions?: Options) {
       });
     });
 
-    /*
-    cushyUpdate("Setting Up Auxiliary Page Data ...");
-    site.preprocess([".html"], (pages) => {
-      for (const page of pages) {
-        // set up data here
-      }
-    });
-    */
+    cushyUpdate("Theme Conductor Finished.")
   };
 }
