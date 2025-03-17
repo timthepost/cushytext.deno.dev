@@ -63,14 +63,6 @@ export default function (userOptions?: Options) {
         toc_link_class: "table-of-contents__link",
         toc_list_class: "table-of-contents padding-top--none",
       }))
-      .use(pagefind({ 
-        ui: {
-          containerId: "search",
-          showImages: false,
-          showEmptyFilters: true,
-          resetStyles: true,
-        },
-      }))
       .use(postcss())
       .use(sourceMaps())
       .add([".css"])
@@ -128,6 +120,14 @@ export default function (userOptions?: Options) {
         ],
       }))
       .use(ogImages({ satori: { width: 1200, height: 630 } }))
+      .use(pagefind({ 
+        ui: {
+          containerId: "search",
+          showImages: true,
+          showEmptyFilters: true,
+          resetStyles: true,
+        },
+      }))
       .add("_includes/js", "js")
       .add("_includes/css", "css")
       .add("uploads")
