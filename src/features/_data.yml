@@ -1,2 +1,3 @@
 layout: layouts/page.vto
+type: pages
 waypoint: "%page%"
