@@ -25,14 +25,13 @@ documentation:
   next_link: "Next >>"
   prev_link: "<< Previous"
   topics: "Available Topics:"
-  toc_heading: "On This Page:"
+  toc_heading: "In This Section:"
   no_custom_sidebars: "Custom Sidebars Are Not Yet Implemented"
   feeds: "Feeds:"
 
 archive:
   heading: "All Posts"
   posts_tagged: "All Posts Tagged "
-  slogan: "<em>So many posts to write, so few Posts to write them! -- Tim Post (Template Maintainer)</em>"
   tags: "Search By Tag:"
   authors: "Search By Author:"
   previous: "<< Previous"
