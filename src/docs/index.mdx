@@ -12,7 +12,7 @@ metas:
 # Current Status: <span class="text--danger">Incomplete</span>
 
 The site builds, things are fairly stable and the blog and docs sections are mostly 
-functional, but not all features (like search) work yet. Additionally, there's no 
+functional, but not all features work yet. Additionally, there's no 
 `mod.ts` or `init.ts` yet to provide a "bare" version of the theme, so the only way to 
 work with it is to clone this entire site. Interactive features haven't been added yet, 
 and there's still some work on design components that needs to happen first.
@@ -55,8 +55,6 @@ things like testing redirects.
 
 <h2 id="current_focus">Current Focus (All must be done before `0.0.1` testing release)</h2>
 
- - Search! (See whole section below this one)
-
  - Everything needed to be a remote theme (`mod.ts` for remote files, 
    `init.ts` to generate default content)
 
@@ -89,10 +87,10 @@ things like testing redirects.
 
 Pagefind (even if you tweak every CSS element it uses) just does _not_ integrate
 well into the Infima nav bar without breaking either Pagefind or Infima. To get 
-around this, I plan to put the Pagefind search div in a modal that opens when 
-the navigation bar gets focus. Similar to how lume.land does it with Algolia.
+around this, I put the Pagefind search div in a modal that opens when the navigation 
+bar search gets focus. Similar to how Algolia works.
 
-***However, and this is a big however ...***
+This works well enough to ship, however: and this is a ***big*** however:
 
 I don't want to leave it at "just pagefind" even though that alone is already
 quite good. People often want to be able to bring in more sources, or create 
@@ -141,7 +139,7 @@ custom configurations in order to perform optimally in this theme:
 | terser | JavaScript Minifier | perf | Lume Official | Yes | Yes |
 | brotli | Compression | perf | Lume Official | Yes | No |
 | minify-html | HTML Minification | perf | Lume Official | Yes | No |
-| pagefind | Provides Search | search | Lume Official | Yes | No |
+| pagefind | Provides Search | search | Lume Official | Yes | Yes |
 | source maps | Source Maps (Dev Plugin) | devEx | Lume Official | Yes | No |
 
 
