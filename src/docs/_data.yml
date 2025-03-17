@@ -1,15 +1,12 @@
 layout: layouts/docs.vto
-# It could be %api-docs% or %quickstart% or whatever you want.
-# This is how you'll grab content from this directory in searches / nav
-waypoint: "%docs%"
+waypoint: "%theme-docs%"
+type: docs
 
 docs:
-  # This should match the folder the docs are in.
   basedir: /docs/
-  title: "Theme Documentation:"
-  # Right now auto is the only option. A way to pass a custom sidebar
-  # is planned at some point.
+  title: Cushy Theme Docs
   sidebar: auto
-  # Pull in posts from another waypoint?
-  guest: false
-
+  guest:
+    heading: "Latest Blog Post:"
+    waypoint: "%blog%"
+    posts: 1

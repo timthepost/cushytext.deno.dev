@@ -72,7 +72,7 @@ export default function (userOptions?: Options) {
       }))
       .use(feed({
         output: ["/docs/feed.xml", "/docs/feed.json"],
-        query: "waypoint=%docs%",
+        query: "waypoint=%theme-docs%",
       }))
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())

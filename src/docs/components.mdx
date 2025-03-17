@@ -20,48 +20,60 @@ that fetches the latest blog post on this site's index page,
 which comes from `src/_components/latestBlog.vto`:
 
 ```html
-{{ for post of search.pages("waypoint=%blog% menu.visible=true", "date=desc", 1) }}
-<div class="card padding--md">
-    <h2>{{ locale.comp.latestBlog.heading }}</h2>
-    <div class="card__header">
-        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-        <p><strong>By {{ post.author }} on {{ post.date }}</strong>.</p>
-        {{ if post.excerpt }}
+{{ for post of search.pages("waypoint=%blog% menu.visible=true", "date=desc", (max_posts || 1)) }}
+    <div class="card padding--md">
+        <h2 class="margin-horiz--md">{{ locale.comp.latestBlog.heading }}</h2>
+        <div class="card__header">
+            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+            <p class="margin-vert--md">
+                <em>
+                    {{ locale.posts.written_by }} <a href="/author/{{ post.author |> slugify }}">
+                    {{> const relativeDate = new Date(post.date) }}
+                    <strong>{{ post.author }}</strong></a> on 
+                    {{ relativeDate.toISOString().slice(0, 10) }}
+                </em>
+                {{ if post.tags }}
+                    <em>&nbsp;|&nbsp;{{ locale.posts.has_tags }}</em>
+                    {{ for tag of post.tags }}
+                        <a href="/archive/{{ tag |> slugify }}/" class="post-tag">
+                        {{ tag }}
+                        </a>
+                    {{ /for }}
+                {{ /if }}
+            </p>
             {{> const teaser = post.excerpt.replace(/<img[^>]*>/g, '') }}
+            <div class="markdown toc-enabled font-selectable">
             {{ teaser |> md }}
-        {{ else }}
-            <p>An error occurred while fetching an excerpt of this post.</p>
-        {{ /if }}
-    </div>
-    <div class="card__footer">
-      <a href="{{ post.url }}" class="navbar__link">
-        <button class="button button--primary button--outline button--block">
-        Continue Reading 
-        ({{ post.readingInfo.minutes }} {{ locale.posts.read_time }}) &raquo;
-        </button>
-      </a>
-    </div>
-</div>     
+            </div>   
+        </div>
+        <div class="card__footer">
+            <a href="{{ post.url }}" class="navbar__link">
+                <button class="button button--primary button--block">
+                Continue Reading ({{ post.readingInfo.minutes }} {{ locale.posts.read_time }}) &raquo;
+                </button>
+            </a>
+        </div>
+    </div>     
 {{ /for }}
 ```
 
 This is called in the index template with the following code:
 
 ```js
-  {{ await comp.latestBlog() }}
+  {{ await comp.latestBlog({ max_posts: 2 }) }}
 ```
 
-Neat, right? And I totally need to make the number returned a 
-variable, now that I'm staring right at it. But with Lume 3, we 
-can do even better!
+Neat, right?
+
+But it relies on a bunch of CSS and other stuff already being loaded. That's not always
+ideal on very large sites. What if all the CSS and JS needed to support it could be loaded
+on-demand as I used it?
+
+That would be really cool, and that's what's happening in Lume.
 
 ## New Component Layout In Lume 3
 
-Right now, `_/components` for most of us is just a collection of those
-little bits of template with assignable variables. But what if components
-could be smarter, and automatically load their own CSS and JS when used?
-
-In Lume 3, they can! Imagine this:
+Instead of just `_components/` with a bunch of files, we're moving to this structure:
 
 ```
   _components/
@@ -86,7 +98,7 @@ Right now, development is happening against `v3-dev`, which is actually
 rather stable, but there's a ton of new stuff for those not already caught 
 up.
 
-## The Goal: Slowly Component-ize Most Features
+## The Goal: Infima Components Pluggable In This Scheme
 
 Eventually, all of the Infima components as well as things like tag 
 and navigation helpers will be available as components. When writing
@@ -95,7 +107,7 @@ strongly about making it a component.
 
 The `pages` archetype is the last one to be finished, and it will be the 
 result of being able to produce real results with very little markup or
-deep programming or design knowledge. 
+deep programming or design knowledge using these components. 
  
   [1]: https://lume.land/docs/core/components/
   [2]: /features/#components

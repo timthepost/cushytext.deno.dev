@@ -12,14 +12,10 @@ menu:
 
 The _conductor_ plugin is a plugin that does little things to make 
 the theme work nicely, but things that are also a little too small
-to warrant their own plugin.
+to warrant their own plugin. Most noticeably, it creates the table
+of contents for MDX pages, but does more than just that.
 
 ***The theme will not work properly if this plugin is removed.***
-
-For instance, it generates the table of contents for both the Blog
-and Documentation archetypes through an event that runs at pre-render.
-It also handles handing off and validating data between functional 
-parts of the site.
 
 ## Options
 
@@ -89,15 +85,10 @@ disabling it per-page for now.
 
 ## Data Preprocessing
 
-  - The plugin will soon be generating a list of `waypoint` -> `archetype.basedir` indexes
-    that is needed by `generators/_data.ts` to power the archive, tag and author page 
-    generators independently per-install.
-
-  - The plugin will be soon be generating a "global" tags file that will be used by the search 
-    UI.
-
-  - Most likely some kind of checks to catch common misconfiguration and warn with something 
-    useful before undefined behavior happens.
+I have plans to have the plugin produce some `.json` reports based on back-end things
+like periodic Deno KV queries that let you import the results of the interactive feature
+interaction as you like. I'll initially try to hack a dashboard into the Lume CMS main 
+screen.
 
 ## Roadmap
 

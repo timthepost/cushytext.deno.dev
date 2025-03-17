@@ -1,6 +1,6 @@
 ---
-title: Waypoints & Folder Data Files
-description: What waypoints do, and how to work with data files.
+title: Folder Data Files & Waypoints
+description: Things to understand about Cushy Text _data files, and how they affect directories.
 metas:
   image: /docs/archetypes/index.png
 menu:
@@ -8,17 +8,13 @@ menu:
   order: 1
 ---
 
-# Waypoints & Archetypes
+# {title}
 
 In Lume, _archetypes_ are scripts that Lume runs which can create base 
 content for blog posts, content pages, photo galleries, or whatever other
 content you have. 
 
-## Cushy Text Extends Archetypes To Directories
-
-In addition to scripts, this theme also uses hints from directory-level
-`_data.yml` files that help trigger the generation of three distinct 
-types of content:
+In Cushy Text, this applies to three specific types of content:
 
  - `blog` : A blog with a working tag system, feeds, archive, tag and 
     author pages. Supports multiple instances with independent tags.
@@ -33,6 +29,12 @@ types of content:
     galleries, presentations, landing pages, company branding or whatever.
     Essentially the default when no archetype is specified in data.
 
+A special file called `_data.yml` in each directory controls default frontmatter
+settings for everything in that directory, and directories inside of it; this is
+a base feature of Lume. Cushy Docs takes advantage of this by looking for special 
+configuration directives that control how things get generated. Cushy Docs decides
+if the files in the current directory are a blog, a documentation collection, or 
+a collection of content pages depending on settings contained in these files. 
 
 To give you an idea of how this works, right now, you're actually in `/docs`,
 which is a `docs` archetype (a documentation area, not robust like a blog). 
@@ -41,49 +43,37 @@ this directory, and all directories within it:
 
 ```yml
 layout: layouts/docs.vto
-# It could be %api-docs% or %quickstart% or whatever you want.
-# This is how you'll grab content from this directory in searches / nav
-waypoint: "%docs%"
+waypoint: "%theme-docs%"
+type: docs
 
 docs:
-  # This should match the folder the docs are in.
   basedir: /docs/
   title: Cushy Theme Docs
-  # Right now auto is the only option. A way to pass a custom sidebar
-  # is planned at some point.
   sidebar: auto
-  # Pull in posts from another waypoint?
   guest:
-    heading: "From Our Blog:"
+    heading: "Latest Blog Post:"
     waypoint: "%blog%"
-    posts: 3
+    posts: 1
 ```
 
-This means every file in the `/docs` directory:
-
- - Uses the `layouts/docs.vto` template when rendering (unless another 
-   is specified in the individual frontmatter layout key)
- - Has a waypoint applied to it that internal searching to build navigation,
-   archives, feeds and more can use in order to include or exclude it.
- - Has some additional configuration options to support the docs archetype, 
-   like if the sidebar should be auto-generated, and if posts from another 
-   content source on the site should also be shown
- - Knows what the root install of its instance is, so it can re-think relative
-   links and paths as necessary. No extra JS cwd() in templates needed.
+This file instructs Lume "_for every file in this folder, apply these (...) settings_"
+while the theme template picks up on the presence of `docs:` and adjusts accordingly
+to switch layouts, generates the nav, etc. 
 
 That special `waypoint` key is what I call a, well, _waypoint_. It lets me 
-run multiple installations of `docs` while including or excluding some 
-or all from the site feed, navigation, archive pages, etc.
+run multiple installations of `docs` while including content from each install
+by a friendly name.
 
-But, it works _in conjunction_ with the `_data.yml` configuration, in addition
-to the content generation scripts in `src/_archetypes/`, corresponding to each
-archetype.
+If I wanted to get _all content from all docs installs_, I would use an internal
+search query of `type=docs`. However, if I want just results from _this_ documentation,
+the theme docs in `/docs`, I would use `waypoint=%theme-docs%`. 
 
 Now, let's take a look at the `blog` directory `_data.yml` file:
 
 ```yml
 layout: layouts/post.vto
 waypoint: "%blog%"
+type: blog
 tags: []
 
 blog:
@@ -97,28 +87,11 @@ content with behind the scenes: `%blog%`. It also makes sure `tags` is
 at least _set_, even if it's just an empty array, to avoid onerous 
 checks in templates.
 
-You can run multiple independent, or even coupled blogs and documentation
-installations on the same site like this. I highly recommend reading up 
-on Lume's [powerful Search Plugin](https://lume.land/plugins/search/) to
-see what inspiration hits!
-
-## Plans For Tag & Author Pages
-
-Right now, the generator functions live in `src/generators` and are fixated on 
-the demo `%blog%` archetype. You can make copies of them to generate pages in 
-other locations based on other waypoints or searches, and just name them
-descriptively (the generators themselves never get copied to `_site`).
-
-In a future release, you'll control the archive and author locations in the 
-same `_data` file that you define the archetype, but this requires a bit of 
-work still. In Lume, generators can be set to run after pages that they 
-need to search are generated - that's a simple render order tweak. 
-
-The generators need to search all pages themselves, extract all the waypoints,
-resolve those to folders, parse the `_data.*` file in the folder, and then 
-they know where and how to generate the archives. Or, you'd just need lots of 
-copies of generators, which is not ideal at all. It's a trickier problem than 
-it appears to be, at least from my investigating.
+It's designed to allow running multiple blogs on the same site. For 
+example: one for content, one just for release notes. Currently, only 
+one centralized `/archive` for tags and authors is supported, but generators
+along with templates they should use will be configurable per-blog in 
+a near release.
 
 ## What About "pages"?
 
@@ -130,7 +103,7 @@ all of the components so that they can be made available as MDX elements.
 You'll find `blog.ts`, `doc.ts` and `page.ts` included in `src/_archetypes`,
 they're the bare minimum needed to qualify for having them. I plan to add
 some additional arguments, or the ability to create by waypoint, but it's 
-low on the priority list. 
+low on the priority list.
 
 
 
