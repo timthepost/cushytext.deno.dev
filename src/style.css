@@ -109,3 +109,7 @@
     display: none;
   }
 }
+
+.footer__item {
+  list-style-type: none;
+}
