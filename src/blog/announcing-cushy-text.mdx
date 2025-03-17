@@ -48,7 +48,7 @@ So, I created one! And, I named it Cushy Text!
 
 You can run multiple instances of whatever you have on the same site independently; this 
 includes blogs, documentation, collections of pages, or whatever. They have separate 
-folders, independent tags and independent navigation if you want.
+folders, independent navigation and even independent tags and authors if you want.
 
 This is accomplished through directory-level configuration and the use of special keys 
 I call waypoints. Let's look at the `_data.yml` from [this site's blog instance](/blog/):
@@ -78,7 +78,7 @@ sidebar:
 
 ```html
   <ul class="menu__list">
-    {{ for entry of search.pages('waypoint=%blog% menu.visible=true', "date=desc", 4) }}
+    {{ for entry of search.pages('waypoint=%blog% menu.visible=true', "date=desc", 3) }}
       <li class="menu__list--item">
         <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
       </li>
