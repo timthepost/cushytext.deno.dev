@@ -22,7 +22,7 @@ import icons from "lume/plugins/icons.ts";
 import checkUrls from "lume/plugins/check_urls.ts";
 import slugifyUrls from "lume/plugins/slugify_urls.ts";
 import sourceMaps from "lume/plugins/source_maps.ts";
-
+import pagefind from "lume/plugins/pagefind.ts";
 import conductor from "./src/_plugins/site_conductor/mod.ts";
 
 import "lume/types.ts";
@@ -62,6 +62,14 @@ export default function (userOptions?: Options) {
         toc_heading_selectors: "h2, h3, h4, h5, h6",
         toc_link_class: "table-of-contents__link",
         toc_list_class: "table-of-contents padding-top--none",
+      }))
+      .use(pagefind({ 
+        ui: {
+          containerId: "search",
+          showImages: false,
+          showEmptyFilters: true,
+          resetStyles: true,
+        },
       }))
       .use(postcss())
       .use(sourceMaps())
