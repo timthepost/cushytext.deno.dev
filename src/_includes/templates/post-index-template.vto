@@ -1,7 +1,7 @@
   {{ set pageSearch = search.pages(`url^=${blog.basedir}`, "date=desc", blog.recent) }}
   <div class="row">
     <div class="col col--9">
-      <h1 class="margin-top--md">{{ locale.blog_index.latest_heading }} {{ blog.title }}:</h1>
+      <h1 class="margin-top--md padding-horiz--lg">{{ locale.blog_index.latest_heading }} {{ blog.title }}:</h1>
       {{ for entry of pageSearch }}
         {{ if entry.url != blog.basedir }}
           {{ include "templates/post-index-item.vto" { entry: entry } }}
