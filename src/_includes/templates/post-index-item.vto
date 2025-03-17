@@ -4,8 +4,9 @@
     </h2>
     <p class="margin-horiz--md">
         <em>
+            {{> const relativeDate = new Date(entry.date) }}
             {{ locale.posts.written_by }} <strong><a href="/author/{{ entry.author |> slugify }}/">{{ entry.author }}</a></strong> 
-            {{ locale.posts.written_on }} {{ entry.date }}.
+            {{ locale.posts.written_on }} {{ relativeDate.toISOString().slice(0, 10) }} | {{ entry.readingInfo.minutes }} {{ locale.posts.read_time }}
         </em>
     </p>
     <div class="margin-horiz--md font-selectable">
