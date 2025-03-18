@@ -46,25 +46,23 @@ So, I created one! And, I named it Cushy Text!
 
 ## Multi-Instance / Multi-Archetype With Central Search
 
-You can run multiple instances of whatever you have on the same site independently; this 
-includes blogs, documentation, collections of pages, or whatever. They have separate 
-folders, independent navigation and even independent tags and authors if you want.
+The goal is allowing multiple instances of blogs, docs and collections of pages on the same
+site, under the same design, in a seamless experience for both creating and consuming. things
+are separated by folder, and can even functionally have separate tags if you want. 
 
-This is accomplished through directory-level configuration and the use of special keys 
-I call waypoints. Let's look at the `_data.yml` from [this site's blog instance](/blog/):
+While posts and pages and docs are grouped together by _type_, they also each have a unique
+identifier that I call a waypoint, which allows pulling content from one or several sources
+easily. 
 
 ```yml
 layout: layouts/post.vto
-# Name this descriptively. It could be %minecraft-blog%, or %recipe-blog%.
-# It's the anchor you'll use to include content from this directory.
+type: post
 waypoint: "%blog%"
 tags: []
 
 blog:
-  # This must match the directory the blog files are in.
   basedir: /blog/
   title: Cushy Text Blog
-  # This sets how many posts to show in the nav / blog index
   recent: 5
 ```
 
@@ -78,7 +76,7 @@ sidebar:
 
 ```html
   <ul class="menu__list">
-    {{ for entry of search.pages('waypoint=%blog% menu.visible=true', "date=desc", 3) }}
+    {{ for entry of search.pages('waypoint=%blog% menu.visible=true', "date=desc", 1) }}
       <li class="menu__list--item">
         <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
       </li>
@@ -108,41 +106,31 @@ that documentation has its own independent feed):
 As long as each separate blog and documentation folder has a unique waypoint,
 you can build navigation and search any way you like!
 
-Hey, wait! _Speaking of documentation .._
+Hey, wait! _speaking of documentation .._
 
-## A Documentation / Wiki Engine Archetype Is Also Built-In!
+## A Mini-Docs & Wiki Engine Archetype Is Also Built-In!
 
 You can [drop a bunch of markdown in a folder](/docs/), and add this `_data.yml` at the 
 top level:
 
 ```yml
 layout: layouts/docs.vto
-# It could be %api-docs% or %quickstart% or whatever you want.
-# This is how you'll grab content from this directory in searches / nav
-waypoint: "%docs%"
+type: docs
+waypoint: "%theme-docs%"
 
 docs:
-  # This should match the folder the docs are in.
   basedir: /docs/
   title: Cushy Theme Docs
-  # Right now auto is the only option. A way to pass a custom sidebar
-  # is planned at some point.
   sidebar: auto
-  # Pull in posts from another waypoint?
   guest:
     heading: "From Our Blog:"
     waypoint: "%blog%"
-    posts: 3
+    posts: 1
 ```
 
 Think of it like a very light version of a blog that generates its own sidebar based on 
 the directory. It will soon support custom sidebars and more complex nesting. I really
 like using one theme for everything, in a way that feels planned instead of bolted together.
-
-Again, I picked `%docs%` for familiarity; it could have been `%theme-docs%`, or 
-`%api-docs%` - however you want to 'grab' it when you build nav, feeds and content. What 
-turns on the archetype is the presence of the `docs:` key in `_data.yml`. And, in this
-instance, I'm using the blog's waypoint to show a few posts in the docs sidebar.
 
 Normally, docs installs won't have tag archives or author pages generated. They can _use_ 
 tags to help aid search, but there's no display by default. Happy to add more use to tags
@@ -198,7 +186,7 @@ I'm including my own SEO plugin that does static analysis checks of pages to mak
 things like lengths, common word densities, meta info and everything else is set as 
 optimally as possible.
 
-I mean really, [check out all these toppings](/docs/#plugin-status)!
+I mean really, [check out all these toppings](/features/#plugins)!
 
 ## Responsive And Accessible
 
