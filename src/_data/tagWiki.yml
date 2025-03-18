@@ -85,6 +85,22 @@ interactive-features:
     like functions and Deno Deploy.
   related_tags: ["hybrid-sites"]
 
+static-sites:
+  summary: >
+    Static sites are websites deployed with every conceivable page
+    pre-generated from a variety of data sources, including markdown
+    text files or APIs designed to be fetched by content generators.
+
+
+    Static sites are efficient and inexpensive to host on simple, often
+    free platforms, and have a much lower environmental impact than 
+    sites that are generated dynamically on every request.
+
+
+    The developer of this theme believes that most sites on the internet
+    today can be at least partly static.
+  related_tags: ["hybrid-sites", "wordpress", "lume-3"]
+
 v0.0.1:
   summary: >
     This is the very first release of Cushy Text, with the first release
