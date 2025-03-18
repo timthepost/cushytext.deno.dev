@@ -11,12 +11,12 @@ export default function ({ title, description }) {
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#303846",
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: 400,
         color: "#ffffff",
       }}
     >
-      <div style={{ marginTop: 20 }}>{title}</div>
+      <div style={{ marginTop: 20, fontSize: 40, fontWeight: 700 }}>{title}</div>
       <svg
         fill="#3578e5"
         height="250"
