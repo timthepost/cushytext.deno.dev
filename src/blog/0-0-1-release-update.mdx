@@ -1,0 +1,111 @@
+---
+title: "v0.0.1 Release Update: On-Track For Early April 2025!"
+description: Unplanned Additions, Last-minute Ditches, And A List Of What Remains To Be Finished
+date: 2025-03-18
+author: Tim Post
+draft: true
+menu:
+  visible: true
+  order: 0
+tags:
+  - updates
+  - v0.0.1
+metas:
+  lang: en
+  description: Unplanned Additions, Last-minute Ditches, And A List Of What Remains To Be Finished In Cushy Text For Lume 3
+  tags:
+    - Static Site Generators
+    - Development updates
+    - Themes For Lume 3
+  image: /blog/0-0-1-release-update/index.png
+  robots: true
+  generator: true
+---
+
+Want to know what's special about the image below this sentence? It was 
+automatically created for the blog post by the 
+[OG Image Generator](https://lume.land/plugins/og_images/) plugin. That
+leads to my first update: [all of the planned pre-configured plugins](/features/#plugins) 
+have been installed and configured to work correctly in conjunction with each
+other.
+
+
+<img
+  class="blog_image"
+  src="/blog/0-0-1-release-update/index.png" 
+  alt="TODO: Description" 
+  title="TODO: Title" />
+
+There's more. A lot more. Once the theme is officially released, I'll have a proper
+and frequently updated changelog so that users can decide when they want to cherry
+pick something new or update.
+
+But for now, you'll just have to get by with me dumping it all in a blog post.
+
+{/* more */} 
+  
+## Search Is Pagefind (Only) For Now
+
+It will continue to be Pagefind into the future, too. I mean it's 
+_just_ Pagefind, which is in and of itself a great search engine.
+
+I had planned to use Lume Middleware (Router) to augment search, 
+by using the Pagefind API on the back-end and mixing it with
+additional sources that can be `fetch()`ed, like a main product site
+if Cushy Text is the user portal. 
+
+That's still the plan, but it was too much to take on for the first 
+release and still have it out reasonably soon after Lume 3 releases.
+
+
+## Documentation Mini Engine Is Almost Feature Complete
+
+You can have as many collections of documentation as you want, and 
+they'll all get an auto-generated sidebar. You can set up
+independent feeds for them as well. 
+
+What it's not doing so well (yet) is handling nested directories.
+All the files show up, but there's no inherited category definition,
+so it's one long list of links. This will be made more robust in 
+`0.0.2`.
+
+## Blog Engine Is Almost Feature Complete
+
+The blog has a nice archive, an optional tag wiki feature and feeds,
+along with breadcrumbs and auto navigation / pagination like docs.
+
+You can run several independent blogs, however they'll all share 
+the same tag and author archive. Tag and Author archive locations
+will be configurable in `0.0.2`.
+
+## Pages & Components Have Been Started
+
+The quest to turn all of the various infima components into easy 
+to use MDX elements goes slow, but it does progress. I hope to 
+have completely pluggable (around 30 of them) Infima components
+done by `0.0.3`, with a few trickling in each release.
+
+## Conductor Plugin Is Stable
+
+The [conductor](/docs/conductor-plugin/) plugin is doing a fine job 
+generating TOCs and JSON exports. It's still essential for the theme
+to function properly, and will be more essential as the interactive 
+features are ready for release.
+
+## Interactive Stuff Has Begun
+
+I'm working now on the content rating system, and the default 
+form handler. We'll see what else I can manage to get in.
+
+## "Theme Artifacts" Are Still Needed
+
+I need to create the `mod.ts` and init required for remote installs
+as well as the default content generators. The theme will ship with
+its own docs, a sample blog post and a content page.
+
+## Lots Of Polish & Shining Needed
+
+Missing Aria labels, tab indexes out of order, roles not set properly,
+all of this is lint that has to be shaved off, but that's been happening
+pretty quickly as things get finalized.
+
