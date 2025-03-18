@@ -3,6 +3,7 @@ announcements:
     The `announcements` tag is applied when there's a major announcement
     to make, such as a new release or other major news about the project.
 
+
     It's not used very often, so if you subscribe to a feed and see
     the tag, it's probably worth checking out.
   related_tags: [ "updates" ]
@@ -19,3 +20,75 @@ updates:
     updates are planned along with tutorials when I figure out things 
     worth sharing.
   related_tags: [ "announcements" ]
+
+hybrid-sites:
+  summary: >
+    Hybrid sites refers to a class of self-publishing software that uses
+    a database-driven back-end CMS like WordPress or Notion for content 
+    creation and management, but exports the content to markdown with 
+    frontmatter that a static site generator like Lume can process
+    into rendered HTML.
+
+
+    Essentially, in a hybrid setup, the database server exists for local 
+    development, managing comments, managing drafts and media, and all of
+    the other tasks commonly associated with it. What's different is that
+    no queries are necessary to serve the generated pages. 
+
+
+    Because Lume 3 lends well to this with its Router middleware, Cushy Docs
+    tries to lend well to being a theme for this sort of setup for technical
+    authors and marketers.
+  related_tags: [ "wordpress" ]
+
+wordpress:
+  summary: >
+    WordPress is the most-used content management system on the planet, and 
+    serves millions of websites every single second. Approximately 90% of 
+    those websites could very easily be powered by static site generators
+    such as Lume, with significant carbon and energy savings as a result.
+
+
+    A goal of this blog is to spread more information about Lume 3 in 
+    general in the form of tutorials and thought pieces, so naturally we 
+    want to cover the world's most popular CMS!
+  related_tags: [ "hybrid-sites" ]
+
+lume-3: 
+  summary: >
+    Lume 3 is the core of this theme, is definitely the most flexible 
+    static site generator for Deno, and is arguably one of the most 
+    flexible available today. This theme takes advantage of several 
+    key new features in Lume 3 such as the router middleware, new 
+    component system, new and lightweight SSX MDX parser and more.
+
+
+    We share Lume's perspective that most sites can easily be static
+    sites, and part of what motivated Cushy Text was showing whats
+    possible for technical content creators when a little interactivity
+    becomes trivial to pursue. 
+  related_tags: [ "wordpress", "hybrid-sites" ]
+
+opinion:
+  summary: >
+    A take on a matter considered to be at least somewhat subjective 
+    from the perspective of being a theme developer and major fan of
+    static sites.
+  related_tags: [ "wordpress", "hybrid-sites" ]
+
+interactive-features:
+  summary: >
+    Covers any posts about interactive features that are planned for 
+    the theme, or in general when talking about static sites. It doesn't
+    just cover all interactive features, though, it is used in the context
+    of bringing them to static sites using the means we have available, 
+    like functions and Deno Deploy.
+  related_tags: [ "hybrid-sites" ]
+
+v0.0.1: 
+  summary: > 
+    This is the very first release of Cushy Text, with the first release
+    candidate planned for release the first week of April, 2025.
+  related_tags: [ "announcements", "updates" ]
+
+
