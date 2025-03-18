@@ -1,0 +1,2 @@
+- Remove google site verification meta tag from template. Check for
+  any others.
