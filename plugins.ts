@@ -77,7 +77,7 @@ export default function (userOptions?: Options) {
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
       .use(purgecss())
-      .use(slugifyUrls({ 
+      .use(slugifyUrls({
         extensions: "*",
         lowercase: false, // Converts all characters to lowercase
         alphanumeric: true, // Replace non-alphanumeric characters with their equivalent. Example: ñ to n.
@@ -91,8 +91,8 @@ export default function (userOptions?: Options) {
           "ø": "o",
           "ß": "ss",
           "æ": "ae",
-          "œ": "oe"
-        }
+          "œ": "oe",
+        },
       }))
       .use(minifyHTML())
       .use(terser({ options: { module: false } }))
@@ -120,7 +120,7 @@ export default function (userOptions?: Options) {
         ],
       }))
       .use(ogImages({ satori: { width: 1200, height: 630 } }))
-      .use(pagefind({ 
+      .use(pagefind({
         ui: {
           containerId: "search",
           showImages: true,

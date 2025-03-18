@@ -82,6 +82,6 @@ export default function conductor(userOptions?: Options) {
       });
     });
 
-    cushyUpdate("Theme Conductor Finished.")
+    cushyUpdate("Theme Conductor Finished.");
   };
 }

@@ -106,7 +106,7 @@
 
 /* Search Modal styles */
 .modal {
-  display: none; 
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -120,10 +120,10 @@
 .modal-content {
   background: #fff;
   color: #333;
-  margin: 8% auto; 
+  margin: 8% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 65%; 
+  width: 65%;
   height: 70%;
   position: relative;
   overflow: auto;

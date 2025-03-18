@@ -32,7 +32,7 @@ Heading support text.
       tags: ["tag-1", "tag-2"],
       metas: {
         lang: "en",
-        description: "\"=description\"",
+        description: '"=description"',
         tags: ["meta tag one", "meta tag two"],
         image: "/uploads/" + slug + "-regular.jpg",
         robots: true,
