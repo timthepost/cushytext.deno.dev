@@ -100,30 +100,6 @@
   margin: 1rem 0 0;
 }
 
-/* Hide various things on smaller screens */
-@media (max-width: 976px) {
-  /* Top nav logo */
-  #navbar-logo {
-    display: none;
-  }
-
-  /* Feed links on blog and docs pages */
-  .feed-links {
-    display: none;
-  }
-
-  /* With feed links gone, TOC needs buffered */
-  .toc-heading {
-    margin: 2rem 0 0;
-  }
-
-  /* The bottom "more in the archive" is redundant when
-     the sidebar links it. */
-  .archive-fueller {
-    display: none;
-  }
-}
-
 .footer__item {
   list-style-type: none;
 }
@@ -160,4 +136,35 @@
   font-weight: bold;
   font-size: 12pt;
   margin-bottom: 8px;
+}
+
+/* Hide various things on smaller screens */
+@media (max-width: 976px) {
+  /* Top nav logo */
+  #navbar-logo {
+    display: none;
+  }
+
+  /* Feed links on blog and docs pages */
+  .feed-links {
+    display: none;
+  }
+
+  /* With feed links gone, TOC needs buffered */
+  .toc-heading {
+    margin: 2rem 0 0;
+  }
+
+  /* The bottom "more in the archive" is redundant when
+     the sidebar links it. */
+  .archive-fueller {
+    display: none;
+  }
+
+  /* Search modal needs a lot of room on small screens to be
+     useful */
+  .modal-content {
+    height: 75%;
+    width: 85%;
+  }
 }
