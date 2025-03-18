@@ -19,8 +19,8 @@ export default function ({ title, description }) {
       <div style={{ marginTop: 20, fontSize: 40, fontWeight: 700 }}>{title}</div>
       <svg
         fill="#3578e5"
-        height="250"
-        width="250"
+        height="300"
+        width="300"
         id="cloud_og"
         viewBox="0 0 436.127 436.127"
       >
