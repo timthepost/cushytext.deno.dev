@@ -117,6 +117,10 @@
   color: #333;
 }
 
+.modal input[type=text] {
+  color: #333;
+}
+
 .modal-content {
   background: #fff;
   color: #333;
