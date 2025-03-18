@@ -188,17 +188,19 @@
 <div id="searchModal" class="modal">
   <div class="modal-content">
     <div class="modal-top"><a id="modal-close" href="#">Close</a></div>
-    <div id="search"></div>
+    <div id="search" tabindex="0"></div>
   </div>
 </div>
 
 <script>
-  var modal = document.getElementById("searchModal");
-  var searchInput = document.querySelector("#nav-search .navbar__search-input");
-  var close = document.getElementById("modal-close");
+  const modal = document.getElementById("searchModal");
+  const searchInput = document.querySelector("#nav-search .navbar__search-input");
+  const close = document.getElementById("modal-close");
 
   searchInput.onclick = function() {
     modal.style.display = "block";
+    const pageFind = document.querySelector(".pagefind-ui__search-input");
+    pageFind.focus();
   }
 
   close.onclick = function () {
