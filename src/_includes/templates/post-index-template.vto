@@ -1,4 +1,4 @@
-  {{ set pageSearch = search.pages(`url^=${blog.basedir}`, "date=desc", blog.recent) }}
+  {{ set pageSearch = search.pages(`url^=${blog.basedir}`, "date=desc", blog.recent + 1) }}
   <div class="row">
     <div class="col col--9">
       <h1 class="margin-top--md padding-horiz--lg">{{ locale.blog_index.latest_heading }} {{ blog.title }}:</h1>
