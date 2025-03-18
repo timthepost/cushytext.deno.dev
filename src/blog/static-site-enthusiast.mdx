@@ -1,0 +1,174 @@
+---
+title: Why I Evangelize Static Sites As A Seasoned Engineer
+description: A journey to evangelizing static generated sites that began in WordPress hosting almost two decades ago.
+date: 2025-03-18
+author: Tim Post
+draft: false
+menu:
+  visible: true
+  order: 0
+tags:
+  - opinion
+  - static-sites
+  - lume-3
+  - wordpress
+metas:
+  lang: en
+  description: '"=description"'
+  tags:
+    - WordPress Hosting
+    - Static Sites
+    - Self Publishing
+    - Lume 
+    - Technology Evangelism
+  image: /uploads/blog/static-site-enthusiast-regular.jpg
+  robots: true
+  generator: true
+---
+
+Have you ever had to explain to a customer that the way they were using 
+something was what was causing their problem? It's usually awkward, and
+really hard not to sound condescending or dismissive, but sometimes you 
+just have to tell someone _hey, you're not going to get that thing to 
+do what you're trying to get it to do_.
+
+That's what it was like working in the hosting industry in the early 
+2000s when people wondered why their WordPress site was suspended on a 
+shared server for over-using resources. And that's when I hyper-fixated
+on static sites as the only really naturally "scalable" solution.
+
+<img 
+  class="blog_image"
+  src="/uploads/blog/static-site-enthusiast-regular.jpg" 
+  alt="Depiction Of Communal Creation Of Static Sites" 
+  title="We're not a cult, we just REALLY like efficient websites." />
+
+**They still are.**
+
+{/* more */} 
+
+It wasn't that these blogs were being bombarded with traffic, its that
+several of them getting crawled by Slurp on the same server would cause 
+a cascading starvation of resources. When these sites were crawled
+regularly and received substantial traffic, they quickly needed load 
+balanced clusters. 
+
+Unfortunately, you're just as, if not _more_ likely to become a victim of 
+your own success if you _just_ use a database driven solution in 2025.
+
+
+## To Begin, I Actually Like WordPress - A Lot!
+
+WordPress might be the most successful fork in the history of free software.
+
+That's not a trivial thing to say about _anything_. WordPress became what it 
+is because someone saw something in it and knew that they had the unique vision
+to make it a tool that people would love to use. And, for a very long time, if
+you didn't want to hand-edit a whole lot of HTML, it was basically your only 
+reliable option to launch a content site on a budget. 
+
+But its design is fundamentally at odds with high-volume concurrent access,
+has always been that way, and will always be that way. This goes for almost 
+every site that unnecessarily puts a dozen database queries between every 
+visitor and the page they want to see.
+
+My early career in tech involved many sleepless nights because of PHP, MySQL, 
+WordPress and Apache. They ruined relationships, caused pets to run away and 
+my hair to fall out faster. But, I digress.
+
+## WordPress Has Always Been Problematic To Host
+
+Imagine that you have a fun evening with some friends planned. You're going
+to meet your friends "Mork" and "Mindy" for appetizers at a new Italian place. 
+
+You get showered, brush your teeth, style your hair, put on a nice outfit, 
+some accessories and then you travel to the bistro and give your friend 
+Mindy a great big hug. You see Mork over at the bar, so you go home, shower,
+brush your teeth, put on a nice outfit and then travel back to the bistro 
+and give Mork a great big hug. 
+
+Wait, that's really wasteful, right? Why can't you just get ready once and 
+meet more than one friend when prepared?
+
+The same logic applies to database-driven sites that require a dozen queries for 
+every connection that they serve, which is exactly the same for everyone else.
+
+## The Best Cache Is Linux + A File System
+
+If you want to see Linus get very animated and you're afraid to talk about
+Rust in the kernel, just mention `O_DIRECT`. Go on, I dare you. Sneak up behind 
+Linus and say ***BOO!*** `O_DIRECT` ***!!!*** Actually, don't do that; he knows 
+martial arts and it's a bad idea to mess with people to prove silly points.
+
+But back when all this insanity of using relational databases to store everything
+in the world got started, he (like many) was flabbergasted by what the RDBMS 
+enthusiasts wanted out of the kernel: a way to bypass all buffers and operate 
+"on the metal" when they opened and wrote to the files that actually backed the 
+data in their databases. 
+
+The problem, as they saw it, was that I/O from buffers could not be guaranteed 
+when systems were less than stable. And, they were right, but the elephant in
+the room is that it was their database servers, and the way they were being 
+leveraged so indiscriminately, that was causing all of the server instability 
+to begin with.
+
+Web hosts built offerings around how many databases you could have. Bad engineering
+decisions is what drove growth back then, what can I say? But the fact that 
+people are still starting out likely to topple over upon success is still 
+extremely frustrating to me.
+
+## "Caching" only goes so far.
+
+Some might argue that WordPress and others do have caching plugins. They're 
+correct, but PHP needs to be invoked in order to serve a static file. Sure,
+caching helps, but if it's not just a plain text file that a lightweight web 
+server can deliver, then it's overpowered.
+
+Sure, some sites need to be connected straight to a database, like the sites
+where we pay our bills, do our banking, check our order history, mindlessly 
+scroll, etc. When each page varies greatly depending on who and where you
+are, complexity makes sense.
+
+To serve blog posts that seldom if ever change does not require complexity, 
+it requires 12 lines of TS server code and a file system. Generating those
+pages is a whole other matter, and where efficient tools like Lume come in.
+
+I'm not saying get rid of WordPress. I'm saying _stop using it as a web
+server_ and _stop continuously re-generating the same exact pages on 
+every request_.
+
+It really is as silly as showering and changing before greeting each 
+friend in a line. 
+
+## Efficient Servers Turn The Tables On Bad Actors
+
+There are many _great_ hosts that are doing some really creative things 
+with WordPress and many other open source content platforms, and giving
+back not just money, but contributions in time and effort to improve 
+the software. Those companies know who they are, and how much we love
+them.
+
+I'd like to talk about the other 97 percent, because a substantial amount 
+of what's out there is [snake oil](https://en.wikipedia.org/wiki/Snake_oil).
+
+There are a lot of not so great companies that prey on inexperienced site 
+owners and the best way to fight them is to make people not need them in 
+the first place. I think embracing the idea of the database being for 
+creation and generation with comments and analytics on the side is sound, 
+because so many pages out there don't need the overhead of being created
+on every connection.
+
+But that adds friction, and when you've taken money, your bottom line 
+can't be very altruistic. So I see it as something that's important, 
+but that the community needs to deliver.
+
+Because continuing to watch new publishers become victims of their own 
+success seems kinda dumb. Can't we come up with something easy for people
+that also won't explode at the first sign of success?
+
+
+
+
+
+
+
