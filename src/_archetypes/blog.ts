@@ -4,7 +4,11 @@ export default function (title: string) {
 
 Opening Text
 
-<img src="/uploads/${slug}-regular.jpg" alt="TODO: Description" title="TODO: Title" />
+<img
+  class="blog_image"
+  src="/uploads/blog/${slug}-regular.jpg" 
+  alt="TODO: Description" 
+  title="TODO: Title" />
 
 Supportive text.
 
@@ -34,7 +38,7 @@ Heading support text.
         lang: "en",
         description: '"=description"',
         tags: ["meta tag one", "meta tag two"],
-        image: "/uploads/" + slug + "-regular.jpg",
+        image: "/uploads/blog/" + slug + "-regular.jpg",
         robots: true,
         generator: true,
       },
