@@ -139,6 +139,10 @@
   padding-right: 8px;
 }
 
+.breadcrumbs {
+  margin-left: -10px;
+}
+
 /* Hide various things on smaller screens */
 @media (max-width: 976px) {
   /* Top nav logo */
@@ -169,3 +173,4 @@
     width: 85%;
   }
 }
+
