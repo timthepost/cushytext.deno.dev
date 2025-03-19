@@ -16,6 +16,17 @@
       </nav>
       {{ if tag }}
         {{ if tagWiki[tag] }}
+          {{ if tagWiki[tag].feed }}
+            <p class="padding--md margin-top--sm">
+              <a href="feed.xml" class="navbar__link">
+                <span class="badge badge--warning" style="font-size: 12pt">TAG {{ locale.feeds.rss }}</span>
+              </a> 
+              <span class="margin-horiz--sm">|</span>
+              <a href="feed.json" class="navbar__link">
+                <span class="badge badge--success" style="font-size: 12pt">TAG {{ locale.feeds.json }}</span>
+              </a>
+            </p>
+          {{ /if }}
           <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
             {{ tagWiki[tag].summary |> md }}
           </div>

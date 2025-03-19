@@ -6,6 +6,13 @@
 import { merge } from "lume/core/utils/object.ts";
 import { log } from "lume/core/utils/log.ts";
 import type Site from "lume/core/site.ts";
+import yaml from "lume/core/loaders/yaml.ts";
+import feed from "lume/plugins/feed.ts";
+import { Data } from "lume/core/file.ts";
+
+interface TagWikiData {
+  [key: string]: Data;
+}
 
 interface Options {
   // TODO: Make this a string [] so multiple TOCs work
@@ -14,6 +21,7 @@ interface Options {
   toc_heading_selectors?: string;
   toc_list_class?: string;
   toc_link_class?: string;
+  tag_wiki_path?: string;
 }
 
 export const defaults: Options = {
@@ -22,6 +30,7 @@ export const defaults: Options = {
   toc_heading_selectors: "h2, h3, h4, h5, h6",
   toc_link_class: "",
   toc_list_class: "",
+  tag_wiki_path: "./src/_data/tagWiki.yml",
 };
 
 function cushyUpdate(msg: string): void {
@@ -81,7 +90,22 @@ export default function conductor(userOptions?: Options) {
         }
       });
     });
-
-    cushyUpdate("Theme Conductor Finished.");
+    
+    site.addEventListener("afterRender", async() => {
+      const tagWiki : TagWikiData = await yaml(options.tag_wiki_path);
+      for (const tagObject of site.search.values("tags")) {
+        const tag = tagObject as string;
+        if (tagWiki && tagWiki[tag].feed) {
+          site.use(feed({
+            output: [ `${tagWiki[tag].feed}feed.xml`, `${tagWiki[tag].feed}feed.json` ],
+            query: `${tag}`,
+            info: {
+              title: `Tag feed for ${tag}`
+            }
+          }));
+          cushyUpdate(`Set up tag feeds for tag: ${tag} in ${tagWiki[tag].feed}`);
+        }
+      }
+    });
   };
 }
