@@ -55,12 +55,40 @@ so it can iterate over and render multiple feeds. This makes a _huge_ amount of 
 tags, and I'm really thankful that Óscar saw the value in it enough to implement it properly 
 in the feeds plugin itself.
 
+So, to generate RSS and Atom feeds for every tag on the site? Just a few lines of code in 
+Lume `:)`:
+
+```js
+.use(feed(() => {
+  const unknownTags = site.search.values("tags");
+  const tags = unknownTags as string[];
+  return tags.map((tag) => ({
+    output: [`/feeds/tag/${tag}.xml`, `/feeds/tag/${tag}.json`],
+    query: tag,
+    info: {
+      title: `Tag feed for ${tag}`
+    }
+  }));
+}))
+```
+
 There's also a wiki feature that lets site admins or the community of people helping them add 
 more information about tags. This helps to add more value for users, more SEO benefit to
 pages that are ordinarily ignored for having no content, and provides a great place for tag 
 feeds to be discovered. It also adds something easy for new contributors to maintain.
 
-The tag info array along with manually-selected related tags is stored in `_data/tagWiki.yml`.
+The tag info array along with manually-selected related tags is stored in `_data/tagWiki.yml`;
+here's a trivial excerpt for `v0.0.1`:
+
+```yml
+v0.0.1:
+  summary: >
+    This is the very first release of Cushy Text, with the first release
+    candidate planned for release the first week of April, 2025.
+  related_tags: ["announcements", "updates"]
+```
+
+And that's how the related tags are managed. Simple is good.
 
 Try it out on [the updates tag](/archive/updates/) _(which you should totally subscribe to;
 go ahead, I'll wait ...)_
@@ -81,8 +109,7 @@ if Cushy Text is the user portal.
 That's still the plan, but it was too much to take on for the first 
 release and still have it out reasonably soon after Lume 3 releases.
 
-
-## Documentation Mini Engine Is Almost Feature Complete
+## Documentation Mini System Is Almost Feature Complete
 
 You can have as many collections of documentation as you want, and 
 they'll all get an auto-generated sidebar. You can set up
@@ -90,17 +117,22 @@ independent feeds for them as well.
 
 What it's not doing so well (yet) is handling nested directories.
 All the files show up, but there's no inherited category definition,
-so it's one long list of links. This will be made more robust in 
-`0.0.2`.
+so it's one long list of links. 
 
-## Blog Engine Is Almost Feature Complete
+Docs will be made more robust in `0.0.2`. My goal for the first 
+release was _"good enough to document itself"_, and we're way 
+past that!
 
-The blog has a nice archive, an optional tag wiki feature and feeds,
-along with breadcrumbs and auto navigation / pagination like docs.
+## Blog Is Almost Feature Complete
+
+There's some pruning of markup and refactoring of a few things 
+but the main functionality is all complete and stable. The blog
+even has basic image auto-resizing if you follow the same path 
+workflow as the sample post.
 
 You can run several independent blogs, however they'll all share 
 the same tag and author archive. Tag and Author archive locations
-will be configurable in `0.0.2`.
+_might_ be configurable in `0.0.2`.
 
 ## Pages & Components Have Been Started
 
@@ -109,14 +141,7 @@ to use MDX elements goes slow, but it does progress. I hope to
 have completely pluggable (around 30 of them) Infima components
 done by `0.0.3`, with a few trickling in each release.
 
-## Conductor Plugin Is Stable
-
-The [conductor](/docs/conductor-plugin/) plugin is doing a fine job 
-generating TOCs and JSON exports. It's still essential for the theme
-to function properly, and will be more essential as the interactive 
-features are ready for release.
-
-## Still Plenty To Do!
+## There Is Still Plenty To Do!
 
 The interactive components, components in general, HTML markup cleanup
 and accessibility audit, back-end code for managing feedback submissions,
@@ -125,4 +150,3 @@ polish.
 
 But, the major lifting for the initial release is pretty much done. It's
 exciting to be getting close!
-
