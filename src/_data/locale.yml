@@ -48,7 +48,7 @@ archive:
 
 blog_index:
   blog_home: "Blog Home"
-  latest_heading: "Latest From The"
+  latest_heading: "Latest News &amp; Tutorials From The"
   latest_posts: "Latest Posts:"
   feeds: "/blog Feeds:"
   top_tags: "Recent Tags:"
