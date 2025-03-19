@@ -29,12 +29,14 @@ leads to my first update: [all of the planned pre-configured plugins](/features/
 have been installed and configured to work correctly in conjunction with each
 other.
 
+Because Óscar is amazing and noticed the value in tag feeds, we now also 
+have proper tag wiki pages!
 
 <img
   class="blog_image"
-  src="/blog/0-0-1-release-update/index.png" 
-  alt="TODO: Description" 
-  title="TODO: Title" />
+  src="/uploads/blog/tag-wiki-screenshot.png" 
+  alt="Screenshot Of The Tag Wiki System" 
+  title="We have a tag wiki system, complete with tag feeds!" />
 
 There's more. A lot more. Once the theme is officially released, I'll have a proper
 and frequently updated changelog so that users can decide when they want to cherry
@@ -42,7 +44,27 @@ pick something new or update.
 
 But for now, you'll just have to get by with me dumping it all in a blog post.
 
-{/* more */} 
+{/* more */}
+
+## Tag Wiki System, Complete With Individual Tag Feeds!
+
+Lume 3 just added a new feature that allows you to pass a _function_ to the feed generator
+so it can iterate over and render multiple feeds. This makes a _huge_ amount of sense for 
+tags, and I'm really thankful that Óscar saw the value in it enough to implement it properly 
+in the feeds plugin itself.
+
+There's also a wiki feature that lets site admins or the community of people helping them add 
+more information about tags. This helps to add more value for users, more SEO benefit to
+pages that are ordinarily ignored for having no content, and provides a great place for tag 
+feeds to be discovered. It also adds something easy for new contributors to maintain.
+
+The tag info array along with manually-selected related tags is stored in `_data/tagWiki.yml`.
+
+Try it out on [the updates tag](/archive/updates/) _(which you should totally subscribe to;
+go ahead, I'll wait ...)_
+
+Thanks to Óscar for always being so gracious with his time for those who spend time with 
+Lume! It's always more fun when the creator is super-involved and responsive.
   
 ## Search Is Pagefind (Only) For Now
 
@@ -92,20 +114,13 @@ generating TOCs and JSON exports. It's still essential for the theme
 to function properly, and will be more essential as the interactive 
 features are ready for release.
 
-## Interactive Stuff Has Begun
+## Still Plenty To Do!
 
-I'm working now on the content rating system, and the default 
-form handler. We'll see what else I can manage to get in.
+The interactive components, components in general, HTML markup cleanup
+and accessibility audit, back-end code for managing feedback submissions,
+theme artifacts for remote installs with sparse default content, and 
+polish. 
 
-## "Theme Artifacts" Are Still Needed
-
-I need to create the `mod.ts` and init required for remote installs
-as well as the default content generators. The theme will ship with
-its own docs, a sample blog post and a content page.
-
-## Lots Of Polish & Shining Needed
-
-Missing Aria labels, tab indexes out of order, roles not set properly,
-all of this is lint that has to be shaved off, but that's been happening
-pretty quickly as things get finalized.
+But, the major lifting for the initial release is pretty much done. It's
+exciting to be getting close!
 

@@ -42,6 +42,8 @@
   text-align: center;
   align-items: center;
   border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0 5px 0;
 }
 
 /* Example of adapting design to a font-switch */
