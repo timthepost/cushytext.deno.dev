@@ -130,7 +130,7 @@ export default function (userOptions?: Options) {
           },
         ],
       }))
-      .use(ogImages({ satori: { width: 1200, height: 630 } }))
+      .use(ogImages({ options: { width: 1200, height: 630 }}))
       .use(pagefind({
         ui: {
           containerId: "search",
