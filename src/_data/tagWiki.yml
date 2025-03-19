@@ -7,7 +7,6 @@ announcements:
     It's not used very often, so if you subscribe to a feed and see
     the tag, it's probably worth checking out.
   related_tags: ["updates"]
-  feed: /archive/announcements/
 
 updates:
   summary: >
@@ -21,7 +20,6 @@ updates:
     updates are planned along with tutorials when I figure out things
     worth sharing.
   related_tags: ["announcements"]
-  feed: /archive/updates/
 
 hybrid-sites:
   summary: >
@@ -42,7 +40,6 @@ hybrid-sites:
     tries to lend well to being a theme for this sort of setup for technical
     authors and marketers.
   related_tags: ["wordpress"]
-  feed: /archive/hybrid-sites/
 
 wordpress:
   summary: >
@@ -56,7 +53,6 @@ wordpress:
     general in the form of tutorials and thought pieces, so naturally we
     want to cover the world's most popular CMS!
   related_tags: ["hybrid-sites"]
-  feed: /archive/wordpress/
   
 lume-3:
   summary: >
@@ -72,7 +68,6 @@ lume-3:
     possible for technical content creators when a little interactivity
     becomes trivial to pursue.
   related_tags: ["wordpress", "hybrid-sites"]
-  feed: /archive/lume-3/
 
 opinion:
   summary: >
@@ -80,7 +75,6 @@ opinion:
     from the perspective of being a theme developer and major fan of
     static sites.
   related_tags: ["wordpress", "hybrid-sites"]
-  feed: /archive/opinion/
 
 interactive-features:
   summary: >
@@ -90,7 +84,6 @@ interactive-features:
     of bringing them to static sites using the means we have available,
     like functions and Deno Deploy.
   related_tags: ["hybrid-sites"]
-  feed: /archive/interactive-features/
 
 static-sites:
   summary: >
@@ -107,12 +100,11 @@ static-sites:
     The developer of this theme believes that most sites on the internet
     today can be at least partly static.
   related_tags: ["hybrid-sites", "wordpress", "lume-3"]
-  feed: /archive/static-sites/
 
 v0.0.1:
   summary: >
     This is the very first release of Cushy Text, with the first release
     candidate planned for release the first week of April, 2025.
   related_tags: ["announcements", "updates"]
-  feed: /archive/v0-0-1/
+
   
