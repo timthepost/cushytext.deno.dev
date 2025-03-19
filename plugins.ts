@@ -74,6 +74,17 @@ export default function (userOptions?: Options) {
         output: ["/docs/feed.xml", "/docs/feed.json"],
         query: "waypoint=%theme-docs%",
       }))
+      .use(feed(() => {
+        const unknownTags = site.search.values("tags");
+        const tags = unknownTags as string[];
+        return tags.map((tag) => ({
+          output: [`/feeds/tag/${tag}.xml`, `/feeds/tag/${tag}.json`],
+          query: tag,
+          info: {
+            title: `Tag feed for ${tag}`
+          }
+        }));
+      }))
       .use(mdx({ extensions: [".mdx"] }))
       .use(basePath())
       .use(purgecss())
