@@ -1,21 +1,60 @@
-<svg width="204" height="204" viewBox="0 0 204 204" fill="none" xmlns="http://www.w3.org/2000/svg">
-<style>
-  path { fill: black }
-  rect { fill: white }
-  @media (prefers-color-scheme: dark) {
-    path { fill: white }
-    rect { fill: black }
-  }
-</style>
-<g clip-path="url(#clip0_347_441)">
-<path d="M109.101 78.5092C94.3635 64.9692 81.938 53.5531 88.4027 27.2952C60.4821 61.9286 59.3798 73.4094 70.9216 102.953C78.555 122.515 68.0654 137.935 57.754 153.094C52.4869 160.838 47.2663 168.512 44.5314 176.636C30.8216 160.139 27.9976 144.342 30.8216 115.936C25.4552 132.474 17.7529 144.245 10.3272 155.594C10.1898 155.804 10.0525 156.014 9.91525 156.224L7.9476 159.228L6.01638 162.233C3.92324 165.524 1.89646 168.851 0 172.318V204H204V117.299C193.619 102.125 184.654 85.3552 184.654 58.6146C164.214 77.2349 161.12 96.4956 158.242 114.414C156.018 128.254 153.923 141.294 144.062 152.618C144.062 110.63 125.202 93.3021 109.101 78.5092Z"/>
-<path d="M90.0789 0V0.0182087C90.085 0.0255289 90.0912 0.0328444 90.0974 0.0401554C96.8483 14.6686 97.1207 24.0354 97.3552 32.1004C97.7228 44.7449 97.9974 54.1894 123.001 75.6946C119.59 64.5616 120.297 57.8549 120.947 51.6871C121.623 45.27 122.239 39.4363 118.091 29.808C113.247 18.5601 108.662 15.3807 103.113 11.5325C99.3461 8.92056 95.1351 6.00049 90.0974 0.0401554C90.0912 0.0267747 90.0851 0.0133896 90.0789 0Z"/>
-<path d="M58.8515 102.198C50.325 82.8507 48.7126 60.8179 56.1277 53.2612C37.5261 63.5583 23.4975 87.8308 33.7366 106.167C43.9848 124.504 46.1711 130.167 44.0759 154.002C44.7992 152.927 45.5196 151.865 46.2331 150.812C57.4069 134.329 66.8662 120.375 58.8515 102.198Z"/>
-<path d="M138.224 35.0982C135.582 32.9394 132.543 30.4559 129.049 27.4227C135.015 41.9862 133.894 52.3277 132.906 61.453C131.476 74.6505 130.321 85.3043 151.277 102.507C149.434 91.4006 151.127 84.2178 152.725 77.4388C154.042 71.848 155.295 66.5319 154.447 59.5159C152.933 47.1177 148.706 43.6636 138.224 35.0982Z"/>
-</g>
-<defs>
-<clipPath id="clip0_347_441">
-<rect width="204" height="204"/>
-</clipPath>
-</defs>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   id="svg5332"
+   viewBox="0 0 256.00007 256.00002"
+   height="72.248894mm"
+   width="72.248909mm">
+  <title
+     id="title6870">Cloud</title>
+  <defs
+     id="defs5334" />
+  <metadata
+     id="metadata5337">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Cloud</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Josh &quot;Cheeseness&quot; Bush</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:description>Originally created for the official shirt for the 2014 Open Source Developers' Conference held at Griffith University.</dc:description>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>cloud</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:date>2014-10-22</dc:date>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-362.5464,-406.21469)"
+     id="layer1">
+    <path
+       id="path10000"
+       d="m 465.83684,466.9869 c -18.8823,0 -37.6499,7.7751 -51.0017,21.127 -8.4122,8.4121 -14.6043,18.9734 -18.0383,30.3583 -8.2539,1.5581 -16.0492,5.5866 -21.9931,11.5304 -7.7473,7.7473 -12.2573,18.6331 -12.2573,29.5895 0,10.9565 4.51,21.8458 12.2573,29.5931 7.7474,7.7473 18.6367,12.2573 29.5931,12.2573 l 187.4365,0 c 6.9935,0 13.9453,-2.8775 18.8904,-7.8224 4.9452,-4.9451 7.8227,-11.8971 7.8227,-18.8906 0,-6.9935 -2.8775,-13.9417 -7.8227,-18.8868 -4.9147,-4.9149 -11.8119,-7.784 -18.7617,-7.8193 -1.3562,-12.6709 -7.0967,-24.867 -16.1148,-33.8851 -10.3847,-10.3847 -24.9798,-16.4314 -39.666,-16.4314 -3.5656,0 -7.1233,0.3656 -10.6192,1.0539 -2.5582,-3.8175 -5.4715,-7.3951 -8.7235,-10.6469 -13.3518,-13.3519 -32.1193,-21.127 -51.0017,-21.127 z"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;color-interpolation:sRGB;color-interpolation-filters:linearRGB;fill:#808080;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+  </g>
 </svg>
