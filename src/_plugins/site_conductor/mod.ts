@@ -87,7 +87,7 @@ export default function conductor(userOptions?: Options) {
     });
 
     
-    site.addEventListener("afterRender", async() => {
+    site.addEventListener("beforeBuild", async() => {
       const tagWiki : TagWikiData = await yaml(options.tag_wiki_path);
       for (const tagUnknown of site.search.values("tags")) {
         const tag = tagUnknown as string;
