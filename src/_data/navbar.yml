@@ -13,17 +13,13 @@ top_nav:
         href: /features/#interactive
         title: Content rating system, form processing and more!
 
-      - text: Component And Archetype Driven
-        href: /features/#components
-        title: A Detailed Overview Of How Lume3 Components Are Used
+      - text: Fully-Featured &amp; Optimized Blog
+        href: /features/#blog
+        title: A static blog configuration that rivals database driven blogs.
 
-      - text: Ready For Translations
-        href: /features/#localization
-        title: Strings are externalized, you supply the layout.
-
-      - text: Responsive And Accessible
-        href: /features/#responsive
-        title: Open Dyslexic if user prefers dyslexic-friendly font.
+      - text: Compact Documentation System
+        href: /features/#documentation
+        title: Upload your docs to a folder and the theme does the rest. Mostly.
 
   - type: "link"
     href: "/docs/"

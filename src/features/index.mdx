@@ -22,23 +22,49 @@ enough to try some components to ease the workload.
 These are the _main_ features, though there are perks built into unexpected
 places.
 
-<h2 id="documentation">A Mini Documentation Engine</h2>
+<h2 id="documentation">A Mini Documentation System</h2>
 
 Not as fully-featured as other software that uses the same CSS framework, but 
 more than adequate to organize a few directories of documentation with independent
-feeds and automatic layouts / sidebar generation.
+feeds and automatic layouts and flexible auto navigation generation.
 
 This is a work-in-progress, but already captures the essence of what I hoped to 
-accomplish in a single theme / design umbrella. 
+accomplish in a single theme / design umbrella. The goal for the first release
+is a documentation system that does a good job documenting this theme and itself.
 
-<h2 id="Fully Featured Blog">Fully Featured Blog</h2>
+We've passed that milestone, and more improvements are coming. 
 
-Complete with archives, feeds, tags with community-editable tag wiki, MDX and 
-everything else you need to get your writing in front of your audience. The 
-theme will soon support multiple, completely independent but globally searchable
-blogs and documentation instances. 
+<h2 id="blog">Fully Featured Blog</h2>
 
-<h2 id="responsive">Responsive &amp; Accessible</h2>
+The blog configuration brings a lot of robust features such as:
+
+ - Tag System
+ - Community-editable Tag Wiki Pages
+ - Per-Tag feed generation
+ - Archive page generation with pagination 
+ - Author page generation
+ - Blog Homepage (can be site homepage, if desired)
+ - Automatic OG Image Generation
+ - Code Syntax Highlighting
+ - MDX By Default
+ - Auto Image Resizing
+ - Interactive Content Rating System
+ - Archetype Driven
+
+Designed for anyone that needs to keep a steady stream of optimized content coming 
+to a community that wants to read it. Run multiple blogs if you need to separate 
+things like release notes from tutorial content.
+
+Want to write a new blog post?
+
+```bash
+> lume new blog "My New Blog"
+```
+
+You'll have a draft in `blog/` with all frontmatter filled out with defaults, and a 
+generated image based off of the title and description that will update as you edit.
+
+<h2 id="responsive">Fully Responsive &amp; Working On Accessible</h2>
 
 Infima makes creating 100% responsive themes easier than many frameworks, because it
 mostly handles it behind the scenes for you. The theme includes Infima CSS plus a 

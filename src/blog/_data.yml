@@ -6,4 +6,4 @@ tags: []
 blog:
   basedir: /blog/
   title: Cushy Text Blog
-  recent: 5
+  recent: 3
