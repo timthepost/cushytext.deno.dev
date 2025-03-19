@@ -17,12 +17,12 @@
       {{ if tag }}
         {{ if tagWiki[tag] }}
             <p class="margin-top--sm padding-top--md">
-              <a href="/feeds/tag/{{ tag }}.xml" class="navbar__link">
-                <span class="badge badge--warning" style="font-size: 12pt">"{{ tag }}" {{ locale.feeds.rss }}</span>
+              <a href="/feeds/tag/{{ tag }}.xml" class="navbar__link" title="Be notified of new content in the {{ tag }} tag.">
+                <span class="badge badge--warning padding--sm" style="font-size: 12pt">"{{ tag }}" {{ locale.feeds.rss }}</span>
               </a> 
               <span class="margin-horiz--sm">|</span>
-              <a href="/feeds/tag/{{ tag }}.json" class="navbar__link">
-                <span class="badge badge--success" style="font-size: 12pt">"{{ tag }}" {{ locale.feeds.json }}</span>
+              <a href="/feeds/tag/{{ tag }}.json" class="navbar__link" title="Be notified of new content in the {{ tag }} tag.">
+                <span class="badge badge--success padding--sm" style="font-size: 12pt">"{{ tag }}" {{ locale.feeds.json }}</span>
               </a>
             </p>
           <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
