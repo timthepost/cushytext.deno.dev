@@ -33,7 +33,7 @@ export const defaults: Options = {
   tag_wiki_path: "./src/_data/tagWiki.yml",
 };
 
-function cushyUpdate(msg: string): void {
+function _cushyUpdate(msg: string): void {
   log.info(`☁️⠀⠀${msg}`);
 }
 
@@ -74,10 +74,7 @@ export default function conductor(userOptions?: Options) {
     toc.innerHTML = tocListHTML;
   }
 
-  cushyUpdate("Starting up.");
-
   return (site: Site) => {
-    // TOC Generation should run pre-render
     site.addEventListener("beforeRender", () => {
       site.process([".html"], (pages) => {
         for (const page of pages) {
@@ -103,7 +100,6 @@ export default function conductor(userOptions?: Options) {
               title: `Tag feed for ${tag}`
             }
           }));
-          cushyUpdate(`Set up tag feeds for tag: ${tag} in ${tagWiki[tag].feed}`);
         }
       }
     });
