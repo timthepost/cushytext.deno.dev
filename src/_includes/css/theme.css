@@ -1438,12 +1438,12 @@ hr {
 }
 
 .breadcrumbs__item--active .breadcrumbs__link {
-  background: var(--ifm-breadcrumb-item-background-active);
+ /* background: var(--ifm-breadcrumb-item-background-active); */
   color: var(--ifm-breadcrumb-color-active);
 }
 
 .breadcrumbs__link {
-  border-radius: var(--ifm-breadcrumb-border-radius);
+  /* border-radius: var(--ifm-breadcrumb-border-radius); */
   color: var(--ifm-font-color-base);
   display: inline-block;
   font-size: calc(1rem * var(--ifm-breadcrumb-size-multiplier));
@@ -1463,17 +1463,17 @@ hr {
 .breadcrumbs__link:link:hover,
 .breadcrumbs__link:visited:hover,
 area[href].breadcrumbs__link:hover {
-  background: var(--ifm-breadcrumb-item-background-active);
+  /* background: var(--ifm-breadcrumb-item-background-active); */
   text-decoration: none;
 }
 
 .breadcrumbs__link:-moz-any-link:hover {
-  background: var(--ifm-breadcrumb-item-background-active);
+  /* background: var(--ifm-breadcrumb-item-background-active); */
   text-decoration: none;
 }
 
 .breadcrumbs__link:any-link:hover {
-  background: var(--ifm-breadcrumb-item-background-active);
+/*  background: var(--ifm-breadcrumb-item-background-active); */
   text-decoration: none;
 }
 
