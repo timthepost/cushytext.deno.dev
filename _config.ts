@@ -15,7 +15,8 @@ const site = lume({
 site.use(plugins());
 
 site.use(feed(() => {
-  const tags = site.search.values("tags");
+  const unknownTags = site.search.values("tags");
+  const tags = unknownTags as string[];
   return tags.map((tag) => ({
     output: [`/feeds/tag/${tag}.xml`, `/feeds/tag/${tag}.json`],
     query: tag,
