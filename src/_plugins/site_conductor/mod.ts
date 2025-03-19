@@ -75,18 +75,17 @@ export default function conductor(userOptions?: Options) {
   }
 
   return (site: Site) => {
-    site.addEventListener("beforeRender", () => {
-      site.process([".html"], (pages) => {
-        for (const page of pages) {
-          generateTOC(
-            options.toc_container,
-            options.toc_selector,
-            options.toc_heading_selectors,
-            page.document,
-          );
-        }
-      });
+    site.process([".html"], (pages) => {
+      for (const page of pages) {
+        generateTOC(
+          options.toc_container,
+          options.toc_selector,
+          options.toc_heading_selectors,
+          page.document,
+        );
+      }
     });
+
     
     site.addEventListener("afterRender", async() => {
       const tagWiki : TagWikiData = await yaml(options.tag_wiki_path);
