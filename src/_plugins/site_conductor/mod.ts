@@ -90,8 +90,8 @@ export default function conductor(userOptions?: Options) {
     
     site.addEventListener("afterRender", async() => {
       const tagWiki : TagWikiData = await yaml(options.tag_wiki_path);
-      for (const tagObject of site.search.values("tags")) {
-        const tag = tagObject as string;
+      for (const tagUnknown of site.search.values("tags")) {
+        const tag = tagUnknown as string;
         if (tagWiki && tagWiki[tag].feed) {
           site.use(feed({
             output: [ `${tagWiki[tag].feed}feed.xml`, `${tagWiki[tag].feed}feed.json` ],
