@@ -61,7 +61,7 @@
       </div>
       {{ if docs.sidebar === "auto" }}
         {{ if docs.guest }}
-      <h3 class="margin-vert--md">{{ docs.guest.heading }}</h3>
+      <h4 class="margin-vert--md">{{ docs.guest.heading }}</h4>
       <div class="menu thin-scrollbar margin-top--xs">
         <ul class="menu__list">
           {{ for entry of search.pages(`waypoint=${docs.guest.waypoint} menu.visible=true`, 
