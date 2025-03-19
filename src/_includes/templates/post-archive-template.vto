@@ -17,13 +17,13 @@
       {{ if tag }}
         {{ if tagWiki[tag] }}
           {{ if tagWiki[tag].feed }}
-            <p class="margin-top--sm">
+            <p class="margin-top--sm padding-top--md">
               <a href="feed.xml" class="navbar__link">
-                <span class="badge badge--warning" style="font-size: 12pt">TAG {{ locale.feeds.rss }}</span>
+                <span class="badge badge--warning" style="font-size: 12pt">"{{ tag }}" {{ locale.feeds.rss }}</span>
               </a> 
               <span class="margin-horiz--sm">|</span>
               <a href="feed.json" class="navbar__link">
-                <span class="badge badge--success" style="font-size: 12pt">TAG {{ locale.feeds.json }}</span>
+                <span class="badge badge--success" style="font-size: 12pt">"{{ tag }}" {{ locale.feeds.json }}</span>
               </a>
             </p>
           {{ /if }}
