@@ -1,0 +1,39 @@
+#!/bin/zsh
+# use: source ./envoloader 
+# Will load .env-* files into your current environment.
+
+# Set the default filename. Change this if your file has a different name.
+ENV_FILE="${1:-.env-local}"
+
+# Check if the file exists
+if [[ ! -f "$ENV_FILE" ]]; then
+  echo "Error: $ENV_FILE not found."
+  exit 1
+fi
+
+# Read the file line by line
+while IFS= read -r line; do
+  # Skip empty lines and comments
+  if [[ -z "$line" || "$line" == \#* ]]; then
+    continue
+  fi
+
+  # Split the line into key and value based on the first '='
+  IFS='=' read -r key value <<< "$line"
+
+  # Remove leading/trailing whitespace from key and value
+  key=$(echo "$key" | xargs)
+  value=$(echo "$value" | xargs)
+
+  # Handle quoted values (single or double)
+  if [[ "$value" == \'\'*\' || "$value" == \"\"*\" ]]; then
+      value=${value:1:-1}
+  fi
+
+  # Export the variable, handling variable expansion in values
+    if [[ -n "$key" ]]; then
+        export "$key=$value"
+    fi
+done < "$ENV_FILE"
+
+echo "Environment variables loaded from $ENV_FILE"
