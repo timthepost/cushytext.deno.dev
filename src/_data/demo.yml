@@ -23,9 +23,10 @@ goals:
     href: /features/#interactive
     cta: Other Interactive Ideas
 
-  - title: Fully Responsive &amp; Localized.
+  - title: SEO Fundamentally Baked-In
     body: |
-      And, translation-ready! Infima makes creating responsive sites very easy,
-      so that reading your content is as comfortable as it can be for as many as possible.
-    href: /features/#responsive
-    cta: More About Responsiveness
+      SEO plugin catches dozens of mistakes Markdown authors are likely to make; 
+      generates a report for every build. Fully-responsive design means users have 
+      a great experience.
+    href: /features/#simple-seo
+    cta: More about SEO & Responsiveness

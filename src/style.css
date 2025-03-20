@@ -150,7 +150,9 @@
 }
 
 .menu__link--active {
-  padding-left: 0.75em;
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 1em 0 1em .75em;
 }
 
 /* Hide various things on smaller screens */
