@@ -1438,7 +1438,7 @@ hr {
 }
 
 .breadcrumbs__item--active .breadcrumbs__link {
- /* background: var(--ifm-breadcrumb-item-background-active); */
+  /* background: var(--ifm-breadcrumb-item-background-active); */
   color: var(--ifm-breadcrumb-color-active);
 }
 
@@ -1473,7 +1473,7 @@ area[href].breadcrumbs__link:hover {
 }
 
 .breadcrumbs__link:any-link:hover {
-/*  background: var(--ifm-breadcrumb-item-background-active); */
+  /*  background: var(--ifm-breadcrumb-item-background-active); */
   text-decoration: none;
 }
 

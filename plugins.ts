@@ -81,8 +81,8 @@ export default function (userOptions?: Options) {
           output: [`/feeds/tag/${tag}.xml`, `/feeds/tag/${tag}.json`],
           query: tag,
           info: {
-            title: `Tag feed for ${tag}`
-          }
+            title: `Tag feed for ${tag}`,
+          },
         }));
       }))
       .use(mdx({ extensions: [".mdx"] }))
@@ -130,7 +130,7 @@ export default function (userOptions?: Options) {
           },
         ],
       }))
-      .use(ogImages({ options: { width: 1200, height: 630 }}))
+      .use(ogImages({ options: { width: 1200, height: 630 } }))
       .use(pagefind({
         ui: {
           containerId: "search",

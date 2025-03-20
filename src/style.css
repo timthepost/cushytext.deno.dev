@@ -119,7 +119,7 @@
   color: #333;
 }
 
-.modal input[type=text] {
+.modal input[type="text"] {
   color: #333;
 }
 
@@ -150,7 +150,7 @@
 }
 
 .menu__link--active {
-  padding-left: .75em;
+  padding-left: 0.75em;
 }
 
 /* Hide various things on smaller screens */
@@ -183,4 +183,3 @@
     width: 85%;
   }
 }
-

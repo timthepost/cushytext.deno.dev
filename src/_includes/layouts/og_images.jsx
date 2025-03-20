@@ -16,7 +16,9 @@ export default function ({ title, description }) {
         color: "#ffffff",
       }}
     >
-      <div style={{ marginTop: 20, fontSize: 40, fontWeight: 700 }}>{title}</div>
+      <div style={{ marginTop: 20, fontSize: 40, fontWeight: 700 }}>
+        {title}
+      </div>
       <svg
         fill="#3578e5"
         height="300"

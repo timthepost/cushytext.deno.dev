@@ -9,9 +9,10 @@ hero:
 goals:
   - title: Comfortable To Build With.
     body: |
-      Easy components. Easy interactive features. Just enough structure. Forgiving MDX lets
-      you "just get it done" with an easy framework well-known for handling enormous amounts
-      of text.
+      MDX powered by Lume 3's new <a href="https://github.com/oscarotero/ssx" target="_blank">SSX</a>
+      engine runs blazing fast. Need more control? Just use <a href="https://vento.js.org/" target="_blank">Vento</a>.
+      All with the convenience of <a href="">Infima</a> components, which are being turned into Lume 3
+      components.
     href: /features/#components
     cta: More On Components
 
@@ -22,9 +23,9 @@ goals:
     href: /features/#interactive
     cta: Other Interactive Ideas
 
-  - title: Accessible & Responsive.
+  - title: Fully Responsive &amp; Localized.
     body: |
       And, translation-ready! Infima makes creating responsive sites very easy,
       so that reading your content is as comfortable as it can be for as many as possible.
     href: /features/#responsive
-    cta: More About Accessibility
+    cta: More About Responsiveness

@@ -53,7 +53,7 @@ wordpress:
     general in the form of tutorials and thought pieces, so naturally we
     want to cover the world's most popular CMS!
   related_tags: ["hybrid-sites"]
-  
+
 lume-3:
   summary: >
     Lume 3 is the core of this theme, is definitely the most flexible
@@ -93,7 +93,7 @@ static-sites:
 
 
     Static sites are efficient and inexpensive to host on simple, often
-    free platforms, and have a much lower environmental impact than 
+    free platforms, and have a much lower environmental impact than
     sites that are generated dynamically on every request.
 
 
@@ -106,5 +106,3 @@ v0.0.1:
     This is the very first release of Cushy Text, with the first release
     candidate planned for release the first week of April, 2025.
   related_tags: ["announcements", "updates"]
-
-  
