@@ -45,13 +45,14 @@
       </div>
       <h3 class="toc-heading">{{ locale.documentation.toc_heading }}</h3>
       <div id="toc"></div>
-      <h3 class="margin-vert--md">{{ docs.title || locale.documentation.topics }}:</h3>
+      <h3 class="margin-vert--md" id="docs-nav-header">{{ docs.title || locale.documentation.topics }}:</h3>
       <div class="menu thin-scrollbar margin-top--xs">
         <ul class="menu__list">
         {{ if docs.sidebar === "auto" }}
           {{ for entry of search.pages(`url^=${docs.basedir}`, "menu.order") }}
             <li class="menu__list--item">
-              <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
+              {{ set isActive = entry.url === url }}
+              <a class="{{ if isActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ entry.url }}">{{ entry.title }}</a>
             </li>
           {{ /for }}
         {{ else }}

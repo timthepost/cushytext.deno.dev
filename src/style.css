@@ -149,6 +149,10 @@
   margin-left: -10px;
 }
 
+.menu__link--active {
+  padding-left: .75em;
+}
+
 /* Hide various things on smaller screens */
 @media (max-width: 976px) {
   /* Top nav logo */
