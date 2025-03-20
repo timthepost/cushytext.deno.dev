@@ -134,8 +134,8 @@ export default function (userOptions?: Options) {
       .use(pagefind({
         ui: {
           containerId: "search",
-          showImages: true,
-          showEmptyFilters: true,
+          showImages: false,
+          showEmptyFilters: false,
           resetStyles: true,
         },
       }))
