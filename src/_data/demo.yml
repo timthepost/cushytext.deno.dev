@@ -11,7 +11,7 @@ goals:
     body: |
       MDX powered by Lume 3's new <a href="https://github.com/oscarotero/ssx" target="_blank">SSX</a>
       engine runs blazing fast. Need more control? Just use <a href="https://vento.js.org/" target="_blank">Vento</a>.
-      All with the convenience of <a href="">Infima</a> components, which are being turned into Lume 3
+      All with the convenience of <a href="https://infima.dev">Infima</a> components, which are being turned into Lume 3
       components.
     href: /features/#components
     cta: More On Components
