@@ -1,5 +1,5 @@
 ---
-title: More Features Than You'd Expect From A Mere Theme!
+title: More Features Than You'd Expect From A Theme!
 layout: layouts/page.vto
 description: Features Of Cushy Text - An Infima-Powered, Interactive, Responsive & Accessible Theme For Lume 3+
 menu:
@@ -22,49 +22,135 @@ enough to try some components to ease the workload.
 These are the _main_ features, though there are perks built into unexpected
 places.
 
-<h2 id="documentation">A Mini Documentation System</h2>
-
-Not as fully-featured as other software that uses the same CSS framework, but 
-more than adequate to organize a few directories of documentation with independent
-feeds and automatic layouts and flexible auto navigation generation.
-
-This is a work-in-progress, but already captures the essence of what I hoped to 
-accomplish in a single theme / design umbrella. The goal for the first release
-is a documentation system that does a good job documenting this theme and itself.
-
-We've passed that milestone, and more improvements are coming. 
-
-<h2 id="blog">Fully Featured Blog</h2>
+<h2 id="blog">A Fully-Featured, Interactive & SEO Optimized Blog</h2>
 
 The blog configuration brings a lot of robust features such as:
 
- - Tag System
- - Community-editable Tag Wiki Pages
- - Per-Tag feed generation
- - Archive page generation with pagination 
- - Author page generation
- - Blog Homepage (can be site homepage, if desired)
- - Automatic OG Image Generation
- - Code Syntax Highlighting
- - MDX By Default
- - Auto Image Resizing
- - Interactive Content Rating System
- - Archetype Driven
+ - Tagging & Community Tag Wiki System
 
-Designed for anyone that needs to keep a steady stream of optimized content coming 
-to a community that wants to read it. Run multiple blogs if you need to separate 
-things like release notes from tutorial content.
+ - RSS/JSON Feeds for all posts, as well as individual, ***per-tag*** feeds.
 
-Want to write a new blog post?
+ - Archive Pages For Posts, Authors & Tags  
+
+ - Blog Homepage, which can become the site homepage if you want.
+
+ - Automatic OG Image Generation. Built for writing tutorial-style content as well
+   as essays. 
+ 
+ - Code Syntax Highlighting with MDX lets you use a wide variety of components.
+
+ - Auto Image Resizing: Upload blog images to `uploads` and _fahhhhhhh-get about it._
+
+ - Interactive Content Rating System Powered by DenoKV, Discord, GH Issues or whatever
+   you want to use to receive the feedback. Includes DenoKV and Discord by default.
+
+ - Uses Lume's archetype scripts for new content creation.
+
+ - Multi-instance capable: Uses "waypoints" to bucket content by blog installs for navigation
+   and search discernment.
+
+ - ***Is still in very active development; more features are coming.***
+
+The blog is designed with a lone technical community manager or product marketing manager
+in mind, and has everything they'd want to handle things from release notes all the way to 
+tutorial and thought leadership content. 
+
+Yes, documentation and landing pages are important parts of any kind of user or community
+portal, which is the primary use-case for Cushy Text, but the blog is where many new groups
+tend to spend the majority of their time in content development.
+
+Speaking of new content development, do you want to write a new blog post? Just do this:
 
 ```bash
 > lume new blog "My New Blog"
 ```
 
 You'll have a draft in `blog/` with all frontmatter filled out with defaults, and a 
-generated image based off of the title and description that will update as you edit.
+generated image based off of the title and description that will update as you edit
+in serve mode. The creation experience is as important as the reading experience, from
+the theme's perspective.
 
-<h2 id="responsive">Fully Responsive &amp; Working On Accessible</h2>
+<h2 id="documentation">A Bare Bones But Effective Documentation System</h2>
+
+Documentation is written like blog posts, with a few key differences:
+
+ - You set your own H1 heading in the document (in blogs, this is automatic)
+
+ - The sidebar is auto-generated based on file / title / menu order that 
+   you control in frontmatter via `menu.order` and `menu.visible` for pages
+   you want generated but not linked.
+
+ - No archive pages are generated. While tags can be applied to documentation
+   files, they aren't really used in the UI outside of search. You can of course
+   change that.
+
+But like Blogs, Documentation also has features that make your life as the 
+site maintainer easier:
+
+ - Multi-instance and independent with very minimal configuration (a few fields in `_data.yml`).
+
+ - Waypoint-isolated so you can bring docs from specific sections of your site 
+   into different feeds and navigation. Grab documentation from `%api-docs%` or 
+   `%quickstart-tips%` or `%javascript-sdk%` easily.
+
+ - Automatic search via Pagefind
+
+ - Content rating system so users can give direct feedback
+
+ - SEO Optimized 
+
+ - MDX With whatever plugins you'd like to bring beyond the default that come with 
+   Infima CSS.
+
+ - Can also bring in content from other parts of the site  (e.g. release notes blog)
+
+The bar for the Documentation feature to reach in order to be deemed worthy of inclusion
+is its ability to document itself and the rest of the theme, which I think it managed to 
+meet quite a few revisions and additional features ago.
+
+It's still under active development, but I think the focus is more on perfecting the
+features it has, not adding more. It's not supposed to outgrow something you can plop
+in a directory and control with a _very minimal_ amount of YAML in whatever directories
+you use it.
+
+Like blogs, you'll be able to create a new documentation entry easily from templates 
+that the theme provides, but some work will have to go into managing paths of installs
+for those that have many and need to specify a destination. That's outside the scope
+of the current `lume` CLI script.
+
+<h2 id="simple-seo">A Comprehensive Static Analysis SEO Plugin</h2>
+     
+The theme handles setting up your content with all of the frontmatter present and
+even pre-configured with default values where it makes sense. And, when you publish,
+Lume makes sure that all of your content is presented _exactly_ as the theme designed
+it, so it looks great on all screens.
+
+But it's us pesky humans who write content, and forget or exceed certain things that 
+make search robots not like our content very much, and all that planning gets wasted.
+
+That's why the theme includes a plugin that runs a _lot_ of comprehensive checks on 
+your content such as:
+
+ - Meta information presence, length, percentage of common words
+
+ - Content length checks (titles and content-body separately) as well as common 
+   word density analysis in important fields like titles and descriptions
+
+ - Checks on images and other HTML elements to be sure all properties are set correctly 
+   (alt, title)
+
+ - Checks to make sure the semantic document structure is correct (headings in order, 
+   one main idea per page, etc)
+
+It's not possible to produce a plugin that can forever guarantee amazing SEO results 
+or make magic promises, and I'd caution anyone to treat anything that did with extreme
+skepticism. Search engines are proprietary black boxes, so SEO is basically religion 
+you can grok with meaningful coincidence.
+
+This plugin just helps make sure you're not getting in your own way with common mistakes,
+so your content has a fair chance. 
+
+<h2 id="responsive">Fully Responsive &amp; Working On Becoming Fully-Accessible</h2>
 
 Infima makes creating 100% responsive themes easier than many frameworks, because it
 mostly handles it behind the scenes for you. The theme includes Infima CSS plus a 
@@ -75,18 +161,24 @@ This theme also features light and dark themes with auto detection, the ability 
 toggle [Open Dyslexic](https://opendyslexic.org) for long blocks of content, which
 you can apply by just adding a `font-selectable` class to the text container.
 
-There's still some labels and roles to sort out in the early version, as the structure
-settles down, but accessibility and responsiveness are major goals.
+Now that _major_ development has slowed and the structure of the pages themselves
+isn't changing drastically every day, the process of "finishing" the markup is 
+under way, where special attention is also paid to labels that help guide readers 
+as well as tab index settings that help keyboard navigation. Help in this area is 
+greatly appreciated for anyone looking to work on something.
 
-<h2 id="interactive">Includes Interactive Features!</h2>
+<h2 id="interactive">Static Doesn't Have To Mean Stagnate! Interactive Stuff Is Included!</h2>
 
-When it ships, it will come with features that get user feedback and store it in a 
-DenoKV database. Things that ask _Did this help you?_ with the option to add 
-free-form feedback. This is powered by the new Router middleware in Lume 3, so no 
-edge functions are needed!
+The first two features to offer interactive engagement experiences will be a content rating
+system [similar to the one on Tim's site](https://timthepost.deno.dev/) that uses a universal
+interface so you can pick your own storage backend. I'll include examples of inserting the 
+data into a DenoKV database, as well as posting the feedback to a Discord channel. 
 
-Check out the [blog update about additional features](/blog/interactive-feature-plans/) that are likely to also ship
-with the early release candidates!
+There will also be a generic contact form handler with a reasonable level of protection around
+it that you can use for receiving data from practically anything else. 
+
+Check out the [blog update about additional features](/blog/interactive-feature-plans/) 
+that are likely to also ship with the early release candidates!
 
 <h2 id="localization">Ready For Translation</h2>
 
