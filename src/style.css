@@ -48,7 +48,7 @@
 
 /* Example of adapting design to a font-switch */
 .homepage_card {
-  min-height: 250px;
+  min-height: 260px;
 }
 
 [data-font="user"] {
