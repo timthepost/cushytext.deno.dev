@@ -21,7 +21,7 @@ top_nav:
         href: /features/#documentation
         title: Upload your docs to a folder and the theme does the rest. Mostly.
 
-      - text: SEO Baked-In The Component Level
+      - text: SEO Baked-In At The Component Level
         href: /features/#simple-seo
         title: It can't work magic, but it can keep you from making common mistakes.
 
