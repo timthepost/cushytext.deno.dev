@@ -3663,6 +3663,7 @@
     "https://cdn.jsdelivr.net/gh/lumeland/lume@fd8d9c9fafe265fdd2f8d6ac80935fd8f8c48f55/plugins/favicon.ts": "98e69b4ae78d9e868dfd2024c414ee2cfe3edc1ded07e63a6e7a3ca45f852b09",
     "https://cdn.jsdelivr.net/gh/lumeland/lume@fd8d9c9fafe265fdd2f8d6ac80935fd8f8c48f55/plugins/feed.ts": "435353560e83412e6feb6d868fec30c0fb81d0433fe4720b55b80156b781fbb7",
     "https://cdn.jsdelivr.net/gh/lumeland/lume@fd8d9c9fafe265fdd2f8d6ac80935fd8f8c48f55/plugins/icons.ts": "de11277acc85e2d882e21a88ab44c454bd9ea3dbf02cfe60efffef0cdd5a8996",
+    "https://cdn.jsdelivr.net/gh/lumeland/lume@fd8d9c9fafe265fdd2f8d6ac80935fd8f8c48f55/plugins/inline.ts": "737d7de09d196476b55ecbe7ddb0e651ba2d5d39ca5a418cb15ff48e124907c1",
     "https://cdn.jsdelivr.net/gh/lumeland/lume@fd8d9c9fafe265fdd2f8d6ac80935fd8f8c48f55/plugins/json.ts": "5c49499e56b919ec848d4118ec97dd4fe0a323a6cc4c648dc45ab55297614c12",
     "https://cdn.jsdelivr.net/gh/lumeland/lume@fd8d9c9fafe265fdd2f8d6ac80935fd8f8c48f55/plugins/markdown.ts": "7e82d897c1e35bf119dcd18b6aec7a6ba5aa06848897b34ff9cd161ec7c8757e",
     "https://cdn.jsdelivr.net/gh/lumeland/lume@fd8d9c9fafe265fdd2f8d6ac80935fd8f8c48f55/plugins/mdx.ts": "f8494dce37bbb651e63fa4b40c97ab864b05f5368318cf56bf28388d4b5e8717",

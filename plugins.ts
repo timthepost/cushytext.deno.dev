@@ -23,6 +23,7 @@ import checkUrls from "lume/plugins/check_urls.ts";
 import slugifyUrls from "lume/plugins/slugify_urls.ts";
 import sourceMaps from "lume/plugins/source_maps.ts";
 import pagefind from "lume/plugins/pagefind.ts";
+import inline from "lume/plugins/inline.ts";
 import conductor from "./src/_plugins/site_conductor/mod.ts";
 
 import "lume/types.ts";
@@ -105,6 +106,7 @@ export default function (userOptions?: Options) {
           "œ": "oe",
         },
       }))
+      .use(inline())
       .use(minifyHTML())
       .use(terser({ options: { module: false } }))
       .use(brotli())
