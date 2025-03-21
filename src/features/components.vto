@@ -17,54 +17,12 @@ having a handy way of showing the components. It's not linked anywhere.</p>
 will be gone before production, or at least re-vamped into an actual page. For now, use it as needed.</p>
 
 <h3>Alerts:</h3>
-<div class="alert alert--primary margin-bottom--md" role="alert">
-<button aria-label="Close" class="clean-btn close" type="button">
-    <span aria-hidden="true" class="close">&times;</span>
-</button>
-This is a
-<strong>primary</strong>
-alert. You should probably pay attention to it.
-</div>
-<div class="alert alert--secondary margin-bottom--md" role="alert">
-<button aria-label="Close" class="clean-btn close" type="button">
-    <span aria-hidden="true" class="close">&times;</span>
-</button>
-This is a
-<strong>secondary</strong>
-alert. It's not too important, you may ignore it.
-</div>
-<div class="alert alert--success margin-bottom--md" role="alert">
-<button aria-label="Close" class="clean-btn close" type="button">
-    <span aria-hidden="true" class="close">&times;</span>
-</button>
-This is a
-<strong>success</strong>
-alert. Something good must have happened!
-</div>
-<div class="alert alert--info margin-bottom--md" role="alert">
-<button aria-label="Close" class="clean-btn close" type="button">
-    <span aria-hidden="true" class="close">&times;</span>
-</button>
-This is an
-<strong>info</strong>
-alert. For your information only.
-</div>
-<div class="alert alert--warning margin-bottom--md" role="alert">
-<button aria-label="Close" class="clean-btn close" type="button">
-    <span aria-hidden="true" class="close">&times;</span>
-</button>
-This is a
-<strong>warning</strong>
-alert. Be warned, you should pay attention!
-</div>
-<div class="alert alert--danger margin-bottom--md" role="alert">
-<button aria-label="Close" class="clean-btn close" type="button">
-    <span aria-hidden="true" class="close">&times;</span>
-</button>
-This is a
-<strong>danger</strong>
-alert. Something has gone wrong, please investigate!
-</div>
+{{ for alertType of ['primary', 'secondary', 'success', 'warning', 'danger' ] }}
+    {{ await comp.alert({ 
+        type: `${alertType}`,
+        message: `**This is an alert type: _${alertType}_ alert.** You can pass this message as markdown and it will render.`, 
+        allowDismiss: true }) }}
+{{ /for }}
 
 <h3 class="margin-top--lg">Badges, Buttons, Button Groups &amp; Pills:</h3>
 
