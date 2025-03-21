@@ -1,0 +1,60 @@
+<div id="page-feedback" data-lume-basename="{{ basename }}">
+    <div class="card">
+        <div class="card__header">
+            <p>
+            This was a <strong>5</strong> minute read; was it a good use of your time?
+            </p>
+        </div>
+        <form id="page-feedback-form">
+            <label
+                id="page-feedback-label" 
+                for="page-feedback-comment" 
+                name="page-feedback-comment">Do you have thoughts on how we could do better?</label>
+            <div class="feedback__bumper">
+                <p id="page-feedback-remaining-characters">Characters Remaining: 1234</p>
+            </div>
+            <textarea id="page-feedback-comment"></textarea>
+            <div class="feedback__bumper">
+                 <button 
+                    id="page-feedback-clear"
+                    class="button button--md button--warning margin-right--sm">Clear
+                </button>               
+                <button 
+                    id="page-feedback-submit"
+                    class="button button--md button--primary">Submit
+                </button>
+            </div>
+        </form>
+        <div class="card__footer">
+            <div class="button-group button-group--block">
+                <button 
+                    class="button button--lg button--secondary page-feedback-vote"
+                    data-vote-weight="1">
+                    <img
+                        alt="Thumbs Up"
+                        title="Yes!"
+                        src="{{ "thumbs-up"  |> icon("fontawesome") }}">
+                </button>
+                 <button 
+                    class="button button--lg button--secondary page-feedback-vote"
+                    data-vote-weight="0">
+                    <img 
+                        alt="Ambivalent Face"
+                        title="Meh ..."
+                        src="{{ "face-meh"  |> icon("fontawesome") }}">
+                </button>
+                <button
+                    class="button button--lg button--secondary page-feedback-vote"
+                    data-vote-weight="-1">
+                    <img 
+                        alt="Thumbs Down"
+                        title="No!"                    
+                        src="{{ "thumbs-down"  |> icon("fontawesome") }}">
+                </button>               
+            </div>
+        </div>
+    </div>
+</div>
+<div id="page-feedback-submitted" data-lume-basename="{{ basename }}">
+<!-- thanks  goes here -->
+</div>
