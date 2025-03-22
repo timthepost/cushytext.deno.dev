@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
   clear.addEventListener("click", function(event) {
     event.preventDefault();
     comment.value = "";
+    label.textContent = "Was reading this article a good use of your time?";
     voteButtons.forEach((button) => {
       button.classList.remove("button--info");
       button.classList.add("button--secondary");
@@ -27,17 +28,15 @@ document.addEventListener("DOMContentLoaded", function() {
     button.addEventListener("click", function(event) {
       event.preventDefault();
       const vote = parseInt(button.dataset.vote);
-      console.log(vote);
       form.style.display = "block";
       header.style.display = "none";
-
-      // Remove styling from previously selected button
+      submit.disabled = true;
+      
       if (selectedButton) {
         selectedButton.classList.remove("button--info");
         selectedButton.classList.add("button--secondary");
       }
 
-      // Add styling to the currently selected button
       button.classList.remove("button--secondary");
       button.classList.add("button--info");
       selectedButton = button;
