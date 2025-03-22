@@ -1,0 +1,123 @@
+---
+title: An Update On Component Strategy For The 0.0.1 Release
+description: Infima Component CSS Will Be Loaded; Components Building On Them Auto-Load.
+date: 2025-03-22
+author: Tim Post
+draft: true
+menu:
+  visible: true
+  order: 0
+tags:
+  - 0.0.1
+  - updates
+metas:
+  lang: en
+  description: An update on how components will be structured and expected in the theme, most notably relaxing the requirement of backfilling all of the Infima components with Lume 3 wrappers.
+  tags:
+    - Lume Themes
+    - Infima CSS
+    - Loadable Javascript Components
+    - Loadable CSS Components
+    - Themes For Lume
+  image: /blog/0-0-1-component-strategy-update/index.png
+  robots: true
+  generator: true
+---
+
+With waist-deep work on components underway, I'm starting to realize that 
+the goals of separating out all of the CSS of all of the existing Infima 
+components is just not practical. What it would likely do is just add an 
+additional several dozen theme variables to make up for all of the places
+where things like border colors, radius, and other extremely repetitive 
+things are shared.
+
+It **can** be done. As in, we could ship just the Infima design and spacing
+elements and variables and dynamically load _all_ of the rest as it's used
+but it's less than 100kb in total and it would require maintaining a separate
+compatibility fork with everything loaded, or we break compatibility for 
+those that have existing content. 
+
+<img
+  class="blog_image"
+  src="/blog/0-0-1-component-strategy-update/index.png" 
+  alt="Component Strategy Update" 
+  title="Let's call this one 'forced simplification'" />
+
+There's _also_ the issue of, not every Infima component is most conveniently 
+accessed _exclusively_ with a plugin: buttons, badges, even pills are mostly
+stand-alone. And, importing markup from other Infima sites would be broken
+unless you used the compatibility theme I'd need to maintain. Only alerts
+and tabs _really_ lend to the model, as much as it seemed like the others did too.
+
+So here's what I decided: We'll just load the Infima component CSS. We have 
+plugins removing unused classes anyway. But, ***all the stuff built using 
+those components will be Lume 3 components.*** Examples are the `comp.feedback()`
+component I have brewing, plus Lume 2 style components that don't load css 
+or scripts in `_components/`.
+
+{/* more */} 
+  
+## You Can Still Component-ize The Infima Scripts
+
+Look at `_components/alert.vto`.
+
+If you wanted, you could easily turn that into
+`_components/alert/comp.vto` and move the accompanying `_includes/js/infima/alert.js`
+helper script that monitors for close events over to `_components/alert/script.js`. 
+
+This will cause Lume to understand that script needs to be loaded when the component 
+is invoked. You can do the same with some of the other scripts, but beware that they share
+some functionality, and have subtle dependencies.
+
+But if I did that _for everyone_, those who have existing Infima content would have 
+trouble bringing it over unless they had a file that loaded every component. That's
+silly, and not the good kind of silly.
+
+## New Components Adding Styles Or Scripts ***Must*** Use The Lume 3 System
+
+Let's say I'm writing a component that will return some styled block elements and 
+has a script the client needs to run to pull in some data to show.
+
+I would structure my component like this:
+
+```bash
+src/
+    _components/
+                widget/
+                      comp.vto
+                      style.CSS
+                      script.js
+```
+
+What's going to happen here is when `{{ await comp.widget() }}` is invoked the first
+time, Lume is going to put the contents of `widget/style.css` into `_site/style.css` 
+and the contents of `script.js` into `_site/script.js` (if you use the defaults).
+
+The template then loads those files, so it has any CSS and JS that was loaded along 
+the way by components while generating.
+
+However, ***if the component has no CSS or JS, just make it `_components/component.vto`
+instead***. Don't add complexity just to make it a certain shape, if you don't need to 
+load styles or scripts, just use the Vento template.
+
+## This Change Only Affects The Existing Infima CSS Code
+
+That's it. We're just loading all of the infima components as base CSS for our own components
+to use. We're not further-componentizing Infima (unless, as noted above, you want to!)
+
+It's your site, at the end of the day. Generate it the way you think it should be! I just
+can't take patches that make componentization of the framework itself "hegemony".
+
+Note that, it's not _usual_ to separate Infima components into individual files. It's just 
+technically _possible_ with some lifting and compatibility layers in place. It's just not 
+a good goal for this theme.
+
+## This Change Removes Complexity & Maintainer Grief
+
+People who have content with Infima markup and want to use Deno should always have an 
+easy path to this theme and breaking that would make me very sad. But at the same time,
+I don't want to maintain a "stripped down" version of the theme that gets further broken
+down the way the existing one currently does - that's just way too much work for me.
+
+So hopefully, you breathe a sigh of relief too, and look forward to making awesome 
+components with the Infima building blocks (and whatever else you bring to them!)
