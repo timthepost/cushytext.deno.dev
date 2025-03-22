@@ -17,7 +17,10 @@ having a handy way of showing the components. It's not linked anywhere.</p>
 <p>Think of it as a never-ending mess of stuff. It's been deleted and brought back a few times. It 
 will be gone before production, or at least re-vamped into an actual page. For now, use it as needed.</p>
 
-<h3>Alerts:</h3>
+<h2>Test Of comp.feedback</h2>
+{{ await comp.feedback({ basename: basename }) }}
+
+<h3 class="margin-top--md">Alerts:</h3>
 {{ for alertType of ['primary', 'secondary', 'success', 'warning', 'danger' ] }}
     {{ await comp.alert({ 
         type: `${alertType}`,
@@ -273,5 +276,3 @@ Produce colors like:
 <p>Font effects, transformations, weights and more all have shortcuts; see the 
 <a href="https://infima.dev/docs/utilities/text" target="_blank">Infima Docs</a>
 for more information. Just remember to watch out for dark mode.</p>
-
-{{ await comp.feedback({ basename: basename }) }}
