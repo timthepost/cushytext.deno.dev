@@ -165,16 +165,18 @@ or even Redis, if you wanted to host on your own VPS or use Netlify edge functio
 ## Component-Focused, But Not Strict 
 
 Infima CSS has a lot of individual components that can easily be broken out into smaller
-CSS files and small bits of helper Javascript so that they can be loaded only when needed. 
-This aligns perfectly with Lume 3's re-designed components, and for brand new sites, you
-get the satisfaction of knowing unused code never gets loaded.
+CSS files and small bits of helper Javascript so that they can be loaded only if needed.
 
-If you use Infima and want to port existing markup over, that's fine too - you can use a 
-version of the stylesheet that loads all of the component bits, so you can use the markup
-anywhere. 
+If using existing content isn't a concern, then you can pretty easily separate the 
+CSS and helper scripts into totally-pluggable components in Lume 3.
 
-In all honesty it's splitting hairs, because it's only a few hundred lines of CSS and JS
-combined, but _its the point, darn it!_
+All _new_ components, or components built on top of what Infima provides, are Lume 3
+components if they load additional CSS or scripts. 
+
+By default, the theme ships with all of Infima loaded, because the components only
+comprise a few KB and it removes complication for people importing infima content 
+from other platforms using the framework. You can, of course, change that pretty 
+easily.
 
 ## Loaded Like A Baked Potato With Plugins
 

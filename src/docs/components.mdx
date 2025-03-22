@@ -35,29 +35,31 @@ This is called in the index template with the following code:
 
 Neat, right?
 
-But it relies on a bunch of CSS and other stuff already being loaded. That's not always
-ideal on very large sites. What if all the CSS and JS needed to support it could be loaded
-on-demand as I used it?
+But it's not fun to develop css, JS and template code all in the same 
+file, nor is it advisable to have style sheets and scripts full of 
+code to support features that went away long ago, so wouldn't it be 
+more ideal if components could manage just that bare minimum for
+themselves?
 
 That would be really cool, and that's what's happening in Lume.
 
 ## New Component Layout In Lume 3
 
-Instead of just `_components/` with a bunch of files, we're moving to this structure:
+Instead of just `_components/` with a bunch of files, we're moving to this 
+structure:
 
 ```
   _components/
-      - _latestBlog
+      - siteComponent/
           - comp.vto
           - comp.css
           - comp.js
 ```
 
-So, when you used `comp.latestBlog()`, it would automatically load what it
-needs, no need to load all the styles for [all of the infima components and 
-helpers][2]. We'll still have a way for those who have existing code and 
-need all the styles to be global, but for new sites starting out, the goal 
-is very little unused template code.
+So, when you used `comp.siteComponent()`, it would automatically load what it
+needs. You can edit with working IDE highlighting, and your site doesn't 
+get loaded down with CSS from unused junk (we have plugins to strip away 
+unused classes anyway, but I digress).
 
 Optimization and removing unused classes is of course going to happen in 
 plugins, but there's still a lot of potential per-page savings. And, these
@@ -68,12 +70,25 @@ Right now, development is happening against `v3-dev`, which is actually
 rather stable, but there's a ton of new stuff for those not already caught 
 up.
 
-## The Goal: Infima Components Pluggable In This Scheme
+## The Goal: Lume 3 Style For Any Component That Loads Assets
 
-Eventually, all of the Infima components as well as things like tag 
-and navigation helpers will be available as components. When writing
-something that runs more than once, or in more than one place, think
-strongly about making it a component. 
+Eventually, the Infima components _that make sense_ as well as 
+things like tag and navigation helpers will be available as Lume 3 
+components. There's already some filling in.
+
+When writing something that runs more than once, or in more than one 
+place, think strongly about making it a component. If that component 
+loads css and / or JS in addition to Infima, ***it should be a Lume 3
+component***. Nothing will break horribly if you use the old style, 
+except the heart of the next maintainer.
+
+If your component doesn't load scripts or styles, just use the old-style
+components.
+
+It's not practical to write component wrappers around 100% of Infima,
+or significantly reduce its size by making its own component CSS 
+pluggable, and still be compatible with people who want to copy over
+existing content.
 
 The `pages` archetype is the last one to be finished, and it will be the 
 result of being able to produce real results with very little markup or
