@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("page-feedback-form");
   const voteButtons = document.querySelectorAll(".page-feedback-vote");
   const header = document.getElementById("page-feedback-header");
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   let selectedButton = null;
 
-  clear.addEventListener("click", function(event) {
+  clear.addEventListener("click", function (event) {
     event.preventDefault();
     comment.value = "";
     label.textContent = "Was reading this article a good use of your time?";
@@ -19,19 +19,19 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  submit.addEventListener("click", function(event) {
+  submit.addEventListener("click", function (event) {
     event.preventDefault();
     console.log("Soon. Not yet.");
   });
 
   voteButtons.forEach((button) => {
-    button.addEventListener("click", function(event) {
+    button.addEventListener("click", function (event) {
       event.preventDefault();
       const vote = parseInt(button.dataset.vote);
       form.style.display = "block";
       header.style.display = "none";
       submit.disabled = true;
-      
+
       if (selectedButton) {
         selectedButton.classList.remove("button--info");
         selectedButton.classList.add("button--secondary");

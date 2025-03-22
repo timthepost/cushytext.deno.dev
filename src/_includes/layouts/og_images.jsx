@@ -1,6 +1,6 @@
 /** @jsxImportSource npm:react@18.2.0 */
 
-export default function({ title, description }) {
+export default function ({ title, description }) {
   return (
     <div
       style={{

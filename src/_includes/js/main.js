@@ -9,11 +9,13 @@ function getLocalStorageOrDefault(key, defaultValue) {
 }
 
 const availableFonts = {
-  system: "system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans",
+  system:
+    "system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans",
   user: "opendyslexic",
 };
 
-const prefersDark = globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
+const prefersDark =
+  globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
 
 function syncColorTheme() {
   const html = document.documentElement;
@@ -57,7 +59,7 @@ function toggleUserFont() {
   syncUserFont();
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   alert(document.querySelectorAll(".alert"));
   buttonGroups(document.querySelectorAll(".button-group"));
   dropdowns(document.querySelectorAll(".dropdown"));

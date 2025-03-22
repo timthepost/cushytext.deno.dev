@@ -59,7 +59,8 @@ export default function conductor(userOptions?: Options) {
     headings.forEach((heading, index) => {
       const headingId = heading.id || `heading-${index}`;
       heading.id = headingId;
-      tocListHTML += `<li><a href="#${headingId}" class="${options.toc_link_class}">${heading.textContent}</a></li>`;
+      tocListHTML +=
+        `<li><a href="#${headingId}" class="${options.toc_link_class}">${heading.textContent}</a></li>`;
     });
     tocListHTML += "</ul>";
     toc.innerHTML = tocListHTML;
