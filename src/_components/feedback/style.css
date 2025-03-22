@@ -1,7 +1,8 @@
 #page-feedback {
     display: inline-block;
     max-width: 550px;
-    margin-top: 1.5em;
+    margin: 1.5em 0 0;
+
 }
 
 #page-feedback img {
@@ -37,4 +38,8 @@
     font-size: 10pt;
     font-weight: normal;
     margin-bottom: -1px;
+}
+
+#page-feedback-form {
+    display: none;
 }
