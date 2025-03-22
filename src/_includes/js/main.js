@@ -11,7 +11,7 @@ function getLocalStorageOrDefault(key, defaultValue) {
 const availableFonts = {
   system:
     "system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans",
-  user: "opendyslexic",
+  user: "OpenDyslexic",
 };
 
 const prefersDark =
