@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("page-feedback-form");
+  if (! form) {
+    return;
+  }
   const voteButtons = document.querySelectorAll(".page-feedback-vote");
   const header = document.getElementById("page-feedback-header");
   const label = document.getElementById("page-feedback-label");
@@ -8,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const submit = document.getElementById("page-feedback-submit");
 
   let selectedButton = null;
-
   clear.addEventListener("click", function (event) {
     event.preventDefault();
     comment.value = "";
