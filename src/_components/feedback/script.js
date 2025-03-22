@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const vote = parseInt(button.dataset.vote);
       form.style.display = "block";
       header.style.display = "none";
-      submit.disabled = true;
 
       if (selectedButton) {
         selectedButton.classList.remove("button--info");
@@ -50,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
           label.textContent = "Great! What could make this page even better?";
           break;
         default:
-          label.textContent = "No idea what " + vote + " is supposed to mean.";
           break;
       }
       comment.focus();

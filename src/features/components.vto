@@ -9,27 +9,23 @@ menu:
 metas:
   image: /features/components/index.png
 ---
+{{ set infimaNotificationTypes = ['primary', 'secondary', 'info', 'success', 'warning', 'danger' ]}}
 
-<h1>Infima Components By Type:</h1>
-<p style="font-weight: bold">
-  This page is a convenient way to test component development, while also having
-  a handy way of showing the components. It's not linked anywhere.
-</p>
+<h1>Infima Component Demo & Dev Proving Grounds</h1>
 
 <p>
-  Think of it as a never-ending mess of stuff. It's been deleted and brought
-  back a few times. It will be gone before production, or at least re-vamped
-  into an actual page. For now, use it as needed.
+  This page contains most of the Infima components, as well as testing of some of the
+  Lume-ized versions of them. This page will eventually just show all the Infima 
+  components along with whatever is added to them.
 </p>
 
-<h2>Test Of comp.feedback</h2>
+<h2>Test Of comp.feedback():</h2>
 {{ await comp.feedback({ basename: basename }) }}
 
-<h3 class="margin-top--md">Alerts:</h3>
+<h2 class="margin-top--md">Test of comp.alert():</h3>
 {{
   for 
-  alertType of ["primary", "secondary", "success", "warning", "danger"]
-
+  alertType of infimaNotificationTypes
 }}
   {{
     await comp.alert({
@@ -42,35 +38,26 @@ metas:
 {{ /for }}
 
 <h3 class="margin-top--lg">Badges, Buttons, Button Groups &amp; Pills:</h3>
-
-<span class="badge badge--success">Success</span>
-<span class="badge badge--info">Info</span>
-<span class="badge badge--warning">Warning</span>
-<span class="badge badge--danger">Danger</span>
+{{ for badgeType of infimaNotificationTypes }}
+  <span class="badge badge--{{ badgeType }} margin-right--sm">{{ badgeType }}</span>
+{{ /for }}
 
 <div class="margin-top--lg">
-  <button class="button button--primary">Primary</button>
-  <button class="button button--secondary">Secondary</button>
-  <button class="button button--success">Success</button>
-  <button class="button button--info">Info</button>
-  <button class="button button--warning">Warning</button>
-  <button class="button button--danger">Danger</button>
-  <button class="button button--link">Link</button>
+{{ for buttonType of infimaNotificationTypes }}
+  <button class="button button--{{ buttonType }} margin-right--sm">{{ buttonType }}</button>
+{{ /for }} 
 </div>
 
 <div class="margin-top--lg">
-  <button class="button button--outline button--primary">Primary</button>
-  <button class="button button--outline button--secondary">Secondary</button>
-  <button class="button button--outline button--success">Success</button>
-  <button class="button button--outline button--info">Info</button>
-  <button class="button button--outline button--warning">Warning</button>
-  <button class="button button--outline button--danger">Danger</button>
+{{ for buttonType of infimaNotificationTypes }}
+  <button class="button button--outline button--{{ buttonType }} margin-right--sm">{{ buttonType }}</button>
+{{ /for }} 
 </div>
 
 <div class="margin-top--lg">
-  <button class="button button--sm button--primary">Small Button</button>
-  <button class="button button--primary">Default Button</button>
-  <button class="button button--lg button--primary">Large Button</button>
+  <button class="button button--sm button--primary margin-right--sm">Small Button</button>
+  <button class="button button--primary margin-right--sm">Default Button</button>
+  <button class="button button--lg button--primary margin-right--sm">Large Button</button>
 </div>
 
 <ul class="pills margin-top--lg">
@@ -171,7 +158,8 @@ metas:
 </h3>
 <p>
   These also use the inline text and spacing helpers, which are described right
-  after this:
+  after this section. Note that this also takes advantage of the multiple sizes
+  of generated images.
 </p>
 
 <div class="container margin-top--lg">
@@ -237,7 +225,7 @@ metas:
         </div>
         <div class="card__image">
           <img
-            src="/uploads/developing-on-lume-regular.jpg"
+            src="/uploads/developing-on-lume-medium.jpg"
             alt="Lume Logo"
             title="Title Here"
           />
@@ -255,7 +243,7 @@ metas:
       <div class="card">
         <div class="card__image">
           <img
-            src="/uploads/developing-on-lume-regular.jpg"
+            src="/uploads/developing-on-lume-medium.jpg"
             alt="Lume Logo"
             title="Title Here"
           />
@@ -293,7 +281,10 @@ metas:
 
 <p>
   Almost every <code>&lt;h2&gt;</code> element on this page has the class <code
-  >margin-top--lg</code> applied to it, for instance.
+  >margin-top--lg</code> applied to it, for instance. Other common shorthand 
+  uses are <code>margin-vert--none</code>, which sets the left and right side 
+  margins to 0. It's a great feature of the framework for when you <em>don't</em>
+  want to set up a whole separate class just to tweak spacing.
 </p>
 
 <h3 class="margin-top--lg">Other Text Helpers</h3>
@@ -303,12 +294,11 @@ for instance, you can add <code>class="text--color"</code>, where `color` is one
 of the theme common colors (primary, secondary, success, info, warning, danger).
 Produce colors like:
 
-<p class="text--primary margin-top--lg">Primary Text</p>
-<p class="text--secondary">Secondary Text</p>
-<p class="text--success">Success Text</p>
-<p class="text--info">Info Text</p>
-<p class="text--warning">Warning Text</p>
-<p class="text--danger">Danger Text</p>
+<div style="background-color: #000; border-radius: 1.5em;" class="padding--lg margin-vert--md">
+{{ for textColor of infimaNotificationTypes }}
+  <p class="text--{{ textColor }}">This is the <strong>{{ textColor }}</strong> text color.</p>
+{{ /for }} 
+</div>
 
 <p>
   Font effects, transformations, weights and more all have shortcuts; see the
