@@ -163,7 +163,7 @@
   --ifm-breadcrumb-padding-horizontal: 0.8rem;
   --ifm-breadcrumb-padding-vertical: 0.4rem;
   --ifm-breadcrumb-size-multiplier: 1;
-  --ifm-breadcrumb-separator: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 256 256"><g><g><polygon points="79.093,0 48.907,30.187 146.72,128 48.907,225.813 79.093,256 207.093,128"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>');
+  --ifm-breadcrumb-separator: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" viewBox=\"0 0 256 256\"><g><g><polygon points=\"79.093,0 48.907,30.187 146.72,128 48.907,225.813 79.093,256 207.093,128\"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>");
   --ifm-breadcrumb-separator-filter: none;
   --ifm-breadcrumb-separator-size: 0.5rem;
   --ifm-breadcrumb-separator-size-multiplier: 1.25;
@@ -209,7 +209,7 @@
   --ifm-menu-color-background-hover: var(--ifm-hover-overlay);
   --ifm-menu-link-padding-horizontal: 0.75rem;
   --ifm-menu-link-padding-vertical: 0.375rem;
-  --ifm-menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgba(0,0,0,0.5)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
+  --ifm-menu-link-sublist-icon: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16px\" height=\"16px\" viewBox=\"0 0 24 24\"><path fill=\"rgba(0,0,0,0.5)\" d=\"M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z\"></path></svg>");
   --ifm-menu-link-sublist-icon-filter: none;
   --ifm-navbar-background-color: var(--ifm-background-surface-color);
   --ifm-navbar-height: 3.75rem;
@@ -224,7 +224,7 @@
   --ifm-navbar-search-input-background-color: var(--ifm-color-emphasis-200);
   --ifm-navbar-search-input-color: var(--ifm-color-emphasis-800);
   --ifm-navbar-search-input-placeholder-color: var(--ifm-color-emphasis-500);
-  --ifm-navbar-search-input-icon: url('data:image/svg+xml;utf8,<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>');
+  --ifm-navbar-search-input-icon: url("data:image/svg+xml;utf8,<svg fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\" height=\"16px\" width=\"16px\"><path d=\"M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z\" /></svg>");
   --ifm-navbar-sidebar-width: 83vw;
   --ifm-pagination-border-radius: var(--ifm-global-radius);
   --ifm-pagination-color-active: var(--ifm-color-primary);
@@ -1423,14 +1423,16 @@ hr {
   display: inline-block;
   filter: var(--ifm-breadcrumb-separator-filter);
   height: calc(
-    var(--ifm-breadcrumb-separator-size) * var(--ifm-breadcrumb-size-multiplier)
-      * var(--ifm-breadcrumb-separator-size-multiplier)
+    var(--ifm-breadcrumb-separator-size) *
+      var(--ifm-breadcrumb-size-multiplier) *
+      var(--ifm-breadcrumb-separator-size-multiplier)
   );
   margin: 0 var(--ifm-breadcrumb-spacing);
   opacity: 0.5;
   width: calc(
-    var(--ifm-breadcrumb-separator-size) * var(--ifm-breadcrumb-size-multiplier)
-      * var(--ifm-breadcrumb-separator-size-multiplier)
+    var(--ifm-breadcrumb-separator-size) *
+      var(--ifm-breadcrumb-size-multiplier) *
+      var(--ifm-breadcrumb-separator-size-multiplier)
   );
   /*rtl:raw:
   transform: rotate(180deg);
@@ -1448,12 +1450,12 @@ hr {
   display: inline-block;
   font-size: calc(1rem * var(--ifm-breadcrumb-size-multiplier));
   padding: calc(
-    var(--ifm-breadcrumb-padding-vertical)
-      * var(--ifm-breadcrumb-size-multiplier)
+    var(--ifm-breadcrumb-padding-vertical) *
+      var(--ifm-breadcrumb-size-multiplier)
   )
     calc(
-      var(--ifm-breadcrumb-padding-horizontal)
-        * var(--ifm-breadcrumb-size-multiplier)
+      var(--ifm-breadcrumb-padding-horizontal) *
+        var(--ifm-breadcrumb-size-multiplier)
     );
   transition-property: background, color;
   transition-duration: var(--ifm-transition-fast);

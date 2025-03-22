@@ -1,114 +1,160 @@
-  <div class="row">
-    <div class="col col--9">
-      <h1 class="margin-top--md">{{ title || locale.archive.heading }}</h1>
-      <nav aria-label="breadcrumbs">
-        <ul class="breadcrumbs">
-          <li class="breadcrumbs__item">
-              <a class="breadcrumbs__link" href="/blog/">{{ locale.blog_index.blog_home }}</a>
-          </li>
-          <li class="breadcrumbs__item">
-              <a class="breadcrumbs__link" href="/archive/">{{ locale.posts.archive_text }}</a>
-          </li>
-          <li class="breadcrumbs__item breadcrumbs__item--active">
-            <a class="breadcrumbs__link" href="{{ url }}">{{ title || locale.archive.heading }}</a>
-          </li>
-        </ul>
-      </nav>
-      {{ if tag }}
-        {{ if tagWiki[tag] }}
-            <p class="margin-top--sm padding-top--md">
-              <a href="/feeds/tag/{{ tag }}.xml" class="navbar__link" title="Be notified of new content in the {{ tag }} tag.">
-                <span class="badge badge--warning padding--sm" style="font-size: 12pt">"{{ tag }}" {{ locale.feeds.rss }}</span>
-              </a> 
-              <span class="margin-horiz--sm">|</span>
-              <a href="/feeds/tag/{{ tag }}.json" class="navbar__link" title="Be notified of new content in the {{ tag }} tag.">
-                <span class="badge badge--success padding--sm" style="font-size: 12pt">"{{ tag }}" {{ locale.feeds.json }}</span>
-              </a>
-            </p>
-          <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
-            {{ tagWiki[tag].summary |> md }}
-          </div>
-        {{ else if tag.length }}
-          <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
-            <p>No tag wiki for "{{ tag }}" has been created yet; would you like to create it?</p>
-          </div>    
-        {{ /if }}
-        {{ if tag.length && tagWiki && locale.archive.edit_wiki_url }}
+<div class="row">
+  <div class="col col--9">
+    <h1 class="margin-top--md">{{ title || locale.archive.heading }}</h1>
+    <nav aria-label="breadcrumbs">
+      <ul class="breadcrumbs">
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="/blog/">{{
+            locale.blog_index.blog_home
+          }}</a>
+        </li>
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="/archive/">{{
+            locale.posts.archive_text
+          }}</a>
+        </li>
+        <li class="breadcrumbs__item breadcrumbs__item--active">
+          <a class="breadcrumbs__link" href="{{ url }}">{{
+            title || locale.archive.heading
+          }}</a>
+        </li>
+      </ul>
+    </nav>
+    {{ if tag }}
+      {{ if tagWiki[tag] }}
+        <p class="margin-top--sm padding-top--md">
           <a
-            target="_blank" 
-            class="margin-horiz--md padding-vert--sm" 
-            href="{{ locale.archive.edit_wiki_url }}">{{ locale.archive.edit_wiki }}</a>
-            <h2 class="margin-top--lg">{{ locale.archive.posts_tagged }} <em>{{ tag }}</em>:</h2>
-        {{ /if }}
-      {{ /if }}
-      {{ if results }}      
-        {{ for post of results }}
-          {{ if post.menu && post.menu.visible !== false }}
-            {{ include "templates/post-archive-item.vto" { post: post } }}
-          {{ /if }}
-        {{ /for }}
-      {{ /if }}
-      {{ if search_query }}
-        {{ for post of search.pages(search_query) }}
-          {{ if post.menu && post.menu.visible !== false }}
-            {{ include "templates/post-archive-item.vto" { post: post } }}
-          {{ /if }}
-        {{ /for }}
-      {{ /if }}
-      {{ if pagination && pagination.totalPages !== 1 }}
-        <p>
-        {{ locale.archive.page }} {{ pagination.page }} {{ locale.archive.page_of }} {{ pagination.totalPages }} {{ pagination.totalResults }} {{ locale.archive.total_results }}
-        </p>
-        <p>
-        {{ if pagination.previous }}
-          <a href="{{ pagination.previous }}" class="margin-horiz--sm" rel="prev">{{ locale.archive.previous }}</a>
-        {{ /if }}
-        {{ if pagination.next }}
-          <a href="{{ pagination.next }}" class="margin-horiz--sm" rel="next">{{ locale.archive.next }}</a>
-        {{ /if }} 
-        </p>
-      {{ /if }}
-    </div>
-    <div class="col col--3">
-      <div class="feed-links">
-        <h3 class="margin-top--md" style="font-size: 12pt">{{ locale.blog_index.feeds }}</h3>
-        <p>
-          <a href="/feed.xml" class="navbar__link">
-            <span class="badge badge--warning" style="font-size: 12pt">{{ locale.feeds.rss }}</span>
-          </a> 
+            href="/feeds/tag/{{ tag }}.xml"
+            class="navbar__link"
+            title="Be notified of new content in the {{ tag }} tag."
+          >
+            <span
+              class="badge badge--warning padding--sm"
+              style="font-size: 12pt"
+            >"{{ tag }}" {{ locale.feeds.rss }}</span>
+          </a>
           <span class="margin-horiz--sm">|</span>
-          <a href="/feed.json" class="navbar__link">
-            <span class="badge badge--success" style="font-size: 12pt">{{ locale.feeds.json }}</span>
+          <a
+            href="/feeds/tag/{{ tag }}.json"
+            class="navbar__link"
+            title="Be notified of new content in the {{ tag }} tag."
+          >
+            <span
+              class="badge badge--success padding--sm"
+              style="font-size: 12pt"
+            >"{{ tag }}" {{ locale.feeds.json }}</span>
           </a>
         </p>
-      </div>
-      {{ if tagWiki[tag] && tagWiki[tag].related_tags }}
+        <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
+          {{ tagWiki[tag].summary |> md }}
+        </div>
+      {{ else if tag.length }}
+        <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
+          <p>
+            No tag wiki for "{{ tag }}" has been created yet; would you like to
+            create it?
+          </p>
+        </div>
+      {{ /if }}
+      {{ if tag.length && tagWiki && locale.archive.edit_wiki_url }}
+        <a
+          target="_blank"
+          class="margin-horiz--md padding-vert--sm"
+          href="{{ locale.archive.edit_wiki_url }}"
+        >{{ locale.archive.edit_wiki }}</a>
+        <h2 class="margin-top--lg">
+          {{ locale.archive.posts_tagged }} <em>{{ tag }}</em>:
+        </h2>
+      {{ /if }}
+    {{ /if }}
+    {{ if results }}
+      {{ for post of results }}
+        {{ if post.menu && post.menu.visible !== false }}
+          {{ include "templates/post-archive-item.vto" { post: post } }}
+        {{ /if }}
+      {{ /for }}
+    {{ /if }}
+    {{ if search_query }}
+      {{ for post of search.pages(search_query) }}
+        {{ if post.menu && post.menu.visible !== false }}
+          {{ include "templates/post-archive-item.vto" { post: post } }}
+        {{ /if }}
+      {{ /for }}
+    {{ /if }}
+    {{ if pagination && pagination.totalPages !== 1 }}
+      <p>
+        {{ locale.archive.page }}
+        {{ pagination.page }}
+        {{ locale.archive.page_of }}
+        {{ pagination.totalPages }}
+        {{ pagination.totalResults }}
+        {{ locale.archive.total_results }}
+      </p>
+      <p>
+        {{ if pagination.previous }}
+          <a
+            href="{{ pagination.previous }}"
+            class="margin-horiz--sm"
+            rel="prev"
+          >{{ locale.archive.previous }}</a>
+        {{ /if }}
+        {{ if pagination.next }}
+          <a href="{{ pagination.next }}" class="margin-horiz--sm" rel="next">{{
+            locale.archive.next
+          }}</a>
+        {{ /if }}
+      </p>
+    {{ /if }}
+  </div>
+  <div class="col col--3">
+    <div class="feed-links">
+      <h3 class="margin-top--md" style="font-size: 12pt">
+        {{ locale.blog_index.feeds }}
+      </h3>
+      <p>
+        <a href="/feed.xml" class="navbar__link">
+          <span class="badge badge--warning" style="font-size: 12pt">{{
+            locale.feeds.rss
+          }}</span>
+        </a>
+        <span class="margin-horiz--sm">|</span>
+        <a href="/feed.json" class="navbar__link">
+          <span class="badge badge--success" style="font-size: 12pt">{{
+            locale.feeds.json
+          }}</span>
+        </a>
+      </p>
+    </div>
+    {{ if tagWiki[tag] && tagWiki[tag].related_tags }}
       <h3 class="margin-top--md">Related Tags:</h3>
       <div class="post-tags">
-      {{ for relatedTag of tagWiki[tag].related_tags }}
-         <a href="/archive/{{ relatedTag |> slugify }}" class="post-tag">{{ relatedTag }}</a>
-      {{ /for }}
+        {{ for relatedTag of tagWiki[tag].related_tags }}
+          <a href="/archive/{{ relatedTag |> slugify }}" class="post-tag">{{
+            relatedTag
+          }}</a>
+        {{ /for }}
       </div>
-      {{ /if }}
-      <h3 class="margin-top--md">{{ locale.archive.authors }}</h3>
-      {{ set authors = search.values("author") }}
-      {{ if authors.length }}
-        <ul class="menu__list">
+    {{ /if }}
+    <h3 class="margin-top--md">{{ locale.archive.authors }}</h3>
+    {{ set authors = search.values("author") }}
+    {{ if authors.length }}
+      <ul class="menu__list">
         {{ for author of authors }}
           <li class="menu__list--item">
-            <a class="menu__link" href="/author/{{ author |> slugify }}"><strong>{{ author }}</strong></a>
+            <a class="menu__link" href="/author/{{ author |> slugify }}"><strong
+              >{{ author }}</strong></a>
           </li>
         {{ /for }}
-        </ul>
-      {{ /if }}
-      <h3 class="margin-top--md">{{ locale.archive.tags }}</h3>
-      {{ set recentTags = search.pages("type=tag", "tag") }}
-      {{ if recentTags.length }}
+      </ul>
+    {{ /if }}
+    <h3 class="margin-top--md">{{ locale.archive.tags }}</h3>
+    {{ set recentTags = search.pages("type=tag", "tag") }}
+    {{ if recentTags.length }}
       <div class="post-tags">
         {{ for tag of recentTags }}
           <a href="{{ tag.url |> slugify }}" class="post-tag">{{ tag.tag }}</a>
         {{ /for }}
       </div>
-      {{ /if }}
-    </div>
+    {{ /if }}
   </div>
+</div>

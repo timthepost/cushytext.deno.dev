@@ -152,7 +152,7 @@
 .menu__link--active {
   font-weight: bold;
   text-decoration: underline;
-  margin: 1em 0 1em .75em;
+  margin: 1em 0 1em 0.75em;
 }
 
 /* Hide various things on smaller screens */

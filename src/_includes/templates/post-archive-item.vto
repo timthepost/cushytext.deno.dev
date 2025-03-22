@@ -1,13 +1,18 @@
-      <div class="card margin-vert--lg padding--md">
-        <h2 class="margin-top--sm"><a href="{{ post.url }}">{{ post.title }}</a></h2>
-        <p class="font-selectable"><em>{{ post.metas.description }}</em></p>
-        <p><strong>{{ post.readingInfo.minutes }} {{ locale.posts.read_time }}</strong> &mdash;
-        {{ locale.posts.written_by }} <a href="/author/{{ post.author |> slugify }}">{{ post.author }}</a>
-        {{> const relativeDate = new Date(post.date) }}  
-        {{ locale.posts.written_on }} {{ relativeDate.toISOString().slice(0, 10) }}</p>
-        <div class="post-tags">
-        {{ for tag of post.tags }}
-          <a href="/archive/{{ tag |> slugify }}/" class="post-tag">{{ tag }}</a>
-        {{ /for }}
-        </div>
-      </div>
+<div class="card margin-vert--lg padding--md">
+  <h2 class="margin-top--sm"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+  <p class="font-selectable"><em>{{ post.metas.description }}</em></p>
+  <p>
+    <strong>{{ post.readingInfo.minutes }} {{ locale.posts.read_time }}</strong>
+    &mdash;
+    {{ locale.posts.written_by }}
+    <a href="/author/{{ post.author |> slugify }}">{{ post.author }}</a>
+    {{> const relativeDate = new Date(post.date) }}
+    {{ locale.posts.written_on }}
+    {{ relativeDate.toISOString().slice(0, 10) }}
+  </p>
+  <div class="post-tags">
+    {{ for tag of post.tags }}
+      <a href="/archive/{{ tag |> slugify }}/" class="post-tag">{{ tag }}</a>
+    {{ /for }}
+  </div>
+</div>

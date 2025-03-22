@@ -1,16 +1,18 @@
 <footer class="footer margin-top--xl">
   <div class="container container--fluid">
     <div class="row footer__links">
-    {{ for key, value of navbar.footer }}
-      <div class="col footer__col">
-        <h4 class="footer__title">{{ value.category }}</h4>
-        {{ for index, element of value.links }}
-          <li class="footer__item">
-            <a class="footer__link-item" href="{{ element.href }}">{{ element.text}}</a>
-          </li>
-        {{ /for}}
-      </div>
-    {{ /for }}
+      {{ for key, value of navbar.footer }}
+        <div class="col footer__col">
+          <h4 class="footer__title">{{ value.category }}</h4>
+          {{ for index, element of value.links }}
+            <li class="footer__item">
+              <a class="footer__link-item" href="{{ element.href }}">{{
+                element.text
+              }}</a>
+            </li>
+          {{ /for }}
+        </div>
+      {{ /for }}
     </div>
   </div>
 </footer>

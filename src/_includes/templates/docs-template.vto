@@ -1,79 +1,79 @@
-  <div class="row">
-    <div class="col col--9">
-      <div class="markdown toc-enabled">
-        <div class="font-selectable">
-          {{ content }}
-        </div>
+<div class="row">
+  <div class="col col--9">
+    <div class="markdown toc-enabled">
+      <div class="font-selectable">
+        {{ content }}
       </div>
-      <nav class="pagination-nav margin-top--lg">
-        <div class="pagination-nav__item">
-          {{ set previousPost = search.previousPage(url, `waypoint=${waypoint}`, "menu.order") }}
-          {{ if previousPost }}
-            <a class="pagination-nav__link" href="{{ previousPost.url }}">
-              <div class="pagination-nav__sublabel">{{ locale.documentation.prev_link }}</div>
-              <div class="pagination-nav__label">{{ previousPost.title }}</div>
-            </a>
-          {{ /if }}
-        </div>
-        <div class="pagination-nav__item pagination-nav__item--next">
-          {{ set nextPost = search.nextPage(url, `waypoint=${waypoint}`, "menu.order") }}
-          {{ if nextPost }}
-            <a class="pagination-nav__link" href="{{ nextPost.url }}">
-              <div class="pagination-nav__sublabel" style="text-align: right">{{ locale.documentation.next_link }}</div>
-              <div class="pagination-nav__label" style="text-align: right">{{ nextPost.title }}</div>
-            </a>
-          {{ /if }}
-        </div>
-      </nav>
     </div>
-    <div class="col col--3">
-      <div class="feed-links">
-        {{ if docs.feed_name }}
-        <h3 class="margin-top--md" style="font-size: 12pt">{{ docs.feed_name }}</h3>
-        {{ else }}
-        <h3 class="margin-top--md" style="font-size: 12pt">{{ docs.basedir }} {{ locale.documentation.feeds }}</h3>
-        {{ /if }}
-        <p>
-          <a href="/docs/feed.xml" class="navbar__link">
-            <span class="badge badge--warning" style="font-size: 12pt">{{ locale.feeds.rss }}</span>
-          </a> 
-          <span class="margin-horiz--sm">|</span>
-          <a href="/docs/feed.json" class="navbar__link">
-            <span class="badge badge--success" style="font-size: 12pt">{{ locale.feeds.json }}</span>
+    <nav class="pagination-nav margin-top--lg">
+      <div class="pagination-nav__item">
+        {{ set previousPost = search.previousPage(url, `waypoint=${waypoint}`, "menu.order") }}
+        {{ if previousPost }}
+          <a class="pagination-nav__link" href="{{ previousPost.url }}">
+            <div class="pagination-nav__sublabel">{{ locale.documentation.prev_link }}</div>
+            <div class="pagination-nav__label">{{ previousPost.title }}</div>
           </a>
-        </p>
-      </div>
-      <h3 class="toc-heading">{{ locale.documentation.toc_heading }}</h3>
-      <div id="toc"></div>
-      <h3 class="margin-vert--md" id="docs-nav-header">{{ docs.title || locale.documentation.topics }}:</h3>
-      <div class="menu thin-scrollbar margin-top--xs">
-        <ul class="menu__list">
-        {{ if docs.sidebar === "auto" }}
-          {{ for entry of search.pages(`url^=${docs.basedir}`, "menu.order") }}
-            <li class="menu__list--item">
-              {{ set isActive = entry.url === url }}
-              <a class="{{ if isActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ entry.url }}">{{ entry.title }}</a>
-            </li>
-          {{ /for }}
-        {{ else }}
-          <p>{{ locale.documentation.no_custom_sidebars }}</p>
         {{ /if }}
-        </ul>
       </div>
+      <div class="pagination-nav__item pagination-nav__item--next">
+        {{ set nextPost = search.nextPage(url, `waypoint=${waypoint}`, "menu.order") }}
+        {{ if nextPost }}
+          <a class="pagination-nav__link" href="{{ nextPost.url }}">
+            <div class="pagination-nav__sublabel" style="text-align: right">{{ locale.documentation.next_link }}</div>
+            <div class="pagination-nav__label" style="text-align: right">{{ nextPost.title }}</div>
+          </a>
+        {{ /if }}
+      </div>
+    </nav>
+  </div>
+  <div class="col col--3">
+    <div class="feed-links">
+      {{ if docs.feed_name }}
+      <h3 class="margin-top--md" style="font-size: 12pt">{{ docs.feed_name }}</h3>
+      {{ else }}
+      <h3 class="margin-top--md" style="font-size: 12pt">{{ docs.basedir }} {{ locale.documentation.feeds }}</h3>
+      {{ /if }}
+      <p>
+        <a href="/docs/feed.xml" class="navbar__link">
+          <span class="badge badge--warning" style="font-size: 12pt">{{ locale.feeds.rss }}</span>
+        </a> 
+        <span class="margin-horiz--sm">|</span>
+        <a href="/docs/feed.json" class="navbar__link">
+          <span class="badge badge--success" style="font-size: 12pt">{{ locale.feeds.json }}</span>
+        </a>
+      </p>
+    </div>
+    <h3 class="toc-heading">{{ locale.documentation.toc_heading }}</h3>
+    <div id="toc"></div>
+    <h3 class="margin-vert--md" id="docs-nav-header">{{ docs.title || locale.documentation.topics }}:</h3>
+    <div class="menu thin-scrollbar margin-top--xs">
+      <ul class="menu__list">
       {{ if docs.sidebar === "auto" }}
-        {{ if docs.guest }}
-      <h4 class="margin-vert--md">{{ docs.guest.heading }}</h4>
-      <div class="menu thin-scrollbar margin-top--xs">
-        <ul class="menu__list">
-          {{ for entry of search.pages(`waypoint=${docs.guest.waypoint} menu.visible=true`, 
-            "date=desc", docs.guest.posts) }}
-            <li class="menu__list--item">
-              <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
-            </li>
-          {{ /for }}
-        </ul>
-        {{ /if }}
-      </div>
+        {{ for entry of search.pages(`url^=${docs.basedir}`, "menu.order") }}
+          <li class="menu__list--item">
+            {{ set isActive = entry.url === url }}
+            <a class="{{ if isActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ entry.url }}">{{ entry.title }}</a>
+          </li>
+        {{ /for }}
+      {{ else }}
+        <p>{{ locale.documentation.no_custom_sidebars }}</p>
+      {{ /if }}
+      </ul>
+    </div>
+    {{ if docs.sidebar === "auto" }}
+      {{ if docs.guest }}
+    <h4 class="margin-vert--md">{{ docs.guest.heading }}</h4>
+    <div class="menu thin-scrollbar margin-top--xs">
+      <ul class="menu__list">
+        {{ for entry of search.pages(`waypoint=${docs.guest.waypoint} menu.visible=true`, 
+          "date=desc", docs.guest.posts) }}
+          <li class="menu__list--item">
+            <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
+          </li>
+        {{ /for }}
+      </ul>
       {{ /if }}
     </div>
+    {{ /if }}
   </div>
+</div>

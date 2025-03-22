@@ -1,23 +1,30 @@
 <div class="card padding--md margin-vert--md">
-    <h2 class="margin-top--sm margin-horiz--md">
-        <a href="{{ entry.url }}">{{ entry.title }}</a>
-    </h2>
-    <p class="margin-horiz--md">
-        <em>
-            {{> const relativeDate = new Date(entry.date) }}
-            {{ locale.posts.written_by }} <strong><a href="/author/{{ entry.author |> slugify }}/">{{ entry.author }}</a></strong> 
-            {{ locale.posts.written_on }} {{ relativeDate.toISOString().slice(0, 10) }} | {{ entry.readingInfo.minutes }} {{ locale.posts.read_time }}
-        </em>
-    </p>
-    <div class="margin-horiz--md font-selectable">
-        {{ entry.excerpt |> md }}
-    </div>
-    <div class="card__footer">
-        <a href="{{ entry.url }}" class="navbar__link">
-            <button class="button button--primary button--block button--md">
-            {{ locale.posts.read_more }} ({{ entry.readingInfo.minutes }} {{ locale.posts.read_time }}) 
-            &raquo;
-            </button>
-        </a>
-    </div>
-</div>  
+  <h2 class="margin-top--sm margin-horiz--md">
+    <a href="{{ entry.url }}">{{ entry.title }}</a>
+  </h2>
+  <p class="margin-horiz--md">
+    <em>
+      {{> const relativeDate = new Date(entry.date) }}
+      {{ locale.posts.written_by }}
+      <strong><a href="/author/{{ entry.author |> slugify }}/">{{
+          entry.author
+        }}</a></strong>
+      {{ locale.posts.written_on }}
+      {{ relativeDate.toISOString().slice(0, 10) }} | {{
+        entry.readingInfo.minutes
+      }}
+      {{ locale.posts.read_time }}
+    </em>
+  </p>
+  <div class="margin-horiz--md font-selectable">
+    {{ entry.excerpt |> md }}
+  </div>
+  <div class="card__footer">
+    <a href="{{ entry.url }}" class="navbar__link">
+      <button class="button button--primary button--block button--md">
+        {{ locale.posts.read_more }} ({{ entry.readingInfo.minutes }}
+        {{ locale.posts.read_time }}) &raquo;
+      </button>
+    </a>
+  </div>
+</div>

@@ -1,34 +1,40 @@
 {{ include "layouts/base.vto" }}
-  <body>
-    {{ include "partials/nav.vto" }}
-    {{ await comp.hero({ 
-      title: demo.hero.title, 
-      slogan: demo.hero.slogan, 
-      href: demo.hero.href, cta: 
-      demo.hero.cta }) }}
-    <div class="main-wrapper">
-      <main data-pagefind-body>
-        <div class="container margin-top--lg">
-          <div class="row">
-            {{ for _key, value of demo.goals }}
+<body>
+  {{ include "partials/nav.vto" }}
+  {{
+    await comp.hero({
+      title: demo.hero.title,
+      slogan: demo.hero.slogan,
+      href: demo.hero.href,
+      cta: demo.hero.cta,
+    })
+  }}
+  <div class="main-wrapper">
+    <main data-pagefind-body>
+      <div class="container margin-top--lg">
+        <div class="row">
+          {{ for _key, value of demo.goals }}
             <div class="col col--4">
-              {{ await comp.card({ 
-                    title: value.title, 
-                    body: value.body, 
-                    href: value.href, 
-                    cta: value.cta, 
-                    min_height: "300px" }) }}
+              {{
+                await comp.card({
+                  title: value.title,
+                  body: value.body,
+                  href: value.href,
+                  cta: value.cta,
+                  min_height: "300px",
+                })
+              }}
             </div>
-            {{ /for }}
-            </div>
-          <div class="row margin-top--lg">
-            <div class="col col--12">
-              {{ await comp.latestBlog({ max_posts: 1 }) }}
-            </div>
+          {{ /for }}
+        </div>
+        <div class="row margin-top--lg">
+          <div class="col col--12">
+            {{ await comp.latestBlog({ max_posts: 1 }) }}
           </div>
         </div>
-      </main>
-    </div>
-    {{ include "partials/footer.vto" }}
-  </body>
+      </div>
+    </main>
+  </div>
+  {{ include "partials/footer.vto" }}
+</body>
 </html>

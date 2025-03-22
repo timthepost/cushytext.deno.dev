@@ -1,45 +1,44 @@
 #page-feedback {
-    display: inline-block;
-    max-width: 550px;
-    margin: 1.5em 0 0;
-
+  display: inline-block;
+  max-width: 550px;
+  margin: 1.5em 0 0;
 }
 
 #page-feedback img {
-    height: 24px;
-    width: auto;
-    display: inline;
-    padding-top: 2px;
+  height: 24px;
+  width: auto;
+  display: inline;
+  padding-top: 2px;
 }
 
 #page-feedback p {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #page-feedback label {
-    margin-left: 1em;
+  margin-left: 1em;
 }
 
 #page-feedback textarea {
-    margin-left: 1em;
-    max-height: 250px;
-    width: 92%;
-    display: block;
-    border: 1px solid steelblue;
+  margin-left: 1em;
+  max-height: 250px;
+  width: 92%;
+  display: block;
+  border: 1px solid steelblue;
 }
 
 #page-feedback .feedback__bumper {
-    display: inline;
-    float: right;
-    padding: 0 1.25em 0;
+  display: inline;
+  float: right;
+  padding: 0 1.25em 0;
 }
 
 #page-feedback .feedback__bumper p {
-    font-size: 10pt;
-    font-weight: normal;
-    margin-bottom: -1px;
+  font-size: 10pt;
+  font-weight: normal;
+  margin-bottom: -1px;
 }
 
 #page-feedback-form {
-    display: none;
+  display: none;
 }

@@ -3,9 +3,9 @@
  * small to keep in individual plugins. So, we have
  * a 'conductor' that manages and reports on them.
  */
-import { merge } from "lume/core/utils/object.ts";
-import { log } from "lume/core/utils/log.ts";
 import type Site from "lume/core/site.ts";
+import { log } from "lume/core/utils/log.ts";
+import { merge } from "lume/core/utils/object.ts";
 
 interface Options {
   // TODO: Make this a string [] so multiple TOCs work
@@ -59,8 +59,7 @@ export default function conductor(userOptions?: Options) {
     headings.forEach((heading, index) => {
       const headingId = heading.id || `heading-${index}`;
       heading.id = headingId;
-      tocListHTML +=
-        `<li><a href="#${headingId}" class="${options.toc_link_class}">${heading.textContent}</a></li>`;
+      tocListHTML += `<li><a href="#${headingId}" class="${options.toc_link_class}">${heading.textContent}</a></li>`;
     });
     tocListHTML += "</ul>";
     toc.innerHTML = tocListHTML;

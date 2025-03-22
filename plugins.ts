@@ -1,29 +1,29 @@
-import { Options as SitemapOptions, sitemap } from "lume/plugins/sitemap.ts";
-import { favicon, Options as FaviconOptions } from "lume/plugins/favicon.ts";
 import { merge } from "lume/core/utils/object.ts";
-import redirects from "lume/plugins/redirects.ts";
-import postcss from "lume/plugins/postcss.ts";
 import basePath from "lume/plugins/base_path.ts";
-import metas from "lume/plugins/metas.ts";
-import robots from "lume/plugins/robots.ts";
-import mdx from "lume/plugins/mdx.ts";
-import nav from "lume/plugins/nav.ts";
-import feed from "lume/plugins/feed.ts";
-import readingInfo from "lume/plugins/reading_info.ts";
-import prism from "lume/plugins/prism.ts";
-import picture from "lume/plugins/picture.ts";
-import transformImages from "lume/plugins/transform_images.ts";
 import brotli from "lume/plugins/brotli.ts";
-import minifyHTML from "lume/plugins/minify_html.ts";
-import terser from "lume/plugins/terser.ts";
-import purgecss from "lume/plugins/purgecss.ts";
-import ogImages from "lume/plugins/og_images.ts";
-import icons from "lume/plugins/icons.ts";
 import checkUrls from "lume/plugins/check_urls.ts";
+import { favicon, Options as FaviconOptions } from "lume/plugins/favicon.ts";
+import feed from "lume/plugins/feed.ts";
+import icons from "lume/plugins/icons.ts";
+import inline from "lume/plugins/inline.ts";
+import mdx from "lume/plugins/mdx.ts";
+import metas from "lume/plugins/metas.ts";
+import minifyHTML from "lume/plugins/minify_html.ts";
+import nav from "lume/plugins/nav.ts";
+import ogImages from "lume/plugins/og_images.ts";
+import pagefind from "lume/plugins/pagefind.ts";
+import picture from "lume/plugins/picture.ts";
+import postcss from "lume/plugins/postcss.ts";
+import prism from "lume/plugins/prism.ts";
+import purgecss from "lume/plugins/purgecss.ts";
+import readingInfo from "lume/plugins/reading_info.ts";
+import redirects from "lume/plugins/redirects.ts";
+import robots from "lume/plugins/robots.ts";
+import { Options as SitemapOptions, sitemap } from "lume/plugins/sitemap.ts";
 import slugifyUrls from "lume/plugins/slugify_urls.ts";
 import sourceMaps from "lume/plugins/source_maps.ts";
-import pagefind from "lume/plugins/pagefind.ts";
-import inline from "lume/plugins/inline.ts";
+import terser from "lume/plugins/terser.ts";
+import transformImages from "lume/plugins/transform_images.ts";
 import conductor from "./src/_plugins/site_conductor/mod.ts";
 
 import "lume/types.ts";
@@ -51,7 +51,7 @@ export const defaults: Options = {
   },
 };
 
-export default function (userOptions?: Options) {
+export default function(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Lume.Site) => {

@@ -1,65 +1,97 @@
-  <div class="row">
-    <div class="col col--9">
-        <h1 class="margin-top--md">{{ title }}</h1>
-        <p class="margin-vert--md"><em>{{ locale.posts.written_by }} <a href="/author/{{ author |> slugify }}">
+<div class="row">
+  <div class="col col--9">
+    <h1 class="margin-top--md">{{ title }}</h1>
+    <p class="margin-vert--md">
+      <em>{{ locale.posts.written_by }}
+        <a href="/author/{{ author |> slugify }}">
           {{> const relativeDate = new Date(date) }}
-          <strong>{{ author }}</strong></a> on {{ relativeDate.toISOString().slice(0, 10) }}</em>
-          {{ if tags }}
-            <em>&nbsp;|&nbsp;{{ locale.posts.has_tags }}</em>
-            {{ for tag of tags }}
-              <a href="/archive/{{ tag |> slugify }}/" class="post-tag">
-                {{ tag }}
-              </a>&nbsp;
-            {{ /for }}
-          {{ /if }}
-        </p>
-        <div class="markdown toc-enabled font-selectable">
-          {{ content }}
-        </div>
-      </div>
-      <div class="col col--3">
-        <div class="feed-links">
-          <h3 class="margin-top--md" style="font-size: 12pt">{{ locale.blog_index.feeds }}</h3>
-          <p>
-            <a href="/feed.xml" class="navbar__link">
-              <span class="badge badge--warning" style="font-size: 12pt">{{ locale.feeds.rss }}</span>
-            </a> 
-            <span class="margin-horiz--sm">|</span>
-            <a href="/feed.json" class="navbar__link">
-              <span class="badge badge--success" style="font-size: 12pt">{{ locale.feeds.json }}</span>
-            </a>
-          </p>
-        </div>
-      <h3 class="toc-heading">{{ locale.blog_index.toc }}</h3>
-      <div id="toc"></div>
-      <p class="margin-top--sm">
-        <strong>{{ locale.blog_index.older_posts }} 
-          <a href="/archive">{{ locale.blog_index.older_posts_link }}</a>
-        </strong>.
-      </p>
-
-      {{ set nextPost = search.nextPage(url, `waypoint="${waypoint}" menu.visible=true`, 'date=asc') }}
-      {{ if nextPost }}
-        <p><strong>{{ locale.posts.read_next }}</strong><br />
-        <a href="{{ nextPost.url }}">{{ nextPost.title }}</a></p>
-      {{ /if }}
-      
-      {{ set previousPost = search.previousPage(url, `waypoint="${waypoint}" menu.visible=true`, 'date=asc') }}
-      {{ if previousPost }}
-        <p><strong>{{locale.posts.read_prev }}</strong><br />
-        <a href="{{ previousPost.url }}">{{ previousPost.title }}</a></p>
-      {{ /if }}
-
-      <h4 class="margin-top--md">{{ locale.blog_index.top_tags }}</h4>
-      <div class="text--justify">
-      {{ set recentTags = search.pages("type=tag", "waypoint=%blog% tag date", 10) }}
-      {{ if recentTags.length }}
-      <div class="post-tags">
-        {{ for tag of recentTags }}
-          <a href="{{ tag.url |> slugify }}" class="post-tag">{{ tag.tag }}</a>
+          <strong>{{ author }}</strong></a> on {{
+          relativeDate.toISOString().slice(0, 10)
+        }}</em>
+      {{ if tags }}
+        <em>&nbsp;|&nbsp;{{ locale.posts.has_tags }}</em>
+        {{ for tag of tags }}
+          <a href="/archive/{{ tag |> slugify }}/" class="post-tag">
+            {{ tag }}
+          </a>&nbsp;
         {{ /for }}
-      </div>
       {{ /if }}
-      </div>
+    </p>
+    <div class="markdown toc-enabled font-selectable">
+      {{ content }}
     </div>
   </div>
+  <div class="col col--3">
+    <div class="feed-links">
+      <h3 class="margin-top--md" style="font-size: 12pt">
+        {{ locale.blog_index.feeds }}
+      </h3>
+      <p>
+        <a href="/feed.xml" class="navbar__link">
+          <span class="badge badge--warning" style="font-size: 12pt">{{
+            locale.feeds.rss
+          }}</span>
+        </a>
+        <span class="margin-horiz--sm">|</span>
+        <a href="/feed.json" class="navbar__link">
+          <span class="badge badge--success" style="font-size: 12pt">{{
+            locale.feeds.json
+          }}</span>
+        </a>
+      </p>
+    </div>
+    <h3 class="toc-heading">{{ locale.blog_index.toc }}</h3>
+    <div id="toc"></div>
+    <p class="margin-top--sm">
+      <strong>{{ locale.blog_index.older_posts }}
+        <a href="/archive">{{ locale.blog_index.older_posts_link }}</a>
+      </strong>.
+    </p>
+
+    {{
+      set nextPost = search.nextPage(
+        url,
+        `waypoint="${waypoint}" menu.visible=true`,
+        "date=asc",
+      )
+    }}
+    {{ if nextPost }}
+      <p>
+        <strong>{{ locale.posts.read_next }}</strong>
+        <br />
+        <a href="{{ nextPost.url }}">{{ nextPost.title }}</a>
+      </p>
+    {{ /if }}
+
+    {{
+      set previousPost = search.previousPage(
+        url,
+        `waypoint="${waypoint}" menu.visible=true`,
+        "date=asc",
+      )
+    }}
+    {{ if previousPost }}
+      <p>
+        <strong>{{ locale.posts.read_prev }}</strong>
+        <br />
+        <a href="{{ previousPost.url }}">{{ previousPost.title }}</a>
+      </p>
+    {{ /if }}
+
+    <h4 class="margin-top--md">{{ locale.blog_index.top_tags }}</h4>
+    <div class="text--justify">
+      {{
+        set recentTags = search.pages("type=tag", "waypoint=%blog% tag date", 10)
+      }}
+      {{ if recentTags.length }}
+        <div class="post-tags">
+          {{ for tag of recentTags }}
+            <a href="{{ tag.url |> slugify }}" class="post-tag">{{
+              tag.tag
+            }}</a>
+          {{ /for }}
+        </div>
+      {{ /if }}
+    </div>
+  </div>
+</div>
