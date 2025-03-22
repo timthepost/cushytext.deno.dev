@@ -1,4 +1,10 @@
 transformImages:
   - resize: [1200, 630]
     suffix: -regular
-    format: [webp, jpg]
+    format: [jpg]
+  - resize: [600, 315]
+    suffix: -medium
+    format: [jpg]
+  - resize: [300, 150]
+    suffix: -small
+    format: [jpg]
