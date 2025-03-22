@@ -1,7 +1,7 @@
 #page-feedback {
   display: inline-block;
   max-width: 550px;
-  margin: 1.5em 0 0;
+  margin: 1.5em 0 1.5em;
 }
 
 #page-feedback img {
