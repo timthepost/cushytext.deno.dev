@@ -16,8 +16,7 @@
 }
 
 #page-feedback label {
-  margin-left: 1em;
-  margin-top: 1em;
+  margin: 1em 1em 0 1em;
 }
 
 #page-feedback textarea {
@@ -31,7 +30,7 @@
 #page-feedback .feedback__bumper {
   display: inline;
   float: right;
-  padding: 0 1.25em 0;
+  padding: 0 1em 0 0;
 }
 
 #page-feedback .feedback__bumper p {
