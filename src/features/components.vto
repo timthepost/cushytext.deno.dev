@@ -7,7 +7,7 @@ menu:
   visible: false
   order: 0
 metas:
-  image: /features/components/index.png
+  image: /uploads/developing-on-lume-regular.jpg
 ---
 {{ set infimaNotificationTypes = ['primary', 'secondary', 'info', 'success', 'warning', 'danger' ]}}
 
@@ -39,25 +39,25 @@ metas:
 
 <h3 class="margin-top--lg">Badges, Buttons, Button Groups &amp; Pills:</h3>
 {{ for badgeType of infimaNotificationTypes }}
-  <span class="badge badge--{{ badgeType }} margin-right--sm">{{ badgeType }}</span>
+  <span class="badge badge--{{ badgeType }} margin--sm">{{ badgeType }}</span>
 {{ /for }}
 
 <div class="margin-top--lg">
 {{ for buttonType of infimaNotificationTypes }}
-  <button class="button button--{{ buttonType }} margin-right--sm">{{ buttonType }}</button>
+  <button class="button button--{{ buttonType }} margin--sm">{{ buttonType }}</button>
 {{ /for }} 
 </div>
 
 <div class="margin-top--lg">
 {{ for buttonType of infimaNotificationTypes }}
-  <button class="button button--outline button--{{ buttonType }} margin-right--sm">{{ buttonType }}</button>
+  <button class="button button--outline button--{{ buttonType }} margin--sm">{{ buttonType }}</button>
 {{ /for }} 
 </div>
 
 <div class="margin-top--lg">
-  <button class="button button--sm button--primary margin-right--sm">Small Button</button>
-  <button class="button button--primary margin-right--sm">Default Button</button>
-  <button class="button button--lg button--primary margin-right--sm">Large Button</button>
+  <button class="button button--sm button--primary margin--sm">Small Button</button>
+  <button class="button button--primary margin--sm">Default Button</button>
+  <button class="button button--lg button--primary margin--sm">Large Button</button>
 </div>
 
 <ul class="pills margin-top--lg">
@@ -152,7 +152,6 @@ metas:
     </small>
   </div>
 </div>
-
 <h3 class="margin-top--lg">
   Various Cards (Laid Out Using Infima's Grid System):
 </h3>
@@ -161,7 +160,6 @@ metas:
   after this section. Note that this also takes advantage of the multiple sizes
   of generated images.
 </p>
-
 <div class="container margin-top--lg">
   <div class="row">
     <div class="col col--12">
@@ -263,7 +261,6 @@ metas:
     </div>
   </div>
 </div>
-
 <h3 class="margin-top--lg">Text &amp; Element Spacing:</h3>
 <p>
   Spacing is declarative with Infima using the nomenclature format <code
@@ -272,13 +269,11 @@ metas:
   or <code>padding</code>, and side is one of <code>top, left, bottom,
     right</code> as well as <code>vert</code> and <code>horiz</code>.
 </p>
-
 <p>
   When creating content with MDX, it's often necessary to just "slap a margin"
   or padding on elements to bring everything together. MDX is used by marketers
   just as much as developers, so we try to keep it easy to keep in one's head.
 </p>
-
 <p>
   Almost every <code>&lt;h2&gt;</code> element on this page has the class <code
   >margin-top--lg</code> applied to it, for instance. Other common shorthand 
@@ -286,20 +281,16 @@ metas:
   margins to 0. It's a great feature of the framework for when you <em>don't</em>
   want to set up a whole separate class just to tweak spacing.
 </p>
-
 <h3 class="margin-top--lg">Other Text Helpers</h3>
-
 Colors, weights, etc are easily described in class attributes. To change color,
 for instance, you can add <code>class="text--color"</code>, where `color` is one
 of the theme common colors (primary, secondary, success, info, warning, danger).
 Produce colors like:
-
 <div style="background-color: #000; border-radius: 1.5em;" class="padding--lg margin-vert--md">
 {{ for textColor of infimaNotificationTypes }}
   <p class="text--{{ textColor }}">This is the <strong>{{ textColor }}</strong> text color.</p>
 {{ /for }} 
 </div>
-
 <p>
   Font effects, transformations, weights and more all have shortcuts; see the
   <a href="https://infima.dev/docs/utilities/text" target="_blank"
