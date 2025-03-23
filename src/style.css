@@ -155,6 +155,11 @@
   margin: 1em 0 1em 0.75em;
 }
 
+.footer__links ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
 /* Hide various things on smaller screens */
 @media (max-width: 976px) {
   /* Top nav logo */

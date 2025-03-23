@@ -4,6 +4,7 @@
       {{ for key, value of navbar.footer }}
         <div class="col footer__col">
           <p class="footer__title">{{ value.category }}</p>
+          <ul class="footer__links">
           {{ for index, element of value.links }}
             <li class="footer__item">
               <a class="footer__link-item" href="{{ element.href }}">{{
@@ -13,6 +14,7 @@
           {{ /for }}
         </div>
       {{ /for }}
+      </ul>
     </div>
   </div>
 </footer>
