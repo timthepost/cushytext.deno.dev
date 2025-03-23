@@ -3,14 +3,14 @@
 hero:
   title: Cushy Text ☁️
   href: /blog/announcing-cushy-text/
-  cta: Read The Announcement &raquo;
+  cta: Read The Announcement
   slogan: An Infima-based, component-driven, text-focused interactive and fully-responsive theme for <span class="text--danger">Lume 3</span><sup>+</sup>.
 
 goals:
   - title: Comfortable To Build With.
     body: |
-      MDX powered by Lume 3's new <a href="https://github.com/oscarotero/ssx" target="_blank">SSX</a>
-      engine runs blazing fast. Need more control? Just use <a href="https://vento.js.org/" target="_blank">Vento</a>.
+      MDX powered by Lume 3's new <a href="https://github.com/oscarotero/ssx">SSX</a>
+      engine runs blazing fast. Need more control? Just use <a href="https://vento.js.org/">Vento</a>.
       All with the convenience of <a href="https://infima.dev">Infima</a> components, which are being turned into Lume 3
       components.
     href: /features/#components

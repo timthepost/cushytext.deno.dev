@@ -3,7 +3,7 @@
     <div class="row footer__links">
       {{ for key, value of navbar.footer }}
         <div class="col footer__col">
-          <h4 class="footer__title">{{ value.category }}</h4>
+          <p class="footer__title">{{ value.category }}</p>
           {{ for index, element of value.links }}
             <li class="footer__item">
               <a class="footer__link-item" href="{{ element.href }}">{{

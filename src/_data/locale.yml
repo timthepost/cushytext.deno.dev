@@ -16,14 +16,14 @@ posts:
   written_on: "On"
   read_more: "Read More"
   read_time: "Minute Read"
-  read_next: "Published Later &raquo;"
+  read_next: "Published Later"
   read_prev: "&laquo; Published Previously"
   archive_prompt: "More Posts Might Be Found In"
   archive_text: "The Archive"
 
 documentation:
-  next_link: "Next >>"
-  prev_link: "<< Previous"
+  next_link: "Next:"
+  prev_link: "Previous:"
   topics: "Available Topics:"
   toc_heading: "In This Section:"
   no_custom_sidebars: "Custom Sidebars Are Not Yet Implemented"
@@ -34,8 +34,8 @@ archive:
   posts_tagged: "All Posts Tagged "
   tags: "Search By Tag:"
   authors: "Search By Author:"
-  previous: "<< Previous"
-  next: "Next >>"
+  previous: "Previous:"
+  next: "Next:"
   page: "Page"
   page_of: "of"
   total_results: "total results."
@@ -43,7 +43,7 @@ archive:
   posts_by: "Posts By"
   all_posts: "All Posts"
   related_tags: "Related Tags:"
-  edit_wiki: "Edit This Tag Wiki On Github &raquo;"
+  edit_wiki: "Edit This Tag Wiki On Github"
   edit_wiki_url: "https://github.com/timthepost/cushytext/edit/main/src/_data/tagWiki.yml"
 
 blog_index:

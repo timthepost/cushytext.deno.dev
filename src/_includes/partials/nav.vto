@@ -21,7 +21,7 @@
               d="M4 7h22M4 15h22M4 23h22"></path>
           </svg>
         </button>
-        <a class="navbar__brand" href="/" id="navbar-logo" title="Home" rel="home" aria-label="home">
+        <a class="navbar__brand" href="/" id="navbar-logo" rel="home" aria-label="home">
           <span style="font-size: 150%">☁️</span>
         </a>
         {{ for key, value of navbar.top_nav }}
@@ -32,7 +32,7 @@
                 {{ for index, menuItem of value.links }}
                   <li>
                     <a class="dropdown__link" href="{{ menuItem.href }}" title="{{ menuItem.title || "" }}">
-                      {{ menuItem.text }} <span class="text--primary">&raquo;</span>
+                      {{ menuItem.text }}
                     </a>
                   </li>
                 {{ /for }}

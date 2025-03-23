@@ -2,7 +2,6 @@ top_nav:
   - type: "link"
     href: "/"
     text: Home
-    title: Home
 
   - type: "menu"
     text: Theme Features
