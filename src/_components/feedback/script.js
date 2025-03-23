@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("page-feedback-form");
-  if (! form) {
+  if (!form) {
     return;
   }
   const voteButtons = document.querySelectorAll(".page-feedback-vote");
@@ -9,14 +9,40 @@ document.addEventListener("DOMContentLoaded", function () {
   const comment = document.getElementById("page-feedback-comment");
   const clear = document.getElementById("page-feedback-clear");
   const submit = document.getElementById("page-feedback-submit");
+  const charCountDisplay = document.getElementById("page-feedback-characters");
 
-  const currentVoteClass= "button--primary";
-  const otherVoteClass= "button--secondary";
+  const currentVoteClass = "button--primary";
+  const otherVoteClass = "button--secondary";
   const submitDisabledClass = "button--secondary";
   const submitEnabledClass = "button--success";
-  
+  const MAX_CHARS = 1000;
 
   let selectedButton = null;
+
+  function updateCharCount() {
+    const remainingChars = MAX_CHARS - comment.value.length;
+    charCountDisplay.textContent = `Characters Remaining: ${remainingChars}`;
+
+    if (remainingChars < 0) {
+      submit.disabled = true;
+      submit.classList.remove(submitEnabledClass);
+      submit.classList.add(submitDisabledClass);
+    } else {
+      if (selectedButton) {
+        submit.disabled = false;
+        submit.classList.remove(submitDisabledClass);
+        submit.classList.add(submitEnabledClass);
+      } else {
+        submit.disabled = true;
+        submit.classList.remove(submitEnabledClass);
+        submit.classList.add(submitDisabledClass);
+      }
+    }
+  }
+
+  updateCharCount();
+  comment.addEventListener("input", updateCharCount);
+
   clear.addEventListener("click", function (event) {
     event.preventDefault();
     comment.value = "";
@@ -28,6 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
     submit.disabled = true;
     submit.classList.remove(submitEnabledClass);
     submit.classList.add(submitDisabledClass);
+    selectedButton = null;
+    updateCharCount();
   });
 
   submit.addEventListener("click", function (event) {
@@ -49,12 +77,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
       button.classList.remove(otherVoteClass);
       button.classList.add(currentVoteClass);
-      selectedButton = button;
+      selectedButton = button; // Assign the clicked button
 
       submit.disabled = false;
       submit.classList.remove(submitDisabledClass);
       submit.classList.add(submitEnabledClass);
-      
+
       switch (vote) {
         case 0:
         case -1:
@@ -67,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
           break;
       }
       comment.focus();
+      updateCharCount();
     });
   });
 });
