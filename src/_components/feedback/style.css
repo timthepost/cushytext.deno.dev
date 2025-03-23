@@ -34,6 +34,7 @@
 }
 
 #page-feedback .feedback__bumper p {
+  display: inline;
   font-size: 10pt;
   font-weight: normal;
   margin-bottom: -1px;
