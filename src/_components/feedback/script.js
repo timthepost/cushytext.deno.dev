@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const otherVoteClass = "button--secondary";
   const submitDisabledClass = "button--secondary";
   const submitEnabledClass = "button--success";
-  const MAX_CHARS = 1000;
+  const MAX_CHARS = 650;
 
   let selectedButton = null;
 
