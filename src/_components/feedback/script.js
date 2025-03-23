@@ -10,15 +10,24 @@ document.addEventListener("DOMContentLoaded", function () {
   const clear = document.getElementById("page-feedback-clear");
   const submit = document.getElementById("page-feedback-submit");
 
+  const currentVoteClass= "button--primary";
+  const otherVoteClass= "button--secondary";
+  const submitDisabledClass = "button--secondary";
+  const submitEnabledClass = "button--success";
+  
+
   let selectedButton = null;
   clear.addEventListener("click", function (event) {
     event.preventDefault();
     comment.value = "";
     label.textContent = "Was reading this article a good use of your time?";
     voteButtons.forEach((button) => {
-      button.classList.remove("button--info");
-      button.classList.add("button--secondary");
+      button.classList.remove(currentVoteClass);
+      button.classList.add(otherVoteClass);
     });
+    submit.disabled = true;
+    submit.classList.remove(submitEnabledClass);
+    submit.classList.add(submitDisabledClass);
   });
 
   submit.addEventListener("click", function (event) {
@@ -34,14 +43,18 @@ document.addEventListener("DOMContentLoaded", function () {
       header.style.display = "none";
 
       if (selectedButton) {
-        selectedButton.classList.remove("button--info");
-        selectedButton.classList.add("button--secondary");
+        selectedButton.classList.remove(currentVoteClass);
+        selectedButton.classList.add(otherVoteClass);
       }
 
-      button.classList.remove("button--secondary");
-      button.classList.add("button--info");
+      button.classList.remove(otherVoteClass);
+      button.classList.add(currentVoteClass);
       selectedButton = button;
 
+      submit.disabled = false;
+      submit.classList.remove(submitDisabledClass);
+      submit.classList.add(submitEnabledClass);
+      
       switch (vote) {
         case 0:
         case -1:
