@@ -55,9 +55,6 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Lume.Site) => {
-    site.data("powerMode", Deno.env.get('LUME_DRAFTS') ? true : false);
-    site.data("devMode", Deno.env.get('LUME_DEV') ? true : false);
-    site.data("devModeAccessibility", Deno.env.get('LUME_DEV_ACCESS') ? true : false);
     site
       .use(nav())
       .use(conductor({
