@@ -1,20 +1,22 @@
 <div id="page-feedback" data-lume-basename="{{ basename }}">
   <div class="card">
     <div id="page-feedback-header" class="card__header">
-      <p>Was reading this article a good use of your time?</p>
+      <p>{{ locale.comp.feedback.prompt }}</p>
     </div>
     <form id="page-feedback-form">
       <label
         id="page-feedback-label"
         for="page-feedback-comment"
         name="page-feedback-comment"
-      >How Could This Have Been Better?</label>
+      >{{ locale.comp.feedback.cta }}</label>
       <div class="feedback__bumper">
         <p class="margin-right--none">
           <strong>
-            <span class="text--success">Completely Optional!</span>
+            <span class="text--success">
+            {{ locale.comp.feedback.cta_optional }}
+            </span>
           </strong> 
-            Remaining Characters:&nbsp;
+            {{ locale.comp.feedback.cta_remaining }}&nbsp;
         </p>
         <p id="page-feedback-characters">
         </p>
@@ -25,48 +27,48 @@
           id="page-feedback-clear"
           class="button button--md button--outline button--secondary margin-right--sm"
         >
-          Clear
+          {{ locale.comp.feedback.clear }}
         </button>
         <button
           id="page-feedback-submit"
           class="button button--md button--outline button--success"
         >
-          Submit
+          {{ locale.comp.feedback.submit }}
         </button>
       </div>
     </form>
     <div class="card__footer">
       <div class="button-group button-group--block">
         <button
-          title="Yes!"
+          title="{{ locale.comp.feedback.yes_vote_title }}"
           class="button button--md button--secondary page-feedback-vote"
           data-vote="1"
         >
           <img
             alt="Thumbs Up"
-            title="Yes!"
+            title="{{ locale.comp.feedback.yes_vote_title }}"
             src='{{ "face-smile"  |> icon("fontawesome") }}'
           >
         </button>
         <button
-          title="Meh ..."
+          title="{{ locale.comp.feedback.meh_vote_title }}"
           class="button button--md button--secondary page-feedback-vote"
           data-vote="0"
         >
           <img
             alt="Ambivalent Face"
-            title="Meh ..."
+            title="{{ locale.comp.feedback.meh_vote_title }}"
             src='{{ "face-meh"  |> icon("fontawesome") }}'
           >
         </button>
         <button
-          title="No!"
+          title="{{ locale.comp.feedback.no_vote_title }}"
           class="button button--md button--secondary page-feedback-vote"
           data-vote="-1"
         >
           <img
             alt="Thumbs Down"
-            title="No!"
+            title="{{ locale.comp.feedback.no_vote_title }}"
             src='{{ "face-frown"  |> icon("fontawesome") }}'
           >
         </button>

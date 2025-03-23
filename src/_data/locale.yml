@@ -59,3 +59,14 @@ blog_index:
 comp:
   latestBlog:
     heading: "Latest From The Blog:"
+
+  feedback:
+    prompt: "Was reading this article a good use of your time?"
+    cta: "How could this have been better?"
+    cta_optional: "Completely Optional!"
+    cta_remaining: "Remaining Characters:"
+    clear: "Clear"
+    submit: "Submit Feedback"
+    yes_vote_title: "Yes!"
+    meh_vote_title: "Meh ..."
+    no_vote_title: "No!"
