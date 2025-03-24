@@ -1,7 +1,8 @@
 /* Light Mode */
 :root {
   --ifm-color-scheme: light;
-  --ifm-color-primary: #3578e5;
+  /* --ifm-color-primary: #3578e5; */
+  --ifm-color-primary: #184b9c;
   --ifm-color-secondary: #ebedf0;
   --ifm-color-success: #00a400;
   --ifm-color-info: #54c7ec;
@@ -90,6 +91,7 @@
 /* Dark Mode */
 html[data-theme="dark"] {
   --ifm-color-scheme: dark;
+  --ifm-color-primary: skyblue;
   --ifm-color-emphasis-0: var(--ifm-color-gray-1000);
   --ifm-color-emphasis-100: var(--ifm-color-gray-900);
   --ifm-color-emphasis-200: var(--ifm-color-gray-800);
