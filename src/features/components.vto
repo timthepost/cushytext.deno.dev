@@ -19,10 +19,14 @@ metas:
   components along with whatever is added to them.
 </p>
 
-<h2>Test Of comp.feedback():</h2>
+<hr />
+
+<h2 class="margin-top--md">Test Of <code class="language-js">comp.feedback()</code>:</h2>
 {{ await comp.feedback({ basename: basename }) }}
 
-<h2 class="margin-top--md">Test of comp.alert():</h3>
+<hr />
+
+<h2 class="margin-top--md">Test Of <code class="language-js">comp.alert()</code>:</h3>
 {{
   for 
   alertType of infimaNotificationTypes
@@ -36,6 +40,8 @@ metas:
     })
   }}
 {{ /for }}
+
+<hr />
 
 <h3 class="margin-top--lg">Badges, Buttons, Button Groups &amp; Pills:</h3>
 {{ for badgeType of infimaNotificationTypes }}
@@ -74,6 +80,8 @@ metas:
   <li class="pills__item">Zeta</li>
 </ul>
 
+<hr />
+
 <h3 class="margin-top--lg">Breadcrumbs &amp; Pagination:</h3>
 
 <nav aria-label="breadcrumbs">
@@ -111,6 +119,8 @@ metas:
   </div>
 </nav>
 
+<hr />
+
 <h3 class="margin-top--lg">Tabs:</h3>
 
 <ul class="tabs">
@@ -126,6 +136,8 @@ metas:
   <li class="tabs__item">Gamma</li>
   <li class="tabs__item">Zeta</li>
 </ul>
+
+<hr />
 
 <h2 class="margin-top--lg">Avatars:</h2>
 
@@ -152,6 +164,9 @@ metas:
     </small>
   </div>
 </div>
+
+<hr />
+
 <h3 class="margin-top--lg">
   Various Cards (Laid Out Using Infima's Grid System):
 </h3>
@@ -261,6 +276,7 @@ metas:
     </div>
   </div>
 </div>
+<hr />
 <h3 class="margin-top--lg">Text &amp; Element Spacing:</h3>
 <p>
   Spacing is declarative with Infima using the nomenclature format <code
@@ -281,6 +297,7 @@ metas:
   margins to 0. It's a great feature of the framework for when you <em>don't</em>
   want to set up a whole separate class just to tweak spacing.
 </p>
+<hr />
 <h3 class="margin-top--lg">Other Text Helpers</h3>
 Colors, weights, etc are easily described in class attributes. To change color,
 for instance, you can add <code>class="text--color"</code>, where `color` is one
