@@ -27,16 +27,16 @@
         {{ locale.blog_index.feeds }}
       </h3>
       <p>
-        <a href="/feed.xml" class="navbar__link">
-          <span class="badge badge--warning" style="font-size: 12pt">{{
-            locale.feeds.rss
-          }}</span>
+        <a href="/feed.xml" class="navbar__link" aria-label="RSS Feed" title="RSS Feed">
+          <span class="badge badge--warning padding--sm" style="font-size: 12pt">
+            <img src="{{ "rss" |> icon("phosphor", "bold") }}" style="height: 32px" alt="RSS" title="RSS Feed">
+          </span>
         </a>
         <span class="margin-horiz--sm">|</span>
-        <a href="/feed.json" class="navbar__link">
-          <span class="badge badge--success" style="font-size: 12pt">{{
-            locale.feeds.json
-          }}</span>
+        <a href="/feed.json" class="navbar__link" aria-label="JSON Feed" title="JSON Feed">
+          <span class="badge badge--success padding--sm" style="font-size: 12pt">
+            <img src="{{ "brackets-curly" |> icon("phosphor", "bold") }}" style="height: 32px" alt="JSON" title="JSON Feed">
+          </span>
         </a>
       </p>
     </div>

@@ -33,13 +33,17 @@
       {{ else }}
       <h3 class="margin-top--md" style="font-size: 12pt">{{ docs.basedir }} {{ locale.documentation.feeds }}</h3>
       {{ /if }}
-      <p>
-        <a href="/docs/feed.xml" class="navbar__link">
-          <span class="badge badge--warning" style="font-size: 12pt">{{ locale.feeds.rss }}</span>
-        </a> 
+            <p>
+        <a href="/docs/feed.xml" class="navbar__link" aria-label="RSS Feed" title="{{ locale.feeds.rss }}">
+          <span class="badge badge--warning padding--sm" style="font-size: 12pt">
+            <img src="{{ "rss" |> icon("phosphor", "bold") }}" style="height: 32px" alt="RSS" title="{{ locale.feeds.rss }}">
+          </span>
+        </a>
         <span class="margin-horiz--sm">|</span>
-        <a href="/docs/feed.json" class="navbar__link">
-          <span class="badge badge--success" style="font-size: 12pt">{{ locale.feeds.json }}</span>
+        <a href="/docs/feed.json" class="navbar__link" aria-label="JSON Feed" title="{{ locale.feeds.json }}">
+          <span class="badge badge--success padding--sm" style="font-size: 12pt">
+            <img src="{{ "brackets-curly" |> icon("phosphor", "bold") }}" style="height: 32px" alt="JSON" title="{{ locale.feeds.json }}">
+          </span>
         </a>
       </p>
     </div>
