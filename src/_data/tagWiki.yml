@@ -1,6 +1,6 @@
 announcements:
   summary: >
-    The `announcements` tag is applied when there's a major announcement
+    The announcements tag is applied when there's a major announcement
     to make, such as a new release or other major news about the project.
 
 
@@ -8,6 +8,12 @@ announcements:
     the tag, it's probably worth checking out.
   related_tags: ["updates"]
 
+accessibility:
+  summary: >
+    The accessibility tag is applied to posts that concern making this
+    site, and the theme that powers it, render the best possible experience
+    to as many visitors as possible by observing accessibility standards.
+    
 updates:
   summary: >
     The `updates` tag is similar to the `announcements` tag in that it
