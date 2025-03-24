@@ -1,0 +1,120 @@
+---
+title: A Quick Update On Accessibility For 0.0.1
+description: "A Rundown On How CushyText Stands On Accessibility"
+date: 2025-03-24
+author: Tim Post
+draft: false
+menu:
+  visible: true
+  order: 0
+tags:
+  - v0.0.1
+  - accessibility
+  - infima
+metas:
+  lang: en
+  description: "A Good Rundown On Where Cushy Text Stands As Far As Accessibility Goes Without Getting Too Technical About CSS."
+  tags:
+    - Self Publishing
+    - Web Accessibility
+    - Static Site Generators
+    - Lume Themes
+    - Sa11y Page Tool
+  image: /blog/quick-accessibility-update-0-0-1/index.png
+  robots: true
+  generator: true
+---
+
+If you make web pages and haven't yet heard of [Sa11y](https://sa11y.netlify.app/), 
+I strongly suggest checking it out at your earliest opportunity. Special thanks to 
+Lume Community member [Pyrox](https://pyrox.dev/) for suggesting it.
+
+I had been bracing for a massive list of fixes that would be needed in order to 
+call CushyText accessible, but quite amazingly, _we're already doing pretty well!_.
+<img
+  class="blog_image"
+  src="/blog/quick-accessibility-update-0-0-1/index.png" 
+  alt="Blog Title Card Image" 
+  title="Quick Accessibility Update 0.0.1" />
+
+I'm definitely not calling the theme accessible in the first release (there's just not enough 
+time for that at this point), I think it could be an accurate description by the second or third.
+
+***Here's a run-down on how it went***, though you're welcome to try these yourself. 
+
+{/* more */} 
+  
+## Testing With Sa11y Was Way Easier Than I'd Anticipated
+
+I put the following code in the header:
+
+```js
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/ryersondmp/sa11y@latest/dist/css/sa11y.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/combine/gh/ryersondmp/sa11y@latest/dist/js/lang/en.umd.js,gh/ryersondmp/sa11y@latest/dist/js/sa11y.umd.min.js"></script>
+<script>
+  Sa11y.Lang.addI18n(Sa11yLangEn.strings);
+  const sa11y = new Sa11y.Sa11y({
+    checkRoot: "body",
+  });
+</script>
+```
+
+And then I have flags on all of the elements that should interest me. I also have the
+ability to test the site through different color filters to make sure the experience 
+is still on-par. Check out [the site](https://sa11y.netlify.app/); it's a really useful tool!
+
+But, I wanted multiple sources to help me understand the strengths of individual tools vs 
+what they all tended to agree on, so I also checked things out with [WAVE](https://wave.webaim.org/)
+(web evaluation accessibility tool). 
+
+Both tools flagged the same things in a similar way, and offered similar suggestions on how
+to make changes, like offering alternate color codes, or instructions for better labeling.
+
+[Here's a /dev route you can use to view individual components](/dev).
+
+## So, What Did They Find? How Did It Go?
+
+Well. I checked in some changes that fixed _a lot_ of instances where there's just not enough 
+contrast with background and font color. All of the default Infima colors are just a _few shades_
+too bright to be in the sweet spot where we can say we're sure all possible effort went into 
+a great experience for everyone.
+
+I've fixed the `--primary` side of things which corrected 95% of the detected problems, and made
+more changes to things like badges, feed icons, tag wiki feeds and other parts. 
+
+## 95% Of Issues Are Fixed. The Remaining Issues Will Take Longer.
+
+What remains is:
+
+ - `--info`, `--warning`, `--success` and `--danger` need to be re-styled to be a few shades darker, 
+ along with whatever changes are needed for their respective hover / visited / etc states. 
+
+ - Pagefind will (hopefully) soon add some missing elements to the form fields they place in the 
+ document. 
+
+None of the colors that could have contrast issues are in use in the default theme in a manner where
+the contrast could be a problem, so these will be fixed over time, most likely as they get used by 
+new theme components.
+
+## This Will Likely Modify The Base Infima CSS. But, Not Fork.
+
+Because of the hover and visited states, and some shared variables, it's going to be a really big 
+problem to make all the color changes as overrides. It will be a lot of clutter. 
+
+The theme already separates out variable definitions from the rest of the code, so all changes will
+be confined to the variable definition files. This means they could conceivably be _applied_ as 
+overrides if they had to be, like if you had to load the theme remotely from the Infima NPM package.
+
+But, it will be completely accessible once done, at least as far as contrast goes. And if they ever 
+push a major update (highly unlikely, but theoretically conceivable), it's still easy for me to apply. 
+
+## Responsive &amp; Accessible: Here We Come!
+
+It will likely take a few more versions (tab indexes need some attention too), but we're definitely 
+way closer than I thought. 
+
+And, well, it feels good to move farther away from the default Infima design without changing anything
+fundamentally. We're doing our own thing over here, so a bit more individuality feels great!
