@@ -40,21 +40,21 @@
     </form>
     <div class="card__footer">
       <ul class="pills pills--block">
-        <li class="pills__item page-feedback-vote" data-vote="1">
+        <li class="pills__item page-feedback-vote" data-vote="1" title="{{ locale.comp.feedback.yes_vote_title }}">
           <img
             alt="Happy Face Icon"
             title="{{ locale.comp.feedback.yes_vote_title }}"
             src='{{ "face-smile"  |> icon("fontawesome") }}'
           >
         </li>
-        <li class="pills__item page-feedback-vote" data-vote="0">
+        <li class="pills__item page-feedback-vote" data-vote="0" title="{{ locale.comp.feedback.meh_vote_title }}">
            <img
             alt="Ambivalent Face Icon"
             title="{{ locale.comp.feedback.meh_vote_title }}"
             src='{{ "face-meh"  |> icon("fontawesome") }}'
           >
         </li>
-        <li class="pills__item page-feedback-vote" data-vote="-1">
+        <li class="pills__item page-feedback-vote" data-vote="-1" title="{{ locale.comp.feedback.no_vote_title }}">
           <img
             alt="Frown Face"
             title="{{ locale.comp.feedback.no_vote_title }}"
