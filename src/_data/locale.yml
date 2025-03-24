@@ -46,8 +46,8 @@ archive:
   edit_wiki: "Edit This Tag Wiki On Github (Opens In A New Page)"
   edit_wiki_url: "https://github.com/timthepost/cushytext/edit/main/src/_data/tagWiki.yml"
   edit_wiki_no_wiki: "This tag has no wiki yet, would you like to create it?"
-  tag_rss_title: "RSS Feed Exclusively For:"
-  tag_json_title: "JSON Feed Exclusively For:"
+  tag_rss_title: "RSS Feed Exclusively For Posts Tagged:"
+  tag_json_title: "JSON Feed Exclusively For Posts Tagged:"
   
   
 
@@ -57,7 +57,7 @@ blog_index:
   latest_posts: "Latest Posts:"
   feeds: "/blog Feeds:"
   top_tags: "Recent Tags:"
-  older_posts: '<span style="color:coral">Other posts are</span>'
+  older_posts: "Other posts are"
   older_posts_link: "in the archive"
   toc: "In This Article:"
 

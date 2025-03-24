@@ -22,36 +22,33 @@
     </nav>
     {{ if tag }}
       {{ if tagWiki[tag] }}
-        <p class="margin-top--sm margin-bottom--none"><strong>Per-tag Feeds Are Available For <em>{{tag}}</em></strong>:</p>
         <p class="margin-top--sm padding-top--md">
+          <img 
+            src="{{ "rss" |> icon("phosphor", "bold") }}" 
+            style="height: 18px;" alt="RSS" title="RSS Feed"
+          >
+          &nbsp; 
           <a
             href="/feeds/tag/{{ tag }}.xml"
-            class="navbar__link"
+            class="tagWiki"
             aria-label="{{ locale.archive.tag_rss_title }} {{ tag }}"
+            title="{{ locale.archive.tag_rss_title }} {{ tag }}"
           >
-            <span class="badge badge--warning padding--sm" 
-              style="font-size: 12pt; color: #333; display: inline-block;"
-              >
-              <img 
-                src="{{ "rss" |> icon("phosphor", "bold") }}" 
-                style="height: 24px;" alt="RSS" title="RSS Feed"> 
-                 &nbsp;{{ tag }}
-            </span>
+          "{{ tag }}" RSS
           </a>
           <span class="margin-horiz--sm">|</span>
+          <img 
+            src="{{ "brackets-curly" |> icon("phosphor", "bold") }}" 
+            style="height: 18px;" alt="JSON" title="JSON Feed"
+          >
+          &nbsp;
           <a
             href="/feeds/tag/{{ tag }}.json"
-            class="navbar__link"
+            class="tagWiki"
+            title="{{ locale.archive.tag_json_title }} {{ tag }}"
             aria-label="{{ locale.archive.tag_json_title }} {{ tag }}"
           >
-            <span class="badge badge--success padding--sm" 
-              style="font-size: 12pt; color: #333; display: inline-block;"
-              >
-              <img 
-                src="{{ "brackets-curly" |> icon("phosphor", "bold") }}" 
-                style="height: 24px;" alt="JSON" title="JSON Feed"> 
-                &nbsp;{{ tag }}
-            </span>
+          "{{ tag }}" JSON
           </a>
         </p>
         <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
@@ -69,6 +66,7 @@
           target="_blank"
           class="margin-horiz--md padding-vert--sm"
           href="{{ locale.archive.edit_wiki_url }}"
+          aria-label="Open Github In A New Page To Edit This Wiki"
         >{{ locale.archive.edit_wiki }}</a>
         <h2 class="margin-top--lg">
           {{ locale.archive.posts_tagged }} <em>{{ tag }}</em>:
@@ -127,7 +125,7 @@
         </a>
         <span class="margin-horiz--sm">|</span>
         <a href="/feed.json" class="navbar__link" aria-label="JSON Feed" title="JSON Feed">
-          <span class="badge badge--success padding--sm" style="font-size: 12pt">
+          <span class="badge badge--warning padding--sm" style="font-size: 12pt">
             <img src="{{ "brackets-curly" |> icon("phosphor", "bold") }}" style="height: 32px" alt="JSON" title="JSON Feed">
           </span>
         </a>
