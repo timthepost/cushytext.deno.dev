@@ -13,7 +13,7 @@ goals:
       engine runs blazing fast. Need more control? Just use <a href="https://vento.js.org/">Vento</a>.
       All with the convenience of <a href="https://infima.dev">Infima</a> components, which are being turned into Lume 3
       components.
-    href: /features/#components
+    href: /blog/0-0-1-component-strategy-update/
     cta: More On Components
 
   - title: Static, But Interactive!
