@@ -26,8 +26,7 @@
           <a
             href="/feeds/tag/{{ tag }}.xml"
             class="navbar__link"
-            title="Be notified of new content in the {{ tag }} tag via RSS."
-            aria-label="RSS Feed Exclusively For The {{ tag }} tag."
+            aria-label="{{ locale.archive.tag_rss_title }} {{ tag }}"
           >
             <span class="badge badge--warning padding--sm" 
               style="font-size: 12pt; color: #333; display: inline-block;"
@@ -42,8 +41,7 @@
           <a
             href="/feeds/tag/{{ tag }}.json"
             class="navbar__link"
-            title="Be notified of new content in the {{ tag }} tag via JSON."
-            aria-label="JSON Feed Exclusively For The {{ tag }} tag."
+            aria-label="{{ locale.archive.tag_json_title }} {{ tag }}"
           >
             <span class="badge badge--success padding--sm" 
               style="font-size: 12pt; color: #333; display: inline-block;"
@@ -61,8 +59,7 @@
       {{ else if tag.length }}
         <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
           <p>
-            No tag wiki for "{{ tag }}" has been created yet; would you like to
-            create it?
+            {{ locale.archive.edit_wiki_no_wiki }}
           </p>
         </div>
       {{ /if }}
