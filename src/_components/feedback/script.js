@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const submit = document.getElementById("page-feedback-submit");
   const charCountDisplay = document.getElementById("page-feedback-characters");
 
-  const currentVoteClass = "button--primary";
+  const currentVoteClass = "button--info";
   const otherVoteClass = "button--secondary";
   const submitDisabledClass = "button--secondary";
-  const submitEnabledClass = "button--success";
+  const submitEnabledClass = "button--primary";
   const MAX_CHARS = 650;
 
   let selectedButton = null;

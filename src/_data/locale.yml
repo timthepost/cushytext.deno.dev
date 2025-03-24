@@ -68,7 +68,7 @@ comp:
   feedback:
     prompt: "Was reading this article a good use of your time?"
     cta: "How could this have been better?"
-    cta_optional: "Completely Optional!"
+    cta_optional: "Text Is Completely Optional!"
     cta_remaining: "Remaining Characters:"
     clear: "Clear"
     submit: "Submit Feedback"
