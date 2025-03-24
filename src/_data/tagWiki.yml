@@ -8,11 +8,19 @@ announcements:
     the tag, it's probably worth checking out.
   related_tags: ["updates"]
 
+infima:
+  summary: >
+    Infima CSS is the base CSS framework for CushyText, written and maintained
+    by Meta for Docusaurus 2. Cushy Text exists due to a desire to use Infima 
+    with Lume for highly-textual sites.
+  related_tags: ["accessibility"]
+  
 accessibility:
   summary: >
     The accessibility tag is applied to posts that concern making this
     site, and the theme that powers it, render the best possible experience
     to as many visitors as possible by observing accessibility standards.
+  related_tags: ["infima"]
     
 updates:
   summary: >
