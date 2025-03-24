@@ -24,7 +24,7 @@
 /* Override for TOC list type */
 .table-of-contents,
 .table-of-contents ul {
-  list-style: "»  ";
+  list-style-type: square;
   list-style-position: outside;
 }
 .table-of-contents li {
