@@ -22,6 +22,7 @@
     </nav>
     {{ if tag }}
       {{ if tagWiki[tag] }}
+        <p class="margin-top--sm margin-bottom--none"><strong>Per-tag Feeds Are Available For <em>{{tag}}</em></strong>:</p>
         <p class="margin-top--sm padding-top--md">
           <a
             href="/feeds/tag/{{ tag }}.xml"
