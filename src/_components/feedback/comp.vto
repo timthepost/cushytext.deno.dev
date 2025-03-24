@@ -39,45 +39,29 @@
       </div>
     </form>
     <div class="card__footer">
-      <div class="button-group button-group--block">
-        <button
-          title="{{ locale.comp.feedback.yes_vote_title }}"
-          aria-label="Yes! Reading this was a good use of time."
-          class="button button--md button--secondary page-feedback-vote"
-          data-vote="1"
-        >
+      <ul class="pills pills--block">
+        <li class="pills__item page-feedback-vote" data-vote="1">
           <img
             alt="Happy Face Icon"
             title="{{ locale.comp.feedback.yes_vote_title }}"
-            aria-label="Happy face."
             src='{{ "face-smile"  |> icon("fontawesome") }}'
           >
-        </button>
-        <button
-          title="{{ locale.comp.feedback.meh_vote_title }}"
-          aria-label="Ambivalent face."
-          class="button button--md button--secondary page-feedback-vote"
-          data-vote="0"
-        >
-          <img
-            alt="Ambivalent Face"
+        </li>
+        <li class="pills__item page-feedback-vote" data-vote="0">
+           <img
+            alt="Ambivalent Face Icon"
             title="{{ locale.comp.feedback.meh_vote_title }}"
             src='{{ "face-meh"  |> icon("fontawesome") }}'
           >
-        </button>
-        <button
-          title="{{ locale.comp.feedback.no_vote_title }}"
-          aria-label="A frown face."
-          class="button button--md button--secondary page-feedback-vote"
-          data-vote="-1"
-        >
+        </li>
+        <li class="pills__item page-feedback-vote" data-vote="-1">
           <img
             alt="Frown Face"
             title="{{ locale.comp.feedback.no_vote_title }}"
             src='{{ "face-frown"  |> icon("fontawesome") }}'
           >
-        </button>
-      </div>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

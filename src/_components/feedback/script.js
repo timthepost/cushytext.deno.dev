@@ -10,8 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const submit = document.getElementById("page-feedback-submit");
   const charCountDisplay = document.getElementById("page-feedback-characters");
 
-  const currentVoteClass = "button--info";
-  const otherVoteClass = "button--secondary";
+  const currentVoteClass = "pills__item--active";
   const submitDisabledClass = "button--secondary";
   const submitEnabledClass = "button--primary";
   const MAX_CHARS = 650;
@@ -47,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
     comment.value = "";
     voteButtons.forEach((button) => {
       button.classList.remove(currentVoteClass);
-      button.classList.add(otherVoteClass);
     });
     submit.disabled = true;
     submit.classList.remove(submitEnabledClass);
@@ -70,10 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (selectedButton) {
         selectedButton.classList.remove(currentVoteClass);
-        selectedButton.classList.add(otherVoteClass);
       }
 
-      button.classList.remove(otherVoteClass);
       button.classList.add(currentVoteClass);
       selectedButton = button; // Assign the clicked button
 
