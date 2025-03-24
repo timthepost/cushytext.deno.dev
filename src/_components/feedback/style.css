@@ -50,3 +50,12 @@
 #page-feedback-form {
   display: none;
 }
+
+#page-feedback .pills__item--active {
+  background: skyblue;
+  color: var(--ifm-pills-color-active);
+}
+
+#page-feedback .pills__item:not(.pills__item--active):hover {
+  background: skyblue;
+}
