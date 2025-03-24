@@ -156,7 +156,21 @@
   text-decoration: none;
   color: steelblue;
 }
+
+.button.button--info,
+.button.button--success,
+.button.button--warning,
+.button.button--danger {
+  color: var(--ifm-color-black);
+}
  
+.badge--info, 
+.badge--warning,
+.badge--success,
+.badge--danger {
+  color: var(--ifm-color-black);
+}
+
 /* Consolidated media query */
 @media (max-width: 976px) {
   /* Top nav logo */
