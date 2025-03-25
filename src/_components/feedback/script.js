@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const previousVote = localStorage.getItem(voteKey);
   if (previousVote) {
     // already voted
+    // TODO - compare vote date against last update date and remove if stale?
     return;
   }
 
