@@ -73,3 +73,4 @@ comp:
     yes_vote_title: "Yes!"
     meh_vote_title: "Meh ..."
     no_vote_title: "No!"
+    success_message: "Feedback submitted, ***thank you***! We'll try not to ask you about this page again."
