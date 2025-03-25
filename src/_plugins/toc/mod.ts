@@ -14,7 +14,6 @@ interface Options {
   toc_heading_selectors?: string;
   toc_list_class?: string;
   toc_link_class?: string;
-  tag_wiki_path?: string;
 }
 
 export const defaults: Options = {
@@ -25,11 +24,7 @@ export const defaults: Options = {
   toc_list_class: "",
 };
 
-function _cushyUpdate(msg: string): void {
-  log.info(`☁️⠀⠀${msg}`);
-}
-
-export default function conductor(userOptions?: Options) {
+export default function toc(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   /**

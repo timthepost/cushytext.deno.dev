@@ -24,7 +24,7 @@ import slugifyUrls from "lume/plugins/slugify_urls.ts";
 import sourceMaps from "lume/plugins/source_maps.ts";
 import terser from "lume/plugins/terser.ts";
 import transformImages from "lume/plugins/transform_images.ts";
-import conductor from "./src/_plugins/site_conductor/mod.ts";
+import toc from "./src/_plugins/toc/mod.ts";
 
 import "lume/types.ts";
 
@@ -57,7 +57,7 @@ export default function(userOptions?: Options) {
   return (site: Lume.Site) => {
     site
       .use(nav())
-      .use(conductor({
+      .use(toc({
         toc_selector: "#toc",
         toc_container: ".toc-enabled",
         toc_heading_selectors: "h2, h3, h4, h5, h6",
