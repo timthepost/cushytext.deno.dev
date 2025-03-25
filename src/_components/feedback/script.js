@@ -10,12 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
     return console.error('comp.feedback: missing "data-basename" attribute in page-feedback element.');
   }
 
-  /*
-   * Make page-feedback hidden by default. Query local storage. No vote? Show it.
-   * On feedback submit, alert, hide container.
-   * Will not be showing "delete vote" UI. Those who want it can add it.
-   */
-
+  const voteKey = `feedback-${basename}`;
+  const previousVote = localStorage.getItem(voteKey);
+  if (previousVote) {
+    // already voted
+    return;
+  }
+  
   const form = document.getElementById("page-feedback-form");
   const voteButtons = document.querySelectorAll(".page-feedback-vote");
   const header = document.getElementById("page-feedback-header");
@@ -23,15 +24,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const clear = document.getElementById("page-feedback-clear");
   const submit = document.getElementById("page-feedback-submit");
   const charCountDisplay = document.getElementById("page-feedback-characters");
-
+  const alert = document.getElementById("page-feedback-alert");
+  
   const currentVoteClass = "pills__item--active";
   const submitDisabledClass = "button--secondary";
   const submitEnabledClass = "button--primary";
   const MAX_CHARS = 650;
 
   let selectedButton = null;
+  container.style.display = "inline-block";
 
-  async function _submitFeedback(feedbackData) {
+  async function submitFeedback(feedbackData) {
     try {
       const response = await fetch("/api/feedback", {
         method: "POST",
@@ -101,10 +104,20 @@ document.addEventListener("DOMContentLoaded", function () {
     feedbackData.timestamp = new Date();
     feedbackData.basename = basename;
     
-    // _submitFeedback(feedbackData)
+    try {
+      const _response = submitFeedback(feedbackData);
+    } catch (error) {
+      alert.classList.remove('alert--success');
+      alert.classList.add('alert--danger');
+      alert.textContent = error.message;
+      container.style.display = "none";
+      alert.style.display = "block";
+      return console.error("Error submitting feedback:", error.message);
+    }
 
-    // set local storage
-    console.log("Soon. Not yet.");
+    localStorage.setItem(voteKey, new Date());
+    container.style.display = "none";
+    alert.style.display = "block";
   });
 
   voteButtons.forEach((button) => {
