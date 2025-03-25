@@ -1,8 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("page-feedback-form");
-  if (!form) {
+  const container = document.getElementById("page-feedback");
+  if (! container) {
+    // nothing to do 
     return;
   }
+
+  const basename = container.dataset.basename;
+  if (! basename) {
+    return console.error('comp.feedback: missing "data-basename" attribute in page-feedback element.');
+  }
+
+  /*
+   * Make page-feedback hidden by default. Query local storage. No vote? Show it.
+   * On feedback submit, alert, hide container.
+   * Will not be showing "delete vote" UI. Those who want it can add it.
+   */
+
+  const form = document.getElementById("page-feedback-form");
   const voteButtons = document.querySelectorAll(".page-feedback-vote");
   const header = document.getElementById("page-feedback-header");
   const comment = document.getElementById("page-feedback-comment");
@@ -16,6 +30,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const MAX_CHARS = 650;
 
   let selectedButton = null;
+
+  async function _submitFeedback(feedbackData) {
+    try {
+      const response = await fetch("/api/feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(feedbackData),
+      });
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP error ${response.status}: ${errorText}`);
+      }
+  
+      const responseData = await response.json();
+      return responseData;
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      // just re-throw for now, but some kind of error reporting would be ideal.
+      // if this is broken, so is their ability to tell you it's broken.
+      throw error;
+    }
+  }
 
   function updateCharCount() {
     const remainingChars = MAX_CHARS - comment.value.length;
@@ -56,6 +95,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   submit.addEventListener("click", function (event) {
     event.preventDefault();
+    const feedbackData = new Object();
+    feedbackData.comment = comment.value;
+    feedbackData.vote = parseInt(selectedButton.dataset.vote);
+    feedbackData.timestamp = new Date();
+    feedbackData.basename = basename;
+    
+    // _submitFeedback(feedbackData)
+
+    // set local storage
     console.log("Soon. Not yet.");
   });
 
