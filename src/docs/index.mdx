@@ -11,11 +11,8 @@ metas:
 
 # Current Status: <span class="text--danger">Incomplete</span>
 
-The site builds, things are fairly stable and the blog and docs sections are mostly 
-functional, but not all features work yet. Additionally, there's no 
-`mod.ts` or `init.ts` yet to provide a "bare" version of the theme, so the only way to 
-work with it is to clone this entire site. Interactive features haven't been added yet, 
-and there's still some work on design components that needs to happen first.
+Most things are fairly stable, but there's still a lot of finishing touches needed 
+before I'm comfortable tagging in a release. 
 
 ***I expect the first testing release (`0.0.1-rc1`) to be ready around the first week of April, 2025.***
 
@@ -23,19 +20,15 @@ and there's still some work on design components that needs to happen first.
 
 The only way to check things out right now is to **[clone the repo](https://github.com/timthepost/cushytext)**.
 
-_Please_ keep in mind that this project is very much a moving target
-right now, and many things are the way that they are just because that's 
-how they exist at the moment. While the design and functionality are 
-pretty well laid out, how things work, are worded, ordered, etc is still
-a major work-in-progress. Likewise, only start something long-term with this
-if you know what you're doing.
-
 Once you have a working copy of the repo, the following sets `LUME_DRAFTS` true and starts the Lume 
 local server:
 
 ```bash
 > deno task dev
 ```
+
+Look at `_includes/partials/head.vto` for Sa11y imports (used to test accessibility). Right now just 
+comment / uncomment them. I plan to organize dev loading more around environmental variables soon.
 
 There's also a special task for starting the production server (`src/_serve.ts`),
 which you should only have to do if you're changing the server code or testing 
@@ -55,15 +48,16 @@ things like testing redirects.
 
 <h2 id="current_focus">Current Focus (All must be done before `0.0.1` testing release)</h2>
 
+ - Conductor plugin is no longer needed, just re-name it to TOC. We'll eventually have 
+   some kind of generator plugin, but not yet.
+
  - Everything needed to be a remote theme (`mod.ts` for remote files, 
    `init.ts` to generate default content)
 
- - Aria labels, roles, tab indexes all need to be straightened out now that the 
-   DOM is structurally more stable.
- 
- - Interactive Features (start with docs rating), see also `_cms.ts` for back-end.
+ - Interactive [content rating feature](/dev) is mostly done, but needs secured with 
+   honeypot field and probably captcha. Should also use middleware-side validation.
 
- - Need a `/types.ts` to export types for interactive features & other stuff.
+ - Clean up & Proper-ize this docs installation to completely document the theme.
 
 <h2 id="roadmap">Near-Term Roadmap: (`0.0.2 - 0.0.3`)</h2>
 
@@ -76,13 +70,18 @@ things like testing redirects.
 
  - Have a default localization plugin / setup.
 
- - Finish porting all the components to Lume 3 structure.
+ - More content-building components (tabs, responsive YT player helper, docs index
+   page generator) Perhaps a selective generator for Discord Q&A as the start of a 
+   FAQ component.
 
  - Have author bios and tag info content for tag and author pages so they're
    indexed better (already started)
 
- - SEO Plugin v1 should be ready by then.
-
+ - SEO Plugin v1 rewrite should be ready by then. The one soaking in `_plugins/seo`
+   needs to be rewritten to accept lengths in chars or words, and to use the DOM API 
+   instead of fiddling with frontmatter directly. It also needs to have a better 
+   strategy for running on save events, current behavior scans all pages on every save.
+   However, the tests themselves are sound. It works well.
 
 <h2 id="contributing">Contributing</h2>
 

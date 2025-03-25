@@ -1,8 +1,10 @@
-{{ await comp.alert({
-  divId : "page-feedback-alert",
-  type : "success",
-  message : "Feedback Submitted, ***Thanks!***" }) 
-  }}
+{{
+  await comp.alert({
+    divId: "page-feedback-alert",
+    type: "success",
+    message: "Feedback Submitted, ***Thanks!***",
+  })
+}}
 <div id="page-feedback" data-basename="{{ basename }}">
   <div class="card">
     <div id="page-feedback-header" class="card__header">
@@ -18,11 +20,11 @@
         <p class="margin-right--none">
           <strong>
             {{ locale.comp.feedback.cta_optional }}
-          </strong> 
-            {{ locale.comp.feedback.cta_remaining }}&nbsp;
+          </strong>
+          {{ locale.comp.feedback.cta_remaining }}&nbsp;
         </p>
-        <p 
-          id="page-feedback-characters" 
+        <p
+          id="page-feedback-characters"
           aria-label="Live update of remaining characters"
         >
         </p>
@@ -45,21 +47,33 @@
     </form>
     <div class="card__footer">
       <ul class="pills pills--block">
-        <li class="pills__item page-feedback-vote" data-vote="1" title="{{ locale.comp.feedback.yes_vote_title }}">
+        <li
+          class="pills__item page-feedback-vote"
+          data-vote="1"
+          title="{{ locale.comp.feedback.yes_vote_title }}"
+        >
           <img
             alt="Happy Face Icon"
             title="{{ locale.comp.feedback.yes_vote_title }}"
             src='{{ "face-smile"  |> icon("fontawesome") }}'
           >
         </li>
-        <li class="pills__item page-feedback-vote" data-vote="0" title="{{ locale.comp.feedback.meh_vote_title }}">
-           <img
+        <li
+          class="pills__item page-feedback-vote"
+          data-vote="0"
+          title="{{ locale.comp.feedback.meh_vote_title }}"
+        >
+          <img
             alt="Ambivalent Face Icon"
             title="{{ locale.comp.feedback.meh_vote_title }}"
             src='{{ "face-meh"  |> icon("fontawesome") }}'
           >
         </li>
-        <li class="pills__item page-feedback-vote" data-vote="-1" title="{{ locale.comp.feedback.no_vote_title }}">
+        <li
+          class="pills__item page-feedback-vote"
+          data-vote="-1"
+          title="{{ locale.comp.feedback.no_vote_title }}"
+        >
           <img
             alt="Frown Face"
             title="{{ locale.comp.feedback.no_vote_title }}"

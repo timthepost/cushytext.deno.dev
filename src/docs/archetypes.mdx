@@ -10,6 +10,9 @@ menu:
 
 # {title}
 
+`tl;dr:` The `_data.yml` files in this theme are very important. They 
+control a lot about how the files inside will be generated.
+
 In Lume, _archetypes_ are scripts that Lume runs which can create base 
 content for blog posts, content pages, photo galleries, or whatever other
 content you have. 
@@ -31,10 +34,12 @@ In Cushy Text, this applies to three specific types of content:
 
 A special file called `_data.yml` in each directory controls default frontmatter
 settings for everything in that directory, and directories inside of it; this is
-a base feature of Lume. Cushy Docs takes advantage of this by looking for special 
-configuration directives that control how things get generated. Cushy Docs decides
-if the files in the current directory are a blog, a documentation collection, or 
-a collection of content pages depending on settings contained in these files. 
+a base feature of Lume.
+
+Cushy Docs takes advantage of this by looking for special configuration directives 
+that control how things get generated. Cushy Docs decides if the files in the current 
+directory are a blog, a documentation collection, or a collection of content pages 
+depending on settings contained in these files, and then generates things differently. 
 
 To give you an idea of how this works, right now, you're actually in `/docs`,
 which is a `docs` archetype (a documentation area, not robust like a blog). 

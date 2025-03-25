@@ -1,13 +1,13 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   const container = document.getElementById("page-feedback");
-  if (! container) {
-    // nothing to do 
+  if (!container) {
+    // nothing to do
     return;
   }
 
   const basename = container.dataset.basename;
-  if (! basename) {
-    return console.error('comp.feedback: missing "data-basename" attribute in page-feedback element.');
+  if (!basename) {
+    return console.error("comp.feedback: missing \"data-basename\" attribute in page-feedback element.");
   }
 
   const voteKey = `feedback-${basename}`;
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // already voted
     return;
   }
-  
+
   const form = document.getElementById("page-feedback-form");
   const voteButtons = document.querySelectorAll(".page-feedback-vote");
   const header = document.getElementById("page-feedback-header");
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const submit = document.getElementById("page-feedback-submit");
   const charCountDisplay = document.getElementById("page-feedback-characters");
   const alert = document.getElementById("page-feedback-alert");
-  
+
   const currentVoteClass = "pills__item--active";
   const submitDisabledClass = "button--secondary";
   const submitEnabledClass = "button--primary";
@@ -43,12 +43,12 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         body: JSON.stringify(feedbackData),
       });
-  
+
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`HTTP error ${response.status}: ${errorText}`);
       }
-  
+
       const responseData = await response.json();
       return responseData;
     } catch (error) {
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
   updateCharCount();
   comment.addEventListener("input", updateCharCount);
 
-  clear.addEventListener("click", function (event) {
+  clear.addEventListener("click", function(event) {
     event.preventDefault();
     comment.value = "";
     voteButtons.forEach((button) => {
@@ -96,19 +96,19 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCharCount();
   });
 
-  submit.addEventListener("click", function (event) {
+  submit.addEventListener("click", function(event) {
     event.preventDefault();
     const feedbackData = new Object();
     feedbackData.comment = comment.value;
     feedbackData.vote = parseInt(selectedButton.dataset.vote);
     feedbackData.timestamp = new Date();
     feedbackData.basename = basename;
-    
+
     try {
       const _response = submitFeedback(feedbackData);
     } catch (error) {
-      alert.classList.remove('alert--success');
-      alert.classList.add('alert--danger');
+      alert.classList.remove("alert--success");
+      alert.classList.add("alert--danger");
       alert.textContent = error.message;
       container.style.display = "none";
       alert.style.display = "block";
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   voteButtons.forEach((button) => {
-    button.addEventListener("click", function (event) {
+    button.addEventListener("click", function(event) {
       event.preventDefault();
       const _vote = parseInt(button.dataset.vote);
       form.style.display = "block";

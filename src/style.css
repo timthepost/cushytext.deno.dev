@@ -7,7 +7,6 @@
 @import "_includes/css/opendyslexic.css";
 @import "_includes/css/forms.css";
 
-
 /* Override for TOC list type */
 .table-of-contents,
 .table-of-contents ul {
@@ -163,8 +162,8 @@
 .button.button--danger {
   color: var(--ifm-color-black);
 }
- 
-.badge--info, 
+
+.badge--info,
 .badge--warning,
 .badge--success,
 .badge--danger {

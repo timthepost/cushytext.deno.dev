@@ -23,23 +23,27 @@
     {{ if tag }}
       {{ if tagWiki[tag] }}
         <p class="margin-top--sm padding-top--md">
-          <img 
-            src="{{ "rss" |> icon("phosphor", "bold") }}" 
-            style="height: 18px;" alt="RSS" title="RSS Feed"
+          <img
+            src='{{ "rss" |> icon("phosphor", "bold") }}'
+            style="height: 18px"
+            alt="RSS"
+            title="RSS Feed"
           >
-          &nbsp; 
+          &nbsp;
           <a
             href="/feeds/tag/{{ tag }}.xml"
             class="tagWiki"
             aria-label="{{ locale.archive.tag_rss_title }} {{ tag }}"
             title="{{ locale.archive.tag_rss_title }} {{ tag }}"
           >
-          "{{ tag }}" RSS
+            "{{ tag }}" RSS
           </a>
           <span class="margin-horiz--sm">|</span>
-          <img 
-            src="{{ "brackets-curly" |> icon("phosphor", "bold") }}" 
-            style="height: 18px;" alt="JSON" title="JSON Feed"
+          <img
+            src='{{ "brackets-curly" |> icon("phosphor", "bold") }}'
+            style="height: 18px"
+            alt="JSON"
+            title="JSON Feed"
           >
           &nbsp;
           <a
@@ -48,7 +52,7 @@
             title="{{ locale.archive.tag_json_title }} {{ tag }}"
             aria-label="{{ locale.archive.tag_json_title }} {{ tag }}"
           >
-          "{{ tag }}" JSON
+            "{{ tag }}" JSON
           </a>
         </p>
         <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
@@ -118,15 +122,41 @@
         {{ locale.blog_index.feeds }}
       </h3>
       <p>
-        <a href="/feed.xml" class="navbar__link" aria-label="RSS Feed" title="RSS Feed">
-          <span class="badge badge--warning padding--sm" style="font-size: 12pt">
-            <img src="{{ "rss" |> icon("phosphor", "bold") }}" style="height: 32px" alt="RSS" title="RSS Feed">
+        <a
+          href="/feed.xml"
+          class="navbar__link"
+          aria-label="RSS Feed"
+          title="RSS Feed"
+        >
+          <span
+            class="badge badge--warning padding--sm"
+            style="font-size: 12pt"
+          >
+            <img
+              src='{{ "rss" |> icon("phosphor", "bold") }}'
+              style="height: 32px"
+              alt="RSS"
+              title="RSS Feed"
+            >
           </span>
         </a>
         <span class="margin-horiz--sm">|</span>
-        <a href="/feed.json" class="navbar__link" aria-label="JSON Feed" title="JSON Feed">
-          <span class="badge badge--warning padding--sm" style="font-size: 12pt">
-            <img src="{{ "brackets-curly" |> icon("phosphor", "bold") }}" style="height: 32px" alt="JSON" title="JSON Feed">
+        <a
+          href="/feed.json"
+          class="navbar__link"
+          aria-label="JSON Feed"
+          title="JSON Feed"
+        >
+          <span
+            class="badge badge--warning padding--sm"
+            style="font-size: 12pt"
+          >
+            <img
+              src='{{ "brackets-curly" |> icon("phosphor", "bold") }}'
+              style="height: 32px"
+              alt="JSON"
+              title="JSON Feed"
+            >
           </span>
         </a>
       </p>

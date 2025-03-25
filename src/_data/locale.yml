@@ -48,8 +48,6 @@ archive:
   edit_wiki_no_wiki: "This tag has no wiki yet, would you like to create it?"
   tag_rss_title: "RSS Feed Exclusively For Posts Tagged:"
   tag_json_title: "JSON Feed Exclusively For Posts Tagged:"
-  
-  
 
 blog_index:
   blog_home: "Blog Home"

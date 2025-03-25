@@ -51,7 +51,7 @@ export const defaults: Options = {
   },
 };
 
-export default function (userOptions?: Options) {
+export default function(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Lume.Site) => {

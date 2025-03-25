@@ -1423,14 +1423,16 @@ hr {
   display: inline-block;
   filter: var(--ifm-breadcrumb-separator-filter);
   height: calc(
-    var(--ifm-breadcrumb-separator-size) * var(--ifm-breadcrumb-size-multiplier)
-      * var(--ifm-breadcrumb-separator-size-multiplier)
+    var(--ifm-breadcrumb-separator-size) *
+      var(--ifm-breadcrumb-size-multiplier) *
+      var(--ifm-breadcrumb-separator-size-multiplier)
   );
   margin: 0 var(--ifm-breadcrumb-spacing);
   opacity: 0.5;
   width: calc(
-    var(--ifm-breadcrumb-separator-size) * var(--ifm-breadcrumb-size-multiplier)
-      * var(--ifm-breadcrumb-separator-size-multiplier)
+    var(--ifm-breadcrumb-separator-size) *
+      var(--ifm-breadcrumb-size-multiplier) *
+      var(--ifm-breadcrumb-separator-size-multiplier)
   );
   /*rtl:raw:
   transform: rotate(180deg);
@@ -1448,12 +1450,12 @@ hr {
   display: inline-block;
   font-size: calc(1rem * var(--ifm-breadcrumb-size-multiplier));
   padding: calc(
-    var(--ifm-breadcrumb-padding-vertical)
-      * var(--ifm-breadcrumb-size-multiplier)
+    var(--ifm-breadcrumb-padding-vertical) *
+      var(--ifm-breadcrumb-size-multiplier)
   )
     calc(
-      var(--ifm-breadcrumb-padding-horizontal)
-        * var(--ifm-breadcrumb-size-multiplier)
+      var(--ifm-breadcrumb-padding-horizontal) *
+        var(--ifm-breadcrumb-size-multiplier)
     );
   transition-property: background, color;
   transition-duration: var(--ifm-transition-fast);

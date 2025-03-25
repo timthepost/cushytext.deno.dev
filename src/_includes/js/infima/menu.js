@@ -26,8 +26,8 @@ function menu($elements) {
         return;
       }
 
-      const regularSubList = $listItem.classList.contains("menu__list-item") &&
-        !$listItem.querySelector(".menu__list-item-collapsible");
+      const regularSubList = $listItem.classList.contains("menu__list-item")
+        && !$listItem.querySelector(".menu__list-item-collapsible");
       const caretBtn = event.target.classList.contains("menu__caret");
 
       if (regularSubList || caretBtn) {
