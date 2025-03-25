@@ -52,10 +52,14 @@
 }
 
 #page-feedback .pills__item--active {
-  background: skyblue;
+  background: lightblue;
   color: var(--ifm-pills-color-active);
 }
 
 #page-feedback .pills__item:not(.pills__item--active):hover {
-  background: skyblue;
+  background: lightblue;
+}
+
+#page-feedback .pills__item:not(.pills__item--active) {
+  background: #dbdbdb;
 }
