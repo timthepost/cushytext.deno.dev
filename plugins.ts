@@ -146,6 +146,7 @@ export default function (userOptions?: Options) {
       .add("uploads")
       .add("fonts")
       .add("script.js")
+      .add("types.ts")
       // make {/* more */} work (MDX, JSX, TSX)
       .preprocess([".mdx", ".jsx", ".tsx"], (pages) => {
         for (const page of pages) {
