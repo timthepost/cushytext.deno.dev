@@ -1,0 +1,61 @@
+---
+title: How Do Tag Wikis &amp; Tag Feeds Work?
+description: How to use the built-in tag wiki and tag feed features.
+metas:
+  image: /docs/tag-wikis-tag-feeds/index.png
+menu:
+  visible: true
+  order: 6
+---
+
+# {title}
+
+Tag Wikis are designed to give [tag archive pages](/archive/announcements/) some more usefulness.
+
+They can be used to add more content about tags that your site uses, which helps visitors find 
+you. They also give your community a way to contribute by editing the `tagWiki.yml` file that 
+powers them.
+
+## The First Step Is Edit 'tagWiki.yml' To Define Your Main tags
+
+Don't do all of them, leave some for your users if you like. But you should define your main 
+tags for your blog, release notes, or whatever else you have. In `tagWiki.yml`, you can just 
+put a 1:1 mapping of tag name to the corresponding entry. 
+
+For instance, ["announcements" on this site](/archive/announcements/):
+
+```yml
+announcements:
+  summary: >
+    The announcements tag is applied when there's a major announcement
+    to make, such as a new release or other major news about the project.
+
+
+    It's not used very often, so if you subscribe to a feed and see
+    the tag, it's probably worth checking out.
+  related_tags: ["updates"]
+```
+
+From this file, the theme knows what to print for the tag, and also 
+that there's a relation to "updates", which it links as "Related"
+in the sidebar.
+
+## Tag-Specific RSS & JSON Feeds
+
+To enable tag "feeds", that tag must have a wiki associated with it. Once
+that happens, the feed and feed links will be auto-generated. The feeds
+get generated the second the tag is created, but I don't advertise the 
+feeds until I'm sure about the tag.
+
+I designed it this way so that I'm not inadvertently offering ephemeral
+feeds because I change my mind on a tag. If I make a tag, I might
+decide I don't want it in a week, or change the name. 
+
+But, if I make a tag and go through the chore of also creating the wiki, 
+where I have to make myself write out how I'm going to use the tag, I'm
+way more inclined to keep it and not annoy people by deleting feeds.
+
+This lets users create tag feeds for tags they care about, just by 
+creating a wiki entry for it.
+
+You are, of course, free to change that in the template if you wish.

@@ -1,0 +1,83 @@
+---
+title: The SEO And TOC Plugins
+description: Documentation on the Table Of Contents And SEO Plugins
+metas:
+  image: /docs/conductor-plugin/index.png
+menu:
+  visible: true
+  order: 4
+---
+
+# Cushy Docs Ships With Its Own Plugins
+
+I needed a lightweight TOC plugin to work independently of the 
+Markdown plugin being used, so I ended up writing one myself 
+which does a pretty good job if you prefer a simple, flat 
+TOC like I do.
+
+If you don't, and prefer a more indented one, I'll happily take
+a PR.
+
+I also ended up writing a SEO plugin that catches a huge number of 
+common mistakes before they mess up your site's SEO standing. I don't
+make promises on results, only that you'll get in the way of them 
+less through common mistakes.
+
+## TOC Options & configuration
+
+***The theme will not function properly with this plugin removed.***
+
+Unless, of course, you install another Markdown plugin to handle it.
+
+There are the configurable options to control generation:
+
+| Function | Name | Type | Description | Default Value | Configured Value |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| TOC | `toc_selector` | string | ID of the container where the generated TOC will land. | `#toc` | `#toc` |
+| TOC | `toc_container` | string | Class name of the container to scan for headings. | `.toc-enabled` | `.toc-enabled` |
+| TOC | `toc_heading_selectors` | string | Comma-separated list of headings to process. | `h2, h3, h4, h5, h6` | `h2, h3, h4, h5, h6` |
+| TOC | `toc_list_class` | string | Class name to apply to the generated TOC list. | empty | `table-of-contents padding-top--none` |
+| TOC | `toc_link_class` | string | Class name to apply to generated TOC links. | empty | `table-of-contents__link` |
+
+And, here's how the plugin is loaded in the theme (from `plugins.ts`):
+
+```js
+  .use(conductor({
+    // Container where the TOC is deposited once generated
+    toc_selector: "#toc",
+    // Content within this container is scanned for headings
+    toc_container: ".toc-enabled",
+    // Headings to scan for and extract / anchor 
+    toc_heading_selectors: "h2, h3, h4, h5, h6",
+    // class to apply to generated TOC links
+    toc_link_class: "table-of-contents__link",
+    // class to apply to generated TOC list
+    toc_list_class: "table-of-contents padding-top--none",
+  }))
+```
+
+## SEO Static Analysis Plugin (AKA Simple SEO)
+
+<comp.alert type="danger" message="***Here Be Dragons!***<br />Currently being re-written to use the DOM API and have a better on save update strategy." />
+
+This plugin looks at your posts and does some static analysis work 
+then generates a report. Things that it looks at are:
+
+ - Length of title, meta tags, content, description, etc.
+
+ - Percentage of common words used in key parts of the content and meta
+   tags
+
+ - Document outline conformance (h1 - h6 tags in order)
+
+ - HTML element attributes, like alt text and titles 
+
+ - Common words in slugs, URLs and Headings
+
+ - More as the project evolves
+
+Some of these checks also coincide with accessibility checks, and that's
+no coincidence at all, because accessible sites are easily parsed by 
+machines. It's also important to show crawlers that you care about the 
+experience that visitors have on your site, including visitors that 
+have problems seeing, or using a mouse.
