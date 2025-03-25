@@ -70,6 +70,27 @@ Right now, development is happening against `v3-dev`, which is actually
 rather stable, but there's a ton of new stuff for those not already caught 
 up.
 
+## Using Lume 3 Components In MDX Pages And Vento Templates:
+
+The `comp` property in Lume is the way to access components in 
+MDX/JSX or through templates. In MDX you would:
+
+```js
+<comp.alert type="warning" allowDismiss="false" message="Boo!" />
+```
+
+
+In Vento, you'll need to supply an `await`, as all components in 
+Lume 3 are now asynchronous:
+
+```js
+{{ await comp.alert({type: "warning", message: "Boo!" }) }}
+```
+
+_Note that your component JS code should immediately exit if it 
+doesn't apply to the current page. While it is loaded on-demand,
+it still gets put in the global scope._
+
 ## The Goal: Lume 3 Style For Any Component That Loads Assets
 
 Eventually, the Infima components _that make sense_ as well as 
@@ -92,7 +113,7 @@ existing content.
 
 The `pages` archetype is the last one to be finished, and it will be the 
 result of being able to produce real results with very little markup or
-deep programming or design knowledge using these components. 
+deep programming or design knowledge using these components.
  
   [1]: https://lume.land/docs/core/components/
   [2]: /features/#components
