@@ -1,0 +1,46 @@
+---
+title: What Are The Interactive Components?
+description: Which components are interactive, and how do they work?
+metas:
+  image: /docs/archetypes/index.png
+menu:
+  visible: true
+  order: 7
+---
+
+# {title}
+
+I plan several interactive touches brought in through a few different
+ways you can spice up a static site. Here are the ones I have deployed: 
+
+## Content Usefulness Survey 
+
+On the right-sidebar of every document page, you'll see a little widget
+that lets you express how you feel about spending whatever time it took
+to read that page.
+
+That widget uses the Router middleware to process the form submission 
+and insert the feedback into a DenoKV database, Discord channel, or 
+anything else that can take input from a call to `fetch()`.
+
+You can use it in a template like this:
+
+```js
+{{ await comp.feedback({ basename: url })}}
+```
+or in a MDX post (blog / docs) like this:
+
+```js
+<comp.feedback basename={url} />
+```
+
+The `basename` variable is used literally as _the base name_ of the key
+that gets created to store the feedback entry. It's indexed by type, 
+url. If using the redirects plugin, use the _oldest_ URL of the
+group.
+
+## Date Server
+
+The economy "Is my site up and responding?" is found by sending a 
+[request to /api](/api) which gets you a Javascript timestamp. Its there
+to show an example route, and just because. 
