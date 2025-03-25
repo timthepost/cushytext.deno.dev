@@ -12,7 +12,7 @@ function dropdowns($elements) {
       return;
     }
 
-    const $toggle = $dropdown.querySelector("[data-toggle=\"dropdown\"]");
+    const $toggle = $dropdown.querySelector('[data-toggle="dropdown"]');
     $toggle.addEventListener("click", (e) => {
       function dismissDropdown() {
         $toggle.classList.remove("button--active");
