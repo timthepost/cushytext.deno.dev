@@ -65,6 +65,7 @@
       </ul>
     </div>
     {{ if docs.sidebar === "auto" }}
+    {{ await comp.feedback({ basename: basename }) }}
       {{ if docs.guest }}
     <h4 class="margin-vert--md">{{ docs.guest.heading }}</h4>
     <div class="menu thin-scrollbar margin-top--xs">
