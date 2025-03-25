@@ -1,9 +1,10 @@
 ---
+divId: ""
 type: primary
 allowDismiss: true
 message: You forgot to specify a message for this alert.
 ---
-<div class="alert alert--{{ type }} margin-bottom--md" role="alert">
+<div {{ if divId != "" }} id="{{ divId }}" {{ /if }} class="alert alert--{{ type }} margin-bottom--md" role="alert">
   {{ if allowDismiss === true }}
     <button aria-label="Close" class="clean-btn close" type="button">
       <span aria-hidden="true" class="close">&times;</span>
