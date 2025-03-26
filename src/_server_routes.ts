@@ -119,6 +119,17 @@ router.post("/api/feedback", async ({ request }) => {
       );
     }
 
+    // silently discard honeypot 
+    if (obj.verify && obj.verify.length > 0) {
+      delete obj.verify;
+      return new Response(JSON.stringify(obj), {
+        status: 201,
+      });
+    }
+
+    // honeypot property is now obsolete, no need to save it in the DB.
+    delete obj.verify;
+
     obj.comment = sanitizeString(obj.comment);
 
     /* Note that this doesn't try to bypass sqlite locally,

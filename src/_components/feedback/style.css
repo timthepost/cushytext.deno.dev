@@ -60,6 +60,10 @@
   background: lightblue;
 }
 
+#page-feedback .verify {
+  display: none;
+}
+
 #page-feedback .pills__item:not(.pills__item--active) {
   background: #dbdbdb;
 }

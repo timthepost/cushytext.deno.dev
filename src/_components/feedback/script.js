@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const submit = document.getElementById("page-feedback-submit");
   const charCountDisplay = document.getElementById("page-feedback-characters");
   const alert = document.getElementById("page-feedback-alert");
-
+ 
   const currentVoteClass = "pills__item--active";
   const submitDisabledClass = "button--secondary";
   const submitEnabledClass = "button--primary";
@@ -101,11 +101,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   submit.addEventListener("click", function (event) {
     event.preventDefault();
+    const verify = document.getElementById("page-feedback-verify");
     const feedbackData = new Object();
     feedbackData.comment = comment.value;
     feedbackData.vote = parseInt(selectedButton.dataset.vote);
     feedbackData.timestamp = new Date();
     feedbackData.basename = basename;
+    feedbackData.verify = verify.value;
 
     try {
       const _response = submitFeedback(feedbackData);
