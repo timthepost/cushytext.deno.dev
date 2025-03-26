@@ -34,7 +34,6 @@ router.get("/api/feedback/reset", async  ({ _request }) => {
   }
   const kv_url = Deno.env.get("DENO_KV_URL");
   const kv = await Deno.openKv(kv_url ? kv_url : undefined);
-
   const entries = kv.list({ prefix: ["anonFeedback"] });
   let count = 0;
   for await (const entry of entries) {
@@ -44,7 +43,10 @@ router.get("/api/feedback/reset", async  ({ _request }) => {
   return new Response(JSON.stringify({ success: true, count: count }), { status: 200 });
 });
 
-// List anon feedback (basename filters URL, * for all of it)
+// List anon feedback (basename filters URL, * for all in the anonFeedback {url} {uuid} key space)
+// BUT NOTE: DenoKV list() does NOT support wildcards. Matching is precise, from the left inward.
+// * in this case just omits the right-hand specifier entirely. I almost used ~ instead of * to 
+// avoid confusion; I worried anything but * would imply something even more confusing :P
 router.get("/api/feedback", async ({ request }) => {
   if (! DEV_MODE) {
     return new Response(JSON.stringify(["error:", "Not in dev mode"]), { status: 500 });
@@ -78,6 +80,7 @@ router.get("/api/feedback", async ({ request }) => {
       console.error("Error parsing JSON from KV:", error);
     }
   }
+
   return new Response(JSON.stringify(feedbackList), {
     status: 200,
     headers: { "Content-Type": "application/json" },
