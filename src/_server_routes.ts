@@ -26,45 +26,56 @@ router.get("/api", ({ _request }) => {
 
 // Handle anon content feedback form
 router.post("/api/feedback", async ({ request }) => {
-  const payload = await (request.blob());
-  const data = await payload.text();
-  const obj = JSON.parse(data);
-  const kv = await Deno.openKv();
+  try {
+    const obj = await request.json();
 
-  if (! obj.basename || obj.basename.length === 0) {
-    return new Response(JSON.stringify(
-      ["error:", "missing basename"]), {
-      status: 500 
-    });
-  }
+    if (!obj.basename || obj.basename.length === 0) {
+      return new Response(JSON.stringify(["error:", "Missing basename"]), {
+        status: 500,
+      });
+    }
 
-  if (obj.message && obj.message.length > 650) {
-    return new Response(JSON.stringify(
-      ["error:", "message exceeds 650 characters"]), {
-      status: 500 
-    });
-  }
+    if (obj.message && obj.message.length > 650) {
+      return new Response(
+        JSON.stringify(["error:", "Message exceeds 650 characters"]),
+        {
+          status: 500,
+        },
+      );
+    }
 
-  if (obj.vote === undefined || obj.vote > 1 || obj.vote  < -1) {
-    return new Response(JSON.stringify(
-      ["error:", "Missing vote or invalid integer (-1, 0 or 1 supported)"]), {
-      status: 500 
-    });
-  }
+    if (obj.vote === undefined || obj.vote > 1 || obj.vote < -1) {
+      return new Response(
+        JSON.stringify([
+          "error:",
+          "Missing vote or invalid integer (-1, 0 or 1 supported)",
+        ]),
+        {
+          status: 500,
+        },
+      );
+    }
 
-  obj.message = sanitizeString(obj.message);
-  
-  const res = await kv.set(
-    ["anonFeedback", obj.basename, crypto.randomUUID()],
-    JSON.stringify(obj),
-  );
+    obj.message = sanitizeString(obj.message);
 
-  if (res.ok) {
-    return new Response(JSON.stringify(data), { status: 201 });
-  } else {
-    console.error("Error inserting feedback with kv.set()");
-    return new Response(JSON.stringify(["error:", "kv.set() failed"]), {
-      status: 500,
+    const kv = await Deno.openKv();
+    const res = await kv.set(
+      ["anonFeedback", obj.basename, crypto.randomUUID()],
+      JSON.stringify(obj),
+    );
+
+    if (res.ok) {
+      return new Response(JSON.stringify(obj), { status: 201 });
+    } else {
+      console.error("Error inserting feedback with kv.set()");
+      return new Response(JSON.stringify(["error:", "kv.set() failed"]), {
+        status: 500,
+      });
+    }
+  } catch (error) {
+    console.error("Error parsing JSON:", error);
+    return new Response(JSON.stringify(["error:", "Invalid JSON payload"]), {
+      status: 400,
     });
   }
 });
