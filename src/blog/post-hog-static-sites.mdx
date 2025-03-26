@@ -1,0 +1,173 @@
+---
+title: PostHog Speaks My Language For Analytics
+description: "I tried PostHog on a static JAM setup for a month and loved it. Uncompensated."
+date: 2025-03-25
+author: Tim Post
+draft: false
+menu:
+  visible: true
+  order: 0
+tags:
+  - posthog
+  - opinion
+metas:
+  lang: en
+  description: A review of PostHog after a month and starting from scratch on a static site. Uncompensated. 
+  tags:
+    - Analytics
+    - Cookie Banners
+    - Google Analytics Alternatives
+    - Self Publishing
+    - PostHog
+  image: /uploads/blog/post-hog-static-sites-regular.jpg
+  robots: true
+  generator: true
+---
+
+And that language is, specifically, ***no cookies***!
+
+You can tell a lot about something by the way it avoids needing a cookie banner, 
+and I'm tired of having fundamentally two tenable choices when it comes to 
+making new things for the public to use:
+
+ - Force invasive analytics on people, or, 
+
+ - Develop blindly without collecting much meaningful usage data.
+
+I just can't accept analytics still being a ***Kobayashi Maru*** for us little people
+so I went looking at alternatives and wow, [PostHog](https://posthog.com) really stood
+out as being _primarily_ privacy respecting. In addition to that, it can record 
+sessions, roll out canary releases, do your split tests and way more.
+
+<img
+  class="blog_image"
+  src="/uploads/blog/post-hog-static-sites-regular.jpg" 
+  alt="TODO: Description" 
+  title="TODO: Title" />
+
+It's not just that it can do really amazing things, it's that ***it can do them without
+requiring you to implement a cookie banner.***
+
+{/* more */} 
+  
+They actually seem to grasp the difference between carefully observing things and being a 
+creepy stalk-y neck-breather. 
+  
+## Static Sites Can Be Weird Kids To Make Friends With As A Product
+
+We find interesting ways to bring in functionality that other sites do without as many
+moving parts, like having comments hosted on Mastodon, or not being able to directly 
+control all search events, or other things that, for admins that have many different 
+parts coming together, just aren't possible.
+
+We tend to have stuff in weird places, make heavy use of freemium plans, almost always 
+have to select "other" from the list of supported frameworks and generally live where
+content teams haven't spent much time because we're a small sliver of use cases.
+
+And here I am, telling you how un-annoying I found it to use. 
+
+## PostHog Doesn't Try To Impose "A Way" For Most Things
+
+Sure, there's a way that you're _supposed_ to use lots of things, like toasters and 
+sub machine guns, but PostHog is designed around you not really needing to care about
+which way things are facing or if they're in water, only that you're getting enough 
+data from your events. 
+
+On a code level, it's as easy or easier to use than GA. You use `capture()` to grab 
+events and as much (or little) information about them as you need. Then you go to
+the dashboard and look at all your data. Like [Scrooge McDuck](https://en.wikipedia.org/wiki/Scrooge_McDuck) 
+swimming in his coins. Well, you may have to wait for _a lot_ of data to accumulate for that, 
+but you hopefully get what I mean.
+
+That's it. No figuring out where it is, or why you can't see it in certain views, or 
+any of the other overwhelming curve that comes with GA4: you just have to care that 
+you're capturing the right data with the right context in the right places. You don't 
+have to feel like you're constantly fighting against GA4 being incomprehensible for 
+the first six months while you learn its mind-bending ways of being used.
+
+## It Has Many Tools, But Doesn't Force Them On You
+
+In probably one of the most generous "freemium" plans out there, you basically get
+everything a real honest to goodness product manager would want if they wanted to 
+avoid constantly infuriating their users with breaking changes:
+
+ - All of the analytics you need to know your users (better than GA4 IMHO)
+
+ - Visitor session recordings and replays (configurable down to the element)
+ 
+ - A/B Testing Framework
+
+ - Feature Flag Management
+
+ - Growth Experiment Management 
+
+ - SQL Explorer For Basically Everything, including third-party services
+
+My use is kind of narrow, and kind of special. While I enjoy making themes for other 
+people, like this one Cushy Text, my main "jam" is working on platforms for my own 
+fiction and non-fiction. I just use my programming and tech background in order to 
+accomplish that. 
+
+Using PostHog, I can make sure features in my templates are as nicely-tuned as they 
+can be for you, and I can make sure my own sites delight my few hundred or so 
+readers instead of royally pissing them off.
+
+While I am a programmer, you ***don't*** need to be one in order to use PostHog. It 
+just helps .. a lot.
+
+And that leads me to my only criticism of the product:
+
+## It's Kind Of Overwhelming At First
+
+They do a pretty great job of onboarding, and there's a lot of help available even 
+after you think you've finished onboarding. The way they've structured the app to 
+show you things just-in-time and the way it provides notebooks and contextually
+appropriate help on the sidebar is great.
+
+But it's still _&gt;gestures at all of it&lt;_ pretty massive, and it's going to 
+intimidate you. It doesn't make you feel hopeless in the same way that GA4 does, 
+like you just found out that you can't ever eat salty snacks again, but it does
+inspire that _holy cow look at all this stuff to learn_ kind of panic.
+
+And, that's why I like that it's structured so you don't have to try every dang
+feature in their arsenal before any one of them work. They're actually vested in
+you succeeding, not just narrating success through metrics to their investors.
+
+But, I think it's laid out _for_ learning about as well as any type of application
+of its kind can be.
+
+## It Won't Victimize You For succeeding
+
+This is, I think, probably the most important feature. You're not going to wake
+up to a non-functional analytics platform just because you got lucky enough 
+to have something go viral overnight.
+
+I like how the plans are structured so you _can_ automatically go over the free
+limits, but you won't be charged unless you do, and the limits seem to be setup
+so that you're _firmly_ into "able to monetize if needed" if you ever reach that
+point.
+
+I think of analytics as _part of an accessible site_ because you won't fully
+understand how people are actually using what you make without them. I think we're
+way past the days of where we could responsibly just look at server-side logging
+and say we've got the big picture.
+
+## I'm Not Bundling It With Themes, But For A Very Simple Reason
+
+I think almost _everyone_ who uses CushyText will want some kind of analytics, 
+and many people probably already have a setup that they've worked hard on. So,
+me bundling something wouldn't really save many people much work, and that's
+the goal of inclusion.
+
+But even if they didn't, _we all care about different kinds of things_ when it 
+comes to what data gets captured, and at what stages it happens. Code I put In
+to just track the general use of the template would just mean more code you 
+probably need to rip out in order to get the data picture that _you_ need.
+
+I'm just pointing the way to something that seems better and solidly more ethical
+than what's out there as the mainstream, de-facto platform.
+
+Besides, it's [just a little JS](https://posthog.com/docs/libraries/js) in 
+`_includes/partials/head.vto` if you want to install it yourself `;)`
+
+I'll have it enabled on _this_ site prior to the actual launch.
