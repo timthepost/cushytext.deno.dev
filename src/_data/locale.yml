@@ -65,11 +65,11 @@ comp:
 
   feedback:
     prompt: "Was reading this article a good use of your time?"
-    cta: "How could this have been better?"
-    cta_optional: "Optional &mdash; "
-    cta_remaining: "Remaining Characters:"
+    cta: "How could this be better?"
+    cta_optional: "Optional! "
+    cta_remaining: "Chars left:"
     clear: "Clear"
-    submit: "Submit Feedback"
+    submit: "Send"
     yes_vote_title: "Yes!"
     meh_vote_title: "Meh ..."
     no_vote_title: "No!"
