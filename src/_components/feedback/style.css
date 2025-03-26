@@ -30,7 +30,8 @@
 #page-feedback .feedback__bumper {
   display: inline;
   float: right;
-  padding: 0 1em 0 0;
+  padding: none;
+  margin: 0 0 0 1em;
 }
 
 #page-feedback .feedback__bumper p {
