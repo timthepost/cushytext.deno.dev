@@ -24,13 +24,46 @@ router.get("/api", ({ _request }) => {
   return new Response(JSON.stringify({ time: ts }), { status: 200 });
 });
 
-router.get("/api/feedback", async ({ _request }) => {
-  const kv = await Deno.openKv();
-  const entries = kv.list({ prefix: ["anonFeedback"] });
-  return new Response(JSON.stringify(entries), { status: 200 });
+// Handle feedback form list 
+// (this will go local-only soon)
+router.get("/api/feedback", async ({ request }) => {
+  const kv_url = Deno.env.get("DENO_KV_URL");
+  const kv = await Deno.openKv(kv_url ? kv_url : undefined);
+
+  // Get the search term from the query parameters
+  const url = new URL(request.url);
+  const basename = url.searchParams.get("basename");
+
+  if (!basename) {
+    return new Response(
+      JSON.stringify({ error: "Missing 'basename' query parameter" }),
+      { status: 400 },
+    );
+  }
+
+  let entries;
+  if (basename === "*") {
+    entries = kv.list({ prefix: ["anonFeedback"] });
+  } else {
+    entries = kv.list({ prefix: ["anonFeedback", basename] });
+  }
+  // deno-lint-ignore no-explicit-any
+  const feedbackList: any[] = [];
+  for await (const entry of entries) {
+    try {
+      const feedbackData = JSON.parse(entry.value as string);
+      feedbackList.push({ key: entry.key, value: feedbackData });
+    } catch (error) {
+      console.error("Error parsing JSON from KV:", error);
+    }
+  }
+  return new Response(JSON.stringify(feedbackList), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
 });
 
-// Handle anon content feedback form
+// Handle anon content feedback form submit
 router.post("/api/feedback", async ({ request }) => {
   try {
     const obj = await request.json();
@@ -41,9 +74,9 @@ router.post("/api/feedback", async ({ request }) => {
       });
     }
 
-    if (obj.message && obj.message.length > 650) {
+    if (obj.comment && obj.comment.length > 650) {
       return new Response(
-        JSON.stringify(["error:", "Message exceeds 650 characters"]),
+        JSON.stringify(["error:", "Comment exceeds 650 characters"]),
         {
           status: 500,
         },
@@ -62,7 +95,7 @@ router.post("/api/feedback", async ({ request }) => {
       );
     }
 
-    obj.message = sanitizeString(obj.message);
+    obj.comment = sanitizeString(obj.comment);
 
     const kv = await Deno.openKv();
     const res = await kv.set(
