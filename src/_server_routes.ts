@@ -1,9 +1,14 @@
 import Router from "lume/middlewares/router.ts";
 
-/*
- * We still have to filter out XSS attempts because submitted stuff 
- * could be read in clients that are vulnerable to them.
+/**
+ * Define routes for your site here, below the defaults.
+ * Or you can create and include your own file.
  */
+
+const DEV_MODE = Deno.env.get("LUME_DRAFTS") || false;
+const router = new Router();
+
+/* Filter out XSS attempts */
 function sanitizeString(str: string): string {
   if (!str) {
     return "";
@@ -16,21 +21,36 @@ function sanitizeString(str: string): string {
     .replace(/'/g, "&apos;");
 }
 
-const router = new Router();
-
-// The datetime server
+// The simple datetime server
 router.get("/api", ({ _request }) => {
   const ts = Date.now();
   return new Response(JSON.stringify({ time: ts }), { status: 200 });
 });
 
-// Handle feedback form list 
-// (this will go local-only soon)
-router.get("/api/feedback", async ({ request }) => {
+// This will probably be removed soon
+router.get("/api/feedback/reset", async  ({ _request }) => {
+  if (! DEV_MODE) {
+    return new Response(JSON.stringify(["error:", "Not in dev mode"]), { status: 500 });
+  }
   const kv_url = Deno.env.get("DENO_KV_URL");
   const kv = await Deno.openKv(kv_url ? kv_url : undefined);
 
-  // Get the search term from the query parameters
+  const entries = kv.list({ prefix: ["anonFeedback"] });
+  let count = 0;
+  for await (const entry of entries) {
+    await kv.delete(entry.key);
+    count ++;
+  }
+  return new Response(JSON.stringify({ success: true, count: count }), { status: 200 });
+});
+
+// List anon feedback (basename filters URL, * for all of it)
+router.get("/api/feedback", async ({ request }) => {
+  if (! DEV_MODE) {
+    return new Response(JSON.stringify(["error:", "Not in dev mode"]), { status: 500 });
+  }
+  const kv_url = Deno.env.get("DENO_KV_URL");
+  const kv = await Deno.openKv(kv_url ? kv_url : undefined);
   const url = new URL(request.url);
   const basename = url.searchParams.get("basename");
 
@@ -47,6 +67,7 @@ router.get("/api/feedback", async ({ request }) => {
   } else {
     entries = kv.list({ prefix: ["anonFeedback", basename] });
   }
+
   // deno-lint-ignore no-explicit-any
   const feedbackList: any[] = [];
   for await (const entry of entries) {
@@ -63,7 +84,7 @@ router.get("/api/feedback", async ({ request }) => {
   });
 });
 
-// Handle anon content feedback form submit
+// Handle anon feedback form submissions
 router.post("/api/feedback", async ({ request }) => {
   try {
     const obj = await request.json();
@@ -97,6 +118,9 @@ router.post("/api/feedback", async ({ request }) => {
 
     obj.comment = sanitizeString(obj.comment);
 
+    /* Note that this doesn't try to bypass sqlite locally,
+     * unlike the other handlers. Dev submissions never go live.
+     */
     const kv = await Deno.openKv();
     const res = await kv.set(
       ["anonFeedback", obj.basename, crypto.randomUUID()],
