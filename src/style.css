@@ -9,7 +9,6 @@
 
 /* Light Mode Theme Palette */
 :root {
-  --ifm-color-scheme: light;
   --ifm-color-primary: #184b9c;
   --ifm-color-secondary: #ebedf0;
   /* 
@@ -26,10 +25,7 @@
 
 /* Dark Mode Overrides For Light Mode */
 [data-theme="dark"] {
-  :root {
-    --ifm-color-scheme: dark;
-    --ifm-color-primary: steelblue;
-  }
+  --ifm-color-primary: steelblue;
 }
 
 /* Compensate for sticky nav height in anchor navigation */
