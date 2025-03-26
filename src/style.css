@@ -7,6 +7,33 @@
 @import "_includes/css/opendyslexic.css";
 @import "_includes/css/forms.css";
 
+/* Light Mode Theme Palette */
+:root {
+  --ifm-color-scheme: light;
+  --ifm-color-primary: #184b9c;
+  --ifm-color-secondary: #ebedf0;
+  /* 
+   * TODO: These are Infima defaults. 
+   * The vars color-success onward need to be darker along with
+   * hover states for accessibility; their contrast is a touch too 
+   * low. On the roadmap.
+   */
+  --ifm-color-success: #00a400;
+  --ifm-color-info: #54c7ec;
+  --ifm-color-warning: #ffba00;
+  --ifm-color-danger: #fa383e;
+}
+
+/* Dark Mode Overrides For Light Mode */
+[data-theme="dark"] {
+  :root {
+    --ifm-color-scheme: dark;
+    --ifm-color-primary: steelblue;
+  }
+}
+
+/* Compensate for sticky nav height in anchor navigation */
+
 html {
   scroll-behavior: smooth;
 }
@@ -14,6 +41,8 @@ html {
 h1, h2, h3, h4, h5, h6 {
   scroll-margin-top: 90px;
 }
+
+
 /* Override for TOC list type */
 .table-of-contents,
 .table-of-contents ul {
@@ -26,6 +55,11 @@ h1, h2, h3, h4, h5, h6 {
 
 #toc {
   display: block;
+}
+
+.toc-heading {
+  display: block;
+  margin: 1rem 0 0;
 }
 
 /* Helper For Blog Images */
@@ -58,6 +92,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
+/* Tags */
 .post-tag {
   border: 1px solid var(--ifm-color-gray-400);
   border-radius: 4px;
@@ -80,6 +115,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* /archive utilities */
 .archive-fueller {
   display: block;
   margin-top: 2.5rem;
@@ -90,10 +126,6 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
-.toc-heading {
-  display: block;
-  margin: 1rem 0 0;
-}
 
 .footer__item {
   list-style-type: none;
@@ -138,6 +170,8 @@ h1, h2, h3, h4, h5, h6 {
   padding-right: 8px;
 }
 
+/* And now overrides of some default Infima classes */
+
 .breadcrumbs {
   margin-left: -10px;
 }
@@ -177,7 +211,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--ifm-color-black);
 }
 
-/* Consolidated media query */
+/* Lastly: consolidated media query for most things that need it. */
 @media (max-width: 976px) {
   /* Top nav logo */
   #navbar-logo {

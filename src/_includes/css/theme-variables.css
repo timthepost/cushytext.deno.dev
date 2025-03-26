@@ -1,13 +1,14 @@
 /* Light Mode */
 :root {
+  /* see src/style.css
   --ifm-color-scheme: light;
-  /* --ifm-color-primary: #3578e5; */
-  --ifm-color-primary: #184b9c;
+  --ifm-color-primary: #3578e5;
   --ifm-color-secondary: #ebedf0;
   --ifm-color-success: #00a400;
   --ifm-color-info: #54c7ec;
   --ifm-color-warning: #ffba00;
   --ifm-color-danger: #fa383e;
+  */
   --ifm-color-primary-dark: rgb(48, 108, 206);
   --ifm-color-primary-darker: rgb(45, 102, 195);
   --ifm-color-primary-darkest: rgb(37, 84, 160);
@@ -90,8 +91,9 @@
 
 /* Dark Mode */
 html[data-theme="dark"] {
+  /* see src/style.css 
   --ifm-color-scheme: dark;
-  --ifm-color-primary: skyblue;
+  */
   --ifm-color-emphasis-0: var(--ifm-color-gray-1000);
   --ifm-color-emphasis-100: var(--ifm-color-gray-900);
   --ifm-color-emphasis-200: var(--ifm-color-gray-800);
