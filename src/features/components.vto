@@ -318,10 +318,15 @@ comes with Infima along with theme components built on top of it. It'll be merge
 Colors, weights, etc are easily described in class attributes. To change color,
 for instance, you can add <code>class="text--color"</code>, where `color` is one
 of the theme common colors (primary, secondary, success, info, warning, danger).
-Produce colors like:
+Produce colors like (backgrounds to show contrast):
 <div style="background-color: #000; border-radius: 1.5em;" class="padding--lg margin-vert--md">
 {{ for textColor of infimaNotificationTypes }}
-  <p class="text--{{ textColor }}">This is the <strong>{{ textColor }}</strong> text color.</p>
+  <p class="text--{{ textColor }}">This is the <strong>{{ textColor }}</strong> color.</p>
+{{ /for }} 
+</div>
+<div style="background-color: #FFF; border-radius: 1.5em;" class="padding--lg margin-vert--md">
+{{ for textColor of infimaNotificationTypes }}
+  <p class="text--{{ textColor }}">This is the <strong>{{ textColor }}</strong> color.</p>
 {{ /for }} 
 </div>
 <p>
