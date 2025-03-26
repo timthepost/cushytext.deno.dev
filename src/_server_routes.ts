@@ -24,6 +24,12 @@ router.get("/api", ({ _request }) => {
   return new Response(JSON.stringify({ time: ts }), { status: 200 });
 });
 
+router.get("/api/feedback", async ({ _request }) => {
+  const kv = await Deno.openKv();
+  const entries = kv.list({ prefix: ["anonFeedback"] });
+  return new Response(JSON.stringify(entries), { status: 200 });
+});
+
 // Handle anon content feedback form
 router.post("/api/feedback", async ({ request }) => {
   try {
