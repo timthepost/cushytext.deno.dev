@@ -1,8 +1,8 @@
 import Router from "lume/middlewares/router.ts";
 
 /*
- * We still have to filter out XSS attempts because submitted stuff could 
- * be read in clients that are vulnerable to them.
+ * We still have to filter out XSS attempts because submitted stuff 
+ * could be read in clients that are vulnerable to them.
  */
 function sanitizeString(str: string): string {
   if (!str) {
