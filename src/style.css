@@ -10,7 +10,7 @@
 /* Light Mode Theme Palette */
 :root {
   --ifm-color-primary: #184b9c;
-  --ifm-color-secondary: #ebedf0;
+  --ifm-color-secondary: #abaeb3db;
   /* 
    * TODO: These are Infima defaults. 
    * The vars color-success onward need to be darker along with
