@@ -124,7 +124,7 @@ export default function (userOptions?: Options) {
       .use(prism({
         theme: [
           {
-            name: "tomorrow",
+            name: "coy",
             cssFile: "css/prism.css",
           },
         ],
