@@ -163,4 +163,27 @@ router.post("/api/feedback", async ({ request }) => {
   }
 });
 
+
+router.delete("/api/feedback", async ({ request }) => {
+  if (!DEV_MODE) {
+    return new Response(JSON.stringify(["error:", "Not in dev mode"]), {
+      status: 500,
+    });
+  }
+  const kv_url = Deno.env.get("DENO_KV_URL");
+  const kv = await Deno.openKv(kv_url ? kv_url : undefined);
+
+  try {
+    const { key } = await request.json(); // Expecting { key: ["anonFeedback", "basename", "UUID"] }
+    if (!Array.isArray(key) || key.length !== 3 || key[0] !== "anonFeedback") {
+      return new Response(JSON.stringify({ error: "Invalid key format" }), { status: 400 });
+    }
+    await kv.delete(key);
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+  } catch (error) {
+    console.error("Error deleting feedback with kv.delete():", error);
+    return new Response(JSON.stringify({ error: "kv.delete() failed" }), { status: 500 });
+  }
+});
+  
 export default router;

@@ -29,11 +29,13 @@ async function loadFeedbackTable(containerId) {
 
     const thead = document.createElement("thead");
     const headerRow = document.createElement("tr");
+    
     ["Date", "URL", "Comment", "Actions"].forEach((headerText) => {
       const th = document.createElement("th");
       th.textContent = headerText;
       headerRow.appendChild(th);
     });
+
     thead.appendChild(headerRow);
     table.appendChild(thead);
 
@@ -44,6 +46,7 @@ async function loadFeedbackTable(containerId) {
       const dateCell = document.createElement("td");
       let date;
       let message;
+
       if (typeof feedback.value === "string") {
         const parsedFeedback = JSON.parse(feedback.value);
         date = new Date(parsedFeedback.timestamp);
@@ -52,6 +55,7 @@ async function loadFeedbackTable(containerId) {
         date = new Date(feedback.value.timestamp);
         message = feedback.value.comment;
       }
+
       dateCell.textContent = date.toLocaleString();
       row.appendChild(dateCell);
 
@@ -71,14 +75,47 @@ async function loadFeedbackTable(containerId) {
       deleteButton.classList.add("button", "button--warning");
       deleteButton.textContent = "Delete";
       deleteButton.href = "#";
-      actionsCell.appendChild(deleteButton);
 
+      const fullKey = feedback.key;
+      deleteButton.dataset.key = JSON.stringify(fullKey);
+
+      deleteButton.addEventListener("click", async (event) => {
+        event.preventDefault();
+        const button = event.target;
+        const keyString = button.dataset.key;
+        const key = JSON.parse(keyString);
+
+        try {
+          const response = await fetch("/api/feedback", {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ key }),
+          });
+
+          if (response.ok) {
+            const row = button.closest("tr");
+            row.remove();
+          } else {
+            // should show an alert here (TODO)
+            const errorData = await response.json();
+            console.error("Error deleting feedback:", errorData);
+            alert(`Error deleting feedback: ${JSON.stringify(errorData)}`);
+          }
+        } catch (error) {
+          console.error("Error deleting feedback:", error);
+          alert(`Error deleting feedback: ${error.message}`);
+        }
+      });
+      actionsCell.appendChild(deleteButton);
       row.appendChild(actionsCell);
       tbody.appendChild(row);
     });
-    table.appendChild(tbody);
 
+    table.appendChild(tbody);
     container.appendChild(table);
+
   } catch (error) {
     console.error("Error fetching or displaying feedback:", error);
     container.innerHTML = `<p>Error loading feedback: <em>${error.message}</em></p>`;
