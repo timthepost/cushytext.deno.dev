@@ -23,17 +23,16 @@ along with other options).
 The second adds a table that lets you manage the feedback (currently, 
 delete).
 
-## Content Usefulness Survey 
+## Anonymous Content Feedback Survey Component
 
 On the right-sidebar of every document page, you'll see a little widget
-that lets you express how you feel about spending whatever time it took
-to read that page.
+that lets you express how you feel about reading the current article. That 
+widget uses the Router middleware to process the form submission and inserts 
+the feedback into a DenoKV database or anything else that can take input from 
+a call to `fetch()`. I plan to have it also work with posting (via Bot) to 
+Discord. 
 
-That widget uses the Router middleware to process the form submission 
-and insert the feedback into a DenoKV database, Discord channel, or 
-anything else that can take input from a call to `fetch()`.
-
-It submits to `yourdomain/api/feedback` via POST request and has a 
+Feedback submits to `yourdomain.com/api/feedback` via POST request and has a 
 built-in honeypot. I'm currently investigating possible integrations
 with privacy-respecting captcha services.
 
@@ -44,7 +43,7 @@ You can use it in a template like this:
 ```
 or in a MDX post (blog / docs) like this:
 
-```js
+```jsx
 <comp.feedback basename={url} />
 ```
 
@@ -57,16 +56,20 @@ You're welcome to use it for the blog too! But perhaps make a copy of
 the plugin as `blogFeedback` and add another locale entry, so you can
 have different CTAs, vote buttons, etc. 
 
-## Local 'Admin' Component
+## Anonymous Content Feedback Admin Component
 
-Currently unfinished, `comp.feedbackAdmin()` lets you put an admin
-area for the feedback wherever it's convenient for you. Could also be 
-a page - Lume will treat any content with `draft=true` equally as far
-as rendering goes.
+The `comp.feedbackAdmin()` plugin lets you put an admin area for the 
+anonymous feedback wherever it's convenient for you to put it. 
+
+Designed to run _locally_ only, it works in conjunction with `/api/feedback` 
+to get a list of feedback and keys, display it, and provide a convenient means
+of deleting it.
 
 It puts a container in the document that receives a table from a 
 call to `fetch()` against a route which only works if `LUME_DRAFTS`
-is set. So in a template, you could:
+is set.
+
+To use it in a template:
 
 ```js
 {{ await comp.feedbackAdmin() }}
@@ -74,11 +77,54 @@ is set. So in a template, you could:
 
 Or in MDX:
 
-```html
+```jsx
 <comp.feedbackAdmin />
 ```
 
-It's still a work-in-progress! Just remember, unless you make changes to
-`src/serve_defs.ts` to allow the list / delete endpoints to work in 
-production (highly discouraged), the admin page will only work properly
-when served locally.
+<br />
+## Creating A Local-Only '/admin' Route
+
+If you put the following in any directory, including the `src/` root directory,
+you'll get an "admin" area that only works locally. This can be accomplished by
+taking advantage of the fact that Lume will render drafts locally if `LUME_DRAFTS`
+is set, which is also used by CushyDocs to control dev mode:
+
+```jsx
+---
+title: Admin
+layout: layouts/page.vto
+type: pages
+menu:
+  visible: true
+  order: -1
+---
+
+# {title}
+
+## Feedback Administration:
+<comp.feedbackAdmin />
+
+```
+
+The component will load a script that runs in your browser, which communicates with 
+`/api/feedback` to display and / or delete feedback. You'll find the routes defined
+in [`src/_server_routes.ts`](https://github.com/timthepost/cushytext/blob/main/src/_server_routes.ts)
+(Github Link).
+
+## Deno Deploy Environmental Variables
+
+Place your `DENO_KV_ACCESS_TOKEN` as well as `DENO_KV_URL` (see below) in a file named 
+`.env-local`, then before running the local server, run:
+
+```bash
+> source envloader
+```
+
+There will be notice that the variables were loaded. Or, however you like to do it.
+
+The `DENO_KV_URL` is found in Deno Deploy, in the KV tab, for the string you should
+pass to `Deno.openKv()` if connecting away from Deno Deploy (e.g. console). If it's 
+not set in your environment, Deno will just fall back to local sqlite, and you won't
+see any data. 
+
+That's it! Deno KV is pretty much zero config; that's one of the reasons I chose it.

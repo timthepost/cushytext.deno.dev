@@ -1,10 +1,5 @@
 import Router from "lume/middlewares/router.ts";
 
-/**
- * Define routes for your site here, below the defaults.
- * Or you can create and include your own file.
- */
-
 const DEV_MODE = Deno.env.get("LUME_DRAFTS") || false;
 const router = new Router();
 
@@ -21,13 +16,20 @@ function sanitizeString(str: string): string {
     .replace(/'/g, "&apos;");
 }
 
+
+/* Define routes for your site here */
+
+
 // The simple datetime server
 router.get("/api", ({ _request }) => {
   const ts = Date.now();
   return new Response(JSON.stringify({ time: ts }), { status: 200 });
 });
 
-// This will probably be removed soon
+/* This is used to do a daily reset of feedback while it's being
+ * developed, and often displayed publicly. I can see the utility
+ * of keeping it, but it may also come out soon.
+ */
 router.get("/api/feedback/reset", async ({ _request }) => {
   if (!DEV_MODE) {
     return new Response(JSON.stringify(["error:", "Not in dev mode"]), {
@@ -47,10 +49,10 @@ router.get("/api/feedback/reset", async ({ _request }) => {
   });
 });
 
-/*
- * List anon feedback (basename filters URL, * for all in the anonFeedback {url} {uuid} key space)
- * NOTE: DenoKV list() does NOT support wildcards. Matching is precise, from the left inward.
- * "*" in this case just omits the right-hand specifier entirely, this isn't a wildcard search.
+/* List anon feedback (basename filters URL, * for all in the anonFeedback space)
+ * NOTE: DenoKV list() does NOT support wildcards. Matching is precise, from the 
+ * left inward. "*" in this case just omits the right-hand specifier entirely, this 
+ * isn't a wildcard search, it just mocks one.
  */
 router.get("/api/feedback", async ({ request }) => {
   if (!DEV_MODE) {
@@ -164,7 +166,9 @@ router.post("/api/feedback", async ({ request }) => {
   }
 });
 
-
+/* This requires a key in the form of [ "anonFeedback", "basename", "uuid" ]
+ * Check out https://docs.deno.com/deploy/kv/manual/key_space/#key-examples
+ */
 router.delete("/api/feedback", async ({ request }) => {
   if (!DEV_MODE) {
     return new Response(JSON.stringify(["error:", "Not in dev mode"]), {
