@@ -88,7 +88,7 @@ async function loadFeedbackTable(containerId) {
     container.appendChild(table);
   } catch (error) {
     console.error("Error fetching or displaying feedback:", error);
-    container.innerHTML = "<p>Error loading feedback.</p>";
+    container.innerHTML = `<p>Error loading feedback: <em>${error.message}</em></p>`;
   }
 }
 
