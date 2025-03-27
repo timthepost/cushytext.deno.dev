@@ -106,9 +106,9 @@ export default function (userOptions?: Options) {
         },
       }))
       .use(inline())
-      //.use(minifyHTML())
-      //.use(purgecss())
-      //.use(terser({ options: { module: false } }))
+      .use(minifyHTML())
+      .use(purgecss())
+      .use(terser({ options: { module: false } }))
       .use(brotli())
       .use(picture())
       .use(transformImages())
