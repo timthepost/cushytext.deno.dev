@@ -29,7 +29,7 @@ async function loadFeedbackTable(containerId) {
 
     const thead = document.createElement("thead");
     const headerRow = document.createElement("tr");
-    
+
     ["Date", "URL", "Comment", "Actions"].forEach((headerText) => {
       const th = document.createElement("th");
       th.textContent = headerText;
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const refreshButton = document.createElement("button");
   refreshButton.textContent = "Refresh";
   refreshButton.classList.add("button");
-  refreshButton.classList.add("button--success");
+  refreshButton.classList.add("button--info");
   refreshButton.classList.add("margin-bottom--md");
   refreshButton.addEventListener(
     "click",
