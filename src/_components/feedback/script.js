@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const submit = document.getElementById("page-feedback-submit");
   const charCountDisplay = document.getElementById("page-feedback-characters");
   const alert = document.getElementById("page-feedback-alert");
- 
+
   const currentVoteClass = "pills__item--active";
   const submitDisabledClass = "button--secondary";
   const submitEnabledClass = "button--primary";

@@ -28,9 +28,11 @@ router.get("/api", ({ _request }) => {
 });
 
 // This will probably be removed soon
-router.get("/api/feedback/reset", async  ({ _request }) => {
-  if (! DEV_MODE) {
-    return new Response(JSON.stringify(["error:", "Not in dev mode"]), { status: 500 });
+router.get("/api/feedback/reset", async ({ _request }) => {
+  if (!DEV_MODE) {
+    return new Response(JSON.stringify(["error:", "Not in dev mode"]), {
+      status: 500,
+    });
   }
   const kv_url = Deno.env.get("DENO_KV_URL");
   const kv = await Deno.openKv(kv_url ? kv_url : undefined);
@@ -38,18 +40,22 @@ router.get("/api/feedback/reset", async  ({ _request }) => {
   let count = 0;
   for await (const entry of entries) {
     await kv.delete(entry.key);
-    count ++;
+    count++;
   }
-  return new Response(JSON.stringify({ success: true, count: count }), { status: 200 });
+  return new Response(JSON.stringify({ success: true, count: count }), {
+    status: 200,
+  });
 });
 
 // List anon feedback (basename filters URL, * for all in the anonFeedback {url} {uuid} key space)
 // BUT NOTE: DenoKV list() does NOT support wildcards. Matching is precise, from the left inward.
-// * in this case just omits the right-hand specifier entirely. I almost used ~ instead of * to 
+// * in this case just omits the right-hand specifier entirely. I almost used ~ instead of * to
 // avoid confusion; I worried anything but * would imply something even more confusing :P
 router.get("/api/feedback", async ({ request }) => {
-  if (! DEV_MODE) {
-    return new Response(JSON.stringify(["error:", "Not in dev mode"]), { status: 500 });
+  if (!DEV_MODE) {
+    return new Response(JSON.stringify(["error:", "Not in dev mode"]), {
+      status: 500,
+    });
   }
   const kv_url = Deno.env.get("DENO_KV_URL");
   const kv = await Deno.openKv(kv_url ? kv_url : undefined);
@@ -119,7 +125,7 @@ router.post("/api/feedback", async ({ request }) => {
       );
     }
 
-    // silently discard honeypot 
+    // silently discard honeypot
     if (obj.verify && obj.verify.length > 0) {
       delete obj.verify;
       return new Response(JSON.stringify(obj), {

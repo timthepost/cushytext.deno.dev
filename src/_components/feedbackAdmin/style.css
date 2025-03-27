@@ -1,41 +1,40 @@
 /* Basic table styles */
 .feedback-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  .feedback-table th,
-  .feedback-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .feedback-table th {
-    background-color: #f0f0f0;
-  }
-  
-  /* Button styles */
-  .fmButton {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .fmButton--warning {
-    background-color: #ff9800; /* Orange */
-  }
-  
-  .fmButton--danger {
-    background-color: #f44336; /* Red */
-  }
-  
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.feedback-table th,
+.feedback-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.feedback-table th {
+  background-color: #f0f0f0;
+}
+
+/* Button styles */
+.fmButton {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.fmButton--warning {
+  background-color: #ff9800; /* Orange */
+}
+
+.fmButton--danger {
+  background-color: #f44336; /* Red */
+}
