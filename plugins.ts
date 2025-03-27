@@ -61,33 +61,14 @@ export default function (userOptions?: Options) {
       .use(toc({
         toc_selector: "#toc",
         toc_container: ".toc-enabled",
-        toc_heading_selectors: "h2, h3, h4, h5, h6",
+        toc_heading_selectors: "h2, h3, h4",
         toc_link_class: "table-of-contents__link",
         toc_list_class: "table-of-contents padding-top--none",
       }))
       .use(postcss())
-      .use(sourceMaps())
       .add([".css"])
-      .use(feed({
-        output: ["/feed.xml", "/feed.json"],
-        query: "waypoint=%blog%",
-      }))
-      .use(feed({
-        output: ["/docs/feed.xml", "/docs/feed.json"],
-        query: "waypoint=%theme-docs%",
-      }))
-      .use(feed(() => {
-        const unknownTags = site.search.values("tags");
-        const tags = unknownTags as string[];
-        return tags.map((tag) => ({
-          output: [`/feeds/tag/${tag}.xml`, `/feeds/tag/${tag}.json`],
-          query: tag,
-          info: {
-            title: `Tag feed for ${tag}`,
-          },
-        }));
-      }))
-      .use(mdx({ extensions: [".mdx"] }))
+      .use(sourceMaps())
+      .use(mdx({ extensions: [".mdx", ".jsx", ".tsx"] }))
       .use(basePath())
       .use(slugifyUrls({
         extensions: "*",
@@ -113,6 +94,25 @@ export default function (userOptions?: Options) {
       .use(redirects({ output: "json" }))
       .use(metas())
       .use(robots())
+      .use(feed({
+        output: ["/feed.xml", "/feed.json"],
+        query: "waypoint=%blog%",
+      }))
+      .use(feed({
+        output: ["/docs/feed.xml", "/docs/feed.json"],
+        query: "waypoint=%theme-docs%",
+      }))
+      .use(feed(() => {
+        const unknownTags = site.search.values("tags");
+        const tags = unknownTags as string[];
+        return tags.map((tag) => ({
+          output: [`/feeds/tag/${tag}.xml`, `/feeds/tag/${tag}.json`],
+          query: tag,
+          info: {
+            title: `Tag feed for ${tag}`,
+          },
+        }));
+      }))
       .use(checkUrls({
         external: true,
         output: "_broken_links.json",
@@ -139,7 +139,7 @@ export default function (userOptions?: Options) {
         },
       }))
       .use(purgecss())
-      .use(minifyHTML({extensions: [".html", ".css"]}))
+      .use(minifyHTML({ extensions: [".html", ".css"] }))
       .use(terser({ options: { module: false } }))
       .use(brotli())
       .add("_includes/js", "js")
