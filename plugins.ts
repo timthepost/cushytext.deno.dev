@@ -25,6 +25,7 @@ import sourceMaps from "lume/plugins/source_maps.ts";
 import terser from "lume/plugins/terser.ts";
 import transformImages from "lume/plugins/transform_images.ts";
 import toc from "./src/_plugins/toc/mod.ts";
+import seo from "./src/_plugins/seo/mod.ts";
 
 import "lume/types.ts";
 
@@ -142,6 +143,7 @@ export default function (userOptions?: Options) {
       .use(minifyHTML({ extensions: [".html", ".css"] }))
       .use(terser({ options: { module: false } }))
       .use(brotli())
+      .use(seo())
       .add("_includes/js", "js")
       .add("_includes/css", "css")
       .add("uploads")
