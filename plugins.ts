@@ -65,7 +65,6 @@ export default function (userOptions?: Options) {
         toc_list_class: "table-of-contents padding-top--none",
       }))
       .use(postcss())
-      .use(purgecss())
       .use(sourceMaps())
       .add([".css"])
       .use(feed({
@@ -107,7 +106,8 @@ export default function (userOptions?: Options) {
         },
       }))
       .use(inline())
-      .use(minifyHTML({extensions: [".html", ".css"]}))
+      .use(minifyHTML())
+      .use(purgecss())
       .use(terser({ options: { module: false } }))
       .use(brotli())
       .use(picture())
