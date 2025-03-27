@@ -57,7 +57,7 @@ interface Options {
 }
 
 export const defaults: Options = {
-  extensions: [".md", ".mdx"],
+  extensions: [".html"],
   ignore: ["/404.html"],
   warnTitleLength: true,
   warnUrlLength: true,
@@ -85,6 +85,8 @@ export default function seo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   function calculateCommonWordPercentage(title: string): number {
+    if (! title) return 0;
+    title = title.trim();
     const processedTitle = title.toLowerCase().replace(/[^\w\s]/g, "");
     const words = processedTitle.split(/\s+/);
     const commonWords = options.userCommonWordSet
