@@ -15,7 +15,7 @@ async function loadFeedbackTable(containerId) {
   try {
     const response = await fetch("/api/feedback?basename=*");
     if (!response.ok) {
-      throw new Error(`${response.error} ${response.status}`);
+      throw new Error(`${response.statusText} ${response.status}`);
     }
     const feedbackList = await response.json();
 
@@ -72,12 +72,6 @@ async function loadFeedbackTable(containerId) {
       deleteButton.textContent = "Delete";
       deleteButton.href = "#";
       actionsCell.appendChild(deleteButton);
-
-      const spamButton = document.createElement("button");
-      spamButton.classList.add("button", "button--danger", "margin-left--sm");
-      spamButton.textContent = "Spam";
-      spamButton.href = "#";
-      actionsCell.appendChild(spamButton);
 
       row.appendChild(actionsCell);
       tbody.appendChild(row);
