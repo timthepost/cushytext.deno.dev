@@ -1,0 +1,38 @@
+{
+  "/docs/admin/": [
+    "Heading elements out of order: H3 - Headings should be in semantic order."
+  ],
+  "/blog/interactive-feature-plans/": [
+    "SEO: Meta Description Common Word Percent For /blog/interactive-feature-plans/ meets or exceeds 45"
+  ],
+  "/blog/welcome-wordpress/": [
+    "SEO: Meta Description Common Word Percent For /blog/welcome-wordpress/ meets or exceeds 45"
+  ],
+  "/blog/0-0-1-component-strategy-update/": [
+    "SEO: Meta Description Length For /blog/0-0-1-component-strategy-update/ meets or exceeds 150",
+    "SEO: Meta Description Common Word Percent For /blog/0-0-1-component-strategy-update/ meets or exceeds 45"
+  ],
+  "/blog/post-hog-static-sites/": [
+    "SEO: Meta Description Common Word Percent For /blog/post-hog-static-sites/ meets or exceeds 45"
+  ],
+  "/": [
+    "Content length is less than 15000, anything to add?"
+  ],
+  "/dev/": [
+    "More than one <h1> element. This is almost never what you want.",
+    "Image is missing alt attribute. This also breaks accessibility!",
+    "Suggest using image title attributes strategically."
+  ],
+  "/archive/announcements/": [
+    "Content length is less than 15000, anything to add?"
+  ],
+  "/archive/accessibility/": [
+    "Content length is less than 15000, anything to add?"
+  ],
+  "/archive/infima/": [
+    "Content length is less than 15000, anything to add?"
+  ],
+  "/fonts/": [
+    "Content length is less than 15000, anything to add?"
+  ]
+}
