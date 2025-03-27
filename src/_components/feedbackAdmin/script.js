@@ -1,4 +1,15 @@
 /**
+ * Decodes HTML entities in a string.
+ * @param {string} str - The string to decode.
+ * @returns {string} The decoded string.
+ */
+function decodeHtmlEntities(str) {
+  const textArea = document.createElement("textarea");
+  textArea.innerHTML = str;
+  return textArea.value;
+}
+
+/**
  * Fetches feedback data from the local middleware
  * (which fetches it from the server) and displays it in a table.
  * @param {string} containerId - The ID of the div where the table will be inserted.
@@ -67,7 +78,7 @@ async function loadFeedbackTable(containerId) {
       row.appendChild(urlCell);
 
       const commentCell = document.createElement("td");
-      commentCell.textContent = message;
+      commentCell.textContent = decodeHtmlEntities(message);
       row.appendChild(commentCell);
 
       const actionsCell = document.createElement("td");
@@ -122,6 +133,7 @@ async function loadFeedbackTable(containerId) {
   }
 }
 
+// says what it does, does what it says.
 function refreshFeedbackTable(containerId) {
   loadFeedbackTable(containerId);
 }
