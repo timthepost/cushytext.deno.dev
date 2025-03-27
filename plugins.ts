@@ -106,10 +106,6 @@ export default function (userOptions?: Options) {
         },
       }))
       .use(inline())
-      .use(minifyHTML())
-      .use(purgecss())
-      .use(terser({ options: { module: false } }))
-      .use(brotli())
       .use(picture())
       .use(transformImages())
       .use(readingInfo({ extensions: [".mdx"] }))
@@ -141,6 +137,10 @@ export default function (userOptions?: Options) {
           resetStyles: true,
         },
       }))
+      .use(purgecss())
+      .use(minifyHTML({extensions: [".html", ".css"]}))
+      .use(terser({ options: { module: false } }))
+      .use(brotli())
       .add("_includes/js", "js")
       .add("_includes/css", "css")
       .add("uploads")
