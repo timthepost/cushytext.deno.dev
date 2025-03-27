@@ -15,7 +15,7 @@ async function loadFeedbackTable(containerId) {
   try {
     const response = await fetch("/api/feedback?basename=*");
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`${response.error} ${response.status}`);
     }
     const feedbackList = await response.json();
 
@@ -41,7 +41,6 @@ async function loadFeedbackTable(containerId) {
     feedbackList.forEach((feedback) => {
       const row = document.createElement("tr");
 
-      // Date
       const dateCell = document.createElement("td");
       let date;
       let message;
@@ -92,10 +91,6 @@ async function loadFeedbackTable(containerId) {
   }
 }
 
-/**
- * Refreshes the feedback table by re-fetching and re-displaying the data.
- * @param {string} containerId - The ID of the div where the table is inserted.
- */
 function refreshFeedbackTable(containerId) {
   loadFeedbackTable(containerId);
 }
