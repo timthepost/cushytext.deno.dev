@@ -28,6 +28,7 @@ import toc from "./src/_plugins/toc/mod.ts";
 
 import "lume/types.ts";
 
+import "npm:prismjs@1.29.0/components/prism-jsx.js";
 import "npm:prismjs@1.29.0/components/prism-git.js";
 import "npm:prismjs@1.29.0/components/prism-json.js";
 import "npm:prismjs@1.29.0/components/prism-markdown.js";
