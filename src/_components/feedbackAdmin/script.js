@@ -17,7 +17,6 @@ function decodeHtmlEntities(str) {
 async function loadFeedbackTable(containerId) {
   const container = document.getElementById(containerId);
   if (!container) {
-    console.error(`Container with ID "${containerId}" not found.`);
     return;
   }
 
@@ -140,6 +139,11 @@ function refreshFeedbackTable(containerId) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const containerId = "feedback-table-container";
+  const container = document.getElementById(containerId);
+  if (! container) {
+    return;
+  }
+  
   loadFeedbackTable(containerId);
 
   const refreshButton = document.createElement("button");
@@ -152,8 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
     () => refreshFeedbackTable(containerId),
   );
 
-  const container = document.getElementById(containerId);
-  if (container) {
-    container.parentNode.insertBefore(refreshButton, container);
-  }
+  container.parentNode.insertBefore(refreshButton, container);
+ 
 });
