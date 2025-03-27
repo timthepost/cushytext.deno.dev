@@ -47,10 +47,11 @@ router.get("/api/feedback/reset", async ({ _request }) => {
   });
 });
 
-// List anon feedback (basename filters URL, * for all in the anonFeedback {url} {uuid} key space)
-// BUT NOTE: DenoKV list() does NOT support wildcards. Matching is precise, from the left inward.
-// * in this case just omits the right-hand specifier entirely. I almost used ~ instead of * to
-// avoid confusion; I worried anything but * would imply something even more confusing :P
+/*
+ * List anon feedback (basename filters URL, * for all in the anonFeedback {url} {uuid} key space)
+ * NOTE: DenoKV list() does NOT support wildcards. Matching is precise, from the left inward.
+ * "*" in this case just omits the right-hand specifier entirely, this isn't a wildcard search.
+ */
 router.get("/api/feedback", async ({ request }) => {
   if (!DEV_MODE) {
     return new Response(JSON.stringify(["error:", "Not in dev mode"]), {
@@ -174,7 +175,7 @@ router.delete("/api/feedback", async ({ request }) => {
   const kv = await Deno.openKv(kv_url ? kv_url : undefined);
 
   try {
-    const { key } = await request.json(); // Expecting { key: ["anonFeedback", "basename", "UUID"] }
+    const { key } = await request.json();
     if (!Array.isArray(key) || key.length !== 3 || key[0] !== "anonFeedback") {
       return new Response(JSON.stringify({ error: "Invalid key format" }), { status: 400 });
     }
