@@ -1,6 +1,6 @@
+import cacheBusting from "lume/middlewares/cache_busting.ts";
 import lume from "lume/mod.ts";
 import plugins from "./plugins.ts";
-import cacheBusting from "lume/middlewares/cache_busting.ts";
 import router from "./src/_server_routes.ts";
 
 const site = lume({
@@ -8,8 +8,8 @@ const site = lume({
   location: new URL("https://cushytext.deno.dev"),
   server: {
     middlewares: [
-      router.middleware(), 
-      cacheBusting()
+      router.middleware(),
+      cacheBusting(),
     ],
   },
 });

@@ -9,10 +9,12 @@ function decodeHtmlEntities(str) {
   const decodedString = textArea.value;
 
   // Sanitize the decoded string to prevent XSS
-  const sanitizedString = decodedString.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+  const sanitizedString = decodedString.replace(
+    /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+    "",
+  );
   return sanitizedString;
 }
-
 
 /**
  * Fetches feedback data from the local middleware
@@ -130,10 +132,10 @@ async function loadFeedbackTable(containerId) {
 
     table.appendChild(tbody);
     container.appendChild(table);
-
   } catch (error) {
     console.error("Error fetching or displaying feedback:", error);
-    container.innerHTML = `<p>Error loading feedback: <em>${error.message}</em></p>`;
+    container.innerHTML =
+      `<p>Error loading feedback: <em>${error.message}</em></p>`;
   }
 }
 
@@ -145,10 +147,10 @@ function refreshFeedbackTable(containerId) {
 document.addEventListener("DOMContentLoaded", () => {
   const containerId = "feedback-table-container";
   const container = document.getElementById(containerId);
-  if (! container) {
+  if (!container) {
     return;
   }
-  
+
   loadFeedbackTable(containerId);
 
   const refreshButton = document.createElement("button");
@@ -160,5 +162,4 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   container.parentNode.insertBefore(refreshButton, container);
- 
 });

@@ -6,6 +6,7 @@ import { favicon, Options as FaviconOptions } from "lume/plugins/favicon.ts";
 import feed from "lume/plugins/feed.ts";
 import icons from "lume/plugins/icons.ts";
 import inline from "lume/plugins/inline.ts";
+import lightningCss from "lume/plugins/lightningcss.ts";
 import mdx from "lume/plugins/mdx.ts";
 import metas from "lume/plugins/metas.ts";
 import minifyHTML from "lume/plugins/minify_html.ts";
@@ -13,7 +14,6 @@ import nav from "lume/plugins/nav.ts";
 import ogImages from "lume/plugins/og_images.ts";
 import pagefind from "lume/plugins/pagefind.ts";
 import picture from "lume/plugins/picture.ts";
-import lightningCss from "lume/plugins/lightningcss.ts";
 import prism from "lume/plugins/prism.ts";
 import purgecss from "lume/plugins/purgecss.ts";
 import readingInfo from "lume/plugins/reading_info.ts";
@@ -24,8 +24,8 @@ import slugifyUrls from "lume/plugins/slugify_urls.ts";
 import sourceMaps from "lume/plugins/source_maps.ts";
 import terser from "lume/plugins/terser.ts";
 import transformImages from "lume/plugins/transform_images.ts";
-import toc from "./src/_plugins/toc/mod.ts";
 import seo from "./src/_plugins/seo/mod.ts";
+import toc from "./src/_plugins/toc/mod.ts";
 
 import "lume/types.ts";
 

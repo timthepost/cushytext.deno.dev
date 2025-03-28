@@ -16,9 +16,7 @@ function sanitizeString(str: string): string {
     .replace(/'/g, "&apos;");
 }
 
-
 /* Define routes for your site here */
-
 
 // The simple datetime server
 router.get("/api", ({ _request }) => {
@@ -50,8 +48,8 @@ router.get("/api/feedback/reset", async ({ _request }) => {
 });
 
 /* List anon feedback (basename filters URL, * for all in the anonFeedback space)
- * NOTE: DenoKV list() does NOT support wildcards. Matching is precise, from the 
- * left inward. "*" in this case just omits the right-hand specifier entirely, this 
+ * NOTE: DenoKV list() does NOT support wildcards. Matching is precise, from the
+ * left inward. "*" in this case just omits the right-hand specifier entirely, this
  * isn't a wildcard search, it just mocks one.
  */
 router.get("/api/feedback", async ({ request }) => {
@@ -181,14 +179,18 @@ router.delete("/api/feedback", async ({ request }) => {
   try {
     const { key } = await request.json();
     if (!Array.isArray(key) || key.length !== 3 || key[0] !== "anonFeedback") {
-      return new Response(JSON.stringify({ error: "Invalid key format" }), { status: 400 });
+      return new Response(JSON.stringify({ error: "Invalid key format" }), {
+        status: 400,
+      });
     }
     await kv.delete(key);
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
     console.error("Error deleting feedback with kv.delete():", error);
-    return new Response(JSON.stringify({ error: "kv.delete() failed" }), { status: 500 });
+    return new Response(JSON.stringify({ error: "kv.delete() failed" }), {
+      status: 500,
+    });
   }
 });
-  
+
 export default router;

@@ -93,14 +93,14 @@ opinion:
 interactive-features:
   summary: >
     The interactive features tag covers the interactive features that
-    ship with Cushy Text, as well as conversations in general about 
-    bringing interactive (dynamic) features to static sites, which 
-    are typically very feature-less. 
+    ship with Cushy Text, as well as conversations in general about
+    bringing interactive (dynamic) features to static sites, which
+    are typically very feature-less.
 
 
-    The Router middleware in Lume 3 re-starts conversations about 
+    The Router middleware in Lume 3 re-starts conversations about
     expectations of static sites because it enables so many customary
-    features that WordPress users enjoy, like being able to vote on 
+    features that WordPress users enjoy, like being able to vote on
     and rate posts, leave and read comments, and other things.
   related_tags: ["hybrid-sites", "wordpress", "lume-3"]
 
