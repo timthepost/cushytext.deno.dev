@@ -25,12 +25,11 @@ places.
 <h2 id="interactive">Static Doesn't Have To Mean Stagnate! Interactive Stuff Is Included!</h2>
 
 The first two features to offer interactive engagement experiences will be a content rating
-system [similar to the one on Tim's site](https://timthepost.deno.dev/) that uses a universal
-interface so you can pick your own storage backend. I'll include examples of inserting the 
-data into a DenoKV database, as well as posting the feedback to a Discord channel. 
+system that's currently visible on every page [in our docs site])(/docs/), with an accompanying 
+admin plugin to view and delete feedback.
 
-There will also be a generic contact form handler with a reasonable level of protection around
-it that you can use for receiving data from practically anything else. 
+Things are working fine with DenoKV; we're also looking to implement a way to use Github Issues
+as well as Discord to receive submissions.  
 
 Check out the [blog update about additional features](/blog/interactive-feature-plans/) 
 that are likely to also ship with the early release candidates!
@@ -40,28 +39,18 @@ that are likely to also ship with the early release candidates!
 The blog configuration brings a lot of robust features such as:
 
  - Tagging & Community Tag Wiki System
-
  - RSS/JSON Feeds for all posts, as well as individual, ***per-tag*** feeds.
-
  - Archive Pages For Posts, Authors & Tags  
-
  - Blog Homepage, which can become the site homepage if you want.
-
  - Automatic OG Image Generation. Built for writing tutorial-style content as well
    as essays. 
- 
  - Code Syntax Highlighting with MDX lets you use a wide variety of components.
-
  - Auto Image Resizing: Upload blog images to `uploads` and _fahhhhhhh-get about it._
-
  - Interactive Content Rating System Powered by DenoKV, Discord, GH Issues or whatever
    you want to use to receive the feedback. Includes DenoKV and Discord by default.
-
  - Uses Lume's archetype scripts for new content creation.
-
  - Multi-instance capable: Uses "waypoints" to bucket content by blog installs for navigation
    and search discernment.
-
  - ***Is still in very active development; more features are coming.***
 
 The blog is designed with a lone technical community manager or product marketing manager
@@ -75,7 +64,7 @@ tend to spend the majority of their time in content development.
 Speaking of new content development, do you want to write a new blog post? Just do this:
 
 ```bash
-> lume new blog "My New Blog"
+> lume new blog "new blog post title"
 ```
 
 You'll have a draft in `blog/` with all frontmatter filled out with defaults, and a 
@@ -88,11 +77,9 @@ the theme's perspective.
 Documentation is written like blog posts, with a few key differences:
 
  - You set your own H1 heading in the document (in blogs, this is automatic)
-
  - The sidebar is auto-generated based on file / title / menu order that 
    you control in frontmatter via `menu.order` and `menu.visible` for pages
    you want generated but not linked.
-
  - No archive pages are generated. While tags can be applied to documentation
    files, they aren't really used in the UI outside of search. You can of course
    change that.
@@ -101,20 +88,14 @@ But like Blogs, Documentation also has features that make your life as the
 site maintainer easier:
 
  - Multi-instance and independent with very minimal configuration (a few fields in `_data.yml`).
-
  - Waypoint-isolated so you can bring docs from specific sections of your site 
    into different feeds and navigation. Grab documentation from `%api-docs%` or 
    `%quickstart-tips%` or `%javascript-sdk%` easily.
-
  - Automatic search via Pagefind
-
  - Content rating system so users can give direct feedback
-
  - SEO Optimized 
-
  - MDX With whatever plugins you'd like to bring beyond the default that come with 
    Infima CSS.
-
  - Can also bring in content from other parts of the site  (e.g. release notes blog)
 
 The bar for the Documentation feature to reach in order to be deemed worthy of inclusion
@@ -145,13 +126,10 @@ That's why the theme includes a plugin that runs a _lot_ of comprehensive checks
 your content such as:
 
  - Meta information presence, length, percentage of common words
-
  - Content length checks (titles and content-body separately) as well as common 
    word density analysis in important fields like titles and descriptions
-
  - Checks on images and other HTML elements to be sure all properties are set correctly 
    (alt, title)
-
  - Checks to make sure the semantic document structure is correct (headings in order, 
    one main idea per page, etc)
 
@@ -216,9 +194,10 @@ optimization. Have a look at what's under the hood:
 | Plugin | Description | Type | Author | Installed? | Custom Configured? |
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | expires | Server Middleware | base | Lume Official | Yes | No |
+| precompress | Server Middleware | base | Lume Official | Yes | No |
 | router | Server Middleware | base | Lume Official | Yes | Yes |
-| cache buster | Server Middleware | base | Lume Official | Yes | No |
-| conductor  | Required Theme Plugin | base | Tim Post | Yes | Yes |
+| cache-buster | Server Middleware | base | Lume Official | Yes | No |
+| toc  | Table Of Contents Generator | base | Tim Post | Yes | Yes |
 | og-images | Generate OG Images From Templates | base | Lume Official | Yes | Yes |
 | picture | Create Responsive Images Automatically | base | Lume Official | Yes | No |
 | basepath   | Core Lume Plugin       | base | Lume Official | Yes | No |
@@ -227,7 +206,7 @@ optimization. Have a look at what's under the hood:
 | icons | Easily Use Open Source Icon Sets | base | Lume Official | Yes | No |
 | inline | HTML Helper | base | Lume Official | Yes | No |
 | mdx        | Default Document, Built On SSX | base | Lume Official | Yes | No |
-| postcss    | CSS Processor          | css | Lume Official | Yes | No |
+| lightningCSS | CSS Processor & Minifier | css | Lume Official | Yes | No |
 | purgecss   | CSS Cleaner            | css | Lume Official | Yes | No |
 | feed       | Generate Feeds         | seo | Lume Official | Yes | Yes |
 | sitemap    | Generate Sitemap       | seo | Lume Official | Yes | No |
