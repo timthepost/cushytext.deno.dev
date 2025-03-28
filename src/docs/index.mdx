@@ -9,47 +9,24 @@ metas:
   image: /docs/index.png
 ---
 
-# Current Status: <span class="text--danger">Incomplete</span>
+# Current Status: <span class="text--success">Launching Soon!</span>
 
-Most things are fairly stable, but there's still a lot of finishing touches needed 
-before I'm comfortable tagging in a release. 
+Things are pretty stable, it's time to cut a release people can update from. 
 
-***I expect the first testing release (`0.0.1-rc1`) to be ready around the first week of April, 2025.***
+***I still expect the first testing release (`0.0.1-rc1`) to be ready around the 
+first week of April, 2025. Here's a [release plan](https://github.com/timthepost/cushytext/blob/main/RELEASE-TODO.md) 
+(Github Link) for the release, and how the transition away from this current repo will work.***
 
-## Cloning & Starting Up Locally
-
-The only way to check things out right now is to **[clone the repo](https://github.com/timthepost/cushytext)**.
-
-Once you have a working copy of the repo, the following sets `LUME_DRAFTS` true and starts the Lume 
-local server:
-
-```bash
-> deno task dev
-```
-
-Look at `_includes/partials/head.vto` for Sa11y imports (used to test accessibility). Right now just 
-comment / uncomment them. I plan to organize dev loading more around environmental variables soon.
-
-There's also a special task for starting the production server (`src/_serve.ts`),
-which you should only have to do if you're changing the server code or testing 
-redirects:
-
-```bash
-> deno task mock
-```
-
-This starts the _production_ server locally, on port 8000, and then watches
-the _server_ code (`_serve.ts`) for changes and reloads. This does not live-reload
-_content_, just the server _itself_ if the server code changes.
-
-Middleware works locally the same as remotely, you don't need this to test that. 
-This option is here to debug changes to the server before pushing them, or
-things like testing redirects.
+You're still welcome to [clone the development repo](https://github.com/timthepost/cushytext),
+but understand that development is moving to an entirely new repository on release, and this 
+will soon just host the theme's site and blog. In short the theme gets its own repo, and this
+site becomes a user of it, just like everyone else. I won't be hosting a live site out of
+the same repo I distribute the theme and plugins from.
 
 <h2 id="current_focus">Current Focus (All must be done before `0.0.1` testing release)</h2>
 
  - Everything needed to be a remote theme (`mod.ts` for remote files, 
-   `init.ts` to generate default content)
+   `init.ts` to generate default content) (see release plan link above)
 
 <h2 id="roadmap">Near-Term Roadmap: (`0.0.2 - 0.0.3`)</h2>
 
