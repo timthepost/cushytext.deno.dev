@@ -35,3 +35,11 @@
  6. The current cushytext repo changes to pull in packages I publish from 
     the theme one, for the most part. It just becomes the dev site, and 
     where the project site and blog live.
+
+ 7. The cushytext github repo is renamed to cushytext.deno.dev, and the docs
+    index page is updated to installation instructions. The front page hero 
+    is updated to point to the docs index. The docs index links to the new
+    template repo where appropriate. Github links on the site are changed to 
+    point to the template as needed. 
+
+ 8. Collapse in exhaustion and have a beer!
