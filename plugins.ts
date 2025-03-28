@@ -13,7 +13,7 @@ import nav from "lume/plugins/nav.ts";
 import ogImages from "lume/plugins/og_images.ts";
 import pagefind from "lume/plugins/pagefind.ts";
 import picture from "lume/plugins/picture.ts";
-import postcss from "lume/plugins/postcss.ts";
+import lightningCss from "lume/plugins/lightningcss.ts";
 import prism from "lume/plugins/prism.ts";
 import purgecss from "lume/plugins/purgecss.ts";
 import readingInfo from "lume/plugins/reading_info.ts";
@@ -66,7 +66,7 @@ export default function (userOptions?: Options) {
         toc_link_class: "table-of-contents__link",
         toc_list_class: "table-of-contents padding-top--none",
       }))
-      .use(postcss())
+      .use(lightningCss())
       .add([".css"])
       .use(sourceMaps())
       .use(mdx({ extensions: [".mdx", ".jsx", ".tsx"] }))
