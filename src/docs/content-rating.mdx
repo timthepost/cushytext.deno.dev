@@ -30,7 +30,15 @@ that lets you express how you feel about reading the current article. That
 widget uses the Router middleware to process the form submission and inserts 
 the feedback into a DenoKV database or anything else that can take input from 
 a call to `fetch()`. I plan to have it also work with posting (via Bot) to 
-Discord. 
+Discord. The survey is visible in the right sidebar on every page in `/docs`;
+here it is expanded:
+
+<img 
+  src="/uploads/content/feedback-input.png" 
+  alt="feedback input form" 
+  title="Expanded view of the feedback form" 
+  style="border-radius: 1em"
+  />
 
 Feedback submits to `yourdomain.com/api/feedback` via POST request and has a 
 built-in honeypot. I'm currently investigating possible integrations
@@ -63,7 +71,14 @@ anonymous feedback wherever it's convenient for you to put it.
 
 Designed to run _locally_ only, it works in conjunction with `/api/feedback` 
 to get a list of feedback and keys, display it, and provide a convenient means
-of deleting it.
+of deleting it:
+
+<img 
+  src="/uploads/content/feedback-admin.png" 
+  alt="feedback admin table" 
+  title="Bare bones, but sufficient."
+  style="border-radius: 1em;" 
+  />
 
 It puts a container in the document that receives a table from a 
 call to `fetch()` against a route which only works if `LUME_DRAFTS`
