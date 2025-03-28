@@ -14,9 +14,10 @@ Normally, words like "middleware" aren't very exciting, but the Router that
 is shipping in Lume 3 is what enables static sites to have interactive functions
 without having to fuss with edge functions.
 
-On Deno Deploy, Lume runs by Deno running `src/_serve.ts`, which loads `_server_routes.ts`.
-which makes the same server handing out all of your pages also accept form submissions 
-and relay responses to them. And, it works locally or remotely the exact same way!
+On Deno Deploy, Lume runs this theme through Deno running `src/_serve.ts`, which loads 
+`_server_routes.ts`. which makes the same server handing out all of your pages also 
+accept form submissions and relay responses to them. And, it works locally or remotely 
+the exact same way!
 
 ## How Is Middleware Set Up?
 
@@ -40,19 +41,41 @@ router.get("/api", ({ _request }) => {
 export default router;
 ```
 
-This is imported by the production `_serve.ts` when it serves your 
-site on Deno Deploy, and is also loaded by Lume's local server when 
-you start it. 
+You can set up synchronous or asynchronous handlers for `GET`, `POST` and
+`DELETE`, where you can do I/O with DenoKV or other databases, await the 
+return of `fetch()` to pull in content, or whatever you'd normally use 
+edge functions for. 
 
-You can set up synchronous or asynchronous handlers for `GET`, `POST`, 
-`DELETE` (and whatever else), where you can do I/O with DenoKV or 
-other databases, await the return of `fetch()` to pull in content, or 
-whatever you'd normally use edge functions for.
+Don't go trying to crunch a Monte Carlo simulation in one, mkay? But you've
+got room to run standard logistics. This isn't for serving dynamic pages, 
+just for handling things that are needed to bring interactivity to sites.
 
-This isn't for serving dynamic pages, just for handling things that
-are needed to bring interactivity to sites.
+## Roadmap For Using Lume 3's Router In Cushy Text
 
-## Roadmap 
+Right now, [`src/_server_routes.ts`](https://github.com/timthepost/cushytext/blob/main/src/_server_routes.ts)
+(Github Link) is a very cluttered mess. 
 
-Almost all of the [planned interactive features](/blog/interactive-feature-plans/) 
-will use this. 
+Off the bat, there are two main things wrong with it:
+
+ - I need to pick and use a validator library. Still mulling over which one
+   I like. Something very lightweight. In many of the libraries that I like
+   (e.g. Oak), it's actually built into the request _context itself_ which 
+   is an interesting approach, but would require Lume to provide it. I'm interested
+   in suggestions for something simple going forward.
+
+ - The code needs to be back-end agnostic. I plan to move all the code that talks
+   to DenoKV into a module and call it FeedbackStorage. That naturally means we 
+   can have `FeedbackStorage.submit()`, `FeedbackStorage.list()`, `FeedbackStorage.reset()` 
+   and `FeedbackStorage.delete()`. This allows you to use Discord, GH Issues, or whatever 
+   else you can manage with calls from `fetch()` in a middleware-appropriate way. Maybe 
+   even chain them together? DenoKV + GHIssues?
+
+***You write your routes any way you like; I'm just talking about the theme 
+defaults.*** I don't want to force DenoKV on anyone, even though Deno hosting is 
+required for all of it to work. And, I see the use in Discord / GH issues for this
+kind of thing.
+
+This should be implemented in one of the very early versions, not sure if the second 
+or the third. I'll be using Harmony (Deno) for Discord as Discordeno would be overkill, 
+and probably just Octokit for the GH stuff. I'll happily take PRs that advances either
+cause.
