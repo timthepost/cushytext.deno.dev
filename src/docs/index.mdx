@@ -24,35 +24,28 @@ site becomes a user of it, just like everyone else. I won't be hosting a live si
 the same repo I distribute the theme and plugins from.
 
 <h2 id="current_focus">Current Focus (All must be done before `0.0.1` testing release)</h2>
-
  - Everything needed to be a remote theme (`mod.ts` for remote files, 
    `init.ts` to generate default content) (see release plan link above)
-
  - The SEO plugin still needs some love:
     - Lengths should be able to be specified as characters or words.
     - It should use Lume's provided `page.document` object where possible 
       to run checks.
     - It should be able to look at only modified files on save events, 
       inspecting all files only on startup? Nice to have.
+- The archetype scripts need some attention.
 
 <h2 id="roadmap">Near-Term Roadmap: (`0.0.2 - 0.0.3`)</h2>
-
  - Re-doing the docs auto nav with the [Nav plugin](https://lume.land/plugins/nav/), 
    which I think also helps solve the nested sections and custom sidebar import 
    complications (though custom would have to follow the nav plugin output format).
-
  - Blogs should be able to have per-instance archive and tag pages, with control
    over layouts used for each one.
-
  - Have a default localization plugin / setup.
-
  - More content-building components (tabs, responsive YT player helper, docs index
    page generator) Perhaps a selective generator for Discord Q&A as the start of a 
    FAQ component.
-
  - Have author bios and tag info content for tag and author pages so they're
    indexed better (already started)
-
  - SEO Plugin v1 rewrite should be ready by then. The one soaking in `_plugins/seo`
    needs to be rewritten to accept lengths in chars or words, and to use the DOM API 
    instead of fiddling with frontmatter directly. It also needs to have a better 
