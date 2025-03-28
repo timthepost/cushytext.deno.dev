@@ -1,13 +1,18 @@
 /**
- * Decodes HTML entities in a string.
- * @param {string} str - The string to decode.
- * @returns {string} The decoded string.
+ * Decodes HTML entities in a string and sanitizes it to prevent XSS.
+ * @param {string} str - The string to decode and sanitize.
+ * @returns {string} The decoded and sanitized string.
  */
 function decodeHtmlEntities(str) {
   const textArea = document.createElement("textarea");
   textArea.innerHTML = str;
-  return textArea.value;
+  const decodedString = textArea.value;
+
+  // Sanitize the decoded string to prevent XSS
+  const sanitizedString = decodedString.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+  return sanitizedString;
 }
+
 
 /**
  * Fetches feedback data from the local middleware
