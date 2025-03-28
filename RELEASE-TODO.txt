@@ -1,4 +1,0 @@
-- Remove google site verification meta tag from template. Check for
-  any others.
-
-- Move fixes from theme-variables.css into style.css
