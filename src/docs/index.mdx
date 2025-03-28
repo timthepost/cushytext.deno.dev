@@ -27,6 +27,13 @@ the same repo I distribute the theme and plugins from.
 
  - Everything needed to be a remote theme (`mod.ts` for remote files, 
    `init.ts` to generate default content) (see release plan link above)
+   
+ - The SEO plugin still needs some love:
+    - Lengths should be able to be specified as characters or words.
+    - It should use Lume's provided `page.document` object where possible 
+      to run checks.
+    - It should be able to look at only modified files on save events, 
+      inspecting all files only on startup? Nice to have.
 
 <h2 id="roadmap">Near-Term Roadmap: (`0.0.2 - 0.0.3`)</h2>
 
