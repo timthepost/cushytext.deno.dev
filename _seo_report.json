@@ -1,97 +1,51 @@
 {
-  "/docs/archetypes/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
-  "/docs/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
-  "/docs/middleware/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
-  "/docs/components/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
-  "/docs/theme-switchers/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
-  "/docs/theme-plugins/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
-  "/docs/tag-wikis-tag-feeds/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
-  "/docs/content-rating/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
-  "/blog/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
   "/blog/interactive-feature-plans/": [
-    "Content length is less than 15000 characters, anything to add?",
     "SEO: Meta Description Common Word Percent For /blog/interactive-feature-plans/ meets or exceeds 45"
   ],
-  "/blog/announcing-cushy-text/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
   "/blog/welcome-wordpress/": [
-    "Content length is less than 15000 characters, anything to add?",
     "SEO: Meta Description Common Word Percent For /blog/welcome-wordpress/ meets or exceeds 45"
   ],
-  "/blog/0-0-1-release-update/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
-  "/blog/static-site-enthusiast/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
   "/blog/0-0-1-component-strategy-update/": [
-    "Content length is less than 15000 characters, anything to add?",
     "SEO: Meta Description Length For /blog/0-0-1-component-strategy-update/ meets or exceeds 150 characters",
     "SEO: Meta Description Common Word Percent For /blog/0-0-1-component-strategy-update/ meets or exceeds 45"
   ],
-  "/blog/quick-accessibility-update-0-0-1/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
   "/blog/post-hog-static-sites/": [
-    "Content length is less than 15000 characters, anything to add?",
     "SEO: Meta Description Common Word Percent For /blog/post-hog-static-sites/ meets or exceeds 45"
   ],
-  "/features/": [
-    "Content length is less than 15000 characters, anything to add?"
-  ],
   "/archive/announcements/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (1929) is less than 4000 characters, anything to add?"
   ],
   "/archive/v0-0-1/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (2725) is less than 4000 characters, anything to add?"
   ],
   "/archive/updates/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (2533) is less than 4000 characters, anything to add?"
   ],
   "/archive/interactive-features/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (2209) is less than 4000 characters, anything to add?"
   ],
   "/archive/opinion/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (2272) is less than 4000 characters, anything to add?"
   ],
   "/archive/wordpress/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (2385) is less than 4000 characters, anything to add?"
   ],
   "/archive/lume-3/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (2460) is less than 4000 characters, anything to add?"
   ],
   "/archive/hybrid-sites/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (2423) is less than 4000 characters, anything to add?"
   ],
   "/archive/static-sites/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (2398) is less than 4000 characters, anything to add?"
   ],
   "/archive/accessibility/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (1890) is less than 4000 characters, anything to add?"
   ],
   "/archive/infima/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (1838) is less than 4000 characters, anything to add?"
   ],
   "/author/Tim-Post/": [
-    "Content length is less than 15000 characters, anything to add?"
+    "Content length (3113) is less than 4000 characters, anything to add?"
   ]
 }
