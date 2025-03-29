@@ -1,7 +1,4 @@
 {
-  "/docs/admin/": [
-    "Heading elements out of order: H3 - Headings should be in semantic order."
-  ],
   "/blog/interactive-feature-plans/": [
     "SEO: Meta Description Common Word Percent For /blog/interactive-feature-plans/ meets or exceeds 45"
   ],
@@ -23,6 +20,9 @@
     "Image is missing alt attribute. This also breaks accessibility!",
     "Suggest using image title attributes strategically."
   ],
+  "/admin/": [
+    "Content length is less than 15000, anything to add?"
+  ],
   "/archive/announcements/": [
     "Content length is less than 15000, anything to add?"
   ],
@@ -33,9 +33,6 @@
     "Content length is less than 15000, anything to add?"
   ],
   "/fonts/": [
-    "Content length is less than 15000, anything to add?"
-  ],
-  "/admin/": [
     "Content length is less than 15000, anything to add?"
   ]
 }
