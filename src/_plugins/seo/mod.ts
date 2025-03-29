@@ -2,6 +2,14 @@ import type Site from "lume/core/site.ts";
 import { log } from "lume/core/utils/log.ts";
 import { merge } from "lume/core/utils/object.ts";
 
+
+/* TODO List
+ - Pass element that wraps measurable content in config or frontmatter.
+   If not possible, then use data.content with a best guess percentage.
+
+ - Make calculate percentage a define-able callback
+ */
+
 // For internationalization support
 export type LengthUnit = "character" | "grapheme" | "word" | "sentence";
 
