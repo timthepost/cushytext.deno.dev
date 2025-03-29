@@ -89,10 +89,10 @@ export default function seo(userOptions?: Options) {
     title = title.trim();
     const processedTitle = title.toLowerCase().replace(/[^\w\s]/g, "");
     const words = processedTitle.split(/\s+/);
+    // prettier-ignore // deno-fmt-ignore
     const commonWords = options.userCommonWordSet
       ? options.userCommonWordSet
       : new Set([
-        // prettier-ignore // deno-fmt-ignore
         "the", "a", "an", "and", "but",
         "or", "nor", "for", "so", "yet",
         "to", "in", "at", "on", "by",
