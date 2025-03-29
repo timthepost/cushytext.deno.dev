@@ -1,13 +1,8 @@
-/**
- * Early version of a SEO plugin. Don't use this one,
- * it's problematic for a number of reasons. Here for
- * reference so I can rewrite it.
- */
 import type Site from "lume/core/site.ts";
 import { log } from "lume/core/utils/log.ts";
 import { merge } from "lume/core/utils/object.ts";
 
-// Define a new type for length units
+// For internationalization support
 export type LengthUnit = "character" | "grapheme" | "word" | "sentence";
 
 interface Options {
@@ -57,7 +52,7 @@ interface Options {
   output?: string | ((seoWarnings: Map<string, Set<string>>) => void) | null;
   /* Remove output file if run finishes with no warnings? */
   removeReportFile?: boolean;
-  /* Unit for length checks. Options are "character", "grapheme", "word" or "sentence" */
+  /* Unit for length checks. See LengthUnit type above */
   lengthUnit?: LengthUnit;
   /* Default Locale If It Can't Be Determined By The page */
   lengthLocale?: string;
@@ -208,7 +203,6 @@ export default function seo(userOptions?: Options) {
     function writeWarningsToConsole(): void {
       log.warn("SEO: Warnings were issued during this run. Report as follows:");
       const content = JSONIfyCachedWarnings();
-      // TODO: pretty table-ify this somehow?
       console.dir(content);
       return;
     }
