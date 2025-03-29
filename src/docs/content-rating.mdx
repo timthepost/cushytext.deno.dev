@@ -103,23 +103,23 @@ Or in MDX:
 If you put the following in any directory, including the `src/` root directory,
 you'll get an "admin" area that only works locally. This can be accomplished by
 taking advantage of the fact that Lume will render drafts locally if `LUME_DRAFTS`
-is set, which is also used by CushyDocs to control dev mode:
+is set, which is also used by CushyDocs to control dev mode. I named mine `src/admin.mdx`
+because I find `http://localhost:3000/admin/` the most convenient. You do you, here's
+the sparse code you'll need:
 
 ```jsx
 ---
-title: Admin
+title: Local Admin Area
 layout: layouts/page.vto
 draft: true
 menu:
-  visible: true
+  display: true
   order: -1
 ---
 
-# {title}
+<h1>{title}</h1>
 
-## Feedback Administration:
 <comp.feedbackAdmin />
-
 ```
 
 The component will load a script that runs in your browser, which communicates with 
