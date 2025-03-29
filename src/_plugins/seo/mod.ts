@@ -108,6 +108,16 @@ export default function seo(userOptions?: Options) {
     return count;
   }
 
+  /* This will likely need to be updated to better suit whatever
+   * language you're using if word boundaries work differently 
+   * than English. I'm more than happy to add more complexity
+   * here if it helps the plugin be useful in multiple languages
+   * simultaneously. 
+   * 
+   * I could perhaps make this a function you set in config 
+   * instead? It doesn't really need access to anything else
+   * in scope here. 
+   */
   function calculateCommonWordPercentage(title: string): number {
     if (!title) return 0;
     title = title.trim();
@@ -374,9 +384,9 @@ export default function seo(userOptions?: Options) {
               `SEO: Skipping meta description length check on ${page.data.url} per frontmatter.`,
             );
           } else {
-            if (
-              page.data.metas.description
-            ) {
+            const metaDescriptionElement = page.document.querySelector('meta[name="description"]');
+            const metaDescription = metaDescriptionElement?.getAttribute("content") || null;
+            if (metaDescription) {
               const metaDescriptionLength = getLength(
                 page.data.metas.description,
                 lengthUnit,
@@ -401,9 +411,11 @@ export default function seo(userOptions?: Options) {
               `SEO: Skipping meta description common word count on ${page.data.url} per frontmatter.`,
             );
           } else {
+            const metaDescriptionElement = page.document.querySelector('meta[name="description"]');
+            const metaDescription = metaDescriptionElement?.getAttribute("content") || null;
             if (
-              page.data.metas.description &&
-              calculateCommonWordPercentage(page.data.metas.description) >=
+              metaDescription &&
+              calculateCommonWordPercentage(metaDescription) >=
                 options.thresholdCommonWordsPercent
             ) {
               warnings[warningCount++] =
