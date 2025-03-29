@@ -243,7 +243,7 @@ export default function seo(userOptions?: Options) {
 
         if (options.warnTitleLength && page.data.title) {
           const titleLength = getLength(
-            page.data.title,
+            page.document.title,
             lengthUnit,
             locale,
           );
