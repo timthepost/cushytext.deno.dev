@@ -12,17 +12,6 @@
   "/blog/post-hog-static-sites/": [
     "SEO: Meta Description Common Word Percent For /blog/post-hog-static-sites/ meets or exceeds 45"
   ],
-  "/": [
-    "Content length is less than 15000, anything to add?"
-  ],
-  "/dev/": [
-    "More than one <h1> element. This is almost never what you want.",
-    "Image is missing alt attribute. This also breaks accessibility!",
-    "Suggest using image title attributes strategically."
-  ],
-  "/admin/": [
-    "Content length is less than 15000, anything to add?"
-  ],
   "/archive/announcements/": [
     "Content length is less than 15000, anything to add?"
   ],
@@ -30,9 +19,6 @@
     "Content length is less than 15000, anything to add?"
   ],
   "/archive/infima/": [
-    "Content length is less than 15000, anything to add?"
-  ],
-  "/fonts/": [
     "Content length is less than 15000, anything to add?"
   ]
 }

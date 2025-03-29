@@ -143,7 +143,7 @@ export default function (userOptions?: Options) {
       .use(minifyHTML({ extensions: [".html"] }))
       .use(terser({ options: { module: false } }))
       .use(brotli())
-      .use(seo({ output: "./_seo_report.json" }))
+      .use(seo({ output: "./_seo_report.json", ignore: [ "/admin/", "/dev/", "/404.html" ] }))
       .add("_includes/js", "js")
       .add("_includes/css", "css")
       .add("uploads")

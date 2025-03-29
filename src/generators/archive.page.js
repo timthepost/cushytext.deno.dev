@@ -17,6 +17,9 @@ export default function* ({ search, paginate, locale }) {
         order: 0,
       };
     }
+    data.seo = {
+      skip_content: true
+    }
     yield {
       ...data,
       title: locale.archive.heading,
