@@ -7,6 +7,9 @@ import type Site from "lume/core/site.ts";
 import { log } from "lume/core/utils/log.ts";
 import { merge } from "lume/core/utils/object.ts";
 
+// Define a new type for length units
+export type LengthUnit = "character" | "grapheme" | "word" | "sentence";
+
 interface Options {
   /* Titles should ideally be under 80 characters */
   warnTitleLength?: boolean;
@@ -18,16 +21,6 @@ interface Options {
   warnMetasDescriptionLength?: boolean;
   /* If metas is installed, warn on description common words? */
   warnMetasDescriptionCommonWords?: boolean;
-  /* Meta descriptions can be longer than titles */
-  thresholdMetaDescriptionLength?: number;
-  /* Minimum content length (chars) */
-  thresholdContentMinimum?: number;
-  /* Maximum content length (chars) */
-  thresholdContentMaximum?: number;
-  /* How long is too long for titles */
-  thresholdLength?: number;
-  /* What % of thresholdLength should be applied to URLs? */
-  thresholdLengthPercentage?: number;
   /* There should only be one <h1> tag per node */
   warnDuplicateHeadings?: boolean;
   /* Warn if heading elements are used out of order? */
@@ -36,6 +29,16 @@ interface Options {
   warnUrlCommonWords?: boolean;
   /* Try to use non-common words in precious title space! */
   warnTitleCommonWords?: boolean;
+  /* Meta descriptions can be longer than titles */
+  thresholdMetaDescriptionLength?: number;
+  /* Minimum content length */
+  thresholdContentMinimum?: number;
+  /* Maximum content length */
+  thresholdContentMaximum?: number;
+  /* How long is too long for titles */
+  thresholdLength?: number;
+  /* What % of thresholdLength should be applied to URLs? */
+  thresholdLengthPercentage?: number;
   /* What % of common words is okay in precious space? */
   thresholdCommonWordsPercent?: number;
   /* Min length for common word percentage checks */
@@ -54,6 +57,10 @@ interface Options {
   output?: string | ((seoWarnings: Map<string, Set<string>>) => void) | null;
   /* Remove output file if run finishes with no warnings? */
   removeReportFile?: boolean;
+  /* Unit for length checks. Options are "character", "grapheme", "word" or "sentence" */
+  lengthUnit?: LengthUnit;
+  /* Default Locale If It Can't Be Determined By The page */
+  lengthLocale?: string;
 }
 
 export const defaults: Options = {
@@ -64,25 +71,47 @@ export const defaults: Options = {
   warnContentLength: true,
   warnMetasDescriptionLength: true,
   warnMetasDescriptionCommonWords: true,
-  thresholdMetaDescriptionLength: 150,
-  thresholdContentMinimum: 15000,
-  thresholdContentMaximum: 75000,
-  thresholdLength: 80,
-  thresholdLengthPercentage: .7,
-  thresholdLengthForCWCheck: 35,
   warnDuplicateHeadings: true,
   warnHeadingOrder: true,
   warnTitleCommonWords: true,
   warnUrlCommonWords: true,
-  thresholdCommonWordsPercent: 45,
   warnImageAltAttribute: true,
   warnImageTitleAttribute: true,
+  thresholdMetaDescriptionLength: 150,
+  thresholdContentMinimum: 15000,
+  thresholdContentMaximum: 75000,
+  thresholdLength: 80,
+  thresholdLengthPercentage: 0.7,
+  thresholdLengthForCWCheck: 35,
+  thresholdCommonWordsPercent: 45,
   removeReportFile: true,
   output: null,
+  lengthUnit: "character",
+  lengthLocale: "en"
 };
 
 export default function seo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
+  const lengthUnit = options.lengthUnit;
+
+  function getLength(
+    text: string,
+    unit: LengthUnit,
+    locale: string,
+  ): number {
+    if (!text) return 0;
+    if (unit === "character") {
+      return text.length;
+    }
+
+    const segmenter = new Intl.Segmenter(locale, { granularity: unit });
+    const segments = segmenter.segment(text);
+    let count = 0;
+    for (const _ of segments) {
+      count++;
+    }
+    return count;
+  }
 
   function calculateCommonWordPercentage(title: string): number {
     if (!title) return 0;
@@ -93,6 +122,11 @@ export default function seo(userOptions?: Options) {
     const commonWords = options.userCommonWordSet
       ? options.userCommonWordSet
       : new Set([
+        // Not exhaustive! Compiled from dozens of sources,
+        // but not exhaustive. These seem to be the most 
+        // common among all the lists of lists of lists of 
+        // words like this. Also the most common on academic
+        // slides explaining English. Yay, another list!
         "the", "a", "an", "and", "but",
         "or", "nor", "for", "so", "yet",
         "to", "in", "at", "on", "by",
@@ -210,21 +244,36 @@ export default function seo(userOptions?: Options) {
 
         log.info(`SEO: Processing ${page.data.url} ...`);
 
+        // This can't be blank, so set a default if we can't find a language.
+        const locale = page.data.lang || options.lengthLocale;
+
         if (options.warnTitleLength && page.data.title) {
-          const titleLength = page.data.title.length;
+          const titleLength = getLength(
+            page.data.title,
+            lengthUnit,
+            locale,
+          );
           if (titleLength >= options.thresholdLength) {
             warnings[warningCount] =
-              `Title is over ${options.thresholdLength} characters; less is more.`;
+              `Title is over ${options.thresholdLength} ${lengthUnit}${
+                options.thresholdLength === 1 ? "" : "s"
+              }; less is more.`;
           }
         }
 
         if (options.warnUrlLength) {
-          const urlLength = page.data.url.length;
+          const urlLength = getLength(
+            page.data.url,
+            lengthUnit,
+            locale,
+          );
           const maxLength = options.thresholdLength *
             options.thresholdLengthPercentage;
           if (urlLength >= maxLength) {
             warnings[warningCount++] =
-              `URL meets or exceeds ${maxLength}, which is ${options.thresholdLengthPercentage} of the title limit; consider shortening.`;
+              `URL meets or exceeds ${maxLength} ${lengthUnit}${
+                maxLength === 1 ? "" : "s"
+              }, which is ${options.thresholdLengthPercentage} of the title limit; consider shortening.`;
           }
         }
 
@@ -234,21 +283,30 @@ export default function seo(userOptions?: Options) {
               `SEO: Skipping content length check on ${page.data.url} per frontmatter.`,
             );
           } else {
-            if (page.content?.length) {
-              if (page.content.length < options.thresholdContentMinimum) {
+            if (page.content) {
+              const contentLength = getLength(
+                page.content as string,
+                lengthUnit,
+                locale,
+              );
+              if (contentLength < options.thresholdContentMinimum) {
                 warnings[warningCount++] =
-                  `Content length is less than ${options.thresholdContentMinimum}, anything to add?`;
+                  `Content length is less than ${options.thresholdContentMinimum} ${lengthUnit}${
+                    options.thresholdContentMinimum === 1 ? "" : "s"
+                  }, anything to add?`;
               } else if (
-                page.content.length >= options.thresholdContentMaximum
+                contentLength >= options.thresholdContentMaximum
               ) {
                 warnings[warningCount++] =
-                  `Content length meets or exceeds ${options.thresholdContentMaximum}, can this be split up?`;
+                  `Content length meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}${
+                    options.thresholdContentMaximum === 1 ? "" : "s"
+                  }, can this be split up?`;
               }
             }
           }
         }
 
-        if (options.warnDuplicateHeadings && page.document) {
+        if (options.warnDuplicateHeadings) {
           const headingOneCount = page.document.querySelectorAll("h1").length;
           if (headingOneCount && headingOneCount > 1) {
             warnings[warningCount++] =
@@ -256,7 +314,7 @@ export default function seo(userOptions?: Options) {
           }
         }
 
-        if (options.warnHeadingOrder && page.document) {
+        if (options.warnHeadingOrder) {
           const headings = page.document.querySelectorAll(
             "h1, h2, h3, h4, h5, h6",
           );
@@ -273,9 +331,7 @@ export default function seo(userOptions?: Options) {
         }
 
         if (
-          (options.warnImageAltAttribute ||
-            options.warnImageTitleAttribute) &&
-          page.document
+          (options.warnImageAltAttribute || options.warnImageTitleAttribute)
         ) {
           for (const img of page.document.querySelectorAll("img")) {
             if (
@@ -325,12 +381,22 @@ export default function seo(userOptions?: Options) {
             );
           } else {
             if (
-              page.data.metas.description &&
-              page.data.metas.description.length >=
-                options.thresholdMetaDescriptionLength
+              page.data.metas.description
             ) {
-              warnings[warningCount++] =
-                `SEO: Meta Description Length For ${page.data.url} meets or exceeds ${options.thresholdMetaDescriptionLength}`;
+              const metaDescriptionLength = getLength(
+                page.data.metas.description,
+                lengthUnit,
+                locale,
+              );
+              if (
+                metaDescriptionLength >=
+                options.thresholdMetaDescriptionLength
+              ) {
+                warnings[warningCount++] =
+                  `SEO: Meta Description Length For ${page.data.url} meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}${
+                    options.thresholdMetaDescriptionLength === 1 ? "" : "s"
+                  }`;
+              }
             }
           }
         }
@@ -342,6 +408,7 @@ export default function seo(userOptions?: Options) {
             );
           } else {
             if (
+              page.data.metas.description &&
               calculateCommonWordPercentage(page.data.metas.description) >=
                 options.thresholdCommonWordsPercent
             ) {
