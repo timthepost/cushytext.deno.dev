@@ -2,11 +2,11 @@ export default function (title: string) {
   const slug = title.replace(/\s+/g, "-").toLowerCase();
   const pageContent = `
 
-  <!-- At this point you're in the main container --> 
-  <h1>${title}</h1>
-  <p>Content goes here.</p>
+{/* At this point you're in the main container */}
+<h1>${title}</h1>
+<p>Content goes here.</p>
 
-  {/* TODO: Show MDX Component Use Here */}
+{/* TODO: Show MDX Component Use Here */}
 
 `;
   /* TODO: Sanity Check The Path */
