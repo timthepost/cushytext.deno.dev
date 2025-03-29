@@ -13,7 +13,7 @@ Additional supportive text.
 `;
   /* TODO: Sanity Check The Path */
   return {
-    path: `${slug}.mdx`,
+    path: `docs/${slug}.mdx`,
     content: {
       title: title,
       date: new Date().toISOString().slice(0, 10),
