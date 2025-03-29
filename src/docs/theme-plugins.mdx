@@ -7,7 +7,7 @@ metas:
     - Self Publishing
     - Lume Theme
     - Lume 3 
-  image: /docs/conductor-plugin/index.png
+  image: /docs/theme-plugins/index.png
 menu:
   visible: true
   order: 4
@@ -28,7 +28,7 @@ common mistakes before they mess up your site's SEO standing. I don't
 make promises on results, only that you'll get in the way of them 
 less through common mistakes.
 
-## TOC Options & configuration
+<h2 id="toc-plugin">TOC Options & configuration</h2>
 
 ***The theme will not function properly with this plugin removed.***
 
@@ -61,28 +61,151 @@ And, here's how the plugin is loaded in the theme (from `plugins.ts`):
   }))
 ```
 
-## SEO Static Analysis Plugin (AKA Simple SEO)
+<h2 id="simple-seo" class="margin-top--md"> SEO Static Analysis Plugin (AKA Simple SEO)</h2>
 
-<comp.alert type="danger" message="***Here Be Dragons!***<br />Currently being re-written to use the DOM API and have a better on save update strategy." />
+The SEO plugin tries to catch semantic mistakes that are 
+common when creating with Markdown-driven static templates,
+like sites generated with Lume. In a nutshell it catches issues 
+like:
 
-This plugin looks at your posts and does some static analysis work 
-then generates a report. Things that it looks at are:
+ - Length of titles, descriptions, overall content length,
+   presence of important meta elements
 
- - Length of title, meta tags, content, description, etc.
+ - Semantic checks, like making sure headings in rendered
+   pages appear in proper order (h1 - h6)
 
- - Percentage of common words used in key parts of the content and meta
-   tags
+ - HTML element checks like image alt text checks, image 
+   title checks, which also helps accessibility 
 
- - Document outline conformance (h1 - h6 tags in order)
+ - Common word percentage calculation tags that can make 
+   a big difference in indexing, like titles and descriptions
 
- - HTML element attributes, like alt text and titles 
+The plugin works by extracting as much information as it can from 
+the `Document` object Lume provides for every rendered page. Where 
+information can't be obtained directly from the document, frontmatter
+is used. 
 
- - Common words in slugs, URLs and Headings
+The plugin offers configurability through many options that 
+you can pass when loading, as well as per-page overrides you
+can use in `_data.yml` files or frontmatter.
 
- - More as the project evolves
+<h2 id="simple-seo-internationalization" class="margin-top--md"> Internationalization Features Of The SEO Plugin</h2>
 
-Some of these checks also coincide with accessibility checks, and that's
-no coincidence at all, because accessible sites are easily parsed by 
-machines. It's also important to show crawlers that you care about the 
-experience that visitors have on your site, including visitors that 
-have problems seeing, or using a mouse.
+There are several key places where anyone running a multi-language
+site might want to take notice, as I've tried my best to keep the 
+plugin as flexible and configurable as possible:
+
+ - The common word list : which allows you to use a different 
+   set of words than the default English set for calculating
+   common word percentages.
+
+ - The common word percentage callback option : which lets you
+   provide your own calculation function yourself (the plugin
+   will provide a string, you return a percentage from 0.00 to 1.00).
+
+ - The default locale option : The plugin uses the `Intl.Segmenter()` API
+   and passes the page locale along with the text to it, but you supply 
+   a default in case once isn't set. This lets you run the plugin once 
+   per language supported safely.
+
+ - The length unit option :  This lets you tell the plugin that you 
+   want to represent lengths in words, graphemes or even sentences
+   instead of the default characters.
+
+<h2 id="simple-seo-plugin-use" class="margin-top--md">Example Multi-Language Setup:</h2>
+
+Here's a complex configuration where the plugin is invoked twice, once per 
+language, with different options for each:
+
+```js
+  .use(
+    seo({
+      output: "./_seo_report_en.json",
+      ignore: ["/admin/", "/dev/", "/404.html"],
+      lengthUnit: "character",
+      lengthLocale: "en",
+      ignoreAllButLocale: "en"
+    }),
+  )
+  .use(
+    seo({
+      output: "./_seo_report_ja.json",
+      ignore: ["/admin/", "/dev/", "/404.html"],
+      lengthUnit: "word",
+      lengthLocale: "ja",
+      ignoreAllButLocale: "ja",
+      commonWordPercentageCallback: function (input: string) : number { return(0.99); }
+    }),
+  )
+```
+
+<h2 id="simple-seo-plugin-use" class="margin-top--md">Example Single-Language Setup:</h2>
+
+Let's say you just needed a different custom words dictionary:
+
+```js
+  const esCommonWords = new Set<string>;
+
+  // ... fill out esCommonWords similar to the ones in the plugin ....
+
+  .use(
+    seo({
+      output: "./_seo_report_en.json",
+      ignore: ["/admin/", "/dev/", "/404.html"],
+      lengthUnit: "character",
+      lengthLocale: "es",
+      ignoreAllButLocale: "es",
+      userCommonWordSet: esCommonWords
+    }),
+  )
+```
+
+English users really only need to worry about the thresholds and which checks to run.
+
+<h2 id="simple-seo-plugin-generators" class="margin-top--md">Dealing With Generator Functions:</h2>
+
+Sometimes, we use generator functions to generate a lot of files, and we may want to 
+squelch things like content length warnings. To do this, place a `_data.yml` file in
+the same directory as your generator function, and set the frontmatter options there.
+
+For instance, tag pages on this site are generated by generators that live in `/generators`,
+isolated specifically so I can easily control their frontmatter, e.g.:
+
+`src/generators/_data.yml`:
+
+```yml
+seo:
+  skip_content: true
+```
+
+<h2 id="simple-seo-plugin-options" class="margin-top--md">All Simple SEO Plugin Options & Code Defaults:</h2>
+
+| Option                             | Description                                                                                                   | Default Value          |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `warnTitleLength`                  | Warn if the page title exceeds the recommended length.                                                        | `true`                 |
+| `warnUrlLength`                    | Warn if the page URL is too long.                                                                             | `true`                 |
+| `warnContentLength`                | Warn if the page content is too short or too long.                                                            | `true`                 |
+| `warnMetasDescriptionLength`       | Warn if the meta description exceeds the recommended length.                                                  | `true`                 |
+| `warnMetasDescriptionCommonWords`  | Warn if the meta description contains a high percentage of common words.                                      | `true`                 |
+| `warnDuplicateHeadings`            | Warn if there is more than one `<h1>` tag on a page.                                                          | `true`                 |
+| `warnHeadingOrder`                 | Warn if heading elements (h1, h2, etc.) are used out of order.                                                | `true`                 |
+| `warnUrlCommonWords`               | Warn if the URL contains a high percentage of common words.                                                   | `true`                 |
+| `warnTitleCommonWords`             | Warn if the page title contains a high percentage of common words.                                            | `true`                 |
+| `thresholdMetaDescriptionLength`   | The maximum recommended length for meta descriptions (in the unit specified by `lengthUnit`).                  | `150`                  |
+| `thresholdContentMinimum`          | The minimum recommended length for page content (in the unit specified by `lengthUnit`).                       | `4000`                 |
+| `thresholdContentMaximum`          | The maximum recommended length for page content (in the unit specified by `lengthUnit`).                       | `20000`                |
+| `thresholdLength`                  | The maximum recommended length for titles (in the unit specified by `lengthUnit`).                             | `80`                   |
+| `thresholdLengthPercentage`        | The percentage of `thresholdLength` to use as the maximum length for URLs.                                     | `0.7`                  |
+| `thresholdCommonWordsPercent`      | The maximum percentage of common words allowed in titles and URLs.                                             | `45`                   |
+| `thresholdLengthForCWCheck`        | The minimum length (in the unit specified by `lengthUnit`) for common word percentage checks to be performed. | `35`                   |
+| `userCommonWordSet`                | A custom set of common words to use instead of the default list.                                               | `undefined` (default set used) |
+| `warnImageAltAttribute`            | Warn if an image is missing the `alt` attribute.                                                              | `true`                 |
+| `warnImageTitleAttribute`          | Warn if an image is missing the `title` attribute.                                                            | `true`                 |
+| `extensions`                       | The file extensions to process.                                                                               | `[".html"]`            |
+| `ignore`                           | An array of URLs to ignore during processing.                                                                  | `["/404.html"]`       |
+| `output`                           | The output destination for the SEO report (file path, function, or `null` for console).                       | `null`                 |
+| `removeReportFile`                 | Whether to remove the report file if no warnings are found.                                                    | `true`                 |
+| `lengthUnit`                       | The unit to use for length checks (`character`, `grapheme`, `word`, `sentence`).                               | `"character"`          |
+| `lengthLocale`                     | The default locale to use for length checks if not determined by the page.                                    | `"en"`                 |
+| `commonWordPercentageCallback`     | A custom callback function to calculate the common word percentage.                                            | `null`                 |
+| `ignoreAllButLocale`               | Ignore any post not in this locale (useful for daisy chaining)                                                 | `null`                 |
