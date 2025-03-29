@@ -308,14 +308,14 @@ export default function seo(userOptions?: Options) {
               );
               if (contentLength < options.thresholdContentMinimum) {
                 warnings[warningCount++] =
-                  `Content length (${contentLength}) is less than ${options.thresholdContentMinimum} ${lengthUnit}${
+                  `SEO: Content length (${contentLength}) is less than ${options.thresholdContentMinimum} ${lengthUnit}${
                     options.thresholdContentMinimum === 1 ? "" : "s"
                   }, anything to add?`;
               } else if (
                 contentLength >= options.thresholdContentMaximum
               ) {
                 warnings[warningCount++] =
-                  `Content length meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}${
+                  `SEO: Content length meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}${
                     options.thresholdContentMaximum === 1 ? "" : "s"
                   }, can this be split up?`;
               }
@@ -327,7 +327,7 @@ export default function seo(userOptions?: Options) {
           const headingOneCount = page.document.querySelectorAll("h1").length;
           if (headingOneCount && headingOneCount > 1) {
             warnings[warningCount++] =
-              "More than one <h1> element. This is almost never what you want.";
+              "SEO: More than one <h1> element. This is almost never what you want.";
           }
         }
 
@@ -341,7 +341,7 @@ export default function seo(userOptions?: Options) {
             const currentLevel = parseInt(heading.tagName.slice(1));
             if (currentLevel > previousLevel + 1) {
               warnings[warningCount++] =
-                `Heading elements out of order: ${heading.tagName} - Headings should be in semantic order.`;
+                `SEO: Heading elements out of order: ${heading.tagName} - Headings should be in semantic order.`;
             }
             previousLevel = currentLevel;
           }
@@ -355,14 +355,14 @@ export default function seo(userOptions?: Options) {
               img && options.warnImageAltAttribute && !img.hasAttribute("alt")
             ) {
               warnings[warningCount++] =
-                "Image is missing alt attribute. This also breaks accessibility!";
+                "SEO: Image is missing alt attribute. This also breaks accessibility!";
             }
             if (
               img && options.warnImageTitleAttribute &&
               !img.hasAttribute("title")
             ) {
               warnings[warningCount++] =
-                "Suggest using image title attributes strategically.";
+                "SEO: Suggest using image title attributes strategically.";
             }
           }
         }
