@@ -15,9 +15,7 @@ export default function (title: string) {
     content: {
       title: title,
       date: new Date().toISOString().slice(0, 10),
-      author: "Mike Wazowski",
       draft: true,
-      tags: ["tag-1", "tag-2"],
       metas: {
         lang: "en",
         description: "Short meta description (up to 170 chars)",

@@ -34,5 +34,8 @@
   ],
   "/fonts/": [
     "Content length is less than 15000, anything to add?"
+  ],
+  "/admin/": [
+    "Content length is less than 15000, anything to add?"
   ]
 }
