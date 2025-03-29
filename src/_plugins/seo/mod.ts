@@ -135,7 +135,7 @@ export default function seo(userOptions?: Options) {
     }
     const processedTitle = title.toLowerCase().replace(/[^\w\s]/g, "");
     const words = processedTitle.split(/\s+/);
-    // dprint-ignore // deno-fmt-ignore
+    // dprint-ignore // deno-fmt-ignore 
     const commonWords = options.userCommonWordSet
       ? options.userCommonWordSet
       : new Set([
@@ -271,9 +271,7 @@ export default function seo(userOptions?: Options) {
           );
           if (titleLength >= options.thresholdLength) {
             warnings[warningCount] =
-              `Title is over ${options.thresholdLength} ${lengthUnit}${
-                options.thresholdLength === 1 ? "" : "s"
-              }; less is more.`;
+              `Title is over ${options.thresholdLength} ${lengthUnit}; less is more.`;
           }
         }
 
@@ -287,9 +285,7 @@ export default function seo(userOptions?: Options) {
             options.thresholdLengthPercentage;
           if (urlLength >= maxLength) {
             warnings[warningCount++] =
-              `URL meets or exceeds ${maxLength} ${lengthUnit}${
-                maxLength === 1 ? "" : "s"
-              }, which is ${options.thresholdLengthPercentage} of the title limit; consider shortening.`;
+              `URL meets or exceeds ${maxLength} ${lengthUnit}, which is ${options.thresholdLengthPercentage} of the title limit; consider shortening.`;
           }
         }
 
@@ -307,16 +303,12 @@ export default function seo(userOptions?: Options) {
               );
               if (contentLength < options.thresholdContentMinimum) {
                 warnings[warningCount++] =
-                  `SEO: Content length (${contentLength}) is less than ${options.thresholdContentMinimum} ${lengthUnit}${
-                    options.thresholdContentMinimum === 1 ? "" : "s"
-                  }, anything to add?`;
+                  `SEO: Content length (${contentLength}) is less than ${options.thresholdContentMinimum} ${lengthUnit}, anything to add?`;
               } else if (
                 contentLength >= options.thresholdContentMaximum
               ) {
                 warnings[warningCount++] =
-                  `SEO: Content length meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}${
-                    options.thresholdContentMaximum === 1 ? "" : "s"
-                  }, can this be split up?`;
+                  `SEO: Content length meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}, can this be split up?`;
               }
             }
           }
@@ -412,9 +404,7 @@ export default function seo(userOptions?: Options) {
                   options.thresholdMetaDescriptionLength
               ) {
                 warnings[warningCount++] =
-                  `SEO: Meta Description Length For ${page.data.url} meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}${
-                    options.thresholdMetaDescriptionLength === 1 ? "" : "s"
-                  }`;
+                  `SEO: Meta Description Length For ${page.data.url} meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}`;
               }
             }
           }
