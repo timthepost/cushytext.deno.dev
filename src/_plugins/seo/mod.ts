@@ -68,6 +68,8 @@ interface Options {
   lengthLocale?: string;
   /* Callback function for common word percentage */
   commonWordPercentageCallback?: ((title: string) => number) | null;
+  /* Ignore any post not in this locale (useful for daisy chaining) */
+  ignoreAllButLocale?: string | null;
 }
 
 export const defaults: Options = {
@@ -96,6 +98,7 @@ export const defaults: Options = {
   lengthUnit: "character",
   lengthLocale: "en",
   commonWordPercentageCallback: null,
+  ignoreAllButLocale: null,
 };
 
 export default function seo(userOptions?: Options) {
@@ -135,7 +138,7 @@ export default function seo(userOptions?: Options) {
     }
     const processedTitle = title.toLowerCase().replace(/[^\w\s]/g, "");
     const words = processedTitle.split(/\s+/);
-    // dprint-ignore // deno-fmt-ignore 
+    // dprint-ignore // deno-fmt-ignore
     const commonWords = options.userCommonWordSet
       ? options.userCommonWordSet
       : new Set([
@@ -256,6 +259,15 @@ export default function seo(userOptions?: Options) {
           continue;
         }
 
+        if (options.ignoreAllButLocale) {
+          if (page.data.lang !== options.ignoreAllButLocale) {
+            log.info(
+              `SEO: Skipping ${page.data.url} per options.ignoreAllButLocale.`,
+            );
+            continue;
+          }
+        }
+        
         const warnings = [];
 
         log.info(`SEO: Processing ${page.data.url} ...`);
