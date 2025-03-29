@@ -6,19 +6,10 @@
     "SEO: Meta Description Common Word Percent For /blog/welcome-wordpress/ meets or exceeds 45"
   ],
   "/blog/0-0-1-component-strategy-update/": [
-    "SEO: Meta Description Length For /blog/0-0-1-component-strategy-update/ meets or exceeds 150",
+    "SEO: Meta Description Length For /blog/0-0-1-component-strategy-update/ meets or exceeds 150 characters",
     "SEO: Meta Description Common Word Percent For /blog/0-0-1-component-strategy-update/ meets or exceeds 45"
   ],
   "/blog/post-hog-static-sites/": [
     "SEO: Meta Description Common Word Percent For /blog/post-hog-static-sites/ meets or exceeds 45"
-  ],
-  "/archive/announcements/": [
-    "Content length is less than 15000, anything to add?"
-  ],
-  "/archive/accessibility/": [
-    "Content length is less than 15000, anything to add?"
-  ],
-  "/archive/infima/": [
-    "Content length is less than 15000, anything to add?"
   ]
 }
