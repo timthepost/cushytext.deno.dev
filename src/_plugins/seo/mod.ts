@@ -213,14 +213,15 @@ export default function seo(userOptions?: Options) {
         if (options.warnTitleLength && page.data.title) {
           const titleLength = page.data.title.length;
           if (titleLength >= options.thresholdLength) {
-            warnings[warningCount] = `Title is over ${options.thresholdLength} characters; less is more.`;
+            warnings[warningCount] =
+              `Title is over ${options.thresholdLength} characters; less is more.`;
           }
         }
 
         if (options.warnUrlLength) {
           const urlLength = page.data.url.length;
-          const maxLength = options.thresholdLength
-            * options.thresholdLengthPercentage;
+          const maxLength = options.thresholdLength *
+            options.thresholdLengthPercentage;
           if (urlLength >= maxLength) {
             warnings[warningCount++] =
               `URL meets or exceeds ${maxLength}, which is ${options.thresholdLengthPercentage} of the title limit; consider shortening.`;
@@ -250,7 +251,8 @@ export default function seo(userOptions?: Options) {
         if (options.warnDuplicateHeadings && page.document) {
           const headingOneCount = page.document.querySelectorAll("h1").length;
           if (headingOneCount && headingOneCount > 1) {
-            warnings[warningCount++] = "More than one <h1> element. This is almost never what you want.";
+            warnings[warningCount++] =
+              "More than one <h1> element. This is almost never what you want.";
           }
         }
 
@@ -271,28 +273,30 @@ export default function seo(userOptions?: Options) {
         }
 
         if (
-          (options.warnImageAltAttribute
-            || options.warnImageTitleAttribute)
-          && page.document
+          (options.warnImageAltAttribute ||
+            options.warnImageTitleAttribute) &&
+          page.document
         ) {
           for (const img of page.document.querySelectorAll("img")) {
             if (
               img && options.warnImageAltAttribute && !img.hasAttribute("alt")
             ) {
-              warnings[warningCount++] = "Image is missing alt attribute. This also breaks accessibility!";
+              warnings[warningCount++] =
+                "Image is missing alt attribute. This also breaks accessibility!";
             }
             if (
-              img && options.warnImageTitleAttribute
-              && !img.hasAttribute("title")
+              img && options.warnImageTitleAttribute &&
+              !img.hasAttribute("title")
             ) {
-              warnings[warningCount++] = "Suggest using image title attributes strategically.";
+              warnings[warningCount++] =
+                "Suggest using image title attributes strategically.";
             }
           }
         }
 
         if (
-          options.warnTitleCommonWords && page.data.title
-          && page.data.title.length >= options.thresholdLengthForCWCheck
+          options.warnTitleCommonWords && page.data.title &&
+          page.data.title.length >= options.thresholdLengthForCWCheck
         ) {
           const titleCommonWords = calculateCommonWordPercentage(
             page.data.title,
@@ -304,8 +308,8 @@ export default function seo(userOptions?: Options) {
         }
 
         if (
-          options.warnUrlCommonWords && page.data.url
-          && page.data.url.length >= options.thresholdLengthForCWCheck
+          options.warnUrlCommonWords && page.data.url &&
+          page.data.url.length >= options.thresholdLengthForCWCheck
         ) {
           const urlCommonWords = calculateCommonWordPercentage(page.data.url);
           if (urlCommonWords >= options.thresholdCommonWordsPercent) {
@@ -321,9 +325,9 @@ export default function seo(userOptions?: Options) {
             );
           } else {
             if (
-              page.data.metas.description
-              && page.data.metas.description.length
-                >= options.thresholdMetaDescriptionLength
+              page.data.metas.description &&
+              page.data.metas.description.length >=
+                options.thresholdMetaDescriptionLength
             ) {
               warnings[warningCount++] =
                 `SEO: Meta Description Length For ${page.data.url} meets or exceeds ${options.thresholdMetaDescriptionLength}`;
@@ -338,8 +342,8 @@ export default function seo(userOptions?: Options) {
             );
           } else {
             if (
-              calculateCommonWordPercentage(page.data.metas.description)
-                >= options.thresholdCommonWordsPercent
+              calculateCommonWordPercentage(page.data.metas.description) >=
+                options.thresholdCommonWordsPercent
             ) {
               warnings[warningCount++] =
                 `SEO: Meta Description Common Word Percent For ${page.data.url} meets or exceeds ${options.thresholdCommonWordsPercent}`;

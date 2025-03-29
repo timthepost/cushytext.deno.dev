@@ -18,8 +18,8 @@ export default function* ({ search, paginate, locale }) {
       };
     }
     data.seo = {
-      skip_content: true
-    }
+      skip_content: true,
+    };
     yield {
       ...data,
       title: locale.archive.heading,
