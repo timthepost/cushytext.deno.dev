@@ -346,10 +346,10 @@ export default function seo(userOptions?: Options) {
 
         if (
           options.warnTitleCommonWords && page.data.title &&
-          page.data.title.length >= options.thresholdLengthForCWCheck
+          page.document.title.length >= options.thresholdLengthForCWCheck
         ) {
           const titleCommonWords = calculateCommonWordPercentage(
-            page.data.title,
+            page.document.title,
           );
           if (titleCommonWords >= options.thresholdCommonWordsPercent) {
             warnings[warningCount++] =
