@@ -6,8 +6,6 @@ import { merge } from "lume/core/utils/object.ts";
 /* TODO List
  - Pass element that wraps measurable content in config or frontmatter.
    If not possible, then use data.content with a best guess percentage.
-
- - Make calculate percentage a define-able callback
  */
 
 // For internationalization support
@@ -64,6 +62,8 @@ interface Options {
   lengthUnit?: LengthUnit;
   /* Default Locale If It Can't Be Determined By The page */
   lengthLocale?: string;
+  /* Callback function for common word percentage */
+  commonWordPercentageCallback?: ((title: string) => number) | null;
 }
 
 export const defaults: Options = {
@@ -90,7 +90,8 @@ export const defaults: Options = {
   removeReportFile: true,
   output: null,
   lengthUnit: "character",
-  lengthLocale: "en"
+  lengthLocale: "en",
+  commonWordPercentageCallback: null,
 };
 
 export default function seo(userOptions?: Options) {
@@ -116,19 +117,18 @@ export default function seo(userOptions?: Options) {
     return count;
   }
 
-  /* This will likely need to be updated to better suit whatever
-   * language you're using if word boundaries work differently 
-   * than English. I'm more than happy to add more complexity
-   * here if it helps the plugin be useful in multiple languages
-   * simultaneously. 
-   * 
-   * I could perhaps make this a function you set in config 
-   * instead? It doesn't really need access to anything else
-   * in scope here. 
+  /* You can pass a custom dictionary object, if the word segmentation
+   * logic otherwise works for you. If you need different segmentation 
+   * to examine "words", you can instead pass your own callback. This 
+   * was the best way I could think to be as multi-language-friendly
+   * as possible.
    */
   function calculateCommonWordPercentage(title: string): number {
     if (!title) return 0;
     title = title.trim();
+    if (options.commonWordPercentageCallback) {
+      return options.commonWordPercentageCallback(title);
+    }
     const processedTitle = title.toLowerCase().replace(/[^\w\s]/g, "");
     const words = processedTitle.split(/\s+/);
     // dprint-ignore // deno-fmt-ignore
@@ -295,9 +295,9 @@ export default function seo(userOptions?: Options) {
               `SEO: Skipping content length check on ${page.data.url} per frontmatter.`,
             );
           } else {
-            if (page.content) {
+            if (page.document.body) {
               const contentLength = getLength(
-                page.content as string,
+                page.document.body.textContent as string,
                 lengthUnit,
                 locale,
               );
