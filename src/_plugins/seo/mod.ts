@@ -5,7 +5,12 @@ import { merge } from "lume/core/utils/object.ts";
 
 /* TODO List
  - Pass element that wraps measurable content in config or frontmatter.
-   If not possible, then use data.content with a best guess percentage.
+   We currently fall back nicely to just whatever is in the <body>, but 
+   many authors wrap their {{ content }} in a div with a class, which 
+   would be appropriate here.
+
+ - Create a plugin to present the _seo_report.json file meaningfully? 
+   Use a more consistent log format?
  */
 
 // For internationalization support
@@ -303,7 +308,7 @@ export default function seo(userOptions?: Options) {
               );
               if (contentLength < options.thresholdContentMinimum) {
                 warnings[warningCount++] =
-                  `Content length is less than ${options.thresholdContentMinimum} ${lengthUnit}${
+                  `Content length (${contentLength}) is less than ${options.thresholdContentMinimum} ${lengthUnit}${
                     options.thresholdContentMinimum === 1 ? "" : "s"
                   }, anything to add?`;
               } else if (
