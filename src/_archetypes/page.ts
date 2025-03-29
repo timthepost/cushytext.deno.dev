@@ -22,7 +22,8 @@ export default function (title: string) {
         lang: "en",
         description: "Short meta description (up to 170 chars)",
         tags: ["meta tag one", "meta tag two"],
-        image: "/uploads/" + slug + ".jpg",
+        // TODO (see also docs) need to have arguments here
+        image: "/" + slug + "/index.png",
         robots: true,
         generator: true,
       },

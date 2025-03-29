@@ -24,7 +24,8 @@ Additional supportive text.
         lang: "en",
         description: "Short meta description (up to 170 chars)",
         tags: ["meta tag one", "meta tag two"],
-        image: "/uploads/" + slug + ".jpg",
+        // TODO: These need to take custom arguments so /docs isn't hard-coded
+        image: "/docs/" + slug + "/index.png",
         robots: true,
         generator: true,
       },

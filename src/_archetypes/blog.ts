@@ -6,7 +6,7 @@ Opening Text
 
 <img
   class="blog_image"
-  src="/uploads/blog/${slug}-regular.jpg" 
+  src="/blog/${slug}/index.png" 
   alt="TODO: Description" 
   title="TODO: Title" />
 
@@ -38,7 +38,8 @@ Heading support text.
         lang: "en",
         description: '"=description"',
         tags: ["meta tag one", "meta tag two"],
-        image: "/uploads/blog/" + slug + "-regular.jpg",
+        // TODO - add argument for path here
+        image: "/blog/" + slug + "/index.png",
         robots: true,
         generator: true,
       },
