@@ -2,14 +2,13 @@ import type Site from "lume/core/site.ts";
 import { log } from "lume/core/utils/log.ts";
 import { merge } from "lume/core/utils/object.ts";
 
-
 /* TODO List
  - Pass element that wraps measurable content in config or frontmatter.
-   We currently fall back nicely to just whatever is in the <body>, but 
-   many authors wrap their {{ content }} in a div with a class, which 
+   We currently fall back nicely to just whatever is in the <body>, but
+   many authors wrap their {{ content }} in a div with a class, which
    would be appropriate here.
 
- - Create a plugin to present the _seo_report.json file meaningfully? 
+ - Create a plugin to present the _seo_report.json file meaningfully?
    Use a more consistent log format?
  */
 
@@ -123,8 +122,8 @@ export default function seo(userOptions?: Options) {
   }
 
   /* You can pass a custom dictionary object, if the word segmentation
-   * logic otherwise works for you. If you need different segmentation 
-   * to examine "words", you can instead pass your own callback. This 
+   * logic otherwise works for you. If you need different segmentation
+   * to examine "words", you can instead pass your own callback. This
    * was the best way I could think to be as multi-language-friendly
    * as possible.
    */
@@ -397,8 +396,11 @@ export default function seo(userOptions?: Options) {
               `SEO: Skipping meta description length check on ${page.data.url} per frontmatter.`,
             );
           } else {
-            const metaDescriptionElement = page.document.querySelector('meta[name="description"]');
-            const metaDescription = metaDescriptionElement?.getAttribute("content") || null;
+            const metaDescriptionElement = page.document.querySelector(
+              'meta[name="description"]',
+            );
+            const metaDescription =
+              metaDescriptionElement?.getAttribute("content") || null;
             if (metaDescription) {
               const metaDescriptionLength = getLength(
                 page.data.metas.description,
@@ -407,7 +409,7 @@ export default function seo(userOptions?: Options) {
               );
               if (
                 metaDescriptionLength >=
-                options.thresholdMetaDescriptionLength
+                  options.thresholdMetaDescriptionLength
               ) {
                 warnings[warningCount++] =
                   `SEO: Meta Description Length For ${page.data.url} meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}${
@@ -424,8 +426,11 @@ export default function seo(userOptions?: Options) {
               `SEO: Skipping meta description common word count on ${page.data.url} per frontmatter.`,
             );
           } else {
-            const metaDescriptionElement = page.document.querySelector('meta[name="description"]');
-            const metaDescription = metaDescriptionElement?.getAttribute("content") || null;
+            const metaDescriptionElement = page.document.querySelector(
+              'meta[name="description"]',
+            );
+            const metaDescription =
+              metaDescriptionElement?.getAttribute("content") || null;
             if (
               metaDescription &&
               calculateCommonWordPercentage(metaDescription) >=
