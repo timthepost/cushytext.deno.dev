@@ -10,16 +10,10 @@ metas:
     - Lume 3 
 menu:
   visible: true
-  order: 1
+  order: 4
 ---
 
 # {title}
-
-<comp.alert
-  type="info"
-  allowDismiss="false"
-  message="**`tl;dr:` The `_data.yml` files in this theme control a lot about generation.**" 
-/>
 
 If you're familiar with Lume, you probably already know what's up; everything
 below is just reference to you (I try to keep the examples up to date with 
@@ -44,9 +38,9 @@ how to generate:
     galleries, presentations, landing pages, company branding or whatever.
     Essentially the default when no archetype is specified in data.
 
-A special file called `_data.yml` in each directory controls default frontmatter
-settings for everything in that directory, and directories inside of it; this is
-a base feature of Lume.
+A special file called `_data.yml`(these are important in Lume) in each directory 
+controls default frontmatter settings for everything in that directory, and directories 
+inside of it; this is a base feature of the generator.
 
 Cushy Docs takes advantage of this by looking for special configuration directives 
 that control how things get generated. Cushy Docs decides if the files in the current 

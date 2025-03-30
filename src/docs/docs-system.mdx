@@ -1,0 +1,108 @@
+---
+title: How The Documentation System Works
+date: '2025-03-30'
+author: Tim Post
+draft: false
+menu:
+  visible: true
+  order: 2
+metas:
+  lang: en
+  description: How the Cushy Text documentation system works, where it's headed as a theme feature, and interesting anecdotes about it.
+  tags:
+    - Self Publishing
+    - Static Site Blog
+    - Lume Blog Template
+    - Static Blog Template
+    - Lume Blog Theme
+    - Static Blog Theme
+  image: /docs/docs-system/index.png
+  robots: true
+  generator: true
+---
+
+# {title}
+  
+First, even if you're not going to use the blog feature very much, please
+take a look at [how the blog system works in Cushy Text](/docs/blog-system/).
+
+A _considerable_ amount of the concepts are the same, because `docs/` is 
+a very trimmed-down version of the blog system, with the addition of having
+a different kind of auto-generated navigation and the built-in content rating
+system enabled by default. 
+  
+## Docs Data File Configuration:
+
+Just like in [the blog system](/docs/blog-system/), docs is multi-instance and
+controlled by settings in the `_data.yml` file. Looking at the one that powers
+this instance:
+
+```yml
+layout: layouts/docs.vto
+waypoint: "%theme-docs%"
+type: docs
+menu:
+  visible: true
+  order: 0
+docs:
+  basedir: /docs/
+  title: "Cushy Theme Docs"
+  sidebar: auto
+  guest:
+    heading: "Latest Blog Post:"
+    waypoint: "%blog%"
+    posts: 1
+```
+
+Note that I have the inclusion of a **menu** property here, which has its 
+own **visibility** and **order** properties. This controls if the file will
+be rendered in the side nav (both the full-size and hamburger), and 
+what order it should appear if so.
+
+Sort orders can be any signed integer. -10 will always be on top if your 
+default value is 0, unless you change the template files. Which you can
+totally do.
+
+We have a **sidebar** property that right now, only supports `auto`, but 
+will eventually support a custom object of some kind. 
+
+There's also a **guest** property, which tells the sidebar navigation to 
+pull in a post from the blog (not shown on small screens to save room)
+
+## Docs Differences From Blog Posts:
+
+There are some differences that you should be aware of:
+
+ 1. Docs let you set the `<h1>` tag. Blogs set this automatically. 
+
+ 2. Docs has auto-pagination with progress at the bottom of every 
+    page, matching the order of the nav. Blogs have this, but 
+    it's _only_ controlled by date, there's no `order` to sort by
+    with blogs.
+  
+ 3. Docs do not display tags. They could, if you wanted them to, but 
+    I didn't see a need for them. You can of course _apply_ them and 
+    use them for searches and queries, but no pages are generated
+    for them and they aren't otherwise really used in docs.
+
+## Docs RSS / JSON Feed Configuration:
+
+Right now, `/docs` comes manually set-up wih the theme so you have the 
+documentation right there when developing and customizing it. The feed
+is set up in `plugins.ts` where the rest of the feeds are created. 
+
+## Docs Feature Roadmap In The Theme:
+
+The current navigation generation does ***not*** deal with nested
+directories very well at all. My goal for "good enough to ship" 
+was "good enough to document this theme with" and we've far surpassed
+that, but it needs more work.
+
+Right now it just uses a simple search with a waypoint to build the 
+nav, which isn't sufficient to handle a tree. I plan to change this over
+to use the nav plugin (`nav.menu.children()`), but it's a fair amount of 
+work and not for the first release. Not only the side nav, but also the 
+responsive fly-out nav.
+
+Maybe by the third release, `docs` will be flexible enough for large 
+projects too.

@@ -1,0 +1,58 @@
+---
+title: How Navigation Is Generated
+date: '2025-03-30'
+author: Tim Post
+draft: false
+menu:
+  visible: true
+  order: 3
+metas:
+  lang: en
+  description: How the Cushy Text navigation is generated, and where it's headed in development.
+  tags:
+    - Self Publishing
+    - Static Site Blog
+    - Lume Blog Template
+    - Static Blog Template
+    - Lume Blog Theme
+    - Static Blog Theme
+  image: /docs/navigation-generation/index.png
+  robots: true
+  generator: true
+---
+
+
+# {title}
+  
+Navigation, at the moment, is auto-generated for **docs** and **blog** archetypes, 
+and specified in a file named `navbar.yml` for static header and footer links. 
+
+The goal is to have as much auto-generated as possible, taking clues from individual
+`_data.yml` files in each directory as needed.
+  
+## Main Files Of Interest Right Now
+
+Most of the navigation happens in `src/_includes/partials/nav.vto`, where (from top down)
+we go from left to right for the normal, full-size nav.
+
+From there, we get to the responsive fly-out nav, which begins at:
+
+```html
+<div role="presentation" class="navbar-sidebar__backdrop"></div>
+```
+
+This is the backdrop that's shown if you're in a documentation or blog area
+and is auto-generated, followed by the navigation links controlled by the 
+`navbar.yml` file.
+
+This file also controls the footer links and footer group headings. 
+
+## Roadmap
+
+We should be able to implement the `menu` hook on everything, in addition to 
+some help from `_data.yml` files to _almost_ completely generate the navigation 
+leaving room for what is usually manual anyway. 
+
+The nav generation in `docs/` is more important for current focus, YAML is 
+fine for now for static links. 
+
