@@ -44,9 +44,6 @@ footer:
 
   - category: "Cushy Text Community:"
     links:
-      - text: Cushy Text Github
-        href: "https://github.com/timthepost/cushytext"
-
       - text: Cushy Text Discord Server
         href: "https://discord.gg/ETx8S8cWwH"
 
@@ -55,7 +52,7 @@ footer:
 
   - category: "People Behind Cushy Text:"
     links:
-      - text: Tim Post's Fiction & Essays
+      - text: Tim's Personal Site For Fiction
         href: "https://timthepost.deno.dev"
 
   - category: "Other Useful Resources:"
