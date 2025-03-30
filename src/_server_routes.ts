@@ -24,6 +24,44 @@ router.get("/api", ({ _request }) => {
   return new Response(JSON.stringify({ time: ts }), { status: 200 });
 });
 
+// Optional (and can be made local only) the SEO report
+router.get("/api/seo-report", ({ _request }) => {
+  const path = "./_seo_report.json";
+  try {
+    const data = Deno.readTextFileSync(path);
+    return new Response(data, { status: 200 });
+  } catch (error) {
+    // it's not there
+    if (error instanceof Deno.errors.NotFound) {
+      return new Response(JSON.stringify({ error: "File not found" }), {
+        status: 404,
+          });
+    }
+    // umm, neither is the backing storage LOL. Read denied!
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
+      status: 500,
+    });
+  }
+});
+
+// Optional, can be made local only as well. Broken links. I plan to combine these.
+router.get("/api/broken-links", ({ _request }) => {
+  const path = "./_broken_links.json";
+  try {
+    const data = Deno.readTextFileSync(path);
+    return new Response(data, { status: 200 });
+  } catch (error) { 
+    if (error instanceof Deno.errors.NotFound) {
+      return new Response(JSON.stringify({ error: "File not found" }), {
+        status: 404,
+      });
+    }
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
+      status: 500,
+    })
+  }
+});
+
 /* This is used to do a daily reset of feedback while it's being
  * developed, and often displayed publicly. I can see the utility
  * of keeping it, but it may also come out soon.
