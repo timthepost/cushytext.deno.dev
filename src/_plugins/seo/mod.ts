@@ -6,10 +6,16 @@ import { merge } from "lume/core/utils/object.ts";
  - Pass element that wraps measurable content in config or frontmatter.
    We currently fall back nicely to just whatever is in the <body>, but
    many authors wrap their {{ content }} in a div with a class, which
-   would be appropriate here.
+   would be appropriate here. For instance, this template wraps any
+   meaningfully-long content with  "font-selectable", this could be 
+   used to get precise content-length values for any page.
 
  - Create a plugin to present the _seo_report.json file meaningfully?
    Use a more consistent log format?
+
+ - Look at ways that calculateCommonWordPercent() could be more elastic 
+   for international folks so they don't have to pass a callback of their
+   own? an option to skip regex-based normalization?
  */
 
 // For internationalization support
