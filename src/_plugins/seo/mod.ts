@@ -92,7 +92,7 @@ export const defaults: Options = {
   warnUrlCommonWords: true,
   warnImageAltAttribute: true,
   warnImageTitleAttribute: true,
-  thresholdMetaDescriptionLength: 150,
+  thresholdMetaDescriptionLength: 170,
   thresholdContentMinimum: 4000,
   thresholdContentMaximum: 20000,
   thresholdLength: 80,
