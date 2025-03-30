@@ -35,7 +35,7 @@ router.get("/api/seo-report", ({ _request }) => {
     if (error instanceof Deno.errors.NotFound) {
       return new Response(JSON.stringify({ error: "File not found" }), {
         status: 404,
-          });
+      });
     }
     // umm, neither is the backing storage LOL. Read denied!
     return new Response(JSON.stringify({ error: "Internal server error" }), {
