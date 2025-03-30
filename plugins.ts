@@ -146,7 +146,7 @@ export default function (userOptions?: Options) {
       .use(
         seo({
           output: "./_seo_report.json",
-          ignore: ["/admin/", "/dev/", "/404.html"],
+          ignore: ["/cushy-admin/", "/dev/", "/404.html"],
           lengthUnit: "character",
           lengthLocale: "en",
         }),
