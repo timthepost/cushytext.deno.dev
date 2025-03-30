@@ -2,7 +2,7 @@ export default function (title: string) {
   const slug = title.replace(/\s+/g, "-").toLowerCase();
   const pageContent = `
 
-# ${title}
+# \${title}
   
 Supportive text.
   
@@ -19,6 +19,10 @@ Additional supportive text.
       date: new Date().toISOString().slice(0, 10),
       author: "Mike Wazowski",
       draft: true,
+      menu: {
+        visible: true,
+        order: 0,
+      },
       metas: {
         lang: "en",
         description: "Short meta description (up to 170 chars)",
