@@ -26,6 +26,11 @@ router.get("/api", ({ _request }) => {
 
 // Optional (and can be made local only) the SEO report
 router.get("/api/seo-report", ({ _request }) => {
+  if (! DEV_MODE) {
+    return new Response(JSON.stringify({ error: "Not in dev mode" }), { 
+      status: 500,
+    });
+  }
   const path = "./_seo_report.json";
   try {
     const data = Deno.readTextFileSync(path);
@@ -46,6 +51,11 @@ router.get("/api/seo-report", ({ _request }) => {
 
 // Optional, can be made local only as well. Broken links. I plan to combine these.
 router.get("/api/broken-links", ({ _request }) => {
+  if (! DEV_MODE) {
+    return new Response(JSON.stringify({ error: "Not in dev mode" }), { 
+      status: 500,
+    });
+  }
   const path = "./_broken_links.json";
   try {
     const data = Deno.readTextFileSync(path);
