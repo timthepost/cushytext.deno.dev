@@ -181,7 +181,48 @@ seo:
 ```
 
 Theme defaults are very conservative; everyone will want to configure thresholds depending
-on their needs. That's why everything (practically) is configurable:
+on their needs. That's why everything (practically) is configurable.
+
+<h2 id="rest-endpoint" class="margin-top--md">Adding a RESTful Report Endpoint To Middleware:</h2>
+
+The following code will set up a route that will (if in local mode with `LUME_DRAFTS` set), also 
+set up the API to proxy the SEO report results. This can be useful for pulling in issues in your
+browser using `fetch()`.
+
+You can also allow the public to access them if your community is one that likes to take on 
+janitorial tasks.
+
+```js
+const DEV_MODE = Deno.env.get("LUME_DRAFTS") || false;
+
+router.get("/api/seo-report", ({ _request }) => {
+  if (! DEV_MODE) {
+    return new Response(JSON.stringify({ error: "Not in dev mode" }), { 
+      status: 500,
+    });
+  }
+  const path = "./_seo_report.json";
+  try {
+    const data = Deno.readTextFileSync(path);
+    return new Response(data, { status: 200 });
+  } catch (error) {
+    // it's not there
+    if (error instanceof Deno.errors.NotFound) {
+      return new Response(JSON.stringify({ error: "File not found" }), {
+        status: 404,
+      });
+    }
+    // umm, neither is the backing storage LOL. Read denied!
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
+      status: 500,
+    });
+  }
+});
+```
+
+If there's no report, the status will be set to 404. If something else happens
+(like GH storage timing out), it will return a status of 500. You can do something
+similar with other reports, if you're building an admin dashboard. 
 
 <comp.alert type="warning" 
   message="***Unreleased Code Warning: This list isn't fully-settled yet.***<br />I don't foresee any breaking changes, but still settling on everything and testing defaults." />
