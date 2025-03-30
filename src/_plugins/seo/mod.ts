@@ -130,14 +130,14 @@ export default function seo(userOptions?: Options) {
    * was the best way I could think to be as multi-language-friendly
    * as possible.
    */
-  function calculateCommonWordPercentage(title: string): number {
-    if (!title) return 0;
-    title = title.trim();
+  function calculateCommonWordPercentage(text: string): number {
+    if (!text) return 0;
+    text = text.trim();
     if (options.commonWordPercentageCallback) {
-      return options.commonWordPercentageCallback(title);
+      return options.commonWordPercentageCallback(text);
     }
-    const processedTitle = title.toLowerCase().replace(/[^\w\s]/g, "");
-    const words = processedTitle.split(/\s+/);
+    const processedText = text.toLowerCase().replace(/[^\w\s]/g, "");
+    const words = processedText.split(/\s+/);
     // dprint-ignore // deno-fmt-ignore
     const commonWords = options.userCommonWordSet
       ? options.userCommonWordSet
