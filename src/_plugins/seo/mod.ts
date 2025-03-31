@@ -289,7 +289,7 @@ export default function seo(userOptions?: Options) {
         logEvent(`SEO: Processing ${page.data.url} ...`);
 
         // This can't be blank, so set a default if we can't find a language.
-        const locale = page.data.lang || options.lengthLocale;
+        const locale = page.document.documentElement.lang || options.lengthLocale;
 
         if (options.warnTitleLength && page.data.title) {
           const titleLength = getLength(
