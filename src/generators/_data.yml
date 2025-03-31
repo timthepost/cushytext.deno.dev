@@ -1,2 +1,4 @@
 seo:
   skip_content: true
+metas:
+  description: "A summary about tags on the Cushy Text Blog"
