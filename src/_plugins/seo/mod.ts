@@ -463,13 +463,14 @@ export default function seo(userOptions?: Options) {
           } else {
             const metaDescription =
               metaDescriptionElement?.getAttribute("content") || null;
+              const descriptionPercentage = calculateCommonWordPercentage(metaDescription);
             if (
               metaDescription &&
-              calculateCommonWordPercentage(metaDescription) >=
+              descriptionPercentage >=
                 options.thresholdCommonWordsPercent
             ) {
               warnings[warningCount++] =
-                `Meta description common word percentage meets or exceeds ${options.thresholdCommonWordsPercent}`;
+                `Meta description common word percentage (${descriptionPercentage}) meets or exceeds ${options.thresholdCommonWordsPercent}`;
             }
           }
         }

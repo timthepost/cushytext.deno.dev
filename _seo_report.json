@@ -1,17 +1,17 @@
 {
   "/docs/navigation-generation/": [
-    "SEO: Content length (3307) is less than 3500 character, anything to add?"
+    "Content length (3307) is less than 3500 character, anything to add?"
   ],
   "/blog/interactive-feature-plans/": [
-    "SEO: Meta Description Common Word Percent For /blog/interactive-feature-plans/ meets or exceeds 45"
+    "Meta description common word percentage (46.666666666666664) meets or exceeds 45"
   ],
   "/blog/welcome-wordpress/": [
-    "SEO: Meta Description Common Word Percent For /blog/welcome-wordpress/ meets or exceeds 45"
+    "Meta description common word percentage (45.45454545454545) meets or exceeds 45"
   ],
   "/blog/0-0-1-component-strategy-update/": [
-    "SEO: Meta Description Common Word Percent For /blog/0-0-1-component-strategy-update/ meets or exceeds 45"
+    "Meta description common word percentage (52) meets or exceeds 45"
   ],
   "/blog/post-hog-static-sites/": [
-    "SEO: Meta Description Common Word Percent For /blog/post-hog-static-sites/ meets or exceeds 45"
+    "Meta description common word percentage (50) meets or exceeds 45"
   ]
 }
