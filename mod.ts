@@ -20,9 +20,9 @@ export default function (options: Partial<Options> = {}) {
       // this needs to be "generified"
       "_data/demo.yml",
       "_data/locale.yml",
-      // this should be "generified"
+      // this needs to be "generified"
       "_data/navbar.yml",
-      // this should be "generified"
+      // this needs to be "generified"
       "_data/tagWiki.yml",
       "_includes/css/forms.css",
       "_includes/css/opendyslexic.css",
@@ -48,7 +48,7 @@ export default function (options: Partial<Options> = {}) {
       "_includes/layouts/post.vto",
       "_includes/partials/footer.vto",
       "_includes/partials/head.vto",
-      // DOUBLE CHECK THIS FOR GENERIFICATION (see RELEASE-TODO.txt)
+      // This needs to be generified
       "_includes/partials/nav.vto",
       "_includes/templates/docs-template.vto",
       "_includes/templates/post-archive-item.vto",
@@ -90,7 +90,7 @@ export default function (options: Partial<Options> = {}) {
       "docs/theme-switchers.mdx",
       "blog/_data.yml",
       "blog/index.mdx",
-      // this needs to be generified
+      // this needs to be created and generified
       "blog/example-post.mdx",
       "_data.yml",
       "_serve.ts",
@@ -100,9 +100,9 @@ export default function (options: Partial<Options> = {}) {
       "style.css",
       "types.ts",
       "_cms.ts",
-      // this should be generified
-      "_config.ts",
       "plugins.ts",
+      "deno.json",
+      "mod.ts",
       "README.md"
     ];
 
