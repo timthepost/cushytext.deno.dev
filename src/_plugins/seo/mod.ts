@@ -409,21 +409,20 @@ export default function seo(userOptions?: Options) {
               `SEO: URL has a large percentage (${urlCommonWords}) of common words; consider revising.`;
           }
         }
-
-        if (options.warnMetasDescriptionLength && page.data.metas) {
+        const metaDescriptionElement = page.document.querySelector(
+          'meta[name="description"]',
+        );
+        if (options.warnMetasDescriptionLength && metaDescriptionElement) {
           if (frontMatter && frontMatter.skip_metas === true) {
             logEvent(
               `SEO: Skipping meta description length check on ${page.data.url} per frontmatter.`,
             );
           } else {
-            const metaDescriptionElement = page.document.querySelector(
-              'meta[name="description"]',
-            );
             const metaDescription =
               metaDescriptionElement?.getAttribute("content") || null;
             if (metaDescription) {
               const metaDescriptionLength = getLength(
-                page.data.metas.description,
+                metaDescription,
                 lengthUnit,
                 locale,
               );
@@ -438,15 +437,12 @@ export default function seo(userOptions?: Options) {
           }
         }
 
-        if (options.warnMetasDescriptionCommonWords && page.data.metas) {
+        if (options.warnMetasDescriptionCommonWords && metaDescriptionElement) {
           if (frontMatter && frontMatter.skip_metas === true) {
             logEvent(
               `SEO: Skipping meta description common word count on ${page.data.url} per frontmatter.`,
             );
           } else {
-            const metaDescriptionElement = page.document.querySelector(
-              'meta[name="description"]',
-            );
             const metaDescription =
               metaDescriptionElement?.getAttribute("content") || null;
             if (
