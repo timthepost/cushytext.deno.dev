@@ -98,6 +98,8 @@ export default function (options: Partial<Options> = {}) {
       "blog/index.mdx",
       // this needs to be created and generified
       "blog/example-post.mdx",
+      "features/index.mdx",
+      "features/components.vto",
       "_data.yml",
       "_serve.ts",
       "_server_routes.ts",
