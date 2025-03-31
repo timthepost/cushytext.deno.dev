@@ -1,10 +1,4 @@
-/**
- * Finishing touches for content that are just too
- * small to keep in individual plugins. So, we have
- * a 'conductor' that manages and reports on them.
- */
 import type Site from "lume/core/site.ts";
-import { log } from "lume/core/utils/log.ts";
 import { merge } from "lume/core/utils/object.ts";
 
 interface Options {
