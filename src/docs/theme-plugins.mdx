@@ -28,7 +28,7 @@ common mistakes before they mess up your site's SEO standing. I don't
 make promises on results, only that you'll get in the way of them 
 less through common mistakes.
 
-<h2 id="toc-plugin">TOC Options & configuration</h2>
+<h2 id="toc-plugin" class="margin-top--md margin-bottom--md">TOC Options & configuration</h2>
 
 ***The theme will not function properly with this plugin removed.*** Unless, of course, 
 you install another Markdown plugin to handle it. There are the configurable options to 
@@ -42,24 +42,8 @@ control generation:
 | TOC | `toc_list_class` | string | Class name to apply to the generated TOC list. | empty | `table-of-contents padding-top--none` |
 | TOC | `toc_link_class` | string | Class name to apply to generated TOC links. | empty | `table-of-contents__link` |
 
-And, here's how the plugin is loaded in the theme (from `plugins.ts`):
 
-```js
-  .use(toc({
-    // Container where the TOC is deposited once generated
-    toc_selector: "#toc",
-    // Content within this container is scanned for headings
-    toc_container: ".toc-enabled",
-    // Headings to scan for and extract / anchor 
-    toc_heading_selectors: "h2, h3, h4, h5, h6",
-    // class to apply to generated TOC links
-    toc_link_class: "table-of-contents__link",
-    // class to apply to generated TOC list
-    toc_list_class: "table-of-contents padding-top--none",
-  }))
-```
-
-<h2 id="simple-seo" class="margin-top--md"> SEO Static Analysis Plugin (AKA Simple SEO)</h2>
+<h2 id="simple-seo" class="margin-top--lg"> SEO Static Analysis Plugin (AKA Simple SEO)</h2>
 
 The SEO plugin tries to catch semantic mistakes that are 
 common when creating with Markdown-driven static templates,
