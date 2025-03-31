@@ -76,6 +76,9 @@ interface Options {
   commonWordPercentageCallback?: ((title: string) => number) | null;
   /* Ignore any post not in this locale (useful for daisy chaining) */
   ignoreAllButLocale?: string | null;
+  /* Log Operations? (there's no level here, either be noisy or be quiet) */
+  /* Note, this is NOT report warnings. This is just development log chatter */
+  logOperations?: boolean;
 }
 
 export const defaults: Options = {
@@ -99,12 +102,13 @@ export const defaults: Options = {
   thresholdLengthPercentage: 0.7,
   thresholdLengthForCWCheck: 35,
   thresholdCommonWordsPercent: 45,
-  removeReportFile: true,
+  removeReportFile: false,
   output: null,
   lengthUnit: "character",
   lengthLocale: "en",
   commonWordPercentageCallback: null,
   ignoreAllButLocale: null,
+  logOperations: false,
 };
 
 export default function seo(userOptions?: Options) {
@@ -207,6 +211,12 @@ export default function seo(userOptions?: Options) {
 
   const cachedWarnings = new Map<string, Set<string>>();
 
+  function logEvent(text: string) : void {
+    if (options.logOperations) {
+      log.info(text);
+    }
+  }
+
   return (site: Site) => {
     // very similar to how Check Urls plugin does this
     function JSONIfyCachedWarnings(): string {
@@ -252,22 +262,22 @@ export default function seo(userOptions?: Options) {
     let warningCount = 0;
     cachedWarnings.clear();
     site.process(options.extensions, (pages) => {
-      log.info("SEO: Running SEO checks ...");
+      logEvent("SEO: Running SEO checks ...");
       for (const page of pages) {
         const frontMatter = page.data.seo || null;
         if (page.data.url && options.ignore.includes(page.data.url)) {
-          log.info(`SEO: Skipping ${page.data.url} per options.`);
+          logEvent(`SEO: Skipping ${page.data.url} per options.`);
           continue;
         }
 
         if (frontMatter && frontMatter.ignore === true) {
-          log.info(`SEO: Skipping ${page.data.url} per frontmatter setting.`);
+          logEvent(`SEO: Skipping ${page.data.url} per frontmatter setting.`);
           continue;
         }
 
         if (options.ignoreAllButLocale) {
           if (page.data.lang !== options.ignoreAllButLocale) {
-            log.info(
+            logEvent(
               `SEO: Skipping ${page.data.url} per options.ignoreAllButLocale.`,
             );
             continue;
@@ -276,7 +286,7 @@ export default function seo(userOptions?: Options) {
         
         const warnings = [];
 
-        log.info(`SEO: Processing ${page.data.url} ...`);
+        logEvent(`SEO: Processing ${page.data.url} ...`);
 
         // This can't be blank, so set a default if we can't find a language.
         const locale = page.data.lang || options.lengthLocale;
@@ -309,7 +319,7 @@ export default function seo(userOptions?: Options) {
 
         if (options.warnContentLength) {
           if (frontMatter && frontMatter.skip_content === true) {
-            log.info(
+            logEvent(
               `SEO: Skipping content length check on ${page.data.url} per frontmatter.`,
             );
           } else {
@@ -402,7 +412,7 @@ export default function seo(userOptions?: Options) {
 
         if (options.warnMetasDescriptionLength && page.data.metas) {
           if (frontMatter && frontMatter.skip_metas === true) {
-            log.info(
+            logEvent(
               `SEO: Skipping meta description length check on ${page.data.url} per frontmatter.`,
             );
           } else {
@@ -430,7 +440,7 @@ export default function seo(userOptions?: Options) {
 
         if (options.warnMetasDescriptionCommonWords && page.data.metas) {
           if (frontMatter && frontMatter.skip_metas === true) {
-            log.info(
+            logEvent(
               `SEO: Skipping meta description common word count on ${page.data.url} per frontmatter.`,
             );
           } else {
@@ -468,7 +478,7 @@ export default function seo(userOptions?: Options) {
       } else {
         deleteReportFile();
         cachedWarnings.clear();
-        log.info("SEO: No warnings to report! Good job! 🎉");
+        logEvent("SEO: No warnings to report! Good job! 🎉");
       }
     });
   };
