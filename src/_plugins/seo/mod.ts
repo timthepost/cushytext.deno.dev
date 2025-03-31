@@ -255,11 +255,24 @@ export default function seo(userOptions?: Options) {
         }
       }
     }
+    
     let warningCount = 0;
     cachedWarnings.clear();
+    
     site.process(options.extensions, (pages) => {
+      
       logEvent("SEO: Running SEO checks ...");
+
       for (const page of pages) {
+        /*
+         * Wherever possible, I prefer to get values from page.document, 
+         * even though many of them are in page.data.corresponding_value. This 
+         * is because I want to test what search engines see, not what's in 
+         * YAML :) The only options I get directly from page.data are those 
+         * that can't be determined from page.document - url and frontmatter
+         * to control the plugin. Falling back to page.data if it's not in 
+         * the document hides unrelated bugs.
+         */
         const frontMatter = page.data.seo || null;
         if (page.data.url && options.ignore.includes(page.data.url)) {
           logEvent(`SEO: Skipping ${page.data.url} per options.`);
@@ -405,13 +418,18 @@ export default function seo(userOptions?: Options) {
               `SEO: URL has a large percentage (${urlCommonWords}) of common words; consider revising.`;
           }
         }
+
         const metaDescriptionElement = page.document.querySelector(
           'meta[name="description"]',
         );
-        if (!metaDescriptionElement) {
-          warnings[warningCount++] =
-            `SEO: Could not determine meta description of ${page.data.url}`;
+        
+        if (! metaDescriptionElement) {
+            if (options.warnMetasDescriptionLength || options.warnMetasDescriptionCommonWords) {
+              warnings[warningCount++] =
+                `SEO: Could not determine meta description of ${page.data.url} : checks using it may not run, or may fail.`;
+            }
         }
+
         if (options.warnMetasDescriptionLength && metaDescriptionElement) {
           if (frontMatter && frontMatter.skip_metas === true) {
             logEvent(
