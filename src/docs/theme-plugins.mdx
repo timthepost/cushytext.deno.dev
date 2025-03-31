@@ -222,7 +222,31 @@ router.get("/api/seo-report", ({ _request }) => {
 
 If there's no report, the status will be set to 404. If something else happens
 (like GH storage timing out), it will return a status of 500. You can do something
-similar with other reports, if you're building an admin dashboard. 
+similar with other reports, if you're building an admin dashboard.
+
+<h2 id="seo-plugin-initial-config" class="margin-top--md">Setting The Initial Defaults</h2>
+
+The initial defaults are conservative and basically "best practices based" 
+on English content recommendations when it comes to Title and Meta Description
+lengths. 
+
+Content length, and common word percentage, however, are really more dependent on 
+your topic and content style. What I recommend you do is set the values low enough
+so that all of your pages trip the checks, look at the reported values of your 
+best-performing pages, adjust the bar so that it no longer trips on them, and 
+then you have some initial goals and tests to run.
+
+SEO is a black box. If you provide accessible pages with clear, useful content 
+organized in logical, descriptive headings, you'll do as well as you can with 
+your content alone. Back links, content age and lots of other things affect 
+how you rank and even what gets indexed.
+
+You want the settings to push you to give yourself the best shot that you can, 
+without being so annoying that you just constantly ignore them or shut them up
+with frontmatter. If it gets to that, what's the point of the plugin?
+
+Reach out to me on the Cushy Text Discord or via email if you need help with this
+part, or have suggestions to share for better defaults, etc.
 
 <h2 id="seo-plugin-roadmap" class="margin-top--md">Simple SEO New Feature Roadmap:</h2>
 
