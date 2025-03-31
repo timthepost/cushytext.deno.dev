@@ -340,12 +340,12 @@ export default function seo(userOptions?: Options) {
               );
               if (contentLength < options.thresholdContentMinimum) {
                 warnings[warningCount++] =
-                  `SEO: Content length (${contentLength}) is less than ${options.thresholdContentMinimum} ${lengthUnit}, anything to add?`;
+                  `Content length (${contentLength}) is less than ${options.thresholdContentMinimum} ${lengthUnit}, anything to add?`;
               } else if (
                 contentLength >= options.thresholdContentMaximum
               ) {
                 warnings[warningCount++] =
-                  `SEO: Content length meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}, can this be split up?`;
+                  `Content length meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}, can this be split up?`;
               }
             }
           }
@@ -369,7 +369,7 @@ export default function seo(userOptions?: Options) {
             const currentLevel = parseInt(heading.tagName.slice(1));
             if (currentLevel > previousLevel + 1) {
               warnings[warningCount++] =
-                `SEO: Heading elements out of order: ${heading.tagName} - Headings should be in semantic order.`;
+                `Heading elements out of order: ${heading.tagName} - Headings should be in semantic order.`;
             }
             previousLevel = currentLevel;
           }
@@ -383,14 +383,14 @@ export default function seo(userOptions?: Options) {
               img && options.warnImageAltAttribute && !img.hasAttribute("alt")
             ) {
               warnings[warningCount++] =
-                "SEO: Image is missing alt attribute. This also breaks accessibility!";
+                "Image is missing alt attribute. This also breaks accessibility!";
             }
             if (
               img && options.warnImageTitleAttribute &&
               !img.hasAttribute("title")
             ) {
               warnings[warningCount++] =
-                "SEO: Suggest using image title attributes strategically.";
+                "Suggest using image title attributes strategically.";
             }
           }
         }
@@ -404,7 +404,7 @@ export default function seo(userOptions?: Options) {
           );
           if (titleCommonWords >= options.thresholdCommonWordsPercent) {
             warnings[warningCount++] =
-              `SEO: Title has a large percentage (${titleCommonWords}) of common words; consider revising.`;
+              `Title has a large percentage (${titleCommonWords}) of common words; consider revising.`;
           }
         }
 
@@ -415,7 +415,7 @@ export default function seo(userOptions?: Options) {
           const urlCommonWords = calculateCommonWordPercentage(page.data.url);
           if (urlCommonWords >= options.thresholdCommonWordsPercent) {
             warnings[warningCount++] =
-              `SEO: URL has a large percentage (${urlCommonWords}) of common words; consider revising.`;
+              `URL has a large percentage (${urlCommonWords}) of common words; consider revising.`;
           }
         }
 
@@ -426,7 +426,7 @@ export default function seo(userOptions?: Options) {
         if (! metaDescriptionElement) {
             if (options.warnMetasDescriptionLength || options.warnMetasDescriptionCommonWords) {
               warnings[warningCount++] =
-                `SEO: Could not determine meta description of ${page.data.url} : checks using it may not run, or may fail.`;
+                `Could not determine meta description; checks using it may not run, or may fail.`;
             }
         }
 
@@ -449,7 +449,7 @@ export default function seo(userOptions?: Options) {
                   options.thresholdMetaDescriptionLength
               ) {
                 warnings[warningCount++] =
-                  `SEO: Meta Description Length For ${page.data.url} meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}`;
+                  `Meta Description length meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}`;
               }
             }
           }
@@ -469,7 +469,7 @@ export default function seo(userOptions?: Options) {
                 options.thresholdCommonWordsPercent
             ) {
               warnings[warningCount++] =
-                `SEO: Meta Description Common Word Percent For ${page.data.url} meets or exceeds ${options.thresholdCommonWordsPercent}`;
+                `Meta Description Common Word Percent meets or exceeds ${options.thresholdCommonWordsPercent}`;
             }
           }
         }
