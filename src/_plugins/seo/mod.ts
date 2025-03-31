@@ -12,10 +12,6 @@ import { merge } from "lume/core/utils/object.ts";
 
  - Create a plugin to present the _seo_report.json file meaningfully?
    Use a more consistent log format?
-
- - Look at ways that calculateCommonWordPercent() could be more elastic 
-   for international folks so they don't have to pass a callback of their
-   own? an option to skip regex-based normalization?
  */
 
 // For internationalization support
@@ -95,7 +91,7 @@ export const defaults: Options = {
   warnUrlCommonWords: true,
   warnImageAltAttribute: true,
   warnImageTitleAttribute: true,
-  thresholdMetaDescriptionLength: 170,
+  thresholdMetaDescriptionLength: 180,
   thresholdContentMinimum: 3500,
   thresholdContentMaximum: 20000,
   thresholdLength: 80,
@@ -412,6 +408,10 @@ export default function seo(userOptions?: Options) {
         const metaDescriptionElement = page.document.querySelector(
           'meta[name="description"]',
         );
+        if (!metaDescriptionElement) {
+          warnings[warningCount++] =
+            `SEO: Could not determine meta description of ${page.data.url}`;
+        }
         if (options.warnMetasDescriptionLength && metaDescriptionElement) {
           if (frontMatter && frontMatter.skip_metas === true) {
             logEvent(
@@ -419,7 +419,7 @@ export default function seo(userOptions?: Options) {
             );
           } else {
             const metaDescription =
-              metaDescriptionElement?.getAttribute("content") || null;
+              metaDescriptionElement.getAttribute("content") || null;
             if (metaDescription) {
               const metaDescriptionLength = getLength(
                 metaDescription,
