@@ -463,7 +463,7 @@ export default function seo(userOptions?: Options) {
           } else {
             const metaDescription =
               metaDescriptionElement?.getAttribute("content") || null;
-              const descriptionPercentage = calculateCommonWordPercentage(metaDescription);
+              const descriptionPercentage = calculateCommonWordPercentage(metaDescription as string);
             if (
               metaDescription &&
               descriptionPercentage >=
