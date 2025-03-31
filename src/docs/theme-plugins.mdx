@@ -224,6 +224,20 @@ If there's no report, the status will be set to 404. If something else happens
 (like GH storage timing out), it will return a status of 500. You can do something
 similar with other reports, if you're building an admin dashboard. 
 
+<h2 id="seo-plugin-roadmap" class="margin-top--md">Simple SEO New Feature Roadmap:</h2>
+
+More checks, of course, as they make sense. Additionally, some kind of caching
+should be implemented so the plugin is only iterating through each document a 
+dozen times if they're new, or have changed since the last time.
+
+I'm pretty sure I can just hash `page.document`? Looking into it. If you have
+a hundred pages in three languages, this plugin could add considerable length 
+to builds, so I'd like to minimize that.
+
+Plus, this thing already has ***twenty-one frigging options*** 😱 so why not make it
+fifty? 😂
+
+
 <comp.alert type="warning" 
   message="***Unreleased Code Warning: This list isn't fully-settled yet.***<br />I don't foresee any breaking changes, but still settling on everything and testing defaults." />
 
