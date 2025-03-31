@@ -120,23 +120,30 @@ Here's a complex configuration where the plugin is invoked twice, once per
 language, with different options for each:
 
 ```js
+// below the last plugin import ...
+import { japaneseCommonWords } from "cushytext-theme/_plugins/seo/japanese_common_words.js";
+
+  // later on, after most other plugins run
+
   .use(
     seo({
-      output: "./_seo_report_en.json",
-      ignore: ["/admin/", "/dev/", "/404.html"],
+      output: "./_seo_report.json",
+      ignore: ["/404.html"],
       lengthUnit: "character",
       lengthLocale: "en",
-      ignoreAllButLocale: "en"
+      ignoreAllButLocale: "en",
+      logOperations: false
     }),
   )
   .use(
     seo({
       output: "./_seo_report_ja.json",
-      ignore: ["/admin/", "/dev/", "/404.html"],
+      ignore: ["/404.html"],
       lengthUnit: "word",
       lengthLocale: "ja",
+      userCommonWordSet: japaneseCommonWords,
       ignoreAllButLocale: "ja",
-      commonWordPercentageCallback: function (input: string) : number { return(0.99); }
+      logOperations: false
     }),
   )
 ```
