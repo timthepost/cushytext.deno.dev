@@ -17,6 +17,12 @@ export default function (options: Partial<Options> = {}) {
       "_components/card.vto",
       "_components/hero.vto",
       "_components/latestBlog.vto",
+      "_components/feedback/comp.vto",
+      "_components/feedback/style.css",
+      "_components/feedback/script.js",
+      "_components/feedbackAdmin/comp.vto",
+      "_components/feedbackAdmin/style.css",
+      "_components/feedbackAdmin/script.js",
       // this needs to be "generified"
       "_data/demo.yml",
       "_data/locale.yml",
