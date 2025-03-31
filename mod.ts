@@ -109,6 +109,7 @@ export default function (options: Partial<Options> = {}) {
       "plugins.ts",
       "deno.json",
       "mod.ts",
+      ".gitignore",
       "README.md"
     ];
 
