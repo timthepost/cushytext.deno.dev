@@ -449,7 +449,7 @@ export default function seo(userOptions?: Options) {
                   options.thresholdMetaDescriptionLength
               ) {
                 warnings[warningCount++] =
-                  `Meta Description length meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}`;
+                  `Meta description length meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}`;
               }
             }
           }
@@ -469,7 +469,7 @@ export default function seo(userOptions?: Options) {
                 options.thresholdCommonWordsPercent
             ) {
               warnings[warningCount++] =
-                `Meta Description Common Word Percent meets or exceeds ${options.thresholdCommonWordsPercent}`;
+                `Meta description common word percentage meets or exceeds ${options.thresholdCommonWordsPercent}`;
             }
           }
         }
