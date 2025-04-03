@@ -58,7 +58,7 @@
         <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
           {{ tagWiki[tag].summary |> md }}
         </div>
-      {{ else if tag.length }}
+      {{ else if tag.length && locale.archive.edit_wiki_url != false }}
         <div class="tagInfo padding-vert--sm margin-horiz--md margin-vert--sm">
           <p>
             {{ locale.archive.edit_wiki_no_wiki }}
