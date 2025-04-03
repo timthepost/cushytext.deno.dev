@@ -44,7 +44,7 @@ archive:
   all_posts: "All Posts"
   related_tags: "Related Tags:"
   edit_wiki: "Edit This Tag Wiki On Github (Opens In A New Page)"
-  edit_wiki_url: "https://github.com/timthepost/cushytext/edit/main/src/_data/tagWiki.yml"
+  edit_wiki_url: "https://github.com/timthepost/cushytext.deno.dev/edit/main/src/_data/tagWiki.yml"
   edit_wiki_no_wiki: "This tag has no wiki yet, would you like to create it?"
   tag_rss_title: "RSS Feed Exclusively For Posts Tagged:"
   tag_json_title: "JSON Feed Exclusively For Posts Tagged:"
