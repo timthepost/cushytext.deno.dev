@@ -1,6 +1,9 @@
 lang: en
 slogan: A "Cushy" Infima-Based Content Theme For Lume.
 openGraphLayout: /layouts/og_images.jsx
+menu:
+  visible: true
+  order: 0
 metas:
   site: Cushy Text
   generator: true
