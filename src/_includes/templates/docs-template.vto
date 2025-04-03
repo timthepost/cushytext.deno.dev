@@ -7,7 +7,7 @@
     </div>
     <nav class="pagination-nav margin-top--lg">
       <div class="pagination-nav__item">
-        {{ set previousPost = search.previousPage(url, `waypoint=${waypoint}`, "menu.order") }}
+        {{ set previousPost = search.previousPage(url, `waypoint=${waypoint} menu.visible=true`, "menu.order") }}
         {{ if previousPost }}
           <a class="pagination-nav__link" href="{{ previousPost.url }}">
             <div class="pagination-nav__sublabel">{{ locale.documentation.prev_link }}</div>
@@ -16,7 +16,7 @@
         {{ /if }}
       </div>
       <div class="pagination-nav__item pagination-nav__item--next">
-        {{ set nextPost = search.nextPage(url, `waypoint=${waypoint}`, "menu.order") }}
+        {{ set nextPost = search.nextPage(url, `waypoint=${waypoint} menu.visible=true`, "menu.order") }}
         {{ if nextPost }}
           <a class="pagination-nav__link" href="{{ nextPost.url }}">
             <div class="pagination-nav__sublabel" style="text-align: right">{{ locale.documentation.next_link }}</div>
@@ -53,7 +53,7 @@
     <div class="menu thin-scrollbar margin-top--xs">
       <ul class="menu__list">
       {{ if docs.sidebar === "auto" }}
-        {{ for entry of search.pages(`url^=${docs.basedir}`, "menu.order") }}
+        {{ for entry of search.pages(`url^=${docs.basedir} menu.visible=true`, "menu.order") }}
           <li class="menu__list--item">
             {{ set isActive = entry.url === url }}
             <a class="{{ if isActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ entry.url }}">{{ entry.title }}</a>

@@ -184,7 +184,7 @@
       </ul>
     {{ /if }}
     <h3 class="margin-top--md">{{ locale.archive.tags }}</h3>
-    {{ set recentTags = search.pages("type=tag", "tag") }}
+    {{ set recentTags = search.pages("type=tag menu.visible=true", "tag") }}
     {{ if recentTags.length }}
       <div class="post-tags">
         {{ for tag of recentTags }}
