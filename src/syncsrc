@@ -1,0 +1,9 @@
+#/bin/sh
+
+DEST="/home/dev/code/cushytext-theme/"
+
+echo "Syncing theme template files downstream ..."
+
+cp -dpR _includes/templates/* ${DEST}/src/_includes/templates/
+cp -dpR _includes/layouts/* ${DEST}/src/_includes/layouts/
+
