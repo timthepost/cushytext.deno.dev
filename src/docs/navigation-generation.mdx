@@ -47,6 +47,30 @@ and is auto-generated, followed by the navigation links controlled by the
 
 This file also controls the footer links and footer group headings. 
 
+## The "menu" Frontmatter Settings
+
+In frontmatter (`page.data`) you'll see a `menu` object with two settings:
+`order` and `visible`. 
+
+By default, every page or post or document (or source file processed by lume)
+has its visibility set to `true`, and `order` set to `0`, which is essentially
+_no more, no less important than anything else_ in terms of navigation.
+
+This is a setting that doesn't _yet_ control all aspects of navigation and 
+things of that nature, but _could_ if you wanted it to. It's there for you 
+to build on.
+
+It's currently used when displaying auto-nav links in the blog and documentation,
+(passed along to the search functions), and set by default in the root `_data.yml`
+file, so you can count on it being there unless you change it.
+
+If you set an individual page to `visible: false`, it shouldn't be picked up by the
+auto nav, or plugins like `comp.latestBlog()`, or listed in the archive. If you find
+a case where that isn't true, a PR is most welcome. The feature is there to help you
+create pages that exist, but require a link to find. 
+
+Better coordination with the Sitemap generator plugin is planned, but not yet started.
+
 ## Roadmap
 
 We should be able to implement the `menu` hook on everything, in addition to 
