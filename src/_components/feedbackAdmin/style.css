@@ -1,16 +1,50 @@
-.feedback-table {
+.feedback-table,
+.report-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
 .feedback-table th,
-.feedback-table td {
+.report-table th,
+.feedback-table td,
+.report-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
 
-.feedback-table th {
-  background-color: #f0f0f0;
+.admin-button {
+  border: 2.5px solid steelblue;
+  padding: .75em;
+  border-radius: .25em;
+  margin: 1em 0;
+  cursor: pointer;
+}
+
+.admin-button:hover {
+  background-color: steelblue;
+  color: white;
+}
+
+.admin-button-danger {
+  background-color: #fff;
+  color: red;
+  border: 2.5px solid rgb(176, 9, 9);
+  border-radius: .25em;
+  padding: .75em;
+  cursor: pointer;
+}
+
+.admin-button-danger:hover {
+  background-color: red;
+  color: #fff;
+}
+
+#feedback-table-container,
+#seo-report-table-container,
+#broken-link-report-table-container {
+  margin: 1em 0 1em;
+  overflow-x: auto;
+  min-height: 75px;
 }

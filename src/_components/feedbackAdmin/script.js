@@ -47,7 +47,7 @@ async function loadFeedbackTable(containerId) {
     const thead = document.createElement("thead");
     const headerRow = document.createElement("tr");
 
-    ["Date", "URL", "Comment", "Actions"].forEach((headerText) => {
+    ["Date", "URL", "Vote", "Comment", "Actions"].forEach((headerText) => {
       const th = document.createElement("th");
       th.textContent = headerText;
       headerRow.appendChild(th);
@@ -61,35 +61,37 @@ async function loadFeedbackTable(containerId) {
       const row = document.createElement("tr");
 
       const dateCell = document.createElement("td");
-      let date;
-      let message;
+      let feedbackData;
 
       if (typeof feedback.value === "string") {
-        const parsedFeedback = JSON.parse(feedback.value);
-        date = new Date(parsedFeedback.timestamp);
-        message = parsedFeedback.message;
+        feedbackData = JSON.parse(feedback.value);
       } else {
-        date = new Date(feedback.value.timestamp);
-        message = feedback.value.comment;
+        feedbackData = feedback.value;
       }
+      // Extract the timestamp from the feedbackData
+      const date = new Date(feedbackData.timestamp);
 
       dateCell.textContent = date.toLocaleString();
       row.appendChild(dateCell);
 
       const urlCell = document.createElement("td");
       const urlLink = document.createElement("a");
-      urlLink.href = `${feedback.key[1]}`;
-      urlLink.textContent = feedback.key[1];
+      urlLink.href = `${feedbackData.basename}`;
+      urlLink.textContent = feedbackData.basename;
       urlCell.appendChild(urlLink);
       row.appendChild(urlCell);
 
+      const voteCell = document.createElement("td");
+      voteCell.textContent = feedbackData.vote;
+      row.appendChild(voteCell);
+
       const commentCell = document.createElement("td");
-      commentCell.textContent = decodeHtmlEntities(message);
+      commentCell.textContent = feedbackData.comment ? decodeHtmlEntities(feedbackData.comment) : "N/A";
       row.appendChild(commentCell);
 
       const actionsCell = document.createElement("td");
       const deleteButton = document.createElement("button");
-      deleteButton.classList.add("button", "button--warning");
+      deleteButton.classList.add("admin-button-danger");
       deleteButton.textContent = "Delete";
       deleteButton.href = "#";
 
@@ -139,27 +141,131 @@ async function loadFeedbackTable(containerId) {
   }
 }
 
-// says what it does, does what it says.
-function refreshFeedbackTable(containerId) {
-  loadFeedbackTable(containerId);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const containerId = "feedback-table-container";
+/**
+ * Fetches and displays a report (SEO or broken links) in a table.
+ * @param {string} containerId - The ID of the container to insert the table.
+ * @param {string} apiEndpoint - The API endpoint to fetch the report data.
+ */
+async function loadReportTable(containerId, apiEndpoint) {
   const container = document.getElementById(containerId);
   if (!container) {
     return;
   }
 
+  container.innerHTML = "";
+
+  try {
+    const response = await fetch(apiEndpoint);
+    if (!response.ok) {
+      throw new Error(`${response.statusText} ${response.status}`);
+    }
+    const reportData = await response.json();
+
+    if (Object.keys(reportData).length === 0) {
+      container.innerHTML = "<p><strong>No report to share! 🎉</strong></p>";
+      return;
+    }
+
+    const table = document.createElement("table");
+    table.classList.add("report-table");
+
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+
+    const headers = ["URL Or Broken URL", "Issues Or Affected Pages"];
+    headers.forEach((headerText) => {
+      const th = document.createElement("th");
+      th.textContent = headerText;
+      headerRow.appendChild(th);
+    });
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    for (const url in reportData) {
+      const row = document.createElement("tr");
+
+      const urlCell = document.createElement("td");
+      const urlLink = document.createElement("a");
+      urlLink.href = url;
+      urlLink.textContent = url;
+      urlCell.appendChild(urlLink);
+      row.appendChild(urlCell);
+
+      const issuesCell = document.createElement("td");
+      const issuesList = document.createElement("ul");
+      reportData[url].forEach(issue => {
+        const listItem = document.createElement("li");
+        listItem.classList.add("margin-top--sm", "margin-right--sm");
+        listItem.textContent = issue;
+        issuesList.appendChild(listItem);
+      });
+      issuesCell.appendChild(issuesList);
+      row.appendChild(issuesCell);
+      
+      tbody.appendChild(row);
+    }
+
+    table.appendChild(tbody);
+    container.appendChild(table);
+  } catch (_error) {
+    container.innerHTML = "<p><strong>No report to share! 🎉</strong></p>";
+  }
+}
+
+// says what it does, does what it says.
+function refreshFeedbackTable(containerId) {
   loadFeedbackTable(containerId);
+}
 
-  const refreshButton = document.createElement("button");
-  refreshButton.textContent = "Refresh";
-  refreshButton.classList.add("button", "button--info", "margin-bottom--md");
-  refreshButton.addEventListener(
-    "click",
-    () => refreshFeedbackTable(containerId),
-  );
+// says what it does, does what it says.
+function refreshReportTable(containerId, apiEndpoint) {
+  loadReportTable(containerId, apiEndpoint);
+}
 
-  container.parentNode.insertBefore(refreshButton, container);
+document.addEventListener("DOMContentLoaded", () => {
+  const feedbackContainerId = "feedback-table-container";
+  const seoReportContainerId = "seo-report-table-container";
+  const brokenLinksReportContainerId = "broken-link-report-table-container";
+
+  const feedbackContainer = document.getElementById(feedbackContainerId);
+  const seoReportContainer = document.getElementById(seoReportContainerId);
+  const brokenLinksReportContainer = document.getElementById(brokenLinksReportContainerId);
+
+  if (feedbackContainer) {
+    loadFeedbackTable(feedbackContainerId);
+    const refreshFeedbackButton = document.createElement("button");
+    refreshFeedbackButton.textContent = "Refresh Feedback";
+    refreshFeedbackButton.classList.add("admin-button");
+    refreshFeedbackButton.addEventListener(
+      "click",
+      () => refreshFeedbackTable(feedbackContainerId),
+    );
+    feedbackContainer.parentNode.insertBefore(refreshFeedbackButton, feedbackContainer);
+  }
+
+  if (seoReportContainer) {
+    loadReportTable(seoReportContainerId, "/api/seo-report");
+    const refreshSeoReportButton = document.createElement("button");
+    refreshSeoReportButton.textContent = "Refresh SEO Report";
+    refreshSeoReportButton.classList.add("admin-button");
+    refreshSeoReportButton.addEventListener(
+      "click",
+      () => refreshReportTable(seoReportContainerId, "/api/seo-report"),
+    );
+    seoReportContainer.parentNode.insertBefore(refreshSeoReportButton, seoReportContainer);
+  }
+
+  if (brokenLinksReportContainer) {
+    loadReportTable(brokenLinksReportContainerId, "/api/broken-links-report");
+    const refreshBrokenLinksReportButton = document.createElement("button");
+    refreshBrokenLinksReportButton.textContent = "Refresh Broken Links Report";
+    refreshBrokenLinksReportButton.classList.add("admin-button");
+    refreshBrokenLinksReportButton.addEventListener(
+      "click",
+      () => refreshReportTable(brokenLinksReportContainerId, "/api/broken-links-report"),
+    );
+    brokenLinksReportContainer.parentNode.insertBefore(refreshBrokenLinksReportButton, brokenLinksReportContainer);
+  }
 });

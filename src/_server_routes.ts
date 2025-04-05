@@ -1,6 +1,6 @@
 import Router from "lume/middlewares/router.ts";
 
-const DEV_MODE = Deno.env.get("LUME_DRAFTS") || false;
+const DEV_MODE = Deno.env.get("LUME_DRAFTS") || true;
 const router = new Router();
 
 /* Filter out XSS attempts */
@@ -50,7 +50,7 @@ router.get("/api/seo-report", ({ _request }) => {
 });
 
 // Optional, can be made local only as well. Broken links. I plan to combine these.
-router.get("/api/broken-links", ({ _request }) => {
+router.get("/api/broken-links-report", ({ _request }) => {
   if (! DEV_MODE) {
     return new Response(JSON.stringify({ error: "Not in dev mode" }), { 
       status: 500,
