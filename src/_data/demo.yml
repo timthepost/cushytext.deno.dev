@@ -2,8 +2,8 @@
 # AKA Demo, since that's what it is to anyone else using it.
 hero:
   title: Cushy Text ☁️
-  href: /blog/announcing-cushy-text/
-  cta: Read Tim's Announcement
+  href: /docs/
+  cta: Get Started
   slogan: An Infima-based, component-driven, text-focused interactive and fully-responsive theme for <span class="text--danger">Lume 3</span><sup>+</sup>.
 
 goals:

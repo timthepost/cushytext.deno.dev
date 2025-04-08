@@ -11,8 +11,7 @@
   "/blog/post-hog-static-sites/": [
     "Meta description common word percentage (50) meets or exceeds 45"
   ],
-  "/content-admin/": [
-    "Content length (1270) is less than 3500 character, anything to add?",
-    "Could not determine meta description; checks using it may not run, or may fail."
+  "/blog/0-0-1-pre-release/": [
+    "Meta description common word percentage (46.15384615384615) meets or exceeds 45"
   ]
 }

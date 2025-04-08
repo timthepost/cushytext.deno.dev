@@ -1,0 +1,72 @@
+---
+title: 0.0.1 - The Pre-Release Release!
+description: GitHub-Only Release For Testing And Vetting
+date: 2025-04-08
+author: Tim Post
+draft: false
+menu:
+  visible: true
+  order: 0
+tags:
+  - announcements
+  - 0.0.1
+  - lume-3
+metas:
+  lang: en
+  description: An announcement of the availability of Cushy Text 0.0.1 in pre-release from Github.
+  tags:
+    - static site generators
+    - self-publishing
+    - lume theme
+    - lume template
+  image: /blog/0-0-1-pre-release/index.png
+  robots: true
+  generator: true
+---
+
+Óscar Otero recently merged v3-dev into main which means while 
+Lume 3 is still behind the `--dev` feature flag, it's all but 
+a done deal. He expects to release Lume 3 sometime in May 2025.
+
+Since it's basically feature complete, I've [tagged in](https://github.com/timthepost/cushytext-theme/releases/tag/v0.0.1)
+version `0.0.1` _mostly_ for the benefit of plugin testing and 
+for early adopters who have existing infima content they're looking
+to move over to Lume. 
+
+<img
+  class="blog_image"
+  src="/blog/0-0-1-pre-release/index.png" 
+  alt="0.0.1 Pre-Release Release" 
+  title="Can you git it? I bet you can!" />
+
+**[Here is a link to the new cushytext-theme repo](https://github.com/timthepost/cushytext-theme);**
+it will be turned into a proper template repository and listed in the Lume Theme registry
+once Lume 3 has been out for at least a week. No one should still be pulling from this 
+site's repo (cushytext.deno.dev) for the theme itself, use the cushytext-theme repo.
+
+{/* more */} 
+<div id="more"></div>
+
+So, why would you want to check this out now, instead of just waiting for it to appear
+in the Lume theme gallery?
+
+Well, you might want to make use of the [SEO plugin](/docs/theme-plugins/#simple-seo), or 
+perhaps you want to just poke around how things work. You're welcome to clone the theme,
+run `deno task dev` and have at it. All of the documentation _ships with the theme_, so
+as soon as you open your browser it's right there along with sparse demo content.
+
+## But, Beware Bugs
+
+Not only do you need to update lume nightly, you should also keep in mind that a few 
+changes may be coming down the pike, so perhaps update via git only when new releases
+are tagged in, while updating Lume daily for now.
+
+## Use Case Feedback Is Helpful
+
+Please spend some time reading the docs and short roadmap to spot things that I've already
+identified as needing to happen soon. Let me know what you actually need out of a theme like
+this and how it could be better for you, and I might be able to make it easier to accomplish.
+
+I've tried to be "netural" to workflow style, but if something in the data layer or something
+else is really getting in your way, please tell me as the iron is still very hot and easy to 
+bend.

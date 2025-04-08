@@ -1,0 +1,9 @@
+#/bin/sh
+
+DEST="/home/dev/code/cushytext-theme/"
+
+echo "Syncing top-level theme files downstream ..."
+
+cp -dpf plugins.ts ${DEST}/plugins.ts
+cp -dpf dprint.json ${DEST}/dprint.json  
+cp -dpf deno.json ${DEST}/deno.json
