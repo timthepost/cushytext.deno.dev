@@ -7,11 +7,8 @@ import { merge } from "lume/core/utils/object.ts";
    We currently fall back nicely to just whatever is in the <body>, but
    many authors wrap their {{ content }} in a div with a class, which
    would be appropriate here. For instance, this template wraps any
-   meaningfully-long content with  "font-selectable", this could be 
+   meaningfully-long content with  "font-selectable", this could be
    used to get precise content-length values for any page.
-
- - Create a plugin to present the _seo_report.json file meaningfully?
-   Use a more consistent log format?
  */
 
 // For internationalization support
@@ -207,7 +204,7 @@ export default function seo(userOptions?: Options) {
 
   const cachedWarnings = new Map<string, Set<string>>();
 
-  function logEvent(text: string) : void {
+  function logEvent(text: string): void {
     if (options.logOperations) {
       log.info(text);
     }
@@ -255,22 +252,20 @@ export default function seo(userOptions?: Options) {
         }
       }
     }
-    
-    let warningCount = 0;
-    cachedWarnings.clear();
-    
-    site.process(options.extensions, (pages) => {
-      
-      logEvent("SEO: Running SEO checks ...");
 
+    let warningCount = 0;
+
+    site.process(options.extensions, (pages) => {
+      logEvent("SEO: Running SEO checks ...");
+      cachedWarnings.clear();
       for (const page of pages) {
         /*
-         * Wherever possible, I prefer to get values from page.document, 
-         * even though many of them are in page.data.corresponding_value. This 
-         * is because I want to test what search engines see, not what's in 
-         * YAML :) The only options I get directly from page.data are those 
+         * Wherever possible, I prefer to get values from page.document,
+         * even though many of them are in page.data.corresponding_value. This
+         * is because I want to test what search engines see, not what's in
+         * YAML :) The only options I get directly from page.data are those
          * that can't be determined from page.document - url and frontmatter
-         * to control the plugin. Falling back to page.data if it's not in 
+         * to control the plugin. Falling back to page.data if it's not in
          * the document hides unrelated bugs.
          */
         const frontMatter = page.data.seo || null;
@@ -292,13 +287,14 @@ export default function seo(userOptions?: Options) {
             continue;
           }
         }
-        
+
         const warnings = [];
 
         logEvent(`SEO: Processing ${page.data.url} ...`);
 
         // This can't be blank, so set a default if we can't find a language.
-        const locale = page.document.documentElement.lang || options.lengthLocale;
+        const locale = page.document.documentElement.lang
+          || options.lengthLocale;
 
         if (options.warnTitleLength && page.data.title) {
           const titleLength = getLength(
@@ -307,8 +303,7 @@ export default function seo(userOptions?: Options) {
             locale,
           );
           if (titleLength >= options.thresholdLength) {
-            warnings[warningCount] =
-              `Title is over ${options.thresholdLength} ${lengthUnit}; less is more.`;
+            warnings[warningCount] = `Title is over ${options.thresholdLength} ${lengthUnit}; less is more.`;
           }
         }
 
@@ -318,8 +313,8 @@ export default function seo(userOptions?: Options) {
             lengthUnit,
             locale,
           );
-          const maxLength = options.thresholdLength *
-            options.thresholdLengthPercentage;
+          const maxLength = options.thresholdLength
+            * options.thresholdLengthPercentage;
           if (urlLength >= maxLength) {
             warnings[warningCount++] =
               `URL meets or exceeds ${maxLength} ${lengthUnit}, which is ${options.thresholdLengthPercentage} of the title limit; consider shortening.`;
@@ -354,8 +349,7 @@ export default function seo(userOptions?: Options) {
         if (options.warnDuplicateHeadings) {
           const headingOneCount = page.document.querySelectorAll("h1").length;
           if (headingOneCount && headingOneCount > 1) {
-            warnings[warningCount++] =
-              "SEO: More than one <h1> element. This is almost never what you want.";
+            warnings[warningCount++] = "SEO: More than one <h1> element. This is almost never what you want.";
           }
         }
 
@@ -382,22 +376,20 @@ export default function seo(userOptions?: Options) {
             if (
               img && options.warnImageAltAttribute && !img.hasAttribute("alt")
             ) {
-              warnings[warningCount++] =
-                "Image is missing alt attribute. This also breaks accessibility!";
+              warnings[warningCount++] = "Image is missing alt attribute. This also breaks accessibility!";
             }
             if (
-              img && options.warnImageTitleAttribute &&
-              !img.hasAttribute("title")
+              img && options.warnImageTitleAttribute
+              && !img.hasAttribute("title")
             ) {
-              warnings[warningCount++] =
-                "Suggest using image title attributes strategically.";
+              warnings[warningCount++] = "Suggest using image title attributes strategically.";
             }
           }
         }
 
         if (
-          options.warnTitleCommonWords && page.document.title &&
-          page.document.title.length >= options.thresholdLengthForCWCheck
+          options.warnTitleCommonWords && page.document.title
+          && page.document.title.length >= options.thresholdLengthForCWCheck
         ) {
           const titleCommonWords = calculateCommonWordPercentage(
             page.document.title,
@@ -409,8 +401,8 @@ export default function seo(userOptions?: Options) {
         }
 
         if (
-          options.warnUrlCommonWords && page.data.url &&
-          page.data.url.length >= options.thresholdLengthForCWCheck
+          options.warnUrlCommonWords && page.data.url
+          && page.data.url.length >= options.thresholdLengthForCWCheck
         ) {
           const urlCommonWords = calculateCommonWordPercentage(page.data.url);
           if (urlCommonWords >= options.thresholdCommonWordsPercent) {
@@ -420,14 +412,17 @@ export default function seo(userOptions?: Options) {
         }
 
         const metaDescriptionElement = page.document.querySelector(
-          'meta[name="description"]',
+          "meta[name=\"description\"]",
         );
-        
-        if (! metaDescriptionElement) {
-            if (options.warnMetasDescriptionLength || options.warnMetasDescriptionCommonWords) {
-              warnings[warningCount++] =
-                `Could not determine meta description; checks using it may not run, or may fail.`;
-            }
+
+        if (!metaDescriptionElement) {
+          if (
+            options.warnMetasDescriptionLength
+            || options.warnMetasDescriptionCommonWords
+          ) {
+            warnings[warningCount++] =
+              `Could not determine meta description; checks using it may not run, or may fail.`;
+          }
         }
 
         if (options.warnMetasDescriptionLength && metaDescriptionElement) {
@@ -436,8 +431,7 @@ export default function seo(userOptions?: Options) {
               `SEO: Skipping meta description length check on ${page.data.url} per frontmatter.`,
             );
           } else {
-            const metaDescription =
-              metaDescriptionElement.getAttribute("content") || null;
+            const metaDescription = metaDescriptionElement.getAttribute("content") || null;
             if (metaDescription) {
               const metaDescriptionLength = getLength(
                 metaDescription,
@@ -445,8 +439,8 @@ export default function seo(userOptions?: Options) {
                 locale,
               );
               if (
-                metaDescriptionLength >=
-                  options.thresholdMetaDescriptionLength
+                metaDescriptionLength
+                  >= options.thresholdMetaDescriptionLength
               ) {
                 warnings[warningCount++] =
                   `Meta description length meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}`;
@@ -461,13 +455,14 @@ export default function seo(userOptions?: Options) {
               `SEO: Skipping meta description common word count on ${page.data.url} per frontmatter.`,
             );
           } else {
-            const metaDescription =
-              metaDescriptionElement?.getAttribute("content") || null;
-              const descriptionPercentage = calculateCommonWordPercentage(metaDescription as string);
+            const metaDescription = metaDescriptionElement?.getAttribute("content") || null;
+            const descriptionPercentage = calculateCommonWordPercentage(
+              metaDescription as string,
+            );
             if (
-              metaDescription &&
-              descriptionPercentage >=
-                options.thresholdCommonWordsPercent
+              metaDescription
+              && descriptionPercentage
+                >= options.thresholdCommonWordsPercent
             ) {
               warnings[warningCount++] =
                 `Meta description common word percentage (${descriptionPercentage}) meets or exceeds ${options.thresholdCommonWordsPercent}`;
@@ -492,7 +487,6 @@ export default function seo(userOptions?: Options) {
         }
       } else {
         deleteReportFile();
-        cachedWarnings.clear();
         logEvent("SEO: No warnings to report! Good job! 🎉");
       }
     });
