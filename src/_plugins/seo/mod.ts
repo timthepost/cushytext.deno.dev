@@ -303,7 +303,7 @@ export default function seo(userOptions?: Options) {
             locale,
           );
           if (titleLength >= options.thresholdLength) {
-            warnings[warningCount] = `Title is over ${options.thresholdLength} ${lengthUnit}; less is more.`;
+            warnings[warningCount] = `Title is over ${options.thresholdLength} ${lengthUnit}(s); less is more.`;
           }
         }
 
@@ -317,7 +317,7 @@ export default function seo(userOptions?: Options) {
             * options.thresholdLengthPercentage;
           if (urlLength >= maxLength) {
             warnings[warningCount++] =
-              `URL meets or exceeds ${maxLength} ${lengthUnit}, which is ${options.thresholdLengthPercentage} of the title limit; consider shortening.`;
+              `URL meets or exceeds ${maxLength} ${lengthUnit}(s), which is ${options.thresholdLengthPercentage} of the title limit; consider shortening.`;
           }
         }
 
@@ -335,12 +335,12 @@ export default function seo(userOptions?: Options) {
               );
               if (contentLength < options.thresholdContentMinimum) {
                 warnings[warningCount++] =
-                  `Content length (${contentLength}) is less than ${options.thresholdContentMinimum} ${lengthUnit}, anything to add?`;
+                  `Content length (${contentLength}) is less than ${options.thresholdContentMinimum} ${lengthUnit}(s), anything to add?`;
               } else if (
                 contentLength >= options.thresholdContentMaximum
               ) {
                 warnings[warningCount++] =
-                  `Content length meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}, can this be split up?`;
+                  `Content length meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}(s), can this be split up?`;
               }
             }
           }
@@ -443,7 +443,7 @@ export default function seo(userOptions?: Options) {
                   >= options.thresholdMetaDescriptionLength
               ) {
                 warnings[warningCount++] =
-                  `Meta description length meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}`;
+                  `Meta description length meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}(s)`;
               }
             }
           }
