@@ -340,7 +340,7 @@ export default function seo(userOptions?: Options) {
                 contentLength >= options.thresholdContentMaximum
               ) {
                 warnings[warningCount++] =
-                  `Content length meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}(s), can this be split up?`;
+                  `Content length (${contentLength}}) meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}(s), can this be split up?`;
               }
             }
           }
