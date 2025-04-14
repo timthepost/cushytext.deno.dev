@@ -2,8 +2,9 @@
 
 DEST="/home/dev/code/cushytext-theme/"
 
-echo "Syncing theme template files downstream ..."
+echo "Syncing theme bundleables downstream ..."
 
+cp -dpfR _plugins/seo/* ${DEST}/src/_plugins/seo/
 cp -dpfR _includes/templates/* ${DEST}/src/_includes/templates/
 cp -dpfR _includes/layouts/* ${DEST}/src/_includes/layouts/
 cp -dpfR _components/* ${DEST}/src/_components/
