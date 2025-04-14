@@ -1,0 +1,103 @@
+---
+title: SimpleSEO Static Plugin Has A Dynamic Roadmap Ahead!
+description: A rundown of major changes planned for 0.1.0
+date: '2025-04-14'
+author: Tim Post
+draft: true
+menu:
+  visible: true
+  order: 0
+tags:
+  - simple-seo
+  - announcements
+metas:
+  lang: en
+  description: A rundown of major changes planned for 0.1.0 in the SimpleSEO Static Analysis Plugin That Comes With CushyText.
+  tags:
+    - Search Engine Optimization
+    - SEO Plugin For Lume
+    - Static Analysis SEO
+    - International SEO plugin
+    - i18n SEO plugin
+  image: /blog/seo-plugin-roadmap/index.png
+  robots: true
+  generator: true
+---
+
+The [SEO plugin](https://github.com/timthepost/cushytext-theme?tab=readme-ov-file#just-using-the-simple-seo-plugin) 
+did extremely well in the limited, but very thorough trials
+with both English and non-english sites, and grew around ten
+new configuration options in the process.
+
+It's well-suited for light-to-medium production use. I want to 
+talk about what it would need in order to run in reasonable time
+with limited configuration if someone had tens of thousands of 
+pages in multiple languages. Here's what I think the plugin needs
+for the next major release:
+
+<img
+  class="blog_image"
+  src="/blog/seo-plugin-roadmap/index.png" 
+  alt="TODO: Description" 
+  title="TODO: Title" />
+
+{/* more */} 
+  
+
+  
+## Object-Style Configuration
+
+It has become clear that supporting words, characters, sentences, 
+and the rest of the segmentation API is popular, but the exclusive
+nature of one-for-all is frustrating. 
+
+There's also the issue of n'th to the n'th options ending up in
+this thing and I'm not really trying to emulate `wget` here.
+
+So, we're going to move to a custom declarative syntax where we 
+specify a number followed by the character 'c', 'w', 's' (character,
+word, sentence, etc) for each option supported by the International
+segmentation API. 
+
+This would allow measuring titles in characters but overall content
+length being measured in words, or even 'g' for grapheme.
+
+## Hashing Of Content Document Object
+
+Notice that, on every save, the plugin processes all of the targets 
+again, even those that didn't change. If you have a blog with 50
+posts that's not a big deal, but it could start to burn up your free
+CI build minutes for something larger in several languages. 
+
+A small but very pleasant change in Lume 3 is always being able to
+count on the `document` object being available in the page object. 
+It doesn't guarantee anything about what might be _in it_, but it 
+does guarantee each page has one. We can use this to take a fast 
+fingerprint to see if a page changed since last time, and possibly 
+skip lots of segmentation at the cost of SHA1. That may or may 
+not be an appealing proposition, depending on your circumstances. What 
+matters is you have the option.
+
+## Querying Of Index Status / Auto Update Crawlers
+
+The plugin needs to be able to do these two things:
+
+ 1. Query Google Console API and retrieve the current 
+    URL's status (indexed or not, why not, last visited, etc)
+
+ 2. Ping the Bing Webmaster Tools to notify crawlers 
+    of content updates, so re-crawls can happen fluidly 
+    and quickly.
+
+This should not be hard to do once we have some method of 
+caching / hashing.
+
+That's more than enough to keep me busy for the next two or more 
+releases, so we'll leave off here for now. Now you can better decide
+if it's something you want to use at this stage or not. I hope this
+roadmap was helpful in that decision!
+
+
+
+
+

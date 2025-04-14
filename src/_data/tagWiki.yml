@@ -125,3 +125,11 @@ v0.0.1:
     This is the very first release of Cushy Text, with the first release
     candidate planned for release the first week of April, 2025.
   related_tags: ["announcements", "updates"]
+
+simple-seo:
+  summary: > 
+    The SEO plugin that ships with CushyText, and performs many checks to
+    catch mistakes that commonly happen with markdown-driven static sites
+    like those that use Lume. The plugin will work with any site using
+    Lume 3+ (the template is not required) and is highly configurable.
+  related_tags: ["lume-3"]
