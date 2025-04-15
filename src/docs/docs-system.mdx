@@ -91,18 +91,21 @@ Right now, `/docs` comes manually set-up wih the theme so you have the
 documentation right there when developing and customizing it. The feed
 is set up in `plugins.ts` where the rest of the feeds are created. 
 
+## Docs Subdirectory Setup 
+
+The title of the `index.mdx` file in any sub directory will be the title
+of the category in the nav. If there's no `index.mdx` file, then the folder
+name is used as the category name.
+
+To control where a category sits in the overall nav, adjust the `menu.order`
+property of the index file in that directory. To control where files within 
+directories appear in the nav, adjust their individual `menu.order` settings.
+
+Default is ascending (`/docs/index.mdx` has a value of -1 to stay on top).
+
+See `docs/folder1/` for a practical example.
+
 ## Docs Feature Roadmap In The Theme:
 
-The current navigation generation does ***not*** deal with nested
-directories very well at all. My goal for "good enough to ship" 
-was "good enough to document this theme with" and we've far surpassed
-that, but it needs more work.
-
-Right now it just uses a simple search with a waypoint to build the 
-nav, which isn't sufficient to handle a tree. I plan to change this over
-to use the nav plugin (`nav.menu.children()`), but it's a fair amount of 
-work and not for the first release. Not only the side nav, but also the 
-responsive fly-out nav.
-
-Maybe by the third release, `docs` will be flexible enough for large 
-projects too.
+Need better closers / styles for the nav (or, to just use them correctly,
+which we don't currently do quite yet)
