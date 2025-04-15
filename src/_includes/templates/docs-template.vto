@@ -49,21 +49,54 @@
     </div>
     <h3 class="toc-heading">{{ locale.documentation.toc_heading }}</h3>
     <div id="toc"></div>
-    <h3 class="margin-vert--md" id="docs-nav-header">{{ docs.title || locale.documentation.topics }}:</h3>
-    <div class="menu thin-scrollbar margin-top--xs">
-      <ul class="menu__list">
-      {{ if docs.sidebar === "auto" }}
-        {{ for entry of search.pages(`url^=${docs.basedir} menu.visible=true`, "menu.order") }}
-          <li class="menu__list--item">
-            {{ set isActive = entry.url === url }}
-            <a class="{{ if isActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ entry.url }}">{{ entry.title }}</a>
-          </li>
-        {{ /for }}
+    {{ if docs.sidebar === "auto" }}
+      <h3 class="margin-vert--md" id="docs-dev-header">{{ docs.title || locale.documentation.topics }}:</h3>
+      {{ set menuData = nav.menu(docs.basedir, "", "menu.order=asc") }}
+      {{ if menuData }}
+        <div class="menu thin-scrollbar margin-top--xs">
+          <ul class="menu__list">
+            {{# 1. Render the Root/Index Page Link first #}}
+            {{ if menuData.data && menuData.data.url && menuData.data.title }}
+              <li class="menu__list-item">
+                {{ set isRootActive = menuData.data.url === url }}
+                <a class="{{ if isRootActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ menuData.data.url }}">
+                  {{ menuData.data.title }}
+                </a>
+              </li>
+            {{ /if }}
+            {{# Now loop through the children #}}
+            {{ if menuData.children && menuData.children.length > 0 }}
+              {{ for item of menuData.children }}
+                <li class="menu__list-item">
+                  {{ if item.children && item.children.length > 0 }}
+                    {{# This is a category with children #}}
+                    <strong>{{ item.data.title }}</strong>
+                    <ul class="menu__list">
+                      {{ for subItem of item.children }}
+                        <li class="menu__list-item">
+                          {{ set isSubActive = subItem.data.url === url }}
+                          <a class="{{ if isSubActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ subItem.data.url }}">
+                            {{ subItem.data.title }}
+                          </a>
+                        </li>
+                      {{ /for }}
+                    </ul>
+                  {{ else }}
+                    {{# This is a regular page (no children) #}}
+                    {{ set isActive = item.data.url === url }}
+                    <a class="{{ if isActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ item.data.url }}">
+                      {{ item.data.title }}
+                    </a>
+                  {{ /if }}
+                </li>
+              {{ /for }}
+            {{ /if }} {{# End of children loop check #}}
+          </ul>
+        </div>
       {{ else }}
-        <p>{{ locale.documentation.no_custom_sidebars }}</p>
-      {{ /if }}
-      </ul>
-    </div>
+        <p>No navigation items found. Perhaps put something in the <code>{{ docs.basedir }}</code> directory?</p>
+      {{ /if }} {{# End of menuData check #}}
+    {{ /if }} {{# End of docs.sidebar check #}}
     {{ if docs.sidebar === "auto" }}
     {{ await comp.feedback({ basename: url }) }}
       {{ if docs.guest }}
