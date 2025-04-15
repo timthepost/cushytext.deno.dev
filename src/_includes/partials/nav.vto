@@ -150,6 +150,7 @@
         </button>
 
         <!-- what's up, doc? -->
+        <!-- TODO: deal with nested directories here, too -->
         {{ if docs }}
         <ul class="menu__list">
           {{ for entry of search.pages(`url^=${docs.basedir}`, "menu.order") }}
