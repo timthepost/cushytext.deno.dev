@@ -93,12 +93,12 @@
     {{ /if }}
     {{ if pagination && pagination.totalPages !== 1 }}
       <p style="font-size: 135%; font-weight: bold">
-        {{ locale.archive.page }}
+        {{ locale.archive.page }}:&nbsp;
         {{ pagination.page }}
         {{ locale.archive.page_of }}
         {{ pagination.totalPages }}
-        ( {{ pagination.totalResults }}
-        {{ locale.archive.total_results }} )
+        &nbsp;&nbsp;({{ pagination.totalResults }}
+        {{ locale.archive.total_results }})
       </p>
       <nav class="pagination-nav margin-top--lg">
         <div class="pagination-nav__item">
