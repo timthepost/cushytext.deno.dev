@@ -11,31 +11,8 @@ metas:
 
 # {title}
 
-This page is here so you can see how it works.
+This page is here so you can see how sub-folders work.
 
-## Sort Order (menu.order):
-
-The reason this group is at the bottom of the list is because the 
-`index.mdx` in this folder, `folder1/`, has an `order` value of 
-15. That orders this folder low in the main nav. Here's the contents
-of {docs.basedir}index.mdx:
-
-```jsx
----
-title: Example Folder Named folder1/
-menu:
-  visible: true
-  order: 15
----
-```
-
-## Group / Category Naming:
-
-The name of the index in any directory is the name of the category. Now, the 
-`order` setting on the individual files within this folder control the order 
-in which they appear in the group. The orders should be the same or _greater_
-than the order assigned to the index.
-
-Folders work one-level deep, which is pretty good for a template hack!
+## See Also 
 
 **See also: [How the docs system works](/docs/docs-system/).**

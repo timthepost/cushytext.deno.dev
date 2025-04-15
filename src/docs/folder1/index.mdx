@@ -11,33 +11,27 @@ metas:
 
 # {title}
 
-this is {docs.basedir}/folder1/index.mdx.
+**This is {docs.basedir}folder1/index.mdx.**
 
-Index files in sub folders set the name of the category. If there's 
-no index with a `title`, the folder name is used instead. Notice 
+## Sub-Folders In Docs Are Supported 1-Level Deep
+
+Index files in sub-folders set the name of the category. If there's 
+no index with a `title`, the folder / directory name is used instead. Notice 
 this file has an order of 15 from its frontmatter:
 
 ```yml
----
 title: Example folder1/ Category
 menu:
   visible: true
   order: 15
-seo:
-  ignore: true
-metas:
-  robots: false
----
 ```
 
 This pins it to the bottom, unless something else is added with 
 a value _greater_ than 15. The nav is built based on `menu.order`
-_ascending_.
+_ascending_. Additional pages in sub-section / categories should have a value of
+ _at least_ the same as the parent index page in order for the progress (next / prev) nav
+paths to work. 
 
-Pages in this section / category should have a value of _at least_
-the same as this in order for the progress (next / prev) nav
-paths to work.
-
-Feel free to delete this entire folder; it's just here to show 
-you how sub-folders work in docs.
+Feel free to delete this folder; it's just here to show you how sub-folders work in 
+docs.
 
