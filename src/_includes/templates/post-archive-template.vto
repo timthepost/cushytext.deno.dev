@@ -92,28 +92,29 @@
       {{ /for }}
     {{ /if }}
     {{ if pagination && pagination.totalPages !== 1 }}
-      <p>
+      <p style="font-size: 135%; font-weight: bold;">
         {{ locale.archive.page }}
         {{ pagination.page }}
         {{ locale.archive.page_of }}
         {{ pagination.totalPages }}
-        {{ pagination.totalResults }}
-        {{ locale.archive.total_results }}
+        ( {{ pagination.totalResults }} {{ locale.archive.total_results }} )
       </p>
-      <p>
         {{ if pagination.previous }}
           <a
             href="{{ pagination.previous }}"
             class="margin-horiz--sm"
             rel="prev"
+            style="font-size: 135%; font-weight: bold;"
           >{{ locale.archive.previous }}</a>
         {{ /if }}
         {{ if pagination.next }}
-          <a href="{{ pagination.next }}" class="margin-horiz--sm" rel="next">{{
+          <a 
+            href="{{ pagination.next }}"
+            style="font-size: 135%; font-weight: bold;" 
+            class="margin-horiz--sm" rel="next">{{
             locale.archive.next
           }}</a>
         {{ /if }}
-      </p>
     {{ /if }}
   </div>
   <div class="col col--3">
