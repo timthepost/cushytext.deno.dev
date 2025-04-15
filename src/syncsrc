@@ -12,6 +12,8 @@ cp -dpfR docs/* ${DEST}/src/docs/
 cp -dpf style.css ${DEST}/src/style.css
 cp -dpf script.js ${DEST}/src/script.js
 cp -dpf 404.md ${DEST}/src/404.md
-cp -dpf _server_routes.ts ${DEST}/src/_server_routes.ts
 cp -dpf _serve.ts ${DEST}/src/_serve.ts
 cp -dpf _data.yml ${DEST}/src/_data.yml
+
+echo "You must sync _server_routes.ts manually, since this one is always dev-mode."
+# cp -dpf _server_routes.ts ${DEST}/src/_server_routes.ts
