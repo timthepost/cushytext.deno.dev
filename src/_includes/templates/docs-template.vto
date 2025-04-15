@@ -68,7 +68,8 @@
             {{ if menuData.children && menuData.children.length > 0 }}
               {{ for item of menuData.children }}
                 {{ if item.children && item.children.length  > 0 }}
-                <li class="menu__list-item menu__list-item--collapsed">
+                <!-- add menu__list-item--collapsed to any to control default open / close -->
+                <li class="menu__list-item">
                  {{ else }}
                  <li class="menu__list-item">
                 {{ /if }}
