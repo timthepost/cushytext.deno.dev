@@ -1,5 +1,5 @@
 ---
-title: Example Folder Named folder1/
+title: Example folder1/ Category
 menu:
   visible: true
   order: 15
@@ -11,5 +11,33 @@ metas:
 
 # {title}
 
-This will not be currently seen if this is a sub directory. Bug.
+this is {docs.basedir}/folder1/index.mdx.
+
+Index files in sub folders set the name of the category. If there's 
+no index with a `title`, the folder name is used instead. Notice 
+this file has an order of 15 from its frontmatter:
+
+```yml
+---
+title: Example folder1/ Category
+menu:
+  visible: true
+  order: 15
+seo:
+  ignore: true
+metas:
+  robots: false
+---
+```
+
+This pins it to the bottom, unless something else is added with 
+a value _greater_ than 15. The nav is built based on `menu.order`
+_ascending_.
+
+Pages in this section / category should have a value of _at least_
+the same as this in order for the progress (next / prev) nav
+paths to work.
+
+Feel free to delete this entire folder; it's just here to show 
+you how sub-folders work in docs.
 
