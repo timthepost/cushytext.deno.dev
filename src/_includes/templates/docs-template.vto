@@ -67,10 +67,20 @@
             {{# Now loop through the children #}}
             {{ if menuData.children && menuData.children.length > 0 }}
               {{ for item of menuData.children }}
-                <li class="menu__list-item">
+                {{ if item.children && item.children.length  > 0 }}
+                <li class="menu__list-item menu__list-item--collapsed">
+                 {{ else }}
+                 <li class="menu__list-item">
+                {{ /if }}
                   {{ if item.children && item.children.length > 0 }}
                     {{# This is a category with children #}}
-                    <strong>{{ item.data.title }}</strong>
+                    <div class="menu__list-item-collapsible">
+                      <a class="menu__link" href="{{ item.data.url }}">
+                      {{ item.data.title }}
+                      </a>
+                      <button type="button" class="clean-btn menu__caret">
+                      </button>
+                    </div>
                     <ul class="menu__list">
                       {{ for subItem of item.children }}
                         <li class="menu__list-item">
@@ -96,9 +106,7 @@
       {{ else }}
         <p>No navigation items found. Perhaps put something in the <code>{{ docs.basedir }}</code> directory?</p>
       {{ /if }} {{# End of menuData check #}}
-    {{ /if }} {{# End of docs.sidebar check #}}
-    {{ if docs.sidebar === "auto" }}
-    {{ await comp.feedback({ basename: url }) }}
+      {{ await comp.feedback({ basename: url }) }}
       {{ if docs.guest }}
     <h4 class="margin-vert--md">{{ docs.guest.heading }}</h4>
     <div class="menu thin-scrollbar margin-top--xs">
@@ -112,6 +120,6 @@
       </ul>
       {{ /if }}
     </div>
-    {{ /if }}
+  {{ /if }} {{# docs.sidebar === "auto" #}}
   </div>
 </div>
