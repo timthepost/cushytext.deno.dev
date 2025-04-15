@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   const container = document.getElementById("page-feedback");
   if (!container) {
     // nothing to do
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const basename = container.dataset.basename;
   if (!basename) {
     return console.error(
-      'comp.feedback: missing "data-basename" attribute in page-feedback element.',
+      "comp.feedback: missing \"data-basename\" attribute in page-feedback element.",
     );
   }
 
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
   updateCharCount();
   comment.addEventListener("input", updateCharCount);
 
-  clear.addEventListener("click", function (event) {
+  clear.addEventListener("click", function(event) {
     event.preventDefault();
     comment.value = "";
     voteButtons.forEach((button) => {
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCharCount();
   });
 
-  submit.addEventListener("click", function (event) {
+  submit.addEventListener("click", function(event) {
     event.preventDefault();
     const verify = document.getElementById("page-feedback-verify");
     const feedbackData = new Object();
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   voteButtons.forEach((button) => {
-    button.addEventListener("click", function (event) {
+    button.addEventListener("click", function(event) {
       event.preventDefault();
       const _vote = parseInt(button.dataset.vote);
       form.style.display = "block";

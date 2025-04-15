@@ -26,8 +26,8 @@ router.get("/api", ({ _request }) => {
 
 // Optional (and can be made local only) the SEO report
 router.get("/api/seo-report", ({ _request }) => {
-  if (! DEV_MODE) {
-    return new Response(JSON.stringify({ error: "Not in dev mode" }), { 
+  if (!DEV_MODE) {
+    return new Response(JSON.stringify({ error: "Not in dev mode" }), {
       status: 500,
     });
   }
@@ -51,8 +51,8 @@ router.get("/api/seo-report", ({ _request }) => {
 
 // Optional, can be made local only as well. Broken links. I plan to combine these.
 router.get("/api/broken-links-report", ({ _request }) => {
-  if (! DEV_MODE) {
-    return new Response(JSON.stringify({ error: "Not in dev mode" }), { 
+  if (!DEV_MODE) {
+    return new Response(JSON.stringify({ error: "Not in dev mode" }), {
       status: 500,
     });
   }
@@ -60,7 +60,7 @@ router.get("/api/broken-links-report", ({ _request }) => {
   try {
     const data = Deno.readTextFileSync(path);
     return new Response(data, { status: 200 });
-  } catch (error) { 
+  } catch (error) {
     if (error instanceof Deno.errors.NotFound) {
       return new Response(JSON.stringify({ error: "File not found" }), {
         status: 404,
@@ -68,7 +68,7 @@ router.get("/api/broken-links-report", ({ _request }) => {
     }
     return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500,
-    })
+    });
   }
 });
 

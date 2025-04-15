@@ -16,8 +16,8 @@
 
 .admin-button {
   border: 2.5px solid steelblue;
-  padding: .75em;
-  border-radius: .25em;
+  padding: 0.75em;
+  border-radius: 0.25em;
   margin: 1em 0;
   cursor: pointer;
 }
@@ -31,8 +31,8 @@
   background-color: #fff;
   color: red;
   border: 2.5px solid rgb(176, 9, 9);
-  border-radius: .25em;
-  padding: .75em;
+  border-radius: 0.25em;
+  padding: 0.75em;
   cursor: pointer;
 }
 

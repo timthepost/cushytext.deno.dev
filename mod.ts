@@ -4,7 +4,7 @@ import "lume/types.ts";
 
 export type { Options } from "./plugins.ts";
 
-export default function (options: Partial<Options> = {}) {
+export default function(options: Partial<Options> = {}) {
   return (site: Lume.Site) => {
     // Configure the site
     site.use(plugins(options));
@@ -85,7 +85,7 @@ export default function (options: Partial<Options> = {}) {
       "generators/archive_page.js",
       "uploads/_data.yml",
       "uploads/_favicon.svg",
-      "docs/_data.yml", 
+      "docs/_data.yml",
       "docs/archetypes.mdx",
       "docs/blog-system.mdx",
       "docs/index.mdx",
@@ -112,7 +112,7 @@ export default function (options: Partial<Options> = {}) {
       "deno.json",
       "mod.ts",
       ".gitignore",
-      "README.md"
+      "README.md",
     ];
 
     for (const file of files) {

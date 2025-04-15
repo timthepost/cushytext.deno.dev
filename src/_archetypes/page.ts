@@ -1,4 +1,4 @@
-export default function (title: string) {
+export default function(title: string) {
   const slug = title.replace(/\s+/g, "-").toLowerCase();
   const pageContent = `
 

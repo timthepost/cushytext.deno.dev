@@ -1,4 +1,4 @@
-export default function (title: string) {
+export default function(title: string) {
   const slug = title.replace(/\s+/g, "-").toLowerCase();
   const pageContent = `
 
@@ -36,7 +36,7 @@ Heading support text.
       tags: ["tag-1", "tag-2"],
       metas: {
         lang: "en",
-        description: '"=description"',
+        description: "\"=description\"",
         tags: ["meta tag one", "meta tag two"],
         // TODO - add argument for path here
         image: "/blog/" + slug + "/index.png",

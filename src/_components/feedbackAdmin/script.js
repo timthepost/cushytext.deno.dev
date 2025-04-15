@@ -86,7 +86,9 @@ async function loadFeedbackTable(containerId) {
       row.appendChild(voteCell);
 
       const commentCell = document.createElement("td");
-      commentCell.textContent = feedbackData.comment ? decodeHtmlEntities(feedbackData.comment) : "N/A";
+      commentCell.textContent = feedbackData.comment
+        ? decodeHtmlEntities(feedbackData.comment)
+        : "N/A";
       row.appendChild(commentCell);
 
       const actionsCell = document.createElement("td");
@@ -136,8 +138,7 @@ async function loadFeedbackTable(containerId) {
     container.appendChild(table);
   } catch (error) {
     console.error("Error fetching or displaying feedback:", error);
-    container.innerHTML =
-      `<p>Error loading feedback: <em>${error.message}</em></p>`;
+    container.innerHTML = `<p>Error loading feedback: <em>${error.message}</em></p>`;
   }
 }
 
@@ -195,7 +196,7 @@ async function loadReportTable(containerId, apiEndpoint) {
 
       const issuesCell = document.createElement("td");
       const issuesList = document.createElement("ul");
-      reportData[url].forEach(issue => {
+      reportData[url].forEach((issue) => {
         const listItem = document.createElement("li");
         listItem.classList.add("margin-top--sm", "margin-right--sm");
         listItem.textContent = issue;
@@ -203,7 +204,7 @@ async function loadReportTable(containerId, apiEndpoint) {
       });
       issuesCell.appendChild(issuesList);
       row.appendChild(issuesCell);
-      
+
       tbody.appendChild(row);
     }
 
@@ -231,7 +232,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const feedbackContainer = document.getElementById(feedbackContainerId);
   const seoReportContainer = document.getElementById(seoReportContainerId);
-  const brokenLinksReportContainer = document.getElementById(brokenLinksReportContainerId);
+  const brokenLinksReportContainer = document.getElementById(
+    brokenLinksReportContainerId,
+  );
 
   if (feedbackContainer) {
     loadFeedbackTable(feedbackContainerId);
@@ -242,7 +245,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "click",
       () => refreshFeedbackTable(feedbackContainerId),
     );
-    feedbackContainer.parentNode.insertBefore(refreshFeedbackButton, feedbackContainer);
+    feedbackContainer.parentNode.insertBefore(
+      refreshFeedbackButton,
+      feedbackContainer,
+    );
   }
 
   if (seoReportContainer) {
@@ -254,7 +260,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "click",
       () => refreshReportTable(seoReportContainerId, "/api/seo-report"),
     );
-    seoReportContainer.parentNode.insertBefore(refreshSeoReportButton, seoReportContainer);
+    seoReportContainer.parentNode.insertBefore(
+      refreshSeoReportButton,
+      seoReportContainer,
+    );
   }
 
   if (brokenLinksReportContainer) {
@@ -264,8 +273,15 @@ document.addEventListener("DOMContentLoaded", () => {
     refreshBrokenLinksReportButton.classList.add("admin-button");
     refreshBrokenLinksReportButton.addEventListener(
       "click",
-      () => refreshReportTable(brokenLinksReportContainerId, "/api/broken-links-report"),
+      () =>
+        refreshReportTable(
+          brokenLinksReportContainerId,
+          "/api/broken-links-report",
+        ),
     );
-    brokenLinksReportContainer.parentNode.insertBefore(refreshBrokenLinksReportButton, brokenLinksReportContainer);
+    brokenLinksReportContainer.parentNode.insertBefore(
+      refreshBrokenLinksReportButton,
+      brokenLinksReportContainer,
+    );
   }
 });
