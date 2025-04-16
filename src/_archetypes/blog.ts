@@ -10,24 +10,33 @@ Opening Text
   alt="TODO: Description" 
   title="TODO: Title" />
 
-Supportive text.
+Supportive Text
 
 {/* more */} 
-  
+<div id="more></div>
+
 Segue Text
   
 ## First Heading
 
-Heading support text.
+Supportive Text
+
+## Second Heading
+
+Supportive Text
+
+## Closing Heading
+
+Closing Text
 
 `;
   return {
     path: `blog/${slug}.mdx`,
     content: {
       title: title,
-      description: "TODO: Description",
+      description: "TODO: Description (Used In OG Image Generation, Teaser Text On The Site)",
       date: new Date().toISOString().slice(0, 10),
-      author: "Mike Wazowski",
+      author: "Tim Post",
       draft: true,
       menu: {
         visible: true,
@@ -36,9 +45,9 @@ Heading support text.
       tags: ["tag-1", "tag-2"],
       metas: {
         lang: "en",
-        description: "\"=description\"",
+        description: "TODO: Description (Used Strictly As Meta Description)",
         tags: ["meta tag one", "meta tag two"],
-        // TODO - add argument for path here
+        // TODO - add argument for path here (for multi-instance compatibility)
         image: "/blog/" + slug + "/index.png",
         robots: true,
         generator: true,
