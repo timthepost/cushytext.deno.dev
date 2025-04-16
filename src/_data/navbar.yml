@@ -55,6 +55,9 @@ footer:
       - text: Tim's Personal Site For Fiction
         href: "https://timthepost.deno.dev"
 
+      - text: "Tim On Mastodon"
+      - href: https://indieauthors.social/@timthepost
+
   - category: "Other Useful Resources:"
     links:
       - text: Lume Documentation
