@@ -33,14 +33,13 @@
       {{ else }}
       <h3 class="margin-top--md" style="font-size: 12pt">{{ docs.basedir }} {{ locale.documentation.feeds }}</h3>
       {{ /if }}
-            <p>
-        <a href="/docs/feed.xml" class="navbar__link" aria-label="RSS Feed" title="{{ locale.feeds.rss }}">
+      <p>
+        <a href="/docs/feed.xml" class="navbar__link" aria-label="RSS Feed" title="{{ locale.feeds.rss }}" style="margin-right: 1em;">
           <span class="badge badge--warning padding--sm" style="font-size: 12pt">
             <img src="{{ "rss" |> icon("phosphor", "bold") }}" style="height: 32px" alt="RSS" title="{{ locale.feeds.rss }}">
           </span>
         </a>
-        <span class="margin-horiz--sm">|</span>
-        <a href="/docs/feed.json" class="navbar__link" aria-label="JSON Feed" title="{{ locale.feeds.json }}">
+        <a href="/docs/feed.json" class="navbar__link" aria-label="JSON Feed" title="{{ locale.feeds.json }}" style="margin-left: 1em;">
           <span class="badge badge--warning padding--sm" style="font-size: 12pt">
             <img src="{{ "brackets-curly" |> icon("phosphor", "bold") }}" style="height: 32px" alt="JSON" title="{{ locale.feeds.json }}">
           </span>
@@ -50,77 +49,77 @@
     <h3 class="toc-heading">{{ locale.documentation.toc_heading }}</h3>
     <div id="toc"></div>
     {{ if docs.sidebar === "auto" }}
-      <h3 class="margin-vert--md" id="docs-dev-header">{{ docs.title || locale.documentation.topics }}:</h3>
-      {{ set menuData = nav.menu(docs.basedir, "", "menu.order=asc") }}
-      {{ if menuData }}
-        <div class="menu thin-scrollbar margin-top--xs">
-          <ul class="menu__list">
-            {{# 1. Render the Root/Index Page Link first #}}
-            {{ if menuData.data && menuData.data.url && menuData.data.title }}
-              <li class="menu__list-item">
-                {{ set isRootActive = menuData.data.url === url }}
-                <a class="{{ if isRootActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ menuData.data.url }}">
-                  {{ menuData.data.title }}
-                </a>
-              </li>
+    <h3 class="margin-vert--md" id="docs-dev-header">{{ docs.title || locale.documentation.topics }}:</h3>
+    {{ set menuData = nav.menu(docs.basedir, "", "menu.order=asc") }}
+    {{ if menuData }}
+    <div class="menu thin-scrollbar margin-top--xs">
+      <ul class="menu__list">
+        {{# Render the Root/Index Page Link first #}}
+        {{ if menuData.data && menuData.data.url && menuData.data.title }}
+          <li class="menu__list-item">
+            {{ set isRootActive = menuData.data.url === url }}
+            <a class="{{ if isRootActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ menuData.data.url }}">
+              {{ menuData.data.title }}
+            </a>
+          </li>
+        {{ /if }}
+        {{# Now loop through the children #}}
+        {{ if menuData.children && menuData.children.length > 0 }}
+          {{ for item of menuData.children }}
+            {{ if item.children && item.children.length  > 0 }}
+            {{# add menu__list-item--collapsed to any to control default open / close #}}
+            <li class="menu__list-item">
+            {{ else }}
+            <li class="menu__list-item">
             {{ /if }}
-            {{# Now loop through the children #}}
-            {{ if menuData.children && menuData.children.length > 0 }}
-              {{ for item of menuData.children }}
-                {{ if item.children && item.children.length  > 0 }}
-                <!-- add menu__list-item--collapsed to any to control default open / close -->
-                <li class="menu__list-item">
-                 {{ else }}
-                 <li class="menu__list-item">
-                {{ /if }}
-                  {{ if item.children && item.children.length > 0 }}
-                    {{# This is a category with children #}}
-                    <div class="menu__list-item-collapsible">
-                      <a class="menu__link" href="{{ item.data.url }}">
-                      {{ item.data.title }}
+                {{ if item.children && item.children.length > 0 }}
+                {{# This is a category with children #}}
+                <div class="menu__list-item-collapsible">
+                  <a class="menu__link" href="{{ item.data.url }}">
+                  {{ item.data.title }}
+                  </a>
+                  <button type="button" class="clean-btn menu__caret">
+                  </button>
+                </div>
+                <ul class="menu__list">
+                    {{ for subItem of item.children }}
+                    <li class="menu__list-item">
+                      {{ set isSubActive = subItem.data.url === url }}
+                      <a class="{{ if isSubActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ subItem.data.url }}">
+                        {{ subItem.data.title }}
                       </a>
-                      <button type="button" class="clean-btn menu__caret">
-                      </button>
-                    </div>
-                    <ul class="menu__list">
-                      {{ for subItem of item.children }}
-                        <li class="menu__list-item">
-                          {{ set isSubActive = subItem.data.url === url }}
-                          <a class="{{ if isSubActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ subItem.data.url }}">
-                            {{ subItem.data.title }}
-                          </a>
-                        </li>
-                      {{ /for }}
-                    </ul>
-                  {{ else }}
-                    {{# This is a regular page (no children) #}}
-                    {{ set isActive = item.data.url === url }}
-                    <a class="{{ if isActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ item.data.url }}">
-                      {{ item.data.title }}
-                    </a>
-                  {{ /if }}
-                </li>
-              {{ /for }}
-            {{ /if }} {{# End of children loop check #}}
-          </ul>
-        </div>
-      {{ else }}
-        <p>No navigation items found. Perhaps put something in the <code>{{ docs.basedir }}</code> directory?</p>
-      {{ /if }} {{# End of menuData check #}}
-      {{ await comp.feedback({ basename: url }) }}
-      {{ if docs.guest }}
+                    </li>
+                  {{ /for }}
+                </ul>
+                {{ else }}
+                {{# This is a regular page (no children) #}}
+                {{ set isActive = item.data.url === url }}
+                <a class="{{ if isActive }}menu__link--active{{ else }}menu__link{{ /if }}" href="{{ item.data.url }}">
+                  {{ item.data.title }}
+                </a>
+              {{ /if }}
+            </li>
+          {{ /for }}
+        {{ /if }} {{# End of children loop check #}}
+      </ul>
+    </div>
+    {{ else }}
+    <p>No navigation items found. Perhaps put something in the <code>{{ docs.basedir }}</code> directory?</p>
+    {{ /if }} {{# End of menuData check #}}
+    {{ await comp.feedback({ basename: url }) }}
+    {{ if docs.guest }}
     <h4 class="margin-vert--md">{{ docs.guest.heading }}</h4>
     <div class="menu thin-scrollbar margin-top--xs">
       <ul class="menu__list">
-        {{ for entry of search.pages(`waypoint=${docs.guest.waypoint} menu.visible=true`, 
-          "date=desc", docs.guest.posts) }}
-          <li class="menu__list--item">
-            <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
-          </li>
-        {{ /for }}
+      {{ for entry of search.pages(`waypoint=${docs.guest.waypoint} menu.visible=true`, 
+        "date=desc", docs.guest.posts) }}
+        <li class="menu__list--item">
+          <a class="menu__link" href="{{ entry.url }}">{{ entry.title }}</a>
+        </li>
+      {{ /for }}
       </ul>
-      {{ /if }}
     </div>
-  {{ /if }} {{# End of docs.sidebar === "auto" check #}}
+    {{ /if }} {{# End of docs.guest check #}}
+    {{ /if }} {{# End of docs.sidebar === "auto" check #}}
   </div>
 </div>
