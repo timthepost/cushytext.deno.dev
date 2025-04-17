@@ -102,20 +102,22 @@
       </p>
       <nav class="pagination-nav margin-top--lg">
         <div class="pagination-nav__item">
-        {{ if pagination.previous }}
-          <a class="pagination-nav__link" href="{{ pagination.previous }}">
-            <div class="pagination-nav__label">{{ locale.archive.previous }}</div>
-          </a>
-        {{ /if }}
+          {{ if pagination.previous }}
+            <a class="pagination-nav__link" href="{{ pagination.previous }}">
+              <div class="pagination-nav__label">
+                {{ locale.archive.previous }}
+              </div>
+            </a>
+          {{ /if }}
         </div>
         <div class="pagination-nav__item pagination-nav__item--next">
-        {{ if pagination.next  }}
-          <a class="pagination-nav__link" href="{{ pagination.next }}">
-            <div class="pagination-nav__label" style="text-align: right">
-              {{ locale.archive.next }}
-            </div>
-          </a>
-        {{ /if }}
+          {{ if pagination.next }}
+            <a class="pagination-nav__link" href="{{ pagination.next }}">
+              <div class="pagination-nav__label" style="text-align: right">
+                {{ locale.archive.next }}
+              </div>
+            </a>
+          {{ /if }}
         </div>
       </nav>
     {{ /if }}
