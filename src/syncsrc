@@ -8,7 +8,6 @@ cp -dpfR _plugins/seo/* ${DEST}/src/_plugins/seo/
 cp -dpfR _includes/templates/* ${DEST}/src/_includes/templates/
 cp -dpfR _includes/layouts/* ${DEST}/src/_includes/layouts/
 cp -dpfR _components/* ${DEST}/src/_components/
-cp -dpfR docs/* ${DEST}/src/docs/
 cp -dpf style.css ${DEST}/src/style.css
 cp -dpf script.js ${DEST}/src/script.js
 cp -dpf 404.md ${DEST}/src/404.md
