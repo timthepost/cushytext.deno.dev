@@ -23,12 +23,9 @@ export default function(options: Partial<Options> = {}) {
       "_components/feedbackAdmin/comp.vto",
       "_components/feedbackAdmin/style.css",
       "_components/feedbackAdmin/script.js",
-      // this needs to be "generified"
       "_data/demo.yml",
       "_data/locale.yml",
-      // this needs to be "generified"
       "_data/navbar.yml",
-      // this needs to be "generified"
       "_data/tagWiki.yml",
       "_includes/css/forms.css",
       "_includes/css/opendyslexic.css",
@@ -54,7 +51,6 @@ export default function(options: Partial<Options> = {}) {
       "_includes/layouts/post.vto",
       "_includes/partials/footer.vto",
       "_includes/partials/head.vto",
-      // This needs to be generified
       "_includes/partials/nav.vto",
       "_includes/templates/docs-template.vto",
       "_includes/templates/post-archive-item.vto",
@@ -86,17 +82,11 @@ export default function(options: Partial<Options> = {}) {
       "uploads/_data.yml",
       "uploads/_favicon.svg",
       "docs/_data.yml",
-      "docs/archetypes.mdx",
-      "docs/blog-system.mdx",
       "docs/index.mdx",
-      "docs/middleware.mdx",
-      "docs/navigation-generation.mdx",
-      "docs/tag-wikis-tag-feeds.mdx",
-      "docs/theme-plugins.mdx",
-      "docs/theme-switchers.mdx",
+      "docs/folder1/index.mdx",
+      "docs/folder1/test.mdx",
       "blog/_data.yml",
       "blog/index.mdx",
-      // this needs to be created and generified
       "blog/example-post.mdx",
       "features/index.mdx",
       "features/components.vto",
