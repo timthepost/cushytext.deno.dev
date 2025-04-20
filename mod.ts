@@ -4,16 +4,20 @@ import "lume/types.ts";
 
 export type { Options } from "./plugins.ts";
 
-export default function(options: Partial<Options> = {}) {
+export default function (options: Partial<Options> = {}) {
   return (site: Lume.Site) => {
     // Configure the site
     site.use(plugins(options));
 
     // Add remote files
     const files = [
+      "uploads/_data.yml",
+      "uploads/_favicon.svg",
+      "uploads/blog/welcome-to-camp-cushytext.jpg",
       "_archetypes/blog.ts",
       "_archetypes/doc.ts",
       "_archetypes/page.ts",
+      "_components/alert.vto",
       "_components/card.vto",
       "_components/hero.vto",
       "_components/latestBlog.vto",
@@ -76,11 +80,6 @@ export default function(options: Partial<Options> = {}) {
       "fonts/OpenDyslexic-Italic.otf",
       "fonts/OpenDyslexic-Italic.woff",
       "fonts/OpenDyslexic-Italic.woff2",
-      "generators/_data.yml",
-      "generators/archive_result.page.js",
-      "generators/archive_page.js",
-      "uploads/_data.yml",
-      "uploads/_favicon.svg",
       "docs/_data.yml",
       "docs/index.mdx",
       "docs/folder1/index.mdx",
@@ -88,21 +87,23 @@ export default function(options: Partial<Options> = {}) {
       "blog/_data.yml",
       "blog/index.mdx",
       "blog/example-post.mdx",
-      "features/index.mdx",
-      "features/components.vto",
+      "pages/_data.yml",
+      "pages/infima-components.vto",
+      "pages/quickstart.mdx",
+      "generators/_data.yml",
+      "generators/archive.page.js",
+      "generators/archive_result.page.js",
+      "index.mdx",
       "_data.yml",
       "_serve.ts",
       "_server_routes.ts",
       "404.md",
       "script.js",
       "style.css",
-      "types.ts",
       "_cms.ts",
       "plugins.ts",
       "deno.json",
       "mod.ts",
-      ".gitignore",
-      "README.md",
     ];
 
     for (const file of files) {
