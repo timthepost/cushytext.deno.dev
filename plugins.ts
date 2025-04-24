@@ -140,7 +140,7 @@ export default function(userOptions?: Options) {
         },
       }))
       .use(purgecss())
-      .use(minifyHTML({ extensions: [".html"] }))
+      //.use(minifyHTML({ extensions: [".html"] }))
       .use(terser({ options: { module: false } }))
       .use(brotli())
       .use(
