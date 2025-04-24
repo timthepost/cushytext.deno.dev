@@ -9,7 +9,6 @@ import inline from "lume/plugins/inline.ts";
 import lightningCss from "lume/plugins/lightningcss.ts";
 import mdx from "lume/plugins/mdx.ts";
 import metas from "lume/plugins/metas.ts";
-import minifyHTML from "lume/plugins/minify_html.ts";
 import nav from "lume/plugins/nav.ts";
 import ogImages from "lume/plugins/og_images.ts";
 import pagefind from "lume/plugins/pagefind.ts";
@@ -140,7 +139,6 @@ export default function(userOptions?: Options) {
         },
       }))
       .use(purgecss())
-      //.use(minifyHTML({ extensions: [".html"] }))
       .use(terser({ options: { module: false } }))
       .use(brotli())
       .use(
