@@ -47,6 +47,9 @@ footer:
       - text: Cushy Text Discord Server
         href: "https://discord.gg/ETx8S8cWwH"
 
+      - text: "Tim On Mastodon"
+      - href: https://indieauthors.social/@timthepost
+      
       - text: Lume Discord Server
         href: "https://discord.gg/YbTmpACHWB"
 
@@ -54,9 +57,6 @@ footer:
     links:
       - text: Tim's Personal Site For Fiction
         href: "https://timthepost.deno.dev"
-
-      - text: "Tim On Mastodon"
-      - href: https://indieauthors.social/@timthepost
 
   - category: "Other Useful Resources:"
     links:
