@@ -1,8 +1,8 @@
 {
   "imports": {
-    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@c9d1404a01a7aa256968683362414cbb56c9b7a7/",
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@d50159470f8741692fb9fbbb70bcea13848a6ee4/",
-    "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.8/jsx-runtime.ts"
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@1b69a4015f4c89d59bb9e51066799e4dc9318b6d/",
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@518ddc9734bf817e699b05e14ef21ed2e5efd78e/",
+    "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.9/jsx-runtime.ts"
   },
   "tasks": {
     "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
@@ -34,6 +34,9 @@
   "fmt": {
     "exclude": [
       "./_site"
+    ],
+    "plugins": [
+      "https://cdn.jsdelivr.net/gh/lumeland/lume@b32c3acc59051eb89faa3b79c532d638767213ff/lint.ts"
     ]
   },
   "unstable": [
