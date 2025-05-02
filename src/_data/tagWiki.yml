@@ -15,6 +15,15 @@ infima:
     with Lume for highly-textual sites.
   related_tags: ["accessibility"]
 
+documentation: 
+  summary: >
+    Posts that deal with the dcoumentation feature of Cushy Text, or the concept
+    of documentation in general. Topics include things like treating docs as code,
+    styles of documentation, coverage and strategy. Many users of Cushy Text find
+    themselves dropped in an unfamiliar sea, and it's their job to map it. We try
+    to share wisdom with these folks in mind often when we learn new things by
+    building Cushy Text.
+
 accessibility:
   summary: >
     The accessibility tag is applied to posts that concern making this
