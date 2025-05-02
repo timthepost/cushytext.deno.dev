@@ -33,14 +33,20 @@ top_nav:
 footer:
   - category: "Theme Basics:"
     links:
-      - text: Archetypes &amp; Folders
-        href: /docs/archetypes/
+      - text: Blog System Docs
+        href: /docs/blog-system/
 
-      - text: Working With Components
+      - text: Docs System Docs
+        href: /docs/docs-system/
+
+      - text: Content Rating Component
+        href: /docs/content-rating/
+
+      - text: Theme Components
         href: /docs/components/
 
-      - text: Lume 3 Router Middleware
-        href: /docs/middleware/
+      - text: Data Files &amp; Waypoints
+        href: /docs/archetypes/
 
   - category: "Cushy Text Community:"
     links:
