@@ -1,7 +1,7 @@
 {
   "imports": {
-    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@1b69a4015f4c89d59bb9e51066799e4dc9318b6d/",
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@518ddc9734bf817e699b05e14ef21ed2e5efd78e/",
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@bd475d62d8993dbc63c607498aa7e425901184cb/",
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@ba24aa8acb3eefb1cc0ef88c198c468793bcf286/",
     "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.9/jsx-runtime.ts"
   },
   "tasks": {
@@ -29,7 +29,10 @@
       "tags": [
         "recommended"
       ]
-    }
+    },
+    "plugins": [
+      "https://cdn.jsdelivr.net/gh/lumeland/lume@bd475d62d8993dbc63c607498aa7e425901184cb/lint.ts"
+    ]
   },
   "fmt": {
     "exclude": [
