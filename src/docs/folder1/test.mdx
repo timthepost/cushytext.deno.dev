@@ -1,5 +1,5 @@
 ---
-title: Example Page From folder1/
+title: Mermaid Diagram In folder1/
 menu:
   visible: true
   order: 16
@@ -11,8 +11,46 @@ metas:
 
 # {title}
 
-This page is here so you can see how sub-folders work.
+This page is here so you can see how sub-folders and Mermaid diagrams work.
 
-## See Also 
+## Diagrams
+
+Here's a diagram:
+<div style="background: #222; border-radius: 1em;" class="margin-vert--md padding--lg">
+
+```mermaid
+sequenceDiagram
+  participant Alice
+  participant Bob
+  Alice->>John: Hello John, how are you?
+  loop HealthCheck
+    John->>John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts <br/>prevail!
+  John-->>Alice: Great!
+  John->>Bob: How about you?
+  Bob-->>John: Jolly good!
+```
+</div>
+
+It was generated using `mermaid` as the language in a code fence. Example:
+
+````markdown
+  ```mermaid
+  sequenceDiagram
+  participant Alice
+  participant Bob
+  Alice->>John: Hello John, how are you?
+  loop HealthCheck
+    John->>John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts <br/>prevail!
+  John-->>Alice: Great!
+  John->>Bob: How about you?
+  Bob-->>John: Jolly good!
+  ```
+````
+
+## See Also
 
 **See also: [How the docs system works](/docs/docs-system/).**

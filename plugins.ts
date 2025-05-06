@@ -23,6 +23,7 @@ import slugifyUrls from "lume/plugins/slugify_urls.ts";
 import sourceMaps from "lume/plugins/source_maps.ts";
 import terser from "lume/plugins/terser.ts";
 import transformImages from "lume/plugins/transform_images.ts";
+import mermaid from "https://deno.land/x/lume_mermaid@v0.1.4/mod.ts";
 import seo from "./src/_plugins/seo/mod.ts";
 import toc from "./src/_plugins/toc/mod.ts";
 
@@ -57,7 +58,28 @@ export default function(userOptions?: Options) {
 
   return (site: Lume.Site) => {
     site
+      .use(readingInfo({ extensions: [".mdx"] }))
+      .use(mdx({ extensions: [".mdx", ".jsx", ".tsx"] }))
+      .use(metas())
       .use(nav())
+      .use(pagefind({
+        ui: {
+          containerId: "search",
+          showImages: false,
+          showEmptyFilters: false,
+          resetStyles: true,
+        },
+      }))
+      .use(prism({
+        theme: [
+          {
+            name: "tomorrow",
+            cssFile: "css/prism.css",
+          },
+        ],
+      }))
+      .use(robots())
+      .use(redirects({ output: "json" }))
       .use(toc({
         toc_selector: "#toc",
         toc_container: ".toc-enabled",
@@ -65,10 +87,12 @@ export default function(userOptions?: Options) {
         toc_link_class: "table-of-contents__link",
         toc_list_class: "table-of-contents padding-top--none",
       }))
+      .use(icons())
+      .use(terser({ options: { module: false } }))
       .use(lightningCss())
       .add([".css"])
+      .use(purgecss())
       .use(sourceMaps())
-      .use(mdx({ extensions: [".mdx", ".jsx", ".tsx"] }))
       .use(basePath())
       .use(slugifyUrls({
         extensions: "*",
@@ -87,13 +111,16 @@ export default function(userOptions?: Options) {
           "œ": "oe",
         },
       }))
-      .use(inline())
+      .use(checkUrls({
+        external: true,
+        output: "_broken_links.json",
+        ignore: ["/api"],
+      }))
+      .use(ogImages({ options: { width: 1200, height: 630 } }))
+      .use(favicon(options.favicon))
       .use(picture())
       .use(transformImages())
-      .use(readingInfo({ extensions: [".mdx"] }))
-      .use(redirects({ output: "json" }))
-      .use(metas())
-      .use(robots())
+      .use(inline())
       .use(feed({
         output: ["/feed.xml", "/feed.json"],
         query: "waypoint=%blog%",
@@ -113,33 +140,10 @@ export default function(userOptions?: Options) {
           },
         }));
       }))
-      .use(checkUrls({
-        external: true,
-        output: "_broken_links.json",
-        ignore: ["/api"],
-      }))
       .use(sitemap(options.sitemap))
-      .use(favicon(options.favicon))
-      .use(icons())
-      .use(prism({
-        theme: [
-          {
-            name: "tomorrow",
-            cssFile: "css/prism.css",
-          },
-        ],
+      site.use(mermaid({
+        theme: "dark"
       }))
-      .use(ogImages({ options: { width: 1200, height: 630 } }))
-      .use(pagefind({
-        ui: {
-          containerId: "search",
-          showImages: false,
-          showEmptyFilters: false,
-          resetStyles: true,
-        },
-      }))
-      .use(purgecss())
-      .use(terser({ options: { module: false } }))
       .use(brotli())
       .use(
         seo({
