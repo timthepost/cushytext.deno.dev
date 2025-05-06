@@ -142,7 +142,7 @@ export default function(userOptions?: Options) {
         }));
       }))
       .use(sitemap(options.sitemap))
-      site.use(mermaid({
+      .use(mermaid({
         theme: "dark"
       }))
       //.use(minifyHTML())
