@@ -226,12 +226,34 @@ export default function seo(userOptions?: Options) {
 
     function writeWarningsToFile(): void {
       log.warn(
-        `SEO: Warnings were issued during this run. Report saved to ${options.output}`,
+        `SEO: Warnings were issued; report saved to ${options.output}`,
       );
       const content = JSONIfyCachedWarnings();
       // we only get here if options.output is a string
       Deno.writeTextFileSync(<string> options.output, content);
       return;
+    }
+
+    function writeWarningsToDebugBar(): void {
+      const report = site.debugBar?.collection("SimpleSEO") || null;
+      if (! report) {
+        return;
+      }
+      report.icon = "list-magnifying-glass";
+      report.contexts = {
+        "SEO Warning": {
+          background: "warning",
+        },
+      };
+      for (const [url, refs] of cachedWarnings.entries()) {
+        report.items.push({
+          title: url,
+          context: "SEO Warning",
+          items: Array.from(refs).map((ref) => ({
+            title: ref
+          })),
+        });
+      }
     }
 
     function writeWarningsToConsole(): void {
@@ -478,6 +500,7 @@ export default function seo(userOptions?: Options) {
 
       // Do we have anything to report?
       if (cachedWarnings.size) {
+        writeWarningsToDebugBar();
         if (typeof options.output === "function") {
           options.output(cachedWarnings);
         } else if (typeof options.output === "string") {
