@@ -145,7 +145,7 @@ export default function(userOptions?: Options) {
       .use(mermaid({
         theme: "dark"
       }))
-      //.use(minifyHTML())
+      .use(minifyHTML({options: { keep_html_and_head_opening_tags: true } }))
       .use(brotli())
       .use(
         seo({
