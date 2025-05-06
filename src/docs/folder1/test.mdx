@@ -15,42 +15,36 @@ This page is here so you can see how sub-folders and Mermaid diagrams work.
 
 ## Diagrams
 
-Here's a diagram:
-<div style="background: #222; border-radius: 1em;" class="margin-vert--md padding--lg">
+Here's a simple Mermaid diagram:
 
+<div style="background: #222; border-radius: 1em;" class="margin-vert--md padding--lg">
 ```mermaid
-sequenceDiagram
-  participant Alice
-  participant Bob
-  Alice->>John: Hello John, how are you?
-  loop HealthCheck
-    John->>John: Fight against hypochondria
-  end
-  Note right of John: Rational thoughts <br/>prevail!
-  John-->>Alice: Great!
-  John->>Bob: How about you?
-  Bob-->>John: Jolly good!
+graph TD;
+  A-->B;
+  A-->C;
+  B-->D;
+  C-->D;
 ```
 </div>
 
-It was generated using `mermaid` as the language in a code fence. Example:
+It was generated using `mermaid` markup in a code fence, with `mermaid` as 
+the language hint. An example is the graph above:
 
 ````markdown
-  ```mermaid
-  sequenceDiagram
-  participant Alice
-  participant Bob
-  Alice->>John: Hello John, how are you?
-  loop HealthCheck
-    John->>John: Fight against hypochondria
-  end
-  Note right of John: Rational thoughts <br/>prevail!
-  John-->>Alice: Great!
-  John->>Bob: How about you?
-  Bob-->>John: Jolly good!
-  ```
+```mermaid
+graph TD;
+  A-->B;
+  A-->C;
+  B-->D;
+  C-->D;
+```
 ````
+
+Much more complex arrangements are possible, as well as customizations.
 
 ## See Also
 
-**See also: [How the docs system works](/docs/docs-system/).**
+**See also:**
+
+ - [How the docs system works](/docs/docs-system/)
+ - [Mermaid Plugin Documentation](https://lume-mermaid.willcraft.software/)
