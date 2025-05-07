@@ -48,6 +48,7 @@
     </div>
     <h3 class="toc-heading">{{ locale.documentation.toc_heading }}</h3>
     <div id="toc"></div>
+    {{ await comp.feedback({ basename: url }) }}
     {{ if docs.sidebar === "auto" }}
     <h3 class="margin-vert--md" id="docs-dev-header">{{ docs.title || locale.documentation.topics }}:</h3>
     {{ set menuData = nav.menu(docs.basedir, "", "menu.order=asc") }}
@@ -106,7 +107,6 @@
     {{ else }}
     <p>No navigation items found. Perhaps put something in the <code>{{ docs.basedir }}</code> directory?</p>
     {{ /if }} {{# End of menuData check #}}
-    {{ await comp.feedback({ basename: url }) }}
     {{ if docs.guest }}
     <h4 class="margin-vert--md">{{ docs.guest.heading }}</h4>
     <div class="menu thin-scrollbar margin-top--xs">
