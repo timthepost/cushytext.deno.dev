@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
   list-style-position: outside;
 }
 .table-of-contents li {
-  margin: 5px 5px;
+  margin: 5px 0 5px 10px;
 }
 
 #toc {
