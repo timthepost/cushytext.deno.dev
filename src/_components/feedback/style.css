@@ -3,7 +3,7 @@
   max-width: 550px;
   margin: 1.5em 0 1.5em;
   border: 1px dashed var(--ifm-color-secondary);
-  border-radius: .45em;
+  border-radius: 0.45em;
 }
 
 #page-feedback img {
