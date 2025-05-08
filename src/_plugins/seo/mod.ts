@@ -249,8 +249,8 @@ export default function seo(userOptions?: Options) {
             title: text,
             actions: [
               {
-                text: "Documentation",
-                href: "#" + context,
+                text: "About This Warning Type",
+                href: "https://cushytext.deno.dev/docs/theme-plugins/#" + context,
               },
             ],
           }],
