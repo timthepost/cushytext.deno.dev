@@ -1,6 +1,7 @@
 import type Site from "lume/core/site.ts";
 import { log } from "lume/core/utils/log.ts";
 import { merge } from "lume/core/utils/object.ts";
+import { parseReturnStatement } from "npm:meriyah@6.0.5";
 
 /* TODO List
  - Pass element that wraps measurable content in config or frontmatter.
@@ -211,6 +212,54 @@ export default function seo(userOptions?: Options) {
   }
 
   return (site: Site) => {
+    
+    const debugBarReport = site.debugBar?.collection("SimpleSEO");
+    if (! debugBarReport) {
+      console.error("SimpleSEO Requires Lume 3+.");
+      return;
+    }
+    debugBarReport.contexts = {
+      "length-warning": {
+        background: "warning"
+      },
+      "common-word-warning": {
+        background: "warning"
+      },
+      "image-alt-warning": {
+        background: "warning"
+      },
+      "image-title-warning": {
+        background: "warning"
+      },
+      "structure-warning": {
+        background: "error"
+      },
+      "missing-error": {
+        background: "error"
+      }
+    };
+    debugBarReport.icon = "list-magnifying-glass";
+    debugBarReport.items = [];
+
+    function reportPush(title: string, text: string, context: string,  warnings: string[]): void {
+      warnings.push(text);
+      if (debugBarReport) {
+        debugBarReport.items.push({
+          title: title,
+          context: context,
+          items: [{ 
+            title: text,
+            actions: [
+              {
+                text: "Documentation",
+                href: "#" + context
+              }
+            ]
+          }]
+        })
+      }
+    }
+
     // very similar to how Check Urls plugin does this
     function JSONIfyCachedWarnings(): string {
       const content = JSON.stringify(
@@ -232,28 +281,6 @@ export default function seo(userOptions?: Options) {
       // we only get here if options.output is a string
       Deno.writeTextFileSync(<string> options.output, content);
       return;
-    }
-
-    function writeWarningsToDebugBar(): void {
-      const report = site.debugBar?.collection("SimpleSEO") || null;
-      if (! report) {
-        return;
-      }
-      report.icon = "list-magnifying-glass";
-      report.contexts = {
-        "SEO Warning": {
-          background: "warning",
-        },
-      };
-      for (const [url, refs] of cachedWarnings.entries()) {
-        report.items.push({
-          title: url,
-          context: "SEO Warning",
-          items: Array.from(refs).map((ref) => ({
-            title: ref
-          })),
-        });
-      }
     }
 
     function writeWarningsToConsole(): void {
@@ -500,7 +527,6 @@ export default function seo(userOptions?: Options) {
 
       // Do we have anything to report?
       if (cachedWarnings.size) {
-        writeWarningsToDebugBar();
         if (typeof options.output === "function") {
           options.output(cachedWarnings);
         } else if (typeof options.output === "string") {
