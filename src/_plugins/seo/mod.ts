@@ -212,33 +212,30 @@ export default function seo(userOptions?: Options) {
 
   return (site: Site) => {
     const debugBarReport = site.debugBar?.collection("SimpleSEO");
-    if (!debugBarReport) {
-      console.error("SimpleSEO Requires Lume 3+.");
-      return;
+    if (debugBarReport) {
+      debugBarReport.contexts = {
+        "length-warning": {
+          background: "warning",
+        },
+        "common-word-warning": {
+          background: "warning",
+        },
+        "image-alt-warning": {
+          background: "warning",
+        },
+        "image-title-warning": {
+          background: "warning",
+        },
+        "structure-warning": {
+          background: "error",
+        },
+        "missing-error": {
+          background: "error",
+        },
+      };
+      debugBarReport.icon = "list-magnifying-glass";
+      debugBarReport.items = [];
     }
-    debugBarReport.contexts = {
-      "length-warning": {
-        background: "warning",
-      },
-      "common-word-warning": {
-        background: "warning",
-      },
-      "image-alt-warning": {
-        background: "warning",
-      },
-      "image-title-warning": {
-        background: "warning",
-      },
-      "structure-warning": {
-        background: "error",
-      },
-      "missing-error": {
-        background: "error",
-      },
-    };
-    debugBarReport.icon = "list-magnifying-glass";
-    debugBarReport.items = [];
-
     function reportPush(url: string, text: string, context: string, warnings: string[]): void {
       warnings.push(text);
       if (debugBarReport) {
