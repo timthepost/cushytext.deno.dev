@@ -1,7 +1,6 @@
 import type Site from "lume/core/site.ts";
 import { log } from "lume/core/utils/log.ts";
 import { merge } from "lume/core/utils/object.ts";
-import { parseReturnStatement } from "npm:meriyah@6.0.5";
 
 /* TODO List
  - Pass element that wraps measurable content in config or frontmatter.
@@ -212,51 +211,50 @@ export default function seo(userOptions?: Options) {
   }
 
   return (site: Site) => {
-    
     const debugBarReport = site.debugBar?.collection("SimpleSEO");
-    if (! debugBarReport) {
+    if (!debugBarReport) {
       console.error("SimpleSEO Requires Lume 3+.");
       return;
     }
     debugBarReport.contexts = {
       "length-warning": {
-        background: "warning"
+        background: "warning",
       },
       "common-word-warning": {
-        background: "warning"
+        background: "warning",
       },
       "image-alt-warning": {
-        background: "warning"
+        background: "warning",
       },
       "image-title-warning": {
-        background: "warning"
+        background: "warning",
       },
       "structure-warning": {
-        background: "error"
+        background: "error",
       },
       "missing-error": {
-        background: "error"
-      }
+        background: "error",
+      },
     };
     debugBarReport.icon = "list-magnifying-glass";
     debugBarReport.items = [];
 
-    function reportPush(title: string, text: string, context: string,  warnings: string[]): void {
+    function reportPush(url: string, text: string, context: string, warnings: string[]): void {
       warnings.push(text);
       if (debugBarReport) {
         debugBarReport.items.push({
-          title: title,
+          title: url,
           context: context,
-          items: [{ 
+          items: [{
             title: text,
             actions: [
               {
                 text: "Documentation",
-                href: "#" + context
-              }
-            ]
-          }]
-        })
+                href: "#" + context,
+              },
+            ],
+          }],
+        });
       }
     }
 
@@ -337,7 +335,7 @@ export default function seo(userOptions?: Options) {
           }
         }
 
-        const warnings = [];
+        const warnings: string[] = [];
 
         logEvent(`SEO: Processing ${page.data.url} ...`);
 
@@ -352,7 +350,12 @@ export default function seo(userOptions?: Options) {
             locale,
           );
           if (titleLength >= options.thresholdLength) {
-            warnings[warningCount] = `Title is over ${options.thresholdLength} ${lengthUnit}(s); less is more.`;
+            reportPush(
+              page.data.url,
+              `Title is over ${options.thresholdLength} ${lengthUnit}(s).`,
+              "length-warning",
+              warnings,
+            );
           }
         }
 
@@ -365,8 +368,12 @@ export default function seo(userOptions?: Options) {
           const maxLength = options.thresholdLength
             * options.thresholdLengthPercentage;
           if (urlLength >= maxLength) {
-            warnings[warningCount++] =
-              `URL meets or exceeds ${maxLength} ${lengthUnit}(s), which is ${options.thresholdLengthPercentage} of the title limit; consider shortening.`;
+            reportPush(
+              page.data.url,
+              `URL meets or exceeds ${maxLength} ${lengthUnit}(s), which is ${options.thresholdLengthPercentage} of the title limit.`,
+              "length-warning",
+              warnings,
+            );
           }
         }
 
@@ -383,13 +390,21 @@ export default function seo(userOptions?: Options) {
                 locale,
               );
               if (contentLength < options.thresholdContentMinimum) {
-                warnings[warningCount++] =
-                  `Content length (${contentLength}) is less than ${options.thresholdContentMinimum} ${lengthUnit}(s), anything to add?`;
+                reportPush(
+                  page.data.url,
+                  `Content length (${contentLength}) is less than ${options.thresholdContentMinimum} ${lengthUnit}(s).`,
+                  "length-warning",
+                  warnings,
+                );
               } else if (
                 contentLength >= options.thresholdContentMaximum
               ) {
-                warnings[warningCount++] =
-                  `Content length (${contentLength}}) meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}(s), can this be split up?`;
+                reportPush(
+                  page.data.url,
+                  `Content length (${contentLength}}) meets or exceeds ${options.thresholdContentMaximum} ${lengthUnit}(s).`,
+                  "length-warning",
+                  warnings,
+                );
               }
             }
           }
@@ -398,7 +413,12 @@ export default function seo(userOptions?: Options) {
         if (options.warnDuplicateHeadings) {
           const headingOneCount = page.document.querySelectorAll("h1").length;
           if (headingOneCount && headingOneCount > 1) {
-            warnings[warningCount++] = "SEO: More than one <h1> element. This is almost never what you want.";
+            reportPush(
+              page.data.url,
+              "SEO: More than one <h1> element",
+              "structure-warning",
+              warnings,
+            );
           }
         }
 
@@ -411,8 +431,12 @@ export default function seo(userOptions?: Options) {
             // h1 becomes 1, h2 becomes 2, etc.
             const currentLevel = parseInt(heading.tagName.slice(1));
             if (currentLevel > previousLevel + 1) {
-              warnings[warningCount++] =
-                `Heading elements out of order: ${heading.tagName} - Headings should be in semantic order.`;
+              reportPush(
+                page.data.url,
+                `Heading elements out of order: ${heading.tagName} - Headings should be in semantic order.`,
+                "structure-warning",
+                warnings,
+              );
             }
             previousLevel = currentLevel;
           }
@@ -425,13 +449,23 @@ export default function seo(userOptions?: Options) {
             if (
               img && options.warnImageAltAttribute && !img.hasAttribute("alt")
             ) {
-              warnings[warningCount++] = "Image is missing alt attribute. This also breaks accessibility!";
+              reportPush(
+                page.data.url,
+                "Image is missing alt attribute. This also breaks accessibility!",
+                "image-alt-warning",
+                warnings,
+              );
             }
             if (
               img && options.warnImageTitleAttribute
               && !img.hasAttribute("title")
             ) {
-              warnings[warningCount++] = "Suggest using image title attributes strategically.";
+              reportPush(
+                page.data.url,
+                "Image is missing title attribute. Suggest using image title attributes strategically.",
+                "image-title-warning",
+                warnings,
+              );
             }
           }
         }
@@ -444,8 +478,12 @@ export default function seo(userOptions?: Options) {
             page.document.title,
           );
           if (titleCommonWords >= options.thresholdCommonWordsPercent) {
-            warnings[warningCount++] =
-              `Title has a large percentage (${titleCommonWords}) of common words; consider revising.`;
+            reportPush(
+              page.data.url,
+              `Title has a large percentage (${titleCommonWords}) of common words; consider revising.`,
+              "common-word-warning",
+              warnings,
+            );
           }
         }
 
@@ -455,8 +493,12 @@ export default function seo(userOptions?: Options) {
         ) {
           const urlCommonWords = calculateCommonWordPercentage(page.data.url);
           if (urlCommonWords >= options.thresholdCommonWordsPercent) {
-            warnings[warningCount++] =
-              `URL has a large percentage (${urlCommonWords}) of common words; consider revising.`;
+            reportPush(
+              page.data.url,
+              `URL has a large percentage (${urlCommonWords}) of common words; consider revising.`,
+              "common-word-warning",
+              warnings,
+            );
           }
         }
 
@@ -469,8 +511,12 @@ export default function seo(userOptions?: Options) {
             options.warnMetasDescriptionLength
             || options.warnMetasDescriptionCommonWords
           ) {
-            warnings[warningCount++] =
-              `Could not determine meta description; checks using it may not run, or may fail.`;
+            reportPush(
+              page.data.url,
+              `Could not determine meta description; checks using it may not run, or may fail.`,
+              "missing-error",
+              warnings,
+            );
           }
         }
 
@@ -491,8 +537,12 @@ export default function seo(userOptions?: Options) {
                 metaDescriptionLength
                   >= options.thresholdMetaDescriptionLength
               ) {
-                warnings[warningCount++] =
-                  `Meta description length meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}(s)`;
+                reportPush(
+                  page.data.url,
+                  `Meta description length meets or exceeds ${options.thresholdMetaDescriptionLength} ${lengthUnit}(s).`,
+                  "length-warning",
+                  warnings,
+                );
               }
             }
           }
@@ -513,8 +563,12 @@ export default function seo(userOptions?: Options) {
               && descriptionPercentage
                 >= options.thresholdCommonWordsPercent
             ) {
-              warnings[warningCount++] =
-                `Meta description common word percentage (${descriptionPercentage}) meets or exceeds ${options.thresholdCommonWordsPercent}`;
+              reportPush(
+                page.data.url,
+                `Meta description common word percentage (${descriptionPercentage}) meets or exceeds ${options.thresholdCommonWordsPercent}.`,
+                "common-word-warning",
+                warnings,
+              );
             }
           }
         }
