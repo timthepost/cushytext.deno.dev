@@ -285,13 +285,20 @@ fifty? 😂
 | `ignoreAllButLocale`               | Ignore any post not in this locale (useful for daisy chaining)                                                 | `null`                 |
 | `logOperations`                    | If activity (blow by blow decision making) should be logged while running. Has nothing to do with the report.  | `false` |
 
-<h2 id="warning-glossary" class="margin-top--md">Warning Glossary</h2>
+<h2 id="warning-glossary" class="margin-top--md">SimpleSEO Warning Glossary:</h2>
 
 The meaning of, and rationale behind the various checks are listed below. The 
-plugin will link to these sections where appropriate in the Lume debug bar
-report.
+plugin will link to these sections where appropriate in the Lume bar. Please 
+remember, ***the default settings for this plugin are quite noisy***. 
 
-<h3 id="length-warning" class="margin-top--md">Length Warnings</h3>
+Everything, including severity, is relative to your topic space, desired keywords, 
+writing style, strategy, language and many other things. It's recommended you start 
+with the defaults for lengths and percentages and see what's generated. Dial up, or 
+down, from there. It may take a few iterations to get to a "comfortable" configuration.
+
+<h3 id="length-warning" class="margin-top--md">Length Warnings:</h3>
+
+**Severity: 5/10**
 
 These are issued when the length of something is longer or shorter than expected
 for optimal SEO impact. Numbers come from standard recommendations from Google,
@@ -301,7 +308,9 @@ Too short, and something might not count toward you getting indexed. Too long,
 and it might get truncated, or possibly get you flagged if egregiously trying
 to keyword-stuff or similar behavior.
 
-<h3 id="common-word-warning" class="margin-top--md">Common Word Warnings</h3>
+<h3 id="common-word-warning" class="margin-top--md">Common Word Warnings:</h3>
+
+**Severity: 4/10**
 
 Languages have words that are more frequently used than others, some are _way_ 
 more frequently used than others. These words are there for sentence structure
@@ -312,25 +321,34 @@ is no exact science to what the ideal percentage is, it depends on your topic
 space, keyword goals and writing style. Don't aim for perfection, but try to 
 keep it below 50%, ideally lower, when possible.
 
-<h3 id="image-alt-warning" class="margin-top--md">Image Alt Attribute Warnings</h3>
+<h3 id="image-alt-warning" class="margin-top--md">Image Alt Attribute Warnings:</h3>
 
-Images need alt-text for SEO and accessibility. 
+**Severity: 8/10**
 
-<h3 id="image-title-warning" class="margin-top--md">Image Title Attribute Warnings</h3>
+Images need alt-text for SEO and accessibility. It's not just helping robots understand
+images, it's also helping screen readers and other assistive tech.
 
+<h3 id="image-title-warning" class="margin-top--md">Image Title Attribute Warnings:</h3>
+
+**Severity: 1/10**
 Consider using image titles strategically, either for image search optimization or even
-witty humor. 
+witty humor, in accordance with accessibility best practices.
 
-<h3 id="structure-warning" class="margin-top--md">Structure Warnings</h3>
+<h3 id="structure-warning" class="margin-top--md">Structure Warnings:</h3>
+
+**Severity: 10/10**
 
 Headings `<h1>`, `<h2>`, etc need to be in order. If you use a `<h3>` tag, it should
 be only after a `<h2>` tag was used, for instance. The plugin makes sure this is
 the case. Sometimes components and templates use headings, and this check catches
 those instances where it happens out of document order.
 
-Other structure warnings might be a missing `<h1>` tag.
+Other structure warnings might be duplicate `<h1>` tags, or a missing `<h1>` tag 
+altogether (each page needs one, and only one).
 
-<h3 id="missing-error" class="margin-top--md">Missing Errors</h3>
+<h3 id="missing-error" class="margin-top--md">Missing Errors:</h3>
+
+**Severity: 9/10**
 
 Missing errors are errors that aren't structural (like tags out of order), but the 
 document is missing something, like an important meta tag or title. The document doesn't 
