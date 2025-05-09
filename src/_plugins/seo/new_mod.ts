@@ -114,16 +114,16 @@ const commonWordWarnings = new Map<string, Set<string>>();
 const mediaAttributeWarnings = new Map<string, Set<string>>();
 const googleSearchConsoleWarnings = new Map<string, Set<string>>();
 
-// see if a string conforms to the given config nomenclature. Report if not.
-function testLengthConformsTo(text: string, nomenclature: string, site: Site): boolean {
+// see if a string conforms to the given config nomenclature.
+function testLength(text: string, nomenclature: string): number {
     
-    return false;
+    return 0;
 }
 
-// see if a string conforms to a common word percentage. Report if not.
-function testCwPercentageConformsTo(text: string, percentage: number, nomenclature: string, site: Site): boolean {
+// see if a string conforms to a common word percentage.
+function testCwPercentage(text: string, percentage: number, nomenclature: string): number {
     
-    return true
+    return 0.00
 }
 
 export default function seo(userOptions?: Options) {
