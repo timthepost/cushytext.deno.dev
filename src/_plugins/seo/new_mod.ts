@@ -61,7 +61,7 @@ export interface Options {
 
     bingWebmasterToolsChecks: {
         apiEnvVariable?: string;
-        apiIndexNowEnvVariable?: string;
+        indexNowEnvVariable?: string;
         apiKeyfileLocation?: string;
         checkPageStats?: boolean;
         checkURLStats?: boolean;
@@ -120,7 +120,7 @@ export const defaultOptions: Options = {
     },
     bingWebmasterToolsChecks: {
         apiEnvVariable: "BING_API_KEY",
-        apiIndexNowEnvVariable: "BING_API_INDEX_NOW_KEY",
+        indexNowEnvVariable: "BING_API_INDEX_NOW_KEY",
         apiKeyfileLocation: "",
         checkPageStats: true,
         checkURLStats: true,
