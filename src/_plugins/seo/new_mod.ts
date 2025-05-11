@@ -55,7 +55,19 @@ export interface Options {
         checkIsIndexed?: boolean;
         checkWarnings?: boolean;
         checkErrors?: boolean;
-        cacheDaysTTL: number;
+        cacheDaysTTL?: number;
+        rationaleLink: string;
+    } | false;
+
+    bingWebmasterToolsChecks: {
+        apiEnvVariable?: string;
+        apiIndexNowEnvVariable?: string;
+        apiKeyfileLocation?: string;
+        checkPageStats?: boolean;
+        checkURLStats?: boolean;
+        checkTrafficData?: boolean;
+        checkContentPerformance?: boolean;
+        submitSiteMap?: boolean;
         rationaleLink: string;
     } | false;
 }
@@ -105,7 +117,18 @@ export const defaultOptions: Options = {
         checkErrors: true,
         cacheDaysTTL: 7,
         rationaleLink: ""
-    }
+    },
+    bingWebmasterToolsChecks: {
+        apiEnvVariable: "BING_API_KEY",
+        apiIndexNowEnvVariable: "BING_API_INDEX_NOW_KEY",
+        apiKeyfileLocation: "",
+        checkPageStats: true,
+        checkURLStats: true,
+        checkTrafficData: true,
+        checkContentPerformance: true,
+        submitSiteMap: true,
+        rationaleLink: ""
+    }    
 }
 
 const lengthWarnings = new Map<string, Set<string>>();
