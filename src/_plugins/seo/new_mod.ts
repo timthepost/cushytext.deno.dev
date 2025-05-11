@@ -1,6 +1,8 @@
 import type Site from "lume/core/site.ts";
 import { log } from "lume/core/utils/log.ts";
 import { merge } from "lume/core/utils/object.ts";
+import { LogMessages } from "./loc/en.js";
+import { enCommonWords } from "./cw/en.js";
 
 export type LengthUnit = "character" | "grapheme" | "word" | "sentence";
 
@@ -20,7 +22,7 @@ export interface Options {
         commonWordPercentageCallback?: ((title: string) => number) | null;
     }
 
-    commonWordPercentageThresholds: {
+    commonWordPercentageChecks: {
         title?: number | false;
         description?: number | false;
         url?: number | false;
@@ -79,17 +81,20 @@ export const defaultOptions: Options = {
         removeReportFile: false,
         logOperations: false,
     },
-    commonWordPercentageThresholds: {
+
+    commonWordPercentageChecks: {
         title: 45,
         description: 55,
         url: 20,
         minContentLengthForProcessing: "1500 character"
     },
+
     locale: {
         default: 'en',
         ignoreAllButLocaleCode: undefined,
-        commonWordSet: undefined,
+        commonWordSet: enCommonWords,
     },
+
     lengthChecks: {
         title: "max 80 character",
         url: "range 1 5 grapheme",
@@ -99,17 +104,20 @@ export const defaultOptions: Options = {
         metaKeywordLength: "max 10 word",
         rationaleLink: ""
     },
+
     semanticChecks: {
         headingOrder: true,
         headingMultipleH1: true,
         headingMissingH1: true,
         rationaleLink: ""
     },
+
     mediaAttributeChecks: {
         imageAlt: "range 10 1500 character",
         imageTitle: "min 0 character",
         rationaleLink: ""
     },
+
     googleSearchConsoleChecks: {
         apiEnvVariable: "GOOGLE_API_KEY",
         checkIsIndexed: true,
@@ -118,6 +126,7 @@ export const defaultOptions: Options = {
         cacheDaysTTL: 7,
         rationaleLink: ""
     },
+
     bingWebmasterToolsChecks: {
         apiEnvVariable: "BING_API_KEY",
         indexNowEnvVariable: "BING_API_INDEX_NOW_KEY",
@@ -136,6 +145,7 @@ const semanticWarnings = new Map<string, Set<string>>();
 const commonWordWarnings = new Map<string, Set<string>>();
 const mediaAttributeWarnings = new Map<string, Set<string>>();
 const googleSearchConsoleWarnings = new Map<string, Set<string>>();
+const bingWebmasterToolsWarnings = new Map<string, Set<string>>();
 
 // see if a string conforms to the given config nomenclature.
 function testLength(text: string, nomenclature: string): number {
@@ -150,10 +160,20 @@ function testCwPercentage(text: string, percentage: number, nomenclature: string
 }
 
 export default function seo(userOptions?: Options) {
+    
     const options = merge(defaultOptions, userOptions);
     const settings = options.settings;
-    const locale = options.locale;
+    
     return (site: Site) => {
+
+        function logEvent(text: string): void {
+            if (settings.logOperations) {
+              log.info(text);
+            }
+        }
+
+        logEvent(LogMessages.STARTUP_MESSAGE);
+
         site.process(['.html'], (pages) => {
             for (const page of pages) {
 
@@ -161,21 +181,30 @@ export default function seo(userOptions?: Options) {
                     semanticWarnings.clear();
                     // all semantic checks here
                 }
+
                 if (options.mediaAttributeChecks) {
                     mediaAttributeWarnings.clear();
                     // all media attribute checks here
                 }
-                if (options.commonWordPercentageThresholds) {
+
+                if (options.commonWordPercentageChecks) {
                     commonWordWarnings.clear();
                     // all common word percentage checks here
                 }
+
                 if (options.lengthChecks) {
                     lengthWarnings.clear();
                     // all length  checks here
                 }
+
                 if (options.googleSearchConsoleChecks) {
                     googleSearchConsoleWarnings.clear();
                     // all google search console checks here
+                }
+
+                if (options.bingWebmasterToolsChecks) {
+                    bingWebmasterToolsWarnings.clear();
+                    // all bing webmaster tools checks here
                 }
             }
         });
