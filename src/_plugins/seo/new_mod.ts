@@ -1,32 +1,35 @@
 import type Site from "lume/core/site.ts";
 import { log } from "lume/core/utils/log.ts";
 import { merge } from "lume/core/utils/object.ts";
-import { LogMessages } from "./loc/en.js";
+import { enMessages } from "./loc/en.js";
 import { enCommonWords } from "./cw/en.js";
 
 export type LengthUnit = "character" | "grapheme" | "word" | "sentence";
+export type SeoReportMessages = typeof enMessages;
 
 export interface Options {
-    settings: {
+    
+    globalSettings: {
         ignore?: string[];
-        output?: string | ((seoWarnings: Map<string, Set<string>>) => void) | null;
-        removeReportFile?: boolean;
-        logOperations?: boolean;
-        reportWordCount?: boolean;
-    }
+        stateFile?: string | null;
+        debug?: boolean;
+        defaultLengthUnit?: LengthUnit;
+    };
 
-    locale: {
-        default?: string;
+    localeSettings: {
+        defaultLocaleCode?: string;
         ignoreAllButLocaleCode?: string;
         commonWordSet?: Set<string>;
-        commonWordPercentageCallback?: ((title: string) => number) | null;
-    }
+        reporterLocale?: SeoReportMessages;
+    };
 
     commonWordPercentageChecks: {
         title?: number | false;
         description?: number | false;
         url?: number | false;
         minContentLengthForProcessing?: string;
+        commonWordPercentageCallback?: ((title: string) => number) | null;
+        rationaleLink: string;
     } | false;
 
     lengthChecks: {
@@ -75,24 +78,28 @@ export interface Options {
 }
 
 export const defaultOptions: Options = {
-    settings: {
+
+    globalSettings: {
         ignore: ['/404.html'],
-        output: null,
-        removeReportFile: false,
-        logOperations: false,
+        stateFile: null,
+        debug: false,
+        defaultLengthUnit: "character",
+    },
+
+    localeSettings: {
+        defaultLocaleCode: 'en',
+        ignoreAllButLocaleCode: undefined,
+        commonWordSet: enCommonWords,
+        reporterLocale: enMessages,
     },
 
     commonWordPercentageChecks: {
         title: 45,
         description: 55,
         url: 20,
-        minContentLengthForProcessing: "1500 character"
-    },
-
-    locale: {
-        default: 'en',
-        ignoreAllButLocaleCode: undefined,
-        commonWordSet: enCommonWords,
+        minContentLengthForProcessing: "1500 character",
+        commonWordPercentageCallback: null,
+        rationaleLink: "",
     },
 
     lengthChecks: {
@@ -102,20 +109,20 @@ export const defaultOptions: Options = {
         content: "range 3000 30000 word",
         metaKeywordCount: "range 4 6 number",
         metaKeywordLength: "max 10 word",
-        rationaleLink: ""
+        rationaleLink: "",
     },
 
     semanticChecks: {
         headingOrder: true,
         headingMultipleH1: true,
         headingMissingH1: true,
-        rationaleLink: ""
+        rationaleLink: "",
     },
 
     mediaAttributeChecks: {
         imageAlt: "range 10 1500 character",
         imageTitle: "min 0 character",
-        rationaleLink: ""
+        rationaleLink: "",
     },
 
     googleSearchConsoleChecks: {
@@ -124,7 +131,7 @@ export const defaultOptions: Options = {
         checkWarnings: true,
         checkErrors: true,
         cacheDaysTTL: 7,
-        rationaleLink: ""
+        rationaleLink: "",
     },
 
     bingWebmasterToolsChecks: {
@@ -136,7 +143,7 @@ export const defaultOptions: Options = {
         checkTrafficData: true,
         checkContentPerformance: true,
         submitSiteMap: true,
-        rationaleLink: ""
+        rationaleLink: "",
     }    
 }
 
@@ -162,47 +169,51 @@ function testCwPercentage(text: string, percentage: number, nomenclature: string
 export default function seo(userOptions?: Options) {
     
     const options = merge(defaultOptions, userOptions);
-    const settings = options.settings;
-    
+    const settings = options.globalSettings;
+    const locale = options.localeSettings.reporterLocale!;
+
     return (site: Site) => {
 
         function logEvent(text: string): void {
-            if (settings.logOperations) {
-              log.info(text);
+            if (settings.debug) {
+              log.debug(text);
             }
         }
 
-        logEvent(LogMessages.STARTUP_MESSAGE);
+        logEvent(locale.BEGIN_MESSAGE);
 
         site.process(['.html'], (pages) => {
             for (const page of pages) {
+                const frontMatterConfig = page.data.seo || null;
 
-                if (options.semanticChecks) {
+                logEvent(locale.PROCESSING_MESSAGE + page.data.url);
+
+                if (options.semanticChecks && ! frontMatterConfig.skip_semantic) {
                     semanticWarnings.clear();
                     // all semantic checks here
                 }
 
-                if (options.mediaAttributeChecks) {
+                if (options.mediaAttributeChecks && ! frontMatterConfig.skip_media_attribute) {
                     mediaAttributeWarnings.clear();
                     // all media attribute checks here
                 }
 
-                if (options.commonWordPercentageChecks) {
+                if (options.commonWordPercentageChecks && ! frontMatterConfig.skip_common_word_percentage) {
                     commonWordWarnings.clear();
                     // all common word percentage checks here
                 }
 
-                if (options.lengthChecks) {
+                if (options.lengthChecks && ! frontMatterConfig.skip_length) {
                     lengthWarnings.clear();
                     // all length  checks here
                 }
 
-                if (options.googleSearchConsoleChecks) {
+                if (options.googleSearchConsoleChecks && ! frontMatterConfig.skip_google_search_console) {
                     googleSearchConsoleWarnings.clear();
                     // all google search console checks here
                 }
 
-                if (options.bingWebmasterToolsChecks) {
+                if (options.bingWebmasterToolsChecks && ! frontMatterConfig.skip_bing_webmaster_tools) {
                     bingWebmasterToolsWarnings.clear();
                     // all bing webmaster tools checks here
                 }
@@ -237,11 +248,13 @@ export default function seo(userOptions?: Options) {
           };
           debugBarReport.icon = "list-magnifying-glass";
           debugBarReport.items = [];
+
+          // iterate through report objects so warnings get grouped by type
         }
 
-        // generate local report 
+        // generate state file
 
-        // callback function?
-
+        // send state info to callback if defined
+        logEvent(locale.END_MESSAGE)
     }
 }
