@@ -37,9 +37,6 @@
   "fmt": {
     "exclude": [
       "./_site"
-    ],
-    "plugins": [
-      "https://cdn.jsdelivr.net/gh/lumeland/lume@b32c3acc59051eb89faa3b79c532d638767213ff/lint.ts"
     ]
   },
   "unstable": [
