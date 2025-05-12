@@ -1,4 +1,4 @@
- // dprint-ignore // deno-fmt-ignore
+// dprint-ignore // deno-fmt-ignore
 export const jaCommonWords = new Set([
   "の", "に", "は", "て", "を",
   "が", "で", "た", "と", "し",
