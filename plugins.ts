@@ -26,6 +26,7 @@ import transformImages from "lume/plugins/transform_images.ts";
 import mermaid from "https://deno.land/x/lume_mermaid@v0.1.4/mod.ts";
 import minifyHTML from "lume/plugins/minify_html.ts";
 import seo from "./src/_plugins/seo/mod.ts";
+import simpleSEO from "./src/_plugins/seo/new_mod.ts";
 import toc from "./src/_plugins/toc/mod.ts";
 
 import "lume/types.ts";
@@ -155,6 +156,16 @@ export default function(userOptions?: Options) {
           lengthLocale: "en",
         }),
       )
+      .use(simpleSEO({ 
+        lengthChecks: {
+          title: "max 80 character",
+          url: "max 45 character",
+          metaDescription: "range 1 2 sentence",
+          content: "range 900 5000 word",
+          metaKeywordCount: "range 2 6 number",
+          metaKeywordLength: "range 10 50 word",
+        },
+      }))
       .add("_includes/js", "js")
       .add("_includes/css", "css")
       .add("uploads")
