@@ -282,19 +282,21 @@ export default function simpleSEO(userOptions?: Options) {
           const warningStore = warnings.length.store;
           const pageSpecificLengthWarnings: string[] = [];
 
-          if (options.lengthChecks.title && page.document.title) {
-            const result = checkConformity(
-              page.document.title,
-              options.lengthChecks.title as string,
-              pageEffectiveLocale,
-              locale.CONTEXT_TITLE,
-            );
-            if (!result.conforms && result.message) {
-              logEvent(result.message);
-              pageSpecificLengthWarnings.push(result.message);
+          if (options.lengthChecks.title) {
+            if (page.document.title) {
+                const result = checkConformity(
+                    page.document.title,
+                    options.lengthChecks.title as string,
+                    pageEffectiveLocale,
+                    locale.CONTEXT_TITLE,
+                ); 
+                if (!result.conforms && result.message) {
+                    logEvent(result.message);
+                    pageSpecificLengthWarnings.push(result.message);
+                } 
             } else {
-              logEvent(locale.ERROR_TITLE_MISSING);
-              pageSpecificLengthWarnings.push(locale.ERROR_TITLE_MISSING);
+                logEvent(locale.ERROR_TITLE_MISSING);
+                pageSpecificLengthWarnings.push(locale.ERROR_TITLE_MISSING);
             }
           }
 
@@ -380,15 +382,16 @@ export default function simpleSEO(userOptions?: Options) {
               'meta[name="keywords"]',
             );
             if (metaKeywords) {
-              let keywordLength = 0;
+              let combinedKeywordsContent = "";
               for (const keyword of metaKeywords) {
                 if (keyword.getAttribute("content")) {
-                  keywordLength += keyword.getAttribute("content")!.length;
+                  combinedKeywordsContent += keyword.getAttribute("content") + " "; // Collect all content
                 }
               }
-              if (keywordLength > 0 || metaKeywords.length > 0) {
+              combinedKeywordsContent = combinedKeywordsContent.trim();
+              if (combinedKeywordsContent.length > 0) { // Check if there's any content to measure
                 const result = checkConformity(
-                  keywordLength,
+                  combinedKeywordsContent, // Pass the actual string content
                   options.lengthChecks.metaKeywordLength as string,
                   pageEffectiveLocale,
                   locale.CONTEXT_META_KEYWORD_LEN,
