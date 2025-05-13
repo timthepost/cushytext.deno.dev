@@ -27,6 +27,9 @@ export class enMessages {
     "Meta Description Not Found In Document!";
   static ERROR_META_KEYWORD_MISSING = "Meta Keywords Not Found In Document!";
   static ERROR_TITLE_MISSING = "Title Not Found In Document!";
+
+  static getDebugBarCompletionMessage(totalWarningsAdded) { 
+    return `[${this.APP_NAME}]: Run completed with ${totalWarningsAdded} warnings.`}
 }
 
 export default enMessages;

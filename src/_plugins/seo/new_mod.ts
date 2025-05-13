@@ -495,7 +495,8 @@ export default function simpleSEO(userOptions?: Options) {
         }
         logEvent(
           `SimpleSEO: Added ${totalWarningsAdded} items to the debug bar for ${locale.APP_NAME}.`,
-        );
+        )
+        // We don't register on the build tab, as our own tab is evidence that we made it.
       } else {
         logEvent(
           `SimpleSEO: Debug bar collection for ${locale.APP_NAME} not found. Is this Lume 3?`,
