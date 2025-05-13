@@ -39,7 +39,6 @@ export interface Options {
     url?: string | false;
     metaDescription?: string | false;
     content?: string | false;
-    metaKeywordCount?: string | false;
     metaKeywordLength?: string | false;
   } | false;
 
@@ -102,7 +101,6 @@ export const defaultOptions: Options = {
     url: "max 60 character",
     metaDescription: "range 1 2 sentence",
     content: "range 1500 30000 word",
-    metaKeywordCount: "range 2 6 number",
     metaKeywordLength: "max 10 word",
   },
 
@@ -354,29 +352,6 @@ export default function simpleSEO(userOptions?: Options) {
             }
           }
 
-          if (options.lengthChecks.metaKeywordCount) {
-            const metaKeywords = page.document.querySelectorAll(
-              'meta[name="keywords"]',
-            );
-            if (metaKeywords) {
-              const result = checkConformity(
-                metaKeywords.length,
-                options.lengthChecks.metaKeywordCount as string,
-                pageEffectiveLocale,
-                locale.CONTEXT_META_KEYWORD_COUNT,
-              );
-              if (!result.conforms && result.message) {
-                logEvent(result.message);
-                pageSpecificLengthWarnings.push(result.message);
-              }
-            } else {
-              logEvent(locale.ERROR_META_KEYWORD_MISSING);
-              pageSpecificLengthWarnings.push(
-                locale.ERROR_META_KEYWORD_MISSING,
-              );
-            }
-          }
-
           if (options.lengthChecks.metaKeywordLength) {
             const metaKeywords = page.document.querySelectorAll(
               'meta[name="keywords"]',
@@ -401,6 +376,11 @@ export default function simpleSEO(userOptions?: Options) {
                   pageSpecificLengthWarnings.push(result.message);
                 }
               }
+            } else {
+                logEvent(locale.ERROR_META_KEYWORD_MISSING);
+              pageSpecificLengthWarnings.push(
+                locale.ERROR_META_KEYWORD_MISSING,
+              );
             }
           }
 
@@ -450,7 +430,7 @@ export default function simpleSEO(userOptions?: Options) {
     site.addEventListener("afterBuild", () => {
       const debugBarReport = site.debugBar?.collection(locale.APP_NAME);
       if (debugBarReport) {
-        logEvent(`SEO: Populating debug bar for ${locale.APP_NAME}.`);
+        logEvent(`SimpleSEO: Populating debug bar for ${locale.APP_NAME}.`);
         debugBarReport.contexts = {};
         for (const key in warnings) {
           const categoryInfo = warnings[key as keyof SEOWarnings];
@@ -476,7 +456,7 @@ export default function simpleSEO(userOptions?: Options) {
 
           if (warningStore.size > 0) {
             logEvent(
-              `SEO: Found ${warningStore.size} pages with warnings for category '${categoryKey}'.`,
+              `SimpleSEO: Found ${warningStore.size} pages with warnings for category '${categoryKey}'.`,
             );
           }
 
@@ -512,11 +492,11 @@ export default function simpleSEO(userOptions?: Options) {
           }
         }
         logEvent(
-          `SEO: Added ${totalWarningsAdded} items to the debug bar for ${locale.APP_NAME}.`,
+          `SimpleSEO: Added ${totalWarningsAdded} items to the debug bar for ${locale.APP_NAME}.`,
         );
       } else {
         logEvent(
-          `SEO: Debug bar collection for ${locale.APP_NAME} not found. Is this Lume 3?`,
+          `SimpleSEO: Debug bar collection for ${locale.APP_NAME} not found. Is this Lume 3?`,
         );
       }
     });
