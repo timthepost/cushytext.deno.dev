@@ -486,10 +486,16 @@ export default function simpleSEO(userOptions?: Options) {
             for (const message of messageSet) {
               subItems.push({
                 title: message,
-                actions: [{
-                  text: locale.ABOUT_WARNING_TYPE,
-                  href: rationaleLink,
-                }],
+                actions: [
+                  {
+                    text: locale.ACTIONS_ABOUT_WARNING_TYPE,
+                    href: rationaleLink,
+                  },
+                  {
+                    text: locale.ACTIONS_VISIT_PAGE,
+                    href: pageUrl,
+                  },
+                ],
               });
               totalWarningsAdded++;
             }

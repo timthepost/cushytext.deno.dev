@@ -8,9 +8,9 @@ export class enMessages {
   static APP_NAME = "SimpleSEO II";
 
   static BEGIN_MESSAGE = `${this.APP_NAME} is starting up...`;
-  static END_MESSAGE = `${this.APP_NAME} has finished.`;
   static PROCESSING_MESSAGE = `${this.APP_NAME} is processing `;
-  static ABOUT_WARNING_TYPE = "About This Warning Type";
+  static ACTIONS_ABOUT_WARNING_TYPE = "About This Warning Type";
+  static ACTIONS_VISIT_PAGE = "Go To This Page";
   static LENGTH_WARNING_TITLE = "Length Warnings";
   static MEDIA_ATTRIBUTE_WARNING_TITLE = "Media HTML Attribute Warnings";
   static COMMON_WORD_WARNING_TITLE = "Uniqueness Of Content Warnings";
