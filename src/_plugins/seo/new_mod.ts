@@ -166,46 +166,50 @@ export default function simpleSEO(userOptions?: Options) {
     return checker.test(inputValue, context);
   }
 
+  function rationaleLink(check: string): string {
+    return `https://cushytext.deno.dev/docs/theme-plugins/#${check}`;
+  }
+
   const warnings: SEOWarnings = {
     length: {
       store: new Map<string, Set<string>>(),
       check: "length-warning",
-      rationale: "",
+      rationale: rationaleLink("length-warning"),
       title: locale.LENGTH_WARNING_TITLE,
     },
 
     semantic: {
       store: new Map<string, Set<string>>(),
-      check: "semantic",
-      rationale: "",
+      check: "semantic-error",
+      rationale: rationaleLink("semantic-error"),
       title: locale.SEMANTIC_WARNING_TITLE,
     },
 
     commonWord: {
       store: new Map<string, Set<string>>(),
       check: "common-word-warning",
-      rationale: "",
+      rationale: rationaleLink("common-word-warning"),
       title: locale.COMMON_WORD_WARNING_TITLE,
     },
 
     mediaAttribute: {
       store: new Map<string, Set<string>>(),
       check: "media-attribute-warning",
-      rationale: "",
+      rationale: rationaleLink("media-attribute-warning"),
       title: locale.MEDIA_ATTRIBUTE_WARNING_TITLE,
     },
 
     googleSearchConsole: {
       store: new Map<string, Set<string>>(),
       check: "google-search-console-warning",
-      rationale: "",
+      rationale: rationaleLink("google-search-console-warning"),
       title: locale.GOOGLE_CONSOLE_TITLE,
     },
 
     bingWebmasterTools: {
       store: new Map<string, Set<string>>(),
       check: "bing-webmaster-tools-warning",
-      rationale: "",
+      rationale: rationaleLink("bing-webmaster-tools-warning"),
       title: locale.BING_WEBMASTER_TITLE,
     },
   };
@@ -360,13 +364,13 @@ export default function simpleSEO(userOptions?: Options) {
               let combinedKeywordsContent = "";
               for (const keyword of metaKeywords) {
                 if (keyword.getAttribute("content")) {
-                  combinedKeywordsContent += keyword.getAttribute("content") + " "; // Collect all content
+                  combinedKeywordsContent += keyword.getAttribute("content") + " ";
                 }
               }
               combinedKeywordsContent = combinedKeywordsContent.trim();
-              if (combinedKeywordsContent.length > 0) { // Check if there's any content to measure
+              if (combinedKeywordsContent.length > 0) {
                 const result = checkConformity(
-                  combinedKeywordsContent, // Pass the actual string content
+                  combinedKeywordsContent,
                   options.lengthChecks.metaKeywordLength as string,
                   pageEffectiveLocale,
                   locale.CONTEXT_META_KEYWORD_LEN,
@@ -460,9 +464,7 @@ export default function simpleSEO(userOptions?: Options) {
             );
           }
 
-          // If no user links are supplied, link to the main docs for why checks run
-          const rationaleLink = categoryInfo.rationale ||
-            `https://cushytext.deno.dev/docs/theme-plugins/#${contextString}`;
+          const rationaleLink = categoryInfo.rationale;
 
           for (const [pageUrl, messageSet] of warningStore) {
             const subItems = [];
