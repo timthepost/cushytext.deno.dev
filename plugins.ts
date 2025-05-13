@@ -162,7 +162,6 @@ export default function(userOptions?: Options) {
           url: "max 45 character",
           metaDescription: "range 1 2 sentence",
           content: "range 900 5000 word",
-          metaKeywordCount: "range 2 6 number",
           metaKeywordLength: "range 10 50 word",
         },
       }))
