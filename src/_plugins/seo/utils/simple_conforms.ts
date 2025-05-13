@@ -73,13 +73,13 @@ export class SimpleConforms {
 
     match = nomenclature.match(rangePattern);
     if (match) {
-      const val1 = parseInt(match[2], 10);
-      const val2 = parseInt(match[3], 10);
+      const val1 = parseInt(match[1], 10);
+      const val2 = parseInt(match[2], 10);
       return {
         type: "range",
-        value1: Math.min(val1, val2), // Ensure value1 is the lower bound
-        value2: Math.max(val1, val2), // Ensure value2 is the upper bound
-        unit: match[4] as LengthUnit,
+        value1: Math.min(val1, val2),
+        value2: Math.max(val1, val2),
+        unit: match[3] as LengthUnit,
         originalNomenclature,
       } as ParsedRequirement;
     }
@@ -88,13 +88,21 @@ export class SimpleConforms {
      * If using outside of Lume, you should just throw here instead. I do
      * this only to not interrupt the entire site build.
      */
+    console.error(
+      `SimpleConforms: Unable to process nomenclature: ${nomenclature}`,
+    );
     return null as unknown as ParsedRequirement;
   }
 
   private getActualValue(
-    textOrNumber: string | number | null | undefined,
+    textOrNumber: string | number | Array<string> | null | undefined,
   ): number {
     if (textOrNumber === null || textOrNumber === undefined) return 0;
+
+    // meta description count
+    if (Array.isArray(textOrNumber)) {
+      return textOrNumber.length;
+    }
 
     if (this.requirement.unit === "number") {
       if (typeof textOrNumber === "number") return textOrNumber;
@@ -103,8 +111,8 @@ export class SimpleConforms {
     }
 
     const text = String(textOrNumber);
-    if (text === "") return 0; // "max 0 characters" is a valid test for existence
 
+    if (text === "") return 0; // "max 0 characters" is a valid test for existence
     if (this.requirement.unit === "character") return text.length;
 
     const segmenterUnit = this.requirement.unit as
@@ -118,7 +126,8 @@ export class SimpleConforms {
   }
 
   public test(
-    inputValue: string | number | null | undefined,
+    inputValue: string | number | Array<string> | null | undefined,
+    context: string = "",
   ): RequirementResult {
     const actualValue = this.getActualValue(inputValue);
     let conforms = false;
@@ -129,14 +138,14 @@ export class SimpleConforms {
         conforms = actualValue >= this.requirement.value1;
         if (!conforms) {
           message =
-            `Value ${actualValue} ${this.requirement.unit}(s) is less than minimum ${this.requirement.value1}.`;
+            `${context}: Value ${actualValue} ${this.requirement.unit}(s) is less than minimum ${this.requirement.value1}.`;
         }
         break;
       case "max":
         conforms = actualValue <= this.requirement.value1;
         if (!conforms) {
           message =
-            `Value ${actualValue} ${this.requirement.unit}(s) exceeds maximum ${this.requirement.value1}.`;
+            `${context}: Value ${actualValue} ${this.requirement.unit}(s) exceeds maximum ${this.requirement.value1}.`;
         }
         break;
       case "range":
@@ -144,7 +153,7 @@ export class SimpleConforms {
           actualValue <= this.requirement.value2!;
         if (!conforms) {
           message =
-            `Value ${actualValue} ${this.requirement.unit}(s) is outside the range ${this.requirement.value1}-${this
+            `${context}: Value ${actualValue} ${this.requirement.unit}(s) is outside the range ${this.requirement.value1}-${this
               .requirement.value2!}.`;
         }
         break;
