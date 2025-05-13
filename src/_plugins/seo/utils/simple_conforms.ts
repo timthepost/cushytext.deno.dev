@@ -94,6 +94,12 @@ export class SimpleConforms {
     return null as unknown as ParsedRequirement;
   }
 
+  /**
+   * A utility to count dang near anything. Not exactly pretty, but 
+   * effective! Number reflects the requirement unit.
+   * @param textOrNumber text, number or array
+   * @returns number
+   */
   private getActualValue(
     textOrNumber: string | number | Array<string> | null | undefined,
   ): number {
