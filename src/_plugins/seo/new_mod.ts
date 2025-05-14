@@ -135,10 +135,16 @@ export const defaultOptions: Options = {
   },
 };
 
+
+interface PageWarningDetails {
+  messages: Set<string>;
+  sourceFile: string; // Absolute path to the source file for editor links
+}
+
 interface SEOWarning {
-  store: Map<string, Set<string>>;
+  store: Map<string, PageWarningDetails>;
   check: string;
-  rationale: string;
+  rationale: (checkValue: string) => string;
   title: string;
 }
 
@@ -172,44 +178,44 @@ export default function simpleSEO(userOptions?: Options) {
 
   const warnings: SEOWarnings = {
     length: {
-      store: new Map<string, Set<string>>(),
+      store: new Map<string, PageWarningDetails>(),
       check: "length-warning",
-      rationale: rationaleLink("length-warning"),
+      rationale: rationaleLink,
       title: locale.LENGTH_WARNING_TITLE,
     },
 
     semantic: {
-      store: new Map<string, Set<string>>(),
+      store: new Map<string, PageWarningDetails>(),
       check: "semantic-error",
-      rationale: rationaleLink("semantic-error"),
+      rationale: rationaleLink,
       title: locale.SEMANTIC_WARNING_TITLE,
     },
 
     commonWord: {
-      store: new Map<string, Set<string>>(),
+      store: new Map<string, PageWarningDetails>(),
       check: "common-word-warning",
-      rationale: rationaleLink("common-word-warning"),
+      rationale: rationaleLink,
       title: locale.COMMON_WORD_WARNING_TITLE,
     },
 
     mediaAttribute: {
-      store: new Map<string, Set<string>>(),
+      store: new Map<string, PageWarningDetails>(),
       check: "media-attribute-warning",
-      rationale: rationaleLink("media-attribute-warning"),
+      rationale: rationaleLink,
       title: locale.MEDIA_ATTRIBUTE_WARNING_TITLE,
     },
 
     googleSearchConsole: {
-      store: new Map<string, Set<string>>(),
+      store: new Map<string, PageWarningDetails>(),
       check: "google-search-console-warning",
-      rationale: rationaleLink("google-search-console-warning"),
+      rationale: rationaleLink,
       title: locale.GOOGLE_CONSOLE_TITLE,
     },
 
     bingWebmasterTools: {
-      store: new Map<string, Set<string>>(),
+      store: new Map<string, PageWarningDetails>(),
       check: "bing-webmaster-tools-warning",
-      rationale: rationaleLink("bing-webmaster-tools-warning"),
+      rationale: rationaleLink,
       title: locale.BING_WEBMASTER_TITLE,
     },
   };
@@ -232,6 +238,8 @@ export default function simpleSEO(userOptions?: Options) {
       for (const page of pages) {
         const pageEffectiveLocale = page.data.lang ||
           options.localeSettings.defaultLocaleCode!;
+        const pageUrl = page.data.url;
+        const sourceFile = page.src.entry?.src;
 
         logEvent(locale.PROCESSING_MESSAGE + page.data.url);
 
@@ -239,14 +247,15 @@ export default function simpleSEO(userOptions?: Options) {
           const warningStore = warnings.semantic.store;
           const pageSpecificWarnings: string[] = [];
           // all semantic checks here
+          // Example: if (someCondition) pageSpecificWarnings.push("Semantic issue found.");
 
           if (pageSpecificWarnings.length > 0) {
-            let S = warningStore.get(page.data.url);
+            let S = warningStore.get(pageUrl);
             if (!S) {
-              S = new Set<string>();
-              warningStore.set(page.data.url, S);
+              S = { messages: new Set<string>(), sourceFile: sourceFile as string};
+              warningStore.set(pageUrl, S);
             }
-            pageSpecificWarnings.forEach((msg) => S!.add(msg));
+            pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
           }
         }
 
@@ -254,14 +263,15 @@ export default function simpleSEO(userOptions?: Options) {
           const warningStore = warnings.mediaAttribute.store;
           const pageSpecificWarnings: string[] = [];
           // all media attribute checks here
+          // Example: if (someCondition) pageSpecificWarnings.push("Media attribute issue.");
 
           if (pageSpecificWarnings.length > 0) {
-            let S = warningStore.get(page.data.url);
+            let S = warningStore.get(pageUrl);
             if (!S) {
-              S = new Set<string>();
-              warningStore.set(page.data.url, S);
+              S = { messages: new Set<string>(), sourceFile: sourceFile as string};
+              warningStore.set(pageUrl, S);
             }
-            pageSpecificWarnings.forEach((msg) => S!.add(msg));
+            pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
           }
         }
 
@@ -269,14 +279,15 @@ export default function simpleSEO(userOptions?: Options) {
           const warningStore = warnings.commonWord.store;
           const pageSpecificWarnings: string[] = [];
           // all common word percentage checks here
+          // Example: if (someCondition) pageSpecificWarnings.push("Common word issue.");
 
           if (pageSpecificWarnings.length > 0) {
-            let S = warningStore.get(page.data.url);
+            let S = warningStore.get(pageUrl);
             if (!S) {
-              S = new Set<string>();
-              warningStore.set(page.data.url, S);
+              S = { messages: new Set<string>(), sourceFile: sourceFile as string };
+              warningStore.set(pageUrl, S);
             }
-            pageSpecificWarnings.forEach((msg) => S!.add(msg));
+            pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
           }
         }
 
@@ -389,12 +400,12 @@ export default function simpleSEO(userOptions?: Options) {
           }
 
           if (pageSpecificLengthWarnings.length > 0) {
-            let S = warningStore.get(page.data.url);
+            let S = warningStore.get(pageUrl);
             if (!S) {
-              S = new Set<string>();
-              warningStore.set(page.data.url, S);
+              S = { messages: new Set<string>(), sourceFile: sourceFile as string };
+              warningStore.set(pageUrl, S);
             }
-            pageSpecificLengthWarnings.forEach((msg) => S!.add(msg));
+            pageSpecificLengthWarnings.forEach((msg) => S!.messages.add(msg));
           }
         }
 
@@ -402,14 +413,15 @@ export default function simpleSEO(userOptions?: Options) {
           const warningStore = warnings.googleSearchConsole.store;
           const pageSpecificWarnings: string[] = [];
           // all google search console checks here
+          // Example: if (someCondition) pageSpecificWarnings.push("GSC issue.");
 
           if (pageSpecificWarnings.length > 0) {
-            let S = warningStore.get(page.data.url);
+            let S = warningStore.get(pageUrl);
             if (!S) {
-              S = new Set<string>();
-              warningStore.set(page.data.url, S);
+              S = { messages: new Set<string>(), sourceFile: sourceFile as string };
+              warningStore.set(pageUrl, S);
             }
-            pageSpecificWarnings.forEach((msg) => S!.add(msg));
+            pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
           }
         }
 
@@ -417,14 +429,15 @@ export default function simpleSEO(userOptions?: Options) {
           const warningStore = warnings.bingWebmasterTools.store;
           const pageSpecificWarnings: string[] = [];
           // all bing webmaster tools checks here
+          // Example: if (someCondition) pageSpecificWarnings.push("Bing issue.");
 
           if (pageSpecificWarnings.length > 0) {
-            let S = warningStore.get(page.data.url);
+            let S = warningStore.get(pageUrl);
             if (!S) {
-              S = new Set<string>();
-              warningStore.set(page.data.url, S);
+              S = { messages: new Set<string>(), sourceFile: sourceFile as string };
+              warningStore.set(pageUrl, S);
             }
-            pageSpecificWarnings.forEach((msg) => S!.add(msg));
+            pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
           }
         }
       }
@@ -464,21 +477,25 @@ export default function simpleSEO(userOptions?: Options) {
             );
           }
 
-          const rationaleLink = categoryInfo.rationale;
+          const rationaleUrl = categoryInfo.rationale(categoryInfo.check);
 
-          for (const [pageUrl, messageSet] of warningStore) {
+          for (const [pageUrlString, pageWarningDetails] of warningStore) {
             const subItems = [];
-            for (const message of messageSet) {
+            for (const message of pageWarningDetails.messages) {
               subItems.push({
                 title: message,
                 actions: [
                   {
                     text: locale.ACTIONS_ABOUT_WARNING_TYPE,
-                    href: rationaleLink,
+                    href: rationaleUrl,
                   },
                   {
                     text: locale.ACTIONS_VISIT_PAGE,
-                    href: pageUrl,
+                    href: pageUrlString,
+                  },
+                  {
+                    text: locale.ACTIONS_OPEN_IN_VSCODE_EDITOR, 
+                    href: `vscode://file/${pageWarningDetails.sourceFile}`
                   },
                 ],
               });
@@ -486,7 +503,7 @@ export default function simpleSEO(userOptions?: Options) {
             }
             if (subItems.length > 0) {
               debugBarReport.items.push({
-                title: `${categoryInfo.title} for: ${pageUrl}`,
+                title: `${categoryInfo.title} for: ${pageUrlString}`,
                 context: contextString,
                 items: subItems,
               });
