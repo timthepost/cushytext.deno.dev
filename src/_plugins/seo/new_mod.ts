@@ -488,14 +488,17 @@ export default function simpleSEO(userOptions?: Options) {
                   {
                     text: locale.ACTIONS_ABOUT_WARNING_TYPE,
                     href: rationaleUrl,
+                    icon: "question" 
                   },
                   {
                     text: locale.ACTIONS_VISIT_PAGE,
                     href: pageUrlString,
+                    icon: "globe"
                   },
                   {
                     text: locale.ACTIONS_OPEN_IN_VSCODE_EDITOR, 
-                    href: `vscode://file/${pageWarningDetails.sourceFile}`
+                    href: `vscode://file/${pageWarningDetails.sourceFile}`,
+                    icon: "code"
                   },
                 ],
               });
