@@ -9,8 +9,9 @@ export class enMessages {
 
   static BEGIN_MESSAGE = `${this.APP_NAME} is starting up...`;
   static PROCESSING_MESSAGE = `${this.APP_NAME} is processing `;
-  static ACTIONS_ABOUT_WARNING_TYPE = "About This Warning Type";
-  static ACTIONS_VISIT_PAGE = "Go To This Page";
+  static ACTIONS_ABOUT_WARNING_TYPE = "About Warning";
+  static ACTIONS_VISIT_PAGE = "Open In Browser";
+  static ACTIONS_OPEN_IN_VSCODE_EDITOR = "Open In Code";
   static LENGTH_WARNING_TITLE = "Length Warnings";
   static MEDIA_ATTRIBUTE_WARNING_TITLE = "Media HTML Attribute Warnings";
   static COMMON_WORD_WARNING_TITLE = "Uniqueness Of Content Warnings";
@@ -27,6 +28,7 @@ export class enMessages {
     "Meta Description Not Found In Document!";
   static ERROR_META_KEYWORD_MISSING = "Meta Keywords Not Found In Document!";
   static ERROR_TITLE_MISSING = "Title Not Found In Document!";
+  static OPEN_IN_VSCODE_EDITOR = "Open In Code";
 
   static getDebugBarCompletionMessage(totalWarningsAdded) { 
     return `[${this.APP_NAME}]: Run completed with ${totalWarningsAdded} warnings.`}
