@@ -676,7 +676,7 @@ export default function simpleSEO(userOptions?: Options) {
               Deno.removeSync(settings.reportFile);
               logEvent(locale.reportFileRemoved(settings.reportFile));
             } catch (_e) {
-              // do nothing - it's often untracked and doesn't exist by default.
+              // do nothing - reports are often untracked and do not exist by default.
             }
           }
         }

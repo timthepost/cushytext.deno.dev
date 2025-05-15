@@ -10,10 +10,6 @@
  *  3. Pass it to the plugin via config option LocaleSettings.reporterLocale
  */
 export class enMessages {
-  // miscellaneous strings
-  static APP_NAME = "SimpleSEO II";
-  static BEGIN_MESSAGE = `${this.APP_NAME} is starting up...`;
-  static PROCESSING_MESSAGE = `${this.APP_NAME} is processing `;
 
   // warning types
   static LENGTH_WARNING_TITLE = "Length Warnings";
@@ -42,7 +38,14 @@ export class enMessages {
   static ACTIONS_VISIT_PAGE = "Open In Browser";
   static ACTIONS_OPEN_IN_VSCODE_EDITOR = "Open In Code";
 
-  // all the skips
+  // changes many other strings, and title of Lume bar tab
+  static APP_NAME = "SimpleSEO II";
+
+  // miscellaneous strings
+  static BEGIN_MESSAGE = `${this.APP_NAME} started successfully.`;
+  static PROCESSING_MESSAGE = `${this.APP_NAME} is processing `;
+
+  // all the console messages for skipping checks
   static skippingLengthWarnings(url) {
     return `${this.APP_NAME}: Skipping length warnings for ${url} as per frontmatter.`;
   }
@@ -77,7 +80,7 @@ export class enMessages {
     return `${this.APP_NAME}: Skipping ${url} as it matches ignore pattern '${pattern}'.`;
   }
 
-  // Lume bar messages
+  // Lume bar generation console messages
   static populatingDebugBar(category) {
     return `${this.APP_NAME}: Populating debug bar for ${category}.`;
   }
@@ -88,7 +91,7 @@ export class enMessages {
     return `${this.APP_NAME}: Debug bar object is missing; is this Lume 3?`;
   }
 
-  // miscellaneous 
+  // miscellaneous strings
   static foundWarningsForCategory(count, category) {
     return `${this.APP_NAME}: Found ${count} warnings for ${category}.`;
   }
