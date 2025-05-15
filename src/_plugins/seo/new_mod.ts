@@ -14,6 +14,7 @@ export type SeoReportMessages = typeof enMessages;
 export interface Options {
   globalSettings?: {
     ignore?: string[];
+    ignorePatterns?: string[];
     stateFile?: string | null;
     debug?: boolean;
     defaultLengthUnit?: LengthUnit;
@@ -76,6 +77,7 @@ export interface Options {
 export const defaultOptions: Options = {
   globalSettings: {
     ignore: ["/404.html"],
+    ignorePatterns: [],
     stateFile: null,
     debug: true,
     defaultLengthUnit: "character",
@@ -136,27 +138,15 @@ export const defaultOptions: Options = {
 };
 
 interface frontMatterConfig {
-  /* Ignore the page completely */
   ignore?: boolean;
-
-  /* Skip all length related checks */
   skipLength?: boolean;
-  /* Skip all semantic related checks */
   skipSemantic?: boolean;
-  /* Skip all media related checks */
   skipMedia?: boolean;
-  /* Skip all common word related checks */
   skipCommonWords?: boolean;
-  /* Skip all Google Search Console checks */
   skipGoogleSearchConsole?: boolean;
-  /* Skip all Bing Webmaster Tools checks */
   skipBingWebmasterTools?: boolean;
-
-  /* Override default locale */
   overrideDefaultLocale?: string;
-  /* Override the debug setting for this page */
   overrideDebug?: boolean;
-  /* Override the default length unit for this page */
   overrideDefaultLengthUnit?: LengthUnit;
 };
 
@@ -260,208 +250,304 @@ export default function simpleSEO(userOptions?: Options) {
 
     site.process([".html"], (pages) => {
       for (const page of pages) {
-        const pageEffectiveLocale = page.data.lang ||
-          options.localeSettings.defaultLocaleCode!;
         const pageUrl = page.data.url;
         const sourceFile = page.src.entry?.src;
+        const frontMatter: frontMatterConfig | undefined = page.data.seo;
 
-        logEvent(locale.PROCESSING_MESSAGE + page.data.url);
+        // Page-level debug override
+        const pageDebug = frontMatter?.overrideDebug ?? settings.debug;
+
+        // We can't know this until we're inside, so we must. This is 
+        // necessary for per-page level debug.
+        // deno-lint-ignore no-inner-declarations
+        function pageLogEvent(text: string): void {
+          if (pageDebug) {
+            log.info(text);
+          }
+        }
+
+        // Initial skip checks
+        if (settings.ignore?.includes(pageUrl)) {
+          pageLogEvent(locale.skippingPageConfigIgnore(pageUrl));
+          continue;
+        }
+
+        let skipPageDueToPattern = false;
+        if (settings.ignorePatterns && settings.ignorePatterns.length > 0) {
+          for (const pattern of settings.ignorePatterns) {
+            if (pageUrl.startsWith(pattern)) {
+              pageLogEvent(locale.skippingPagePatternIgnore(pageUrl, pattern));
+              skipPageDueToPattern = true;
+              break; // Found a matching pattern, no need to check other patterns for this page
+            }
+          }
+        }
+
+        if (skipPageDueToPattern) {
+          continue;
+        }
+
+        if (frontMatter?.ignore) {
+          pageLogEvent(locale.skippingPageWarning(pageUrl));
+          continue;
+        }
+
+        const pageEffectiveLocale = frontMatter?.overrideDefaultLocale ||
+          page.data.lang ||
+          options.localeSettings.defaultLocaleCode!;
+
+        if (
+          options.localeSettings.ignoreAllButLocaleCode &&
+          pageEffectiveLocale !== options.localeSettings.ignoreAllButLocaleCode
+        ) {
+          pageLogEvent(
+            locale.skippingPageLocaleMismatch(pageUrl, 
+              pageEffectiveLocale, 
+              options.localeSettings.ignoreAllButLocaleCode),
+          );
+          continue;
+        }
+
+        pageLogEvent(locale.PROCESSING_MESSAGE + page.data.url);
 
         if (options.semanticChecks) {
-          const warningStore = warnings.semantic.store;
-          const pageSpecificWarnings: string[] = [];
-          // all semantic checks here
-          // Example: if (someCondition) pageSpecificWarnings.push("Semantic issue found.");
+          if (frontMatter?.skipSemantic) {
+            pageLogEvent(locale.skippingSemanticWarnings(pageUrl));
+          } else {
+            const warningStore = warnings.semantic.store;
+            const pageSpecificWarnings: string[] = [];
+            // all semantic checks here
+            // Example: if (someCondition) pageSpecificWarnings.push("Semantic issue found.");
 
-          if (pageSpecificWarnings.length > 0) {
-            let S = warningStore.get(pageUrl);
-            if (!S) {
-              S = { messages: new Set<string>(), sourceFile: sourceFile as string};
-              warningStore.set(pageUrl, S);
+            if (pageSpecificWarnings.length > 0) {
+              let S = warningStore.get(pageUrl);
+              if (!S) {
+                S = {
+                  messages: new Set<string>(),
+                  sourceFile: sourceFile as string,
+                };
+                warningStore.set(pageUrl, S);
+              }
+              pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
             }
-            pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
           }
         }
 
         if (options.mediaAttributeChecks) {
-          const warningStore = warnings.mediaAttribute.store;
-          const pageSpecificWarnings: string[] = [];
-          // all media attribute checks here
-          // Example: if (someCondition) pageSpecificWarnings.push("Media attribute issue.");
+          if (frontMatter?.skipMedia) {
+            pageLogEvent(locale.skippingMediaAttributeWarnings(pageUrl));
+          } else {
+            const warningStore = warnings.mediaAttribute.store;
+            const pageSpecificWarnings: string[] = [];
+            // all media attribute checks here
+            // Example: if (someCondition) pageSpecificWarnings.push("Media attribute issue.");
 
-          if (pageSpecificWarnings.length > 0) {
-            let S = warningStore.get(pageUrl);
-            if (!S) {
-              S = { messages: new Set<string>(), sourceFile: sourceFile as string};
-              warningStore.set(pageUrl, S);
+            if (pageSpecificWarnings.length > 0) {
+              let S = warningStore.get(pageUrl);
+              if (!S) {
+                S = {
+                  messages: new Set<string>(),
+                  sourceFile: sourceFile as string,
+                };
+                warningStore.set(pageUrl, S);
+              }
+              pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
             }
-            pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
           }
         }
 
         if (options.commonWordPercentageChecks) {
-          const warningStore = warnings.commonWord.store;
-          const pageSpecificWarnings: string[] = [];
-          // all common word percentage checks here
-          // Example: if (someCondition) pageSpecificWarnings.push("Common word issue.");
+          if (frontMatter?.skipCommonWords) {
+            pageLogEvent(locale.skippingUniquenessWarnings(pageUrl));
+          } else {
+            const warningStore = warnings.commonWord.store;
+            const pageSpecificWarnings: string[] = [];
+            // all common word percentage checks here
+            // Example: if (someCondition) pageSpecificWarnings.push("Common word issue.");
 
-          if (pageSpecificWarnings.length > 0) {
-            let S = warningStore.get(pageUrl);
-            if (!S) {
-              S = { messages: new Set<string>(), sourceFile: sourceFile as string };
-              warningStore.set(pageUrl, S);
+            if (pageSpecificWarnings.length > 0) {
+              let S = warningStore.get(pageUrl);
+              if (!S) {
+                S = {
+                  messages: new Set<string>(),
+                  sourceFile: sourceFile as string,
+                };
+                warningStore.set(pageUrl, S);
+              }
+              pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
             }
-            pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
           }
         }
 
         if (options.lengthChecks) {
-          const warningStore = warnings.length.store;
-          const pageSpecificLengthWarnings: string[] = [];
+          if (frontMatter?.skipLength) {
+            pageLogEvent(locale.skippingLengthWarnings(pageUrl));
+          } else {
+            const warningStore = warnings.length.store;
+            const pageSpecificLengthWarnings: string[] = [];
 
-          if (options.lengthChecks.title) {
-            if (page.document.title) {
+            if (options.lengthChecks.title) {
+              if (page.document.title) {
                 const result = checkConformity(
-                    page.document.title,
-                    options.lengthChecks.title as string,
-                    pageEffectiveLocale,
-                    locale.CONTEXT_TITLE,
-                ); 
-                if (!result.conforms && result.message) {
-                    logEvent(result.message);
-                    pageSpecificLengthWarnings.push(result.message);
-                } 
-            } else {
-                logEvent(locale.ERROR_TITLE_MISSING);
-                pageSpecificLengthWarnings.push(locale.ERROR_TITLE_MISSING);
-            }
-          }
-
-          if (options.lengthChecks.url) {
-            const result = checkConformity(
-              page.data.url,
-              options.lengthChecks.url as string,
-              pageEffectiveLocale,
-              locale.CONTEXT_URL,
-            );
-            if (!result.conforms && result.message) {
-              logEvent(result.message);
-              pageSpecificLengthWarnings.push(result.message);
-            }
-          }
-
-          if (options.lengthChecks.metaDescription) {
-            const metaDescriptionElement = page.document.querySelector(
-              'meta[name="description"]',
-            );
-            const metaDescription = metaDescriptionElement?.getAttribute(
-              "content",
-            );
-            if (metaDescription !== null && metaDescription !== undefined) {
-              const result = checkConformity(
-                metaDescription,
-                options.lengthChecks.metaDescription as string,
-                pageEffectiveLocale,
-                locale.CONTEXT_META_DESCRIPTION_LEN,
-              );
-              if (!result.conforms && result.message) {
-                logEvent(result.message);
-                pageSpecificLengthWarnings.push(result.message);
-              }
-            } else {
-              logEvent(locale.ERROR_META_DESCRIPTION_MISSING);
-              pageSpecificLengthWarnings.push(
-                locale.ERROR_META_DESCRIPTION_MISSING,
-              );
-            }
-          }
-
-          if (options.lengthChecks.content) {
-            if (page.document.body) {
-              const result = checkConformity(
-                page.document.body.innerText,
-                options.lengthChecks.content as string,
-                pageEffectiveLocale,
-                locale.CONTEXT_MAIN_CONTENT_LEN,
-              );
-              if (!result.conforms && result.message) {
-                logEvent(result.message);
-                pageSpecificLengthWarnings.push(result.message);
-              }
-            }
-          }
-
-          if (options.lengthChecks.metaKeywordLength) {
-            const metaKeywords = page.document.querySelectorAll(
-              'meta[name="keywords"]',
-            );
-            if (metaKeywords) {
-              let combinedKeywordsContent = "";
-              for (const keyword of metaKeywords) {
-                if (keyword.getAttribute("content")) {
-                  combinedKeywordsContent += keyword.getAttribute("content") + " ";
-                }
-              }
-              combinedKeywordsContent = combinedKeywordsContent.trim();
-              if (combinedKeywordsContent.length > 0) {
-                const result = checkConformity(
-                  combinedKeywordsContent,
-                  options.lengthChecks.metaKeywordLength as string,
+                  page.document.title,
+                  options.lengthChecks.title as string,
                   pageEffectiveLocale,
-                  locale.CONTEXT_META_KEYWORD_LEN,
+                  locale.CONTEXT_TITLE,
                 );
                 if (!result.conforms && result.message) {
-                  logEvent(result.message);
+                  pageLogEvent(result.message);
+                  pageSpecificLengthWarnings.push(result.message);
+                }
+              } else {
+                pageLogEvent(locale.ERROR_TITLE_MISSING);
+                pageSpecificLengthWarnings.push(locale.ERROR_TITLE_MISSING);
+              }
+            }
+
+            if (options.lengthChecks.url) {
+              const result = checkConformity(
+                page.data.url,
+                options.lengthChecks.url as string,
+                pageEffectiveLocale,
+                locale.CONTEXT_URL,
+              );
+              if (!result.conforms && result.message) {
+                pageLogEvent(result.message);
+                pageSpecificLengthWarnings.push(result.message);
+              }
+            }
+
+            if (options.lengthChecks.metaDescription) {
+              const metaDescriptionElement = page.document.querySelector(
+                'meta[name="description"]',
+              );
+              const metaDescription = metaDescriptionElement?.getAttribute(
+                "content",
+              );
+              if (metaDescription !== null && metaDescription !== undefined) {
+                const result = checkConformity(
+                  metaDescription,
+                  options.lengthChecks.metaDescription as string,
+                  pageEffectiveLocale,
+                  locale.CONTEXT_META_DESCRIPTION_LEN,
+                );
+                if (!result.conforms && result.message) {
+                  pageLogEvent(result.message);
+                  pageSpecificLengthWarnings.push(result.message);
+                }
+              } else {
+                pageLogEvent(locale.ERROR_META_DESCRIPTION_MISSING);
+                pageSpecificLengthWarnings.push(
+                  locale.ERROR_META_DESCRIPTION_MISSING,
+                );
+              }
+            }
+
+            if (options.lengthChecks.content) {
+              if (page.document.body) {
+                const result = checkConformity(
+                  page.document.body.innerText,
+                  options.lengthChecks.content as string,
+                  pageEffectiveLocale,
+                  locale.CONTEXT_MAIN_CONTENT_LEN,
+                );
+                if (!result.conforms && result.message) {
+                  pageLogEvent(result.message);
                   pageSpecificLengthWarnings.push(result.message);
                 }
               }
-            } else {
-                logEvent(locale.ERROR_META_KEYWORD_MISSING);
-              pageSpecificLengthWarnings.push(
-                locale.ERROR_META_KEYWORD_MISSING,
-              );
             }
-          }
 
-          if (pageSpecificLengthWarnings.length > 0) {
-            let S = warningStore.get(pageUrl);
-            if (!S) {
-              S = { messages: new Set<string>(), sourceFile: sourceFile as string };
-              warningStore.set(pageUrl, S);
+            if (options.lengthChecks.metaKeywordLength) {
+              const metaKeywords = page.document.querySelectorAll(
+                'meta[name="keywords"]',
+              );
+              if (metaKeywords && metaKeywords.length > 0) {
+                let combinedKeywordsContent = "";
+                for (const keyword of metaKeywords) {
+                  if (keyword.getAttribute("content")) {
+                    combinedKeywordsContent += keyword.getAttribute("content") +
+                      " ";
+                  }
+                }
+                combinedKeywordsContent = combinedKeywordsContent.trim();
+                if (combinedKeywordsContent.length > 0) {
+                  const result = checkConformity(
+                    combinedKeywordsContent,
+                    options.lengthChecks.metaKeywordLength as string,
+                    pageEffectiveLocale,
+                    locale.CONTEXT_META_KEYWORD_LEN,
+                  );
+                  if (!result.conforms && result.message) {
+                    pageLogEvent(result.message);
+                    pageSpecificLengthWarnings.push(result.message);
+                  }
+                }
+              } else {
+                pageLogEvent(locale.ERROR_META_KEYWORD_MISSING);
+                pageSpecificLengthWarnings.push(
+                  locale.ERROR_META_KEYWORD_MISSING,
+                );
+              }
             }
-            pageSpecificLengthWarnings.forEach((msg) => S!.messages.add(msg));
+
+            if (pageSpecificLengthWarnings.length > 0) {
+              let S = warningStore.get(pageUrl);
+              if (!S) {
+                S = {
+                  messages: new Set<string>(),
+                  sourceFile: sourceFile as string,
+                };
+                warningStore.set(pageUrl, S);
+              }
+              pageSpecificLengthWarnings.forEach((msg) => S!.messages.add(msg));
+            }
           }
         }
 
         if (options.googleSearchConsoleChecks) {
-          const warningStore = warnings.googleSearchConsole.store;
-          const pageSpecificWarnings: string[] = [];
-          // all google search console checks here
-          // Example: if (someCondition) pageSpecificWarnings.push("GSC issue.");
+          if (frontMatter?.skipGoogleSearchConsole) {
+            pageLogEvent(locale.skippingGoogleConsoleWarnings(pageUrl));
+          } else {
+            const warningStore = warnings.googleSearchConsole.store;
+            const pageSpecificWarnings: string[] = [];
+            // all google search console checks here
+            // Example: if (someCondition) pageSpecificWarnings.push("GSC issue.");
 
-          if (pageSpecificWarnings.length > 0) {
-            let S = warningStore.get(pageUrl);
-            if (!S) {
-              S = { messages: new Set<string>(), sourceFile: sourceFile as string };
-              warningStore.set(pageUrl, S);
+            if (pageSpecificWarnings.length > 0) {
+              let S = warningStore.get(pageUrl);
+              if (!S) {
+                S = {
+                  messages: new Set<string>(),
+                  sourceFile: sourceFile as string,
+                };
+                warningStore.set(pageUrl, S);
+              }
+              pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
             }
-            pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
           }
         }
 
         if (options.bingWebmasterToolsChecks) {
-          const warningStore = warnings.bingWebmasterTools.store;
-          const pageSpecificWarnings: string[] = [];
-          // all bing webmaster tools checks here
-          // Example: if (someCondition) pageSpecificWarnings.push("Bing issue.");
+          if (frontMatter?.skipBingWebmasterTools) {
+            pageLogEvent(locale.skippingBingWebmasterWarnings(pageUrl));
+          } else {
+            const warningStore = warnings.bingWebmasterTools.store;
+            const pageSpecificWarnings: string[] = [];
+            // all bing webmaster tools checks here
+            // Example: if (someCondition) pageSpecificWarnings.push("Bing issue.");
 
-          if (pageSpecificWarnings.length > 0) {
-            let S = warningStore.get(pageUrl);
-            if (!S) {
-              S = { messages: new Set<string>(), sourceFile: sourceFile as string };
-              warningStore.set(pageUrl, S);
+            if (pageSpecificWarnings.length > 0) {
+              let S = warningStore.get(pageUrl);
+              if (!S) {
+                S = {
+                  messages: new Set<string>(),
+                  sourceFile: sourceFile as string,
+                };
+                warningStore.set(pageUrl, S);
+              }
+              pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
             }
-            pageSpecificWarnings.forEach((msg) => S!.messages.add(msg));
           }
         }
       }
