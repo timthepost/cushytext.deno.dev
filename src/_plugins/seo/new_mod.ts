@@ -135,18 +135,42 @@ export const defaultOptions: Options = {
   },
 };
 
+interface frontMatterConfig {
+  /* Ignore the page completely */
+  ignore?: boolean;
+
+  /* Skip all length related checks */
+  skipLength?: boolean;
+  /* Skip all semantic related checks */
+  skipSemantic?: boolean;
+  /* Skip all media related checks */
+  skipMedia?: boolean;
+  /* Skip all common word related checks */
+  skipCommonWords?: boolean;
+  /* Skip all Google Search Console checks */
+  skipGoogleSearchConsole?: boolean;
+  /* Skip all Bing Webmaster Tools checks */
+  skipBingWebmasterTools?: boolean;
+
+  /* Override default locale */
+  overrideDefaultLocale?: string;
+  /* Override the debug setting for this page */
+  overrideDebug?: boolean;
+  /* Override the default length unit for this page */
+  overrideDefaultLengthUnit?: LengthUnit;
+};
 
 interface PageWarningDetails {
   messages: Set<string>;
   sourceFile: string; // Absolute path to the source file for editor links
-}
+};
 
 interface SEOWarning {
   store: Map<string, PageWarningDetails>;
   check: string;
   rationale: (checkValue: string) => string;
   title: string;
-}
+};
 
 interface SEOWarnings {
   length: SEOWarning;
@@ -155,7 +179,7 @@ interface SEOWarnings {
   mediaAttribute: SEOWarning;
   googleSearchConsole: SEOWarning;
   bingWebmasterTools: SEOWarning;
-}
+};
 
 export default function simpleSEO(userOptions?: Options) {
   const options = merge(defaultOptions, userOptions);
