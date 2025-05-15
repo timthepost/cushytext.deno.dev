@@ -161,6 +161,7 @@ export default function(userOptions?: Options) {
           ignore: ["/404.html"],
           ignorePatterns: ["/archive/", "/author/", "/dev/"],
           stateFile: null,
+          reportFile: "./_seo_report.json",
           debug: true,
           defaultLengthUnit: "character",
         },

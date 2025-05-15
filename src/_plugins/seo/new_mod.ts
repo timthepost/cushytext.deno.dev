@@ -16,8 +16,10 @@ export interface Options {
     ignore?: string[];
     ignorePatterns?: string[];
     stateFile?: string | null;
+    reportFile?: string | ((reportData: Map<string, string[]>) => void) | null;
     debug?: boolean;
     defaultLengthUnit?: LengthUnit;
+    removeReportFileIfEmpty?: boolean;
   };
 
   localeSettings?: {
@@ -79,8 +81,10 @@ export const defaultOptions: Options = {
     ignore: ["/404.html"],
     ignorePatterns: [],
     stateFile: null,
+    reportFile: "./_seo_report.json",
     debug: true,
     defaultLengthUnit: "character",
+    removeReportFileIfEmpty: true,
   },
 
   localeSettings: {
@@ -233,6 +237,20 @@ export default function simpleSEO(userOptions?: Options) {
       title: locale.BING_WEBMASTER_TITLE,
     },
   };
+
+  function prepareReportData(
+    warningsObject: SEOWarnings,
+  ): Map<string, string[]> {
+    const reportMap = new Map<string, string[]>();
+    for (const categoryKey in warningsObject) {
+      const category = warningsObject[categoryKey as keyof SEOWarnings];
+      for (const [url, pageDetails] of category.store.entries()) {
+        const existingMessages = reportMap.get(url) || [];
+        reportMap.set(url, [...existingMessages, ...pageDetails.messages]);
+      }
+    }
+    return reportMap;
+  }
 
   return (site: Site) => {
     function logEvent(text: string): void {
@@ -552,12 +570,6 @@ export default function simpleSEO(userOptions?: Options) {
       }
     });
 
-    // maybe bring back writing warnings to _seo_report.json?
-
-    // generate state info for google & bing & write to file
-
-    // send warnings and state info to callback if defined
-
     site.addEventListener("afterBuild", () => {
       const debugBarReport = site.debugBar?.collection(locale.APP_NAME);
       if (debugBarReport) {
@@ -629,6 +641,45 @@ export default function simpleSEO(userOptions?: Options) {
         // We don't register on the build tab, as our own tab is evidence that we made it.
       } else {
         logEvent(locale.debugBarMissingMessage());
+      }
+
+      // Generate report file or call callback
+      const finalReportData = prepareReportData(warnings);
+      let totalWarningCount = 0;
+      finalReportData.forEach((messages) => totalWarningCount += messages.length);
+
+      if (typeof settings.reportFile === "function") {
+        settings.reportFile(finalReportData);
+        logEvent(
+          `SEO: Report data passed to callback function. Found ${totalWarningCount} warnings.`,
+        );
+      } else if (typeof settings.reportFile === "string") {
+        if (totalWarningCount > 0) {
+          try {
+            const reportJson = JSON.stringify(
+              Object.fromEntries(finalReportData.entries()),
+              null,
+              2,
+            );
+            Deno.writeTextFileSync(settings.reportFile, reportJson);
+            logEvent(locale.reportFileGenerated(settings.reportFile));
+          } catch (e) {
+            if (e instanceof Error) {
+              log.error(locale.reportFileError(e.message));
+            } else {
+              log.error(locale.reportFileError(String(e)));
+            }
+          }
+        } else {
+          if (settings.removeReportFileIfEmpty) {
+            try {
+              Deno.removeSync(settings.reportFile);
+              logEvent(locale.reportFileRemoved(settings.reportFile));
+            } catch (_e) {
+              // do nothing - it's often untracked and doesn't exist by default.
+            }
+          }
+        }
       }
     });
   };

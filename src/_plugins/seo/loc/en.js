@@ -92,6 +92,15 @@ export class enMessages {
   static foundWarningsForCategory(count, category) {
     return `${this.APP_NAME}: Found ${count} warnings for ${category}.`;
   }
+  static reportFileGenerated(filePath) {
+    return `${this.APP_NAME}: Warnings report generated at ${filePath}`;
+  }
+  static reportFileRemoved(filePath) {
+    return `${this.APP_NAME}: No warnings. Report file ${filePath} removed (if it existed).`;
+  }
+  static reportFileError(message) {
+    return `${this.APP_NAME}: Error generating warnings report: ${message}`;
+  }
 }
 
 export default enMessages;

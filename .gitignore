@@ -1,6 +1,6 @@
 _site
 _cache
-_seo_cache
+_seo_report.json
 src/_menu_structure.json
 .DS_Store
 node_modules
