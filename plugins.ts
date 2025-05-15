@@ -172,6 +172,10 @@ export default function(userOptions?: Options) {
           content: "range 900 5000 word",
           metaKeywordLength: "range 10 50 word",
         },
+        mediaAttributeChecks: {
+          imageAlt: "range 2 1500 character",
+          imageTitle: false,
+        },
       }))
       .add("_includes/js", "js")
       .add("_includes/css", "css")
