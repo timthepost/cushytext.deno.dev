@@ -177,7 +177,7 @@ interface SEOWarnings {
 
 export default function simpleSEO(userOptions?: Options) {
   const options = merge(defaultOptions, userOptions);
-  const settings = options.globalSettings;
+  const settings = options.globalSettings!;
   const locale = options.localeSettings.reporterLocale!;
 
   function checkConformity(
@@ -186,7 +186,7 @@ export default function simpleSEO(userOptions?: Options) {
     pageLocale: string,
     context: string,
   ): RequirementResult {
-    const checker = new SimpleConforms(nomenclature, pageLocale);
+    const checker = new SimpleConforms(nomenclature, pageLocale, locale);
     return checker.test(inputValue, context);
   }
 
@@ -416,7 +416,7 @@ export default function simpleSEO(userOptions?: Options) {
                   pageSpecificLengthWarnings.push(result.message);
                 }
               } else {
-                pageLogEvent(locale.ERROR_TITLE_MISSING);
+                pageLogEvent(locale.APP_NAME + ": " + locale.ERROR_TITLE_MISSING + " : " + pageUrl);
                 pageSpecificLengthWarnings.push(locale.ERROR_TITLE_MISSING);
               }
             }
@@ -453,7 +453,7 @@ export default function simpleSEO(userOptions?: Options) {
                   pageSpecificLengthWarnings.push(result.message);
                 }
               } else {
-                pageLogEvent(locale.ERROR_META_DESCRIPTION_MISSING);
+                pageLogEvent(locale.APP_NAME + ": " + locale.ERROR_META_DESCRIPTION_MISSING + " : " + pageUrl);
                 pageSpecificLengthWarnings.push(
                   locale.ERROR_META_DESCRIPTION_MISSING,
                 );
@@ -469,7 +469,7 @@ export default function simpleSEO(userOptions?: Options) {
                   locale.CONTEXT_MAIN_CONTENT_LEN,
                 );
                 if (!result.conforms && result.message) {
-                  pageLogEvent(result.message);
+                  pageLogEvent(locale.APP_NAME + ": " + result.message + " : " + pageUrl);
                   pageSpecificLengthWarnings.push(result.message);
                 }
               }
@@ -501,7 +501,7 @@ export default function simpleSEO(userOptions?: Options) {
                   }
                 }
               } else {
-                pageLogEvent(locale.ERROR_META_KEYWORD_MISSING);
+                pageLogEvent(locale.APP_NAME + ": " + locale.ERROR_META_KEYWORD_MISSING + " : " + pageUrl);
                 pageSpecificLengthWarnings.push(
                   locale.ERROR_META_KEYWORD_MISSING,
                 );
