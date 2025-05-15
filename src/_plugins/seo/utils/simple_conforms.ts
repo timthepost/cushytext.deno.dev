@@ -95,7 +95,7 @@ export class SimpleConforms {
   }
 
   /**
-   * A utility to count dang near anything. Not exactly pretty, but 
+   * A utility to count dang near anything. Not exactly pretty, but
    * effective! Number reflects the requirement unit.
    * @param textOrNumber text, number or array
    * @returns number

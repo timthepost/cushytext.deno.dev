@@ -148,19 +148,19 @@ interface frontMatterConfig {
   overrideDefaultLocale?: string;
   overrideDebug?: boolean;
   overrideDefaultLengthUnit?: LengthUnit;
-};
+}
 
 interface PageWarningDetails {
   messages: Set<string>;
   sourceFile: string; // Absolute path to the source file for editor links
-};
+}
 
 interface SEOWarning {
   store: Map<string, PageWarningDetails>;
   check: string;
   rationale: (checkValue: string) => string;
   title: string;
-};
+}
 
 interface SEOWarnings {
   length: SEOWarning;
@@ -169,7 +169,7 @@ interface SEOWarnings {
   mediaAttribute: SEOWarning;
   googleSearchConsole: SEOWarning;
   bingWebmasterTools: SEOWarning;
-};
+}
 
 export default function simpleSEO(userOptions?: Options) {
   const options = merge(defaultOptions, userOptions);
@@ -257,7 +257,7 @@ export default function simpleSEO(userOptions?: Options) {
         // Page-level debug override
         const pageDebug = frontMatter?.overrideDebug ?? settings.debug;
 
-        // We can't know this until we're inside, so we must. This is 
+        // We can't know this until we're inside, so we must. This is
         // necessary for per-page level debug.
         // deno-lint-ignore no-inner-declarations
         function pageLogEvent(text: string): void {
@@ -301,9 +301,11 @@ export default function simpleSEO(userOptions?: Options) {
           pageEffectiveLocale !== options.localeSettings.ignoreAllButLocaleCode
         ) {
           pageLogEvent(
-            locale.skippingPageLocaleMismatch(pageUrl, 
-              pageEffectiveLocale, 
-              options.localeSettings.ignoreAllButLocaleCode),
+            locale.skippingPageLocaleMismatch(
+              pageUrl,
+              pageEffectiveLocale,
+              options.localeSettings.ignoreAllButLocaleCode,
+            ),
           );
           continue;
         }
@@ -553,6 +555,12 @@ export default function simpleSEO(userOptions?: Options) {
       }
     });
 
+    // maybe bring back writing warnings to _seo_report.json?
+
+    // generate state info for google & bing & write to file
+
+    // send warnings and state info to callback if defined
+
     // Hook to generate the debug bar report after the site build is complete
     site.addEventListener("afterBuild", () => {
       const debugBarReport = site.debugBar?.collection(locale.APP_NAME);
@@ -598,17 +606,17 @@ export default function simpleSEO(userOptions?: Options) {
                   {
                     text: locale.ACTIONS_ABOUT_WARNING_TYPE,
                     href: rationaleUrl,
-                    icon: "question" 
+                    icon: "question",
                   },
                   {
                     text: locale.ACTIONS_VISIT_PAGE,
                     href: pageUrlString,
-                    icon: "globe"
+                    icon: "globe",
                   },
                   {
-                    text: locale.ACTIONS_OPEN_IN_VSCODE_EDITOR, 
+                    text: locale.ACTIONS_OPEN_IN_VSCODE_EDITOR,
                     href: `vscode://file/${pageWarningDetails.sourceFile}`,
-                    icon: "code"
+                    icon: "code",
                   },
                 ],
               });
@@ -625,7 +633,7 @@ export default function simpleSEO(userOptions?: Options) {
         }
         logEvent(
           `SimpleSEO: Added ${totalWarningsAdded} items to the debug bar for ${locale.APP_NAME}.`,
-        )
+        );
         // We don't register on the build tab, as our own tab is evidence that we made it.
       } else {
         logEvent(
@@ -633,9 +641,5 @@ export default function simpleSEO(userOptions?: Options) {
         );
       }
     });
-
-    // generate state file
-
-    // send state info to callback if defined
   };
 }
