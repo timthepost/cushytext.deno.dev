@@ -243,7 +243,6 @@ export default function simpleSEO(userOptions?: Options) {
 
     logEvent(locale.BEGIN_MESSAGE);
 
-    // Clear all warning stores once before processing pages
     for (const key in warnings) {
       warnings[key as keyof SEOWarnings].store.clear();
     }
@@ -266,7 +265,6 @@ export default function simpleSEO(userOptions?: Options) {
           }
         }
 
-        // Initial skip checks
         if (settings.ignore?.includes(pageUrl)) {
           pageLogEvent(locale.skippingPageConfigIgnore(pageUrl));
           continue;
@@ -278,7 +276,7 @@ export default function simpleSEO(userOptions?: Options) {
             if (pageUrl.startsWith(pattern)) {
               pageLogEvent(locale.skippingPagePatternIgnore(pageUrl, pattern));
               skipPageDueToPattern = true;
-              break; // Found a matching pattern, no need to check other patterns for this page
+              break; 
             }
           }
         }
@@ -319,7 +317,6 @@ export default function simpleSEO(userOptions?: Options) {
             const warningStore = warnings.semantic.store;
             const pageSpecificWarnings: string[] = [];
             // all semantic checks here
-            // Example: if (someCondition) pageSpecificWarnings.push("Semantic issue found.");
 
             if (pageSpecificWarnings.length > 0) {
               let S = warningStore.get(pageUrl);
@@ -342,7 +339,7 @@ export default function simpleSEO(userOptions?: Options) {
             const warningStore = warnings.mediaAttribute.store;
             const pageSpecificWarnings: string[] = [];
             // all media attribute checks here
-            // Example: if (someCondition) pageSpecificWarnings.push("Media attribute issue.");
+
 
             if (pageSpecificWarnings.length > 0) {
               let S = warningStore.get(pageUrl);
@@ -364,8 +361,8 @@ export default function simpleSEO(userOptions?: Options) {
           } else {
             const warningStore = warnings.commonWord.store;
             const pageSpecificWarnings: string[] = [];
-            // all common word percentage checks here
-            // Example: if (someCondition) pageSpecificWarnings.push("Common word issue.");
+            // all content uniqueness checks here
+
 
             if (pageSpecificWarnings.length > 0) {
               let S = warningStore.get(pageUrl);
@@ -514,7 +511,7 @@ export default function simpleSEO(userOptions?: Options) {
             const warningStore = warnings.googleSearchConsole.store;
             const pageSpecificWarnings: string[] = [];
             // all google search console checks here
-            // Example: if (someCondition) pageSpecificWarnings.push("GSC issue.");
+  
 
             if (pageSpecificWarnings.length > 0) {
               let S = warningStore.get(pageUrl);
@@ -537,7 +534,7 @@ export default function simpleSEO(userOptions?: Options) {
             const warningStore = warnings.bingWebmasterTools.store;
             const pageSpecificWarnings: string[] = [];
             // all bing webmaster tools checks here
-            // Example: if (someCondition) pageSpecificWarnings.push("Bing issue.");
+
 
             if (pageSpecificWarnings.length > 0) {
               let S = warningStore.get(pageUrl);
@@ -561,7 +558,6 @@ export default function simpleSEO(userOptions?: Options) {
 
     // send warnings and state info to callback if defined
 
-    // Hook to generate the debug bar report after the site build is complete
     site.addEventListener("afterBuild", () => {
       const debugBarReport = site.debugBar?.collection(locale.APP_NAME);
       if (debugBarReport) {
