@@ -561,7 +561,7 @@ export default function simpleSEO(userOptions?: Options) {
     site.addEventListener("afterBuild", () => {
       const debugBarReport = site.debugBar?.collection(locale.APP_NAME);
       if (debugBarReport) {
-        logEvent(`SimpleSEO: Populating debug bar for ${locale.APP_NAME}.`);
+        logEvent(locale.populatingDebugBar(locale.APP_NAME));
         debugBarReport.contexts = {};
         for (const key in warnings) {
           const categoryInfo = warnings[key as keyof SEOWarnings];
@@ -586,9 +586,7 @@ export default function simpleSEO(userOptions?: Options) {
           const warningStore = categoryInfo.store;
 
           if (warningStore.size > 0) {
-            logEvent(
-              `SimpleSEO: Found ${warningStore.size} pages with warnings for category '${categoryKey}'.`,
-            );
+            logEvent(locale.foundWarningsForCategory(warningStore.size, categoryKey))
           }
 
           const rationaleUrl = categoryInfo.rationale(categoryInfo.check);
@@ -627,14 +625,10 @@ export default function simpleSEO(userOptions?: Options) {
             }
           }
         }
-        logEvent(
-          `SimpleSEO: Added ${totalWarningsAdded} items to the debug bar for ${locale.APP_NAME}.`,
-        );
+        logEvent(locale.debugBarCompletionMessage(totalWarningsAdded));
         // We don't register on the build tab, as our own tab is evidence that we made it.
       } else {
-        logEvent(
-          `SimpleSEO: Debug bar collection for ${locale.APP_NAME} not found. Is this Lume 3?`,
-        );
+        logEvent(locale.debugBarMissingMessage());
       }
     });
   };

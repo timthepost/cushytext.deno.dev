@@ -30,8 +30,11 @@ export class enMessages {
   static ERROR_TITLE_MISSING = "Title Not Found In Document!";
   static OPEN_IN_VSCODE_EDITOR = "Open In Code";
 
-  static getDebugBarCompletionMessage(totalWarningsAdded) {
+  static debugBarCompletionMessage(totalWarningsAdded) {
     return `[${this.APP_NAME}]: Run completed with ${totalWarningsAdded} warnings.`;
+  }
+  static debugBarMissingMessage() {
+    return `${this.APP_NAME}: Debug bar object is missing; is this Lume 3?`;
   }
   static skippingLengthWarnings(url) {
     return `${this.APP_NAME}: Skipping length warnings for ${url} as per frontmatter.`;
@@ -65,6 +68,12 @@ export class enMessages {
   }
   static skippingPagePatternIgnore(url, pattern) {
     return `${this.APP_NAME}: Skipping ${url} as it matches ignore pattern '${pattern}'.`;
+  }
+  static foundWarningsForCategory(count, category) {
+    return `${this.APP_NAME}: Found ${count} warnings for ${category}.`;
+  }
+  static populatingDebugBar(category) {
+    return `${this.APP_NAME}: Populating debug bar for ${category}.`;
   }
 }
 
