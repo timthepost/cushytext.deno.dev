@@ -4,6 +4,7 @@
  * Lume 3: https://cushytext.deno.dev
  * License: MIT
  */
+import type { SeoReportMessages } from "../new_mod.ts";
 
 /**
  * Defines the units that can be used for length/count requirements.
@@ -44,11 +45,18 @@ interface ParsedRequirement {
 
 export class SimpleConforms {
   private requirement: ParsedRequirement;
-  private locale: string;
+  private pageLocale: string; // For Intl.Segmenter
+  private reporterLocale: SeoReportMessages; // For messages
 
-  constructor(nomenclature: string, locale: string = "en") {
-    this.locale = locale;
+  constructor(
+    nomenclature: string,
+    pageLocale: string = "en",
+    reporterLocale: SeoReportMessages,
+  ) {
+    this.pageLocale = pageLocale;
+    this.reporterLocale = reporterLocale;
     this.requirement = this.parseNomenclature(nomenclature);
+
   }
 
   private parseNomenclature(nomenclature: string): ParsedRequirement {
@@ -124,8 +132,8 @@ export class SimpleConforms {
     const segmenterUnit = this.requirement.unit as
       | "grapheme"
       | "word"
-      | "sentence";
-    const segmenter = new Intl.Segmenter(this.locale, {
+      | "sentence"; // Cast is safe due to prior checks
+    const segmenter = new Intl.Segmenter(this.pageLocale, {
       granularity: segmenterUnit,
     });
     return Array.from(segmenter.segment(text)).length;
@@ -143,24 +151,36 @@ export class SimpleConforms {
       case "min":
         conforms = actualValue >= this.requirement.value1;
         if (!conforms) {
-          message =
-            `${context}: Value ${actualValue} ${this.requirement.unit}(s) is less than minimum ${this.requirement.value1}.`;
+          message = this.reporterLocale.conformityLessThanMinimum(
+            context,
+            actualValue,
+            this.requirement.unit,
+            this.requirement.value1,
+          );
         }
         break;
       case "max":
         conforms = actualValue <= this.requirement.value1;
         if (!conforms) {
-          message =
-            `${context}: Value ${actualValue} ${this.requirement.unit}(s) exceeds maximum ${this.requirement.value1}.`;
+          message = this.reporterLocale.conformityExceedsMaximum(
+            context,
+            actualValue,
+            this.requirement.unit,
+            this.requirement.value1,
+          );
         }
         break;
       case "range":
         conforms = actualValue >= this.requirement.value1 &&
           actualValue <= this.requirement.value2!;
         if (!conforms) {
-          message =
-            `${context}: Value ${actualValue} ${this.requirement.unit}(s) is outside the range ${this.requirement.value1}-${this
-              .requirement.value2!}.`;
+          message = this.reporterLocale.conformityOutsideRange(
+            context,
+            actualValue,
+            this.requirement.unit,
+            this.requirement.value1,
+            this.requirement.value2!,
+          );
         }
         break;
     }

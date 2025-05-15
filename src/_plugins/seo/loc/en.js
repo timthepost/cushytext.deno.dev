@@ -33,6 +33,23 @@ export class enMessages {
   static ERROR_META_KEYWORD_MISSING = "Meta Keywords Not Found In Document!";
   static ERROR_TITLE_MISSING = "Title Not Found In Document!";
 
+  // conformity check messages (used by SimpleConforms) (Don't prefix with app name)
+  static conformityLessThanMinimum(context, actualValue, unit, minValue) {
+    return `${context}: Value ${actualValue} ${unit}(s) is less than minimum ${minValue}.`;
+  }
+  static conformityExceedsMaximum(context, actualValue, unit, maxValue) {
+    return `${context}: Value ${actualValue} ${unit}(s) exceeds maximum ${maxValue}.`;
+  }
+  static conformityOutsideRange(
+    context,
+    actualValue,
+    unit,
+    minValue,
+    maxValue,
+  ) {
+    return `${context}: Value ${actualValue} ${unit}(s) is outside the range ${minValue}-${maxValue}.`;
+  }
+
   // Lume bar action buttons
   static ACTIONS_ABOUT_WARNING_TYPE = "About Warning";
   static ACTIONS_VISIT_PAGE = "Open In Browser";
@@ -47,37 +64,37 @@ export class enMessages {
 
   // all the console messages for skipping checks
   static skippingLengthWarnings(url) {
-    return `${this.APP_NAME}: Skipping length warnings for ${url} as per frontmatter.`;
+    return `${this.APP_NAME} is skipping length warnings for ${url} as per frontmatter.`;
   }
   static skippingPageWarning(url) {
-    return `${this.APP_NAME}: Skipping page: ${url} entirely as per frontmatter.`;
+    return `${this.APP_NAME} is skipping ${url} entirely as per frontmatter.`;
   }
   static skippingSemanticWarnings(url) {
-    return `${this.APP_NAME}: Skipping semantic warnings for ${url} as per frontmatter.`;
+    return `${this.APP_NAME} is skipping semantic warnings for ${url} as per frontmatter.`;
   }
   static skippingMediaAttributeWarnings(url) {
-    return `${this.APP_NAME}: Skipping media attribute warnings for ${url} as per frontmatter.`;
+    return `${this.APP_NAME} is skipping media attribute warnings for ${url} as per frontmatter.`;
   }
   static skippingUniquenessWarnings(url) {
-    return `${this.APP_NAME}: Skipping uniqueness warnings for ${url} as per frontmatter.`;
+    return `${this.APP_NAME} is skipping uniqueness warnings for ${url} as per frontmatter.`;
   }
   static skippingGoogleConsoleWarnings(url) {
-    return `${this.APP_NAME}: Skipping Google Console warnings for ${url} as per frontmatter.`;
+    return `${this.APP_NAME} is skipping Google Console warnings for ${url} as per frontmatter.`;
   }
   static skippingBingWebmasterWarnings(url) {
-    return `${this.APP_NAME}: Skipping Bing Webmaster Tools warnings for ${url} as per frontmatter.`;
+    return `${this.APP_NAME} is skipping Bing Webmaster Tools warnings for ${url} as per frontmatter.`;
   }
   static skippingPageLocaleMismatch(url, locale, expectedLocale) {
-    return `${this.APP_NAME}: Skipping ${url} (locale: ${locale}) due to 'ignoreAllButLocaleCode: ${expectedLocale}.`;
+    return `${this.APP_NAME} is skipping ${url} (locale: ${locale}) due to 'ignoreAllButLocaleCode: ${expectedLocale}.`;
   }
   static skippingPageConfigIgnore(url) {
-    return `${this.APP_NAME}: Skipping ${url} as per GlobalSettings config.`;
+    return `${this.APP_NAME} is skipping ${url} as per GlobalSettings config.`;
   }
   static skippingPagePerLocaleIgnore(url, locale) {
-    return `${this.APP_NAME}: Skipping ${url} (locale: ${locale}) as per LocaleSettings config.`;
+    return `${this.APP_NAME} is skipping ${url} (locale: ${locale}) as per LocaleSettings config.`;
   }
   static skippingPagePatternIgnore(url, pattern) {
-    return `${this.APP_NAME}: Skipping ${url} as it matches ignore pattern '${pattern}'.`;
+    return `${this.APP_NAME} is skipping ${url} as it matches ignore pattern '${pattern}'.`;
   }
 
   // Lume bar generation console messages
@@ -85,7 +102,7 @@ export class enMessages {
     return `${this.APP_NAME}: Populating debug bar for ${category}.`;
   }
   static debugBarCompletionMessage(totalWarningsAdded) {
-    return `${this.APP_NAME}: Run completed with ${totalWarningsAdded} warnings.`;
+    return `${this.APP_NAME}: Run completed with ${totalWarningsAdded} warnings across all categories.`;
   }
   static debugBarMissingMessage() {
     return `${this.APP_NAME}: Debug bar object is missing; is this Lume 3?`;
