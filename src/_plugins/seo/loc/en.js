@@ -26,6 +26,8 @@ export class enMessages {
   static CONTEXT_META_KEYWORD_LEN = "Meta Keyword Length";
   static CONTEXT_MAIN_CONTENT_LEN = "Main Content Length";
   static CONTEXT_URL = "Page URL";
+  static CONTEXT_IMG_ALT = "Image alt text";
+  static CONTEXT_IMG_TITLE = "Image title text";
 
   // error messages
   static ERROR_META_DESCRIPTION_MISSING =

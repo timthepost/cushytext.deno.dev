@@ -356,8 +356,51 @@ export default function simpleSEO(userOptions?: Options) {
           } else {
             const warningStore = warnings.mediaAttribute.store;
             const pageSpecificWarnings: string[] = [];
-            // all media attribute checks here
+            const mediaChecksOptions = options.mediaAttributeChecks;
 
+            for (const img of page.document.querySelectorAll("img")) {
+              if (mediaChecksOptions.imageAlt) { 
+                const altText = img.getAttribute("alt");
+                if (altText === null) {
+                  const message = locale.APP_NAME + ": " +
+                    locale.CONTEXT_IMG_ALT + " : " + pageUrl;
+                  pageLogEvent(message);
+                  pageSpecificWarnings.push(locale.CONTEXT_IMG_ALT);
+                } else {
+                  const result = checkConformity(
+                    altText,
+                    mediaChecksOptions.imageAlt as string,
+                    pageEffectiveLocale,
+                    locale.CONTEXT_IMG_ALT,
+                  );
+                  if (!result.conforms && result.message) {
+                    pageLogEvent(result.message);
+                    pageSpecificWarnings.push(result.message);
+                  }
+                }
+              }
+
+              if (mediaChecksOptions.imageTitle) {
+                const titleText = img.getAttribute("title");
+                if (titleText === null) {
+                  const message = locale.APP_NAME + ": " +
+                    locale.CONTEXT_IMG_TITLE + " : " + pageUrl;
+                  pageLogEvent(message);
+                  pageSpecificWarnings.push(locale.CONTEXT_IMG_TITLE);
+                } else {
+                  const result = checkConformity(
+                    titleText,
+                    mediaChecksOptions.imageTitle as string,
+                    pageEffectiveLocale,
+                    locale.CONTEXT_IMG_TITLE,
+                  );
+                  if (!result.conforms && result.message) {
+                    pageLogEvent(result.message);
+                    pageSpecificWarnings.push(result.message);
+                  }
+                }
+              }
+            }
 
             if (pageSpecificWarnings.length > 0) {
               let S = warningStore.get(pageUrl);
