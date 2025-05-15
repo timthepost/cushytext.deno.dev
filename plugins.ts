@@ -151,12 +151,19 @@ export default function(userOptions?: Options) {
       .use(
         seo({
           output: "./_seo_report.json",
-          ignore: ["/cushy-admin/", "/dev/", "/404.html"],
+          ignore: ["/cushy-admin/", "/404.html"],
           lengthUnit: "character",
           lengthLocale: "en",
         }),
       )
-      .use(simpleSEO({ 
+      .use(simpleSEO({
+        globalSettings: {
+          ignore: ["/404.html"],
+          ignorePatterns: ["/archive/", "/author/", "/dev/"],
+          stateFile: null,
+          debug: true,
+          defaultLengthUnit: "character",
+        },
         lengthChecks: {
           title: "max 80 character",
           url: "max 45 character",
