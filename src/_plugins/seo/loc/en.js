@@ -123,6 +123,9 @@ export class enMessages {
   static reportFileError(message) {
     return `${this.APP_NAME}: Error generating warnings report: ${message}`;
   }
+  static reportDataPassedToCallback(count) {
+    return `${this.APP_NAME}:} Report data passed to callback function. Found ${count} warnings.`
+  }
 }
 
 export default enMessages;

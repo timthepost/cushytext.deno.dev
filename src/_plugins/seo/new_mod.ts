@@ -693,9 +693,7 @@ export default function simpleSEO(userOptions?: Options) {
 
       if (typeof settings.reportFile === "function") {
         settings.reportFile(finalReportData);
-        logEvent(
-          `SEO: Report data passed to callback function. Found ${totalWarningCount} warnings.`,
-        );
+        logEvent(locale.reportDataPassedToCallback(totalWarningCount));
       } else if (typeof settings.reportFile === "string") {
         if (totalWarningCount > 0) {
           try {
