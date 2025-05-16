@@ -148,18 +148,10 @@ export default function(userOptions?: Options) {
       }))
       .use(minifyHTML({options: { keep_html_and_head_opening_tags: true } }))
       .use(brotli())
-      .use(
-        seo({
-          output: "./_seo_report.json",
-          ignore: ["/cushy-admin/", "/404.html"],
-          lengthUnit: "character",
-          lengthLocale: "en",
-        }),
-      )
       .use(simpleSEO({
         globalSettings: {
           ignore: ["/404.html"],
-          ignorePatterns: ["/archive/", "/author/", "/dev/"],
+          ignorePatterns: ["/archive/", "/author/"],
           stateFile: null,
           reportFile: "./_seo_report.json",
           debug: true,

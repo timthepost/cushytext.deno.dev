@@ -114,9 +114,21 @@ export class enMessages {
 
   // errors 
   static errorSemanticHeadingOrder(tagName) {
-    return `${this.APP}: Headings are out of order; level: ${tagName}.`;
+    return `${this.APP_NAME}: Headings are out of order; level: ${tagName}.`;
   }
-
+  static errorCommonWordTitleHigh(percentage, threshold) {
+    return `${this.APP_NAME}: Uniqueness of title too low; ${percentage.toFixed(2)}% common words exceeds threshold of ${threshold}%.)`;
+  }
+  static errorCommonWordDescriptionHigh(percentage, threshold) {
+    return `${this.APP_NAME}: Uniqueness of meta description too low; ${percentage.toFixed(2)}% common words exceeds threshold of ${threshold}%.)`;
+  }
+  static errorCommonWordUrlHigh(percentage, threshold) {
+    return `${this.APP_NAME}: Uniqueness of url is too low; ${percentage.toFixed(2)}% common words exceeds threshold of ${threshold}%.)`;
+  }
+  static errorCommonWordContentBodyHigh(percentage, threshold) {
+    return `${this.APP_NAME}: Uniqueness of content body is too low; ${percentage.toFixed(2)}% common words exceeds threshold of ${threshold}%.)`;
+  }
+  
   // miscellaneous strings
   static foundWarningsForCategory(count, category) {
     return `${this.APP_NAME}: Found ${count} warnings for ${category}.`;

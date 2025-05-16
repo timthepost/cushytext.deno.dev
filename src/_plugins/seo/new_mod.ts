@@ -33,6 +33,7 @@ export interface Options {
     title?: number | false;
     description?: number | false;
     url?: number | false;
+    contentBody?: number | false;
     minContentLengthForProcessing?: string;
     commonWordPercentageCallback?: ((title: string) => number) | null;
   } | false;
@@ -98,7 +99,8 @@ export const defaultOptions: Options = {
     title: 45,
     description: 55,
     url: 20,
-    minContentLengthForProcessing: "1500 character",
+    contentBody: 42,
+    minContentLengthForProcessing: "min 1500 character",
     commonWordPercentageCallback: null,
   },
 
@@ -188,6 +190,36 @@ export default function simpleSEO(userOptions?: Options) {
   ): RequirementResult {
     const checker = new SimpleConforms(nomenclature, pageLocale, locale);
     return checker.test(inputValue, context);
+  }
+
+  function calculateLocalCommonWordPercentage(
+    text: string,
+    commonWords: Set<string>,
+    customCallback?: ((text: string) => number) | null,
+  ): number {
+    if (!text) return 0;
+    text = text.trim();
+
+    if (customCallback) {
+      return customCallback(text);
+    }
+
+    // Normalize: lowercase, remove most punctuation but keep intra-word hyphens/apostrophes.
+    // Replace multiple spaces with a single space.
+    const processedText = text.toLowerCase()
+      .replace(/[^\w\s'-]|(?<!\w)-(?!\w)|(?<!\w)'(?!\w)/g, "") 
+      .replace(/\s+/g, " ").trim();
+    const words = processedText.split(" ").filter(word => word.length > 0);
+
+    if (words.length === 0) return 0;
+
+    let commonWordCount = 0;
+    for (const word of words) {
+      if (commonWords.has(word)) {
+        commonWordCount++;
+      }
+    }
+    return (commonWordCount / words.length) * 100;
   }
 
   function rationaleLink(check: string): string {
@@ -457,8 +489,88 @@ export default function simpleSEO(userOptions?: Options) {
           } else {
             const warningStore = warnings.commonWord.store;
             const pageSpecificWarnings: string[] = [];
-            // all content uniqueness checks here
+            const commonWordChecksOptions = options.commonWordPercentageChecks;
+            const commonWordSet = options.localeSettings.commonWordSet!;
+            const commonWordCallback = commonWordChecksOptions.commonWordPercentageCallback;
+            const MIN_WORDS_FOR_FIELD_CHECK = 3; // Minimum words for title/desc/url checks
 
+            if (typeof commonWordChecksOptions.title === "number") {
+              const titleText = page.document?.title;
+              if (titleText) {
+                const wordCount = titleText.split(/\s+/).filter(w => w).length;
+                if (wordCount >= MIN_WORDS_FOR_FIELD_CHECK) {
+                  const percentage = calculateLocalCommonWordPercentage(titleText, commonWordSet, commonWordCallback);
+                  if (percentage >= commonWordChecksOptions.title) {
+                    const message = locale.errorCommonWordTitleHigh(percentage, commonWordChecksOptions.title);
+                    pageLogEvent(locale.APP_NAME + ": " + message + " : " + pageUrl);
+                    pageSpecificWarnings.push(message);
+                  }
+                }
+              }
+            }
+
+            if (typeof commonWordChecksOptions.description === "number") {
+              const metaDescriptionElement = page.document?.querySelector(
+                'meta[name="description"]',
+              );
+              const descriptionText = metaDescriptionElement?.getAttribute("content");
+              if (descriptionText) {
+                const wordCount = descriptionText.split(/\s+/).filter(w => w).length;
+                if (wordCount >= MIN_WORDS_FOR_FIELD_CHECK) {
+                  const percentage = calculateLocalCommonWordPercentage(descriptionText, commonWordSet, commonWordCallback);
+                  if (percentage >= commonWordChecksOptions.description) {
+                    const message = locale.errorCommonWordDescriptionHigh(percentage, commonWordChecksOptions.description);
+                    pageLogEvent(locale.APP_NAME + ": " + message + " : " + pageUrl);
+                    pageSpecificWarnings.push(message);
+                  }
+                }
+              }
+            }
+
+            if (typeof commonWordChecksOptions.url === "number") {
+              const urlText = page.data.url; // URLs are typically paths like /foo/bar-baz/
+              if (urlText) {
+                 // For URLs, treat segments separated by / or - as potential words
+                const urlWordsText = urlText.replace(/[\/\-_]+/g, " ").trim();
+                const wordCount = urlWordsText.split(/\s+/).filter(w => w).length;
+                if (wordCount >= MIN_WORDS_FOR_FIELD_CHECK) { // Apply min words check to the "wordified" URL
+                  const percentage = calculateLocalCommonWordPercentage(urlWordsText, commonWordSet, commonWordCallback);
+                  if (percentage >= commonWordChecksOptions.url) {
+                    const message = locale.errorCommonWordUrlHigh(percentage, commonWordChecksOptions.url);
+                    pageLogEvent(locale.APP_NAME + ": " + message + " : " + pageUrl);
+                    pageSpecificWarnings.push(message);
+                  }
+                }
+              }
+            }
+
+            if (typeof commonWordChecksOptions.contentBody === "number" && commonWordChecksOptions.minContentLengthForProcessing) {
+              const bodyText = page.document?.body?.innerText;
+              if (bodyText) {
+                const lengthCheckResult = checkConformity(
+                  bodyText,
+                  commonWordChecksOptions.minContentLengthForProcessing,
+                  pageEffectiveLocale,
+                  "Main content for common word analysis",
+                );
+
+                if (lengthCheckResult.conforms) {
+                  const percentage = calculateLocalCommonWordPercentage(bodyText, commonWordSet, commonWordCallback);
+                  if (percentage >= commonWordChecksOptions.contentBody) {
+                    const message = locale.errorCommonWordContentBodyHigh(percentage, commonWordChecksOptions.contentBody);
+                    pageLogEvent(locale.APP_NAME + ": " + message + " : " + pageUrl);
+                    pageSpecificWarnings.push(message);
+                  }
+                } else {
+                  pageLogEvent(
+                    locale.APP_NAME +
+                    ": Skipping content body common word check for " + pageUrl +
+                    " due to insufficient length based on 'minContentLengthForProcessing'. " +
+                    (lengthCheckResult.message || "")
+                  );
+                }
+              }
+            }
 
             if (pageSpecificWarnings.length > 0) {
               let S = warningStore.get(pageUrl);
