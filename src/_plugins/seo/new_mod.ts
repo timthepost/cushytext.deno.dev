@@ -122,25 +122,6 @@ export const defaultOptions: Options = {
     imageAlt: "range 10 1500 character",
     imageTitle: false,
   },
-
-  googleSearchConsoleChecks: {
-    apiEnvVariable: "GOOGLE_API_KEY",
-    checkIsIndexed: true,
-    checkWarnings: true,
-    checkErrors: true,
-    cacheDaysTTL: 7,
-  },
-
-  bingWebmasterToolsChecks: {
-    apiEnvVariable: "BING_API_KEY",
-    indexNowEnvVariable: "BING_API_INDEX_NOW_KEY",
-    apiKeyfileLocation: "",
-    checkPageStats: true,
-    checkURLStats: true,
-    checkTrafficData: true,
-    checkContentPerformance: true,
-    submitSiteMap: true,
-  },
 };
 
 interface frontMatterConfig {
