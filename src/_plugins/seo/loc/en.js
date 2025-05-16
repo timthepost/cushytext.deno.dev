@@ -32,8 +32,10 @@ export class enMessages {
   // error messages
   static ERROR_META_DESCRIPTION_MISSING =
     "Meta Description Not Found In Document!";
-  static ERROR_META_KEYWORD_MISSING = "Meta Keywords Not Found In Document!";
-  static ERROR_TITLE_MISSING = "Title Not Found In Document!";
+  static ERROR_META_KEYWORD_MISSING = "Meta Keywords not found in document.";
+  static ERROR_TITLE_MISSING = "Title not found in document!";
+  static ERROR_SEMANTIC_MULTIPLE_H1 = "Multiple first-level heading elements found in document.";
+  static ERROR_SEMANTIC_MISSING_H1 = "No first-level heading element found in document.";
 
   // conformity check messages (used by SimpleConforms) (Don't prefix with app name)
   static conformityLessThanMinimum(context, actualValue, unit, minValue) {
@@ -108,6 +110,11 @@ export class enMessages {
   }
   static debugBarMissingMessage() {
     return `${this.APP_NAME}: Debug bar object is missing; is this Lume 3?`;
+  }
+
+  // errors 
+  static errorSemanticHeadingOrder(tagName) {
+    return `${this.APP}: Headings are out of order; level: ${tagName}.`;
   }
 
   // miscellaneous strings

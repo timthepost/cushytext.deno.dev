@@ -334,7 +334,42 @@ export default function simpleSEO(userOptions?: Options) {
           } else {
             const warningStore = warnings.semantic.store;
             const pageSpecificWarnings: string[] = [];
-            // all semantic checks here
+
+            if (options.semanticChecks.headingMissingH1) {
+              const headingOneElements = page.document?.querySelectorAll("h1");
+              if (!headingOneElements || headingOneElements.length === 0) {
+                const message = locale.APP_NAME + ": " + locale.ERROR_SEMANTIC_MISSING_H1 + " : " + pageUrl;
+                pageLogEvent(message);
+                pageSpecificWarnings.push(locale.ERROR_SEMANTIC_MISSING_H1);
+              }
+            }
+
+            if (options.semanticChecks.headingMultipleH1) {
+              const headingOneElements = page.document?.querySelectorAll("h1");
+              if (headingOneElements && headingOneElements.length > 1) {
+                const message = locale.APP_NAME + ": " + locale.ERROR_SEMANTIC_MULTIPLE_H1 + " : " + pageUrl;
+                pageLogEvent(message);
+                pageSpecificWarnings.push(locale.ERROR_SEMANTIC_MULTIPLE_H1);
+              }
+            }
+
+            if (options.semanticChecks.headingOrder) {
+              const headings = page.document?.querySelectorAll(
+                "h1, h2, h3, h4, h5, h6",
+              );
+              if (headings) {
+                let previousLevel = 0; // Start with 0, assuming H1 is level 1
+                for (const heading of headings) {
+                  const currentLevel = parseInt(heading.tagName.slice(1));
+                  if (currentLevel > previousLevel + 1) {
+                    const message = locale.APP_NAME + ": " + locale.errorSemanticHeadingOrder(heading.tagName) + " : " + pageUrl;
+                    pageLogEvent(message);
+                    pageSpecificWarnings.push(locale.errorSemanticHeadingOrder(heading.tagName));
+                  }
+                  previousLevel = currentLevel;
+                }
+              }
+            }
 
             if (pageSpecificWarnings.length > 0) {
               let S = warningStore.get(pageUrl);
