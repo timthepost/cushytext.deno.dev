@@ -3,14 +3,13 @@
  * Access strings via friendly static property names.
  *
  * To translate:
- * 
- *  1. Copy this file to the target language, e.g. es.js, ja.js, 
- *  2. Translate the *strings* only, not the member names. 
+ *
+ *  1. Copy this file to the target language, e.g. es.js, ja.js,
+ *  2. Translate the *strings* only, not the member names.
  *  3. Import your translation in your lume _config.ts or plugins.ts file
  *  3. Pass it to the plugin via config option LocaleSettings.reporterLocale
  */
 export class enMessages {
-
   // warning types
   static LENGTH_WARNING_TITLE = "Length Warnings";
   static MEDIA_ATTRIBUTE_WARNING_TITLE = "Media HTML Attribute Warnings";
@@ -25,6 +24,8 @@ export class enMessages {
   static CONTEXT_META_KEYWORD_COUNT = "Meta Keyword Count";
   static CONTEXT_META_KEYWORD_LEN = "Meta Keyword Length";
   static CONTEXT_MAIN_CONTENT_LEN = "Main Content Length";
+  static CONTEXT_UNIQUENESS_CONTENT_BODY =
+    "Main content for common word analysis";
   static CONTEXT_URL = "Page URL";
   static CONTEXT_IMG_ALT = "Image alt text";
   static CONTEXT_IMG_TITLE = "Image title text";
@@ -34,8 +35,10 @@ export class enMessages {
     "Meta Description Not Found In Document!";
   static ERROR_META_KEYWORD_MISSING = "Meta Keywords not found in document.";
   static ERROR_TITLE_MISSING = "Title not found in document!";
-  static ERROR_SEMANTIC_MULTIPLE_H1 = "Multiple first-level heading elements found in document.";
-  static ERROR_SEMANTIC_MISSING_H1 = "No first-level heading element found in document.";
+  static ERROR_SEMANTIC_MULTIPLE_H1 =
+    "Multiple first-level heading elements found in document.";
+  static ERROR_SEMANTIC_MISSING_H1 =
+    "No first-level heading element found in document.";
 
   // conformity check messages (used by SimpleConforms) (Don't prefix with app name)
   static conformityLessThanMinimum(context, actualValue, unit, minValue) {
@@ -100,6 +103,9 @@ export class enMessages {
   static skippingPagePatternIgnore(url, pattern) {
     return `${this.APP_NAME} is skipping ${url} as it matches ignore pattern '${pattern}'.`;
   }
+  static skippingContentUniquenessWarnings(url, message) {
+    return `${this.APP_NAME} is skipping uniqueness warnings for ${url} due to ${message}.`;
+  }
 
   // Lume bar generation console messages
   static populatingDebugBar(category) {
@@ -112,23 +118,31 @@ export class enMessages {
     return `${this.APP_NAME}: Debug bar object is missing; is this Lume 3?`;
   }
 
-  // errors 
+  // errors
   static errorSemanticHeadingOrder(tagName) {
     return `${this.APP_NAME}: Headings are out of order; level: ${tagName}.`;
   }
   static errorCommonWordTitleHigh(percentage, threshold) {
-    return `${this.APP_NAME}: Uniqueness of title too low; ${percentage.toFixed(2)}% common words exceeds threshold of ${threshold}%.)`;
+    return `${this.APP_NAME}: Uniqueness of title too low; ${
+      percentage.toFixed(2)
+    }% common words exceeds threshold of ${threshold}%.)`;
   }
   static errorCommonWordDescriptionHigh(percentage, threshold) {
-    return `${this.APP_NAME}: Uniqueness of meta description too low; ${percentage.toFixed(2)}% common words exceeds threshold of ${threshold}%.)`;
+    return `${this.APP_NAME}: Uniqueness of meta description too low; ${
+      percentage.toFixed(2)
+    }% common words exceeds threshold of ${threshold}%.)`;
   }
   static errorCommonWordUrlHigh(percentage, threshold) {
-    return `${this.APP_NAME}: Uniqueness of url is too low; ${percentage.toFixed(2)}% common words exceeds threshold of ${threshold}%.)`;
+    return `${this.APP_NAME}: Uniqueness of url is too low; ${
+      percentage.toFixed(2)
+    }% common words exceeds threshold of ${threshold}%.)`;
   }
   static errorCommonWordContentBodyHigh(percentage, threshold) {
-    return `${this.APP_NAME}: Uniqueness of content body is too low; ${percentage.toFixed(2)}% common words exceeds threshold of ${threshold}%.)`;
+    return `${this.APP_NAME}: Uniqueness of content body is too low; ${
+      percentage.toFixed(2)
+    }% common words exceeds threshold of ${threshold}%.)`;
   }
-  
+
   // miscellaneous strings
   static foundWarningsForCategory(count, category) {
     return `${this.APP_NAME}: Found ${count} warnings for ${category}.`;
@@ -143,7 +157,7 @@ export class enMessages {
     return `${this.APP_NAME}: Error generating warnings report: ${message}`;
   }
   static reportDataPassedToCallback(count) {
-    return `${this.APP_NAME}:} Report data passed to callback function. Found ${count} warnings.`
+    return `${this.APP_NAME}:} Report data passed to callback function. Found ${count} warnings.`;
   }
 }
 

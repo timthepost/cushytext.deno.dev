@@ -188,9 +188,9 @@ export default function simpleSEO(userOptions?: Options) {
     // Normalize: lowercase, remove most punctuation but keep intra-word hyphens/apostrophes.
     // Replace multiple spaces with a single space.
     const processedText = text.toLowerCase()
-      .replace(/[^\w\s'-]|(?<!\w)-(?!\w)|(?<!\w)'(?!\w)/g, "") 
+      .replace(/[^\w\s'-]|(?<!\w)-(?!\w)|(?<!\w)'(?!\w)/g, "")
       .replace(/\s+/g, " ").trim();
-    const words = processedText.split(" ").filter(word => word.length > 0);
+    const words = processedText.split(" ").filter((word) => word.length > 0);
 
     if (words.length === 0) return 0;
 
@@ -307,7 +307,7 @@ export default function simpleSEO(userOptions?: Options) {
             if (pageUrl.startsWith(pattern)) {
               pageLogEvent(locale.skippingPagePatternIgnore(pageUrl, pattern));
               skipPageDueToPattern = true;
-              break; 
+              break;
             }
           }
         }
@@ -351,7 +351,8 @@ export default function simpleSEO(userOptions?: Options) {
             if (options.semanticChecks.headingMissingH1) {
               const headingOneElements = page.document?.querySelectorAll("h1");
               if (!headingOneElements || headingOneElements.length === 0) {
-                const message = locale.APP_NAME + ": " + locale.ERROR_SEMANTIC_MISSING_H1 + " : " + pageUrl;
+                const message = locale.APP_NAME + ": " +
+                  locale.ERROR_SEMANTIC_MISSING_H1 + " : " + pageUrl;
                 pageLogEvent(message);
                 pageSpecificWarnings.push(locale.ERROR_SEMANTIC_MISSING_H1);
               }
@@ -360,7 +361,8 @@ export default function simpleSEO(userOptions?: Options) {
             if (options.semanticChecks.headingMultipleH1) {
               const headingOneElements = page.document?.querySelectorAll("h1");
               if (headingOneElements && headingOneElements.length > 1) {
-                const message = locale.APP_NAME + ": " + locale.ERROR_SEMANTIC_MULTIPLE_H1 + " : " + pageUrl;
+                const message = locale.APP_NAME + ": " +
+                  locale.ERROR_SEMANTIC_MULTIPLE_H1 + " : " + pageUrl;
                 pageLogEvent(message);
                 pageSpecificWarnings.push(locale.ERROR_SEMANTIC_MULTIPLE_H1);
               }
@@ -375,9 +377,13 @@ export default function simpleSEO(userOptions?: Options) {
                 for (const heading of headings) {
                   const currentLevel = parseInt(heading.tagName.slice(1));
                   if (currentLevel > previousLevel + 1) {
-                    const message = locale.APP_NAME + ": " + locale.errorSemanticHeadingOrder(heading.tagName) + " : " + pageUrl;
+                    const message = locale.APP_NAME + ": " +
+                      locale.errorSemanticHeadingOrder(heading.tagName) +
+                      " : " + pageUrl;
                     pageLogEvent(message);
-                    pageSpecificWarnings.push(locale.errorSemanticHeadingOrder(heading.tagName));
+                    pageSpecificWarnings.push(
+                      locale.errorSemanticHeadingOrder(heading.tagName),
+                    );
                   }
                   previousLevel = currentLevel;
                 }
@@ -407,7 +413,7 @@ export default function simpleSEO(userOptions?: Options) {
             const mediaChecksOptions = options.mediaAttributeChecks;
 
             for (const img of page.document.querySelectorAll("img")) {
-              if (mediaChecksOptions.imageAlt) { 
+              if (mediaChecksOptions.imageAlt) {
                 const altText = img.getAttribute("alt");
                 if (altText === null) {
                   const message = locale.APP_NAME + ": " +
@@ -472,18 +478,30 @@ export default function simpleSEO(userOptions?: Options) {
             const pageSpecificWarnings: string[] = [];
             const commonWordChecksOptions = options.commonWordPercentageChecks;
             const commonWordSet = options.localeSettings.commonWordSet!;
-            const commonWordCallback = commonWordChecksOptions.commonWordPercentageCallback;
+            const commonWordCallback =
+              commonWordChecksOptions.commonWordPercentageCallback;
             const MIN_WORDS_FOR_FIELD_CHECK = 3; // Minimum words for title/desc/url checks
 
             if (typeof commonWordChecksOptions.title === "number") {
               const titleText = page.document?.title;
               if (titleText) {
-                const wordCount = titleText.split(/\s+/).filter(w => w).length;
+                const wordCount = titleText.split(/\s+/).filter((w) =>
+                  w
+                ).length;
                 if (wordCount >= MIN_WORDS_FOR_FIELD_CHECK) {
-                  const percentage = calculateLocalCommonWordPercentage(titleText, commonWordSet, commonWordCallback);
+                  const percentage = calculateLocalCommonWordPercentage(
+                    titleText,
+                    commonWordSet,
+                    commonWordCallback,
+                  );
                   if (percentage >= commonWordChecksOptions.title) {
-                    const message = locale.errorCommonWordTitleHigh(percentage, commonWordChecksOptions.title);
-                    pageLogEvent(locale.APP_NAME + ": " + message + " : " + pageUrl);
+                    const message = locale.errorCommonWordTitleHigh(
+                      percentage,
+                      commonWordChecksOptions.title,
+                    );
+                    pageLogEvent(
+                      locale.APP_NAME + ": " + message + " : " + pageUrl,
+                    );
                     pageSpecificWarnings.push(message);
                   }
                 }
@@ -494,14 +512,27 @@ export default function simpleSEO(userOptions?: Options) {
               const metaDescriptionElement = page.document?.querySelector(
                 'meta[name="description"]',
               );
-              const descriptionText = metaDescriptionElement?.getAttribute("content");
+              const descriptionText = metaDescriptionElement?.getAttribute(
+                "content",
+              );
               if (descriptionText) {
-                const wordCount = descriptionText.split(/\s+/).filter(w => w).length;
+                const wordCount = descriptionText.split(/\s+/).filter((w) =>
+                  w
+                ).length;
                 if (wordCount >= MIN_WORDS_FOR_FIELD_CHECK) {
-                  const percentage = calculateLocalCommonWordPercentage(descriptionText, commonWordSet, commonWordCallback);
+                  const percentage = calculateLocalCommonWordPercentage(
+                    descriptionText,
+                    commonWordSet,
+                    commonWordCallback,
+                  );
                   if (percentage >= commonWordChecksOptions.description) {
-                    const message = locale.errorCommonWordDescriptionHigh(percentage, commonWordChecksOptions.description);
-                    pageLogEvent(locale.APP_NAME + ": " + message + " : " + pageUrl);
+                    const message = locale.errorCommonWordDescriptionHigh(
+                      percentage,
+                      commonWordChecksOptions.description,
+                    );
+                    pageLogEvent(
+                      locale.APP_NAME + ": " + message + " : " + pageUrl,
+                    );
                     pageSpecificWarnings.push(message);
                   }
                 }
@@ -511,43 +542,66 @@ export default function simpleSEO(userOptions?: Options) {
             if (typeof commonWordChecksOptions.url === "number") {
               const urlText = page.data.url; // URLs are typically paths like /foo/bar-baz/
               if (urlText) {
-                 // For URLs, treat segments separated by / or - as potential words
+                // For URLs, treat segments separated by / or - as potential words
                 const urlWordsText = urlText.replace(/[\/\-_]+/g, " ").trim();
-                const wordCount = urlWordsText.split(/\s+/).filter(w => w).length;
+                const wordCount = urlWordsText.split(/\s+/).filter((w) =>
+                  w
+                ).length;
                 if (wordCount >= MIN_WORDS_FOR_FIELD_CHECK) { // Apply min words check to the "wordified" URL
-                  const percentage = calculateLocalCommonWordPercentage(urlWordsText, commonWordSet, commonWordCallback);
+                  const percentage = calculateLocalCommonWordPercentage(
+                    urlWordsText,
+                    commonWordSet,
+                    commonWordCallback,
+                  );
                   if (percentage >= commonWordChecksOptions.url) {
-                    const message = locale.errorCommonWordUrlHigh(percentage, commonWordChecksOptions.url);
-                    pageLogEvent(locale.APP_NAME + ": " + message + " : " + pageUrl);
+                    const message = locale.errorCommonWordUrlHigh(
+                      percentage,
+                      commonWordChecksOptions.url,
+                    );
+                    pageLogEvent(
+                      locale.APP_NAME + ": " + message + " : " + pageUrl,
+                    );
                     pageSpecificWarnings.push(message);
                   }
                 }
               }
             }
 
-            if (typeof commonWordChecksOptions.contentBody === "number" && commonWordChecksOptions.minContentLengthForProcessing) {
+            if (
+              typeof commonWordChecksOptions.contentBody === "number" &&
+              commonWordChecksOptions.minContentLengthForProcessing
+            ) {
               const bodyText = page.document?.body?.innerText;
               if (bodyText) {
                 const lengthCheckResult = checkConformity(
                   bodyText,
                   commonWordChecksOptions.minContentLengthForProcessing,
                   pageEffectiveLocale,
-                  "Main content for common word analysis",
+                  locale.CONTEXT_UNIQUENESS_CONTENT_BODY,
                 );
 
                 if (lengthCheckResult.conforms) {
-                  const percentage = calculateLocalCommonWordPercentage(bodyText, commonWordSet, commonWordCallback);
+                  const percentage = calculateLocalCommonWordPercentage(
+                    bodyText,
+                    commonWordSet,
+                    commonWordCallback,
+                  );
                   if (percentage >= commonWordChecksOptions.contentBody) {
-                    const message = locale.errorCommonWordContentBodyHigh(percentage, commonWordChecksOptions.contentBody);
-                    pageLogEvent(locale.APP_NAME + ": " + message + " : " + pageUrl);
+                    const message = locale.errorCommonWordContentBodyHigh(
+                      percentage,
+                      commonWordChecksOptions.contentBody,
+                    );
+                    pageLogEvent(
+                      locale.APP_NAME + ": " + message + " : " + pageUrl,
+                    );
                     pageSpecificWarnings.push(message);
                   }
                 } else {
                   pageLogEvent(
-                    locale.APP_NAME +
-                    ": Skipping content body common word check for " + pageUrl +
-                    " due to insufficient length based on 'minContentLengthForProcessing'. " +
-                    (lengthCheckResult.message || "")
+                    locale.skippingContentUniquenessWarnings(
+                      pageUrl,
+                      lengthCheckResult.message,
+                    ),
                   );
                 }
               }
@@ -587,7 +641,10 @@ export default function simpleSEO(userOptions?: Options) {
                   pageSpecificLengthWarnings.push(result.message);
                 }
               } else {
-                pageLogEvent(locale.APP_NAME + ": " + locale.ERROR_TITLE_MISSING + " : " + pageUrl);
+                pageLogEvent(
+                  locale.APP_NAME + ": " + locale.ERROR_TITLE_MISSING + " : " +
+                    pageUrl,
+                );
                 pageSpecificLengthWarnings.push(locale.ERROR_TITLE_MISSING);
               }
             }
@@ -624,7 +681,10 @@ export default function simpleSEO(userOptions?: Options) {
                   pageSpecificLengthWarnings.push(result.message);
                 }
               } else {
-                pageLogEvent(locale.APP_NAME + ": " + locale.ERROR_META_DESCRIPTION_MISSING + " : " + pageUrl);
+                pageLogEvent(
+                  locale.APP_NAME + ": " +
+                    locale.ERROR_META_DESCRIPTION_MISSING + " : " + pageUrl,
+                );
                 pageSpecificLengthWarnings.push(
                   locale.ERROR_META_DESCRIPTION_MISSING,
                 );
@@ -640,7 +700,9 @@ export default function simpleSEO(userOptions?: Options) {
                   locale.CONTEXT_MAIN_CONTENT_LEN,
                 );
                 if (!result.conforms && result.message) {
-                  pageLogEvent(locale.APP_NAME + ": " + result.message + " : " + pageUrl);
+                  pageLogEvent(
+                    locale.APP_NAME + ": " + result.message + " : " + pageUrl,
+                  );
                   pageSpecificLengthWarnings.push(result.message);
                 }
               }
@@ -672,7 +734,10 @@ export default function simpleSEO(userOptions?: Options) {
                   }
                 }
               } else {
-                pageLogEvent(locale.APP_NAME + ": " + locale.ERROR_META_KEYWORD_MISSING + " : " + pageUrl);
+                pageLogEvent(
+                  locale.APP_NAME + ": " + locale.ERROR_META_KEYWORD_MISSING +
+                    " : " + pageUrl,
+                );
                 pageSpecificLengthWarnings.push(
                   locale.ERROR_META_KEYWORD_MISSING,
                 );
@@ -699,8 +764,17 @@ export default function simpleSEO(userOptions?: Options) {
           } else {
             const warningStore = warnings.googleSearchConsole.store;
             const pageSpecificWarnings: string[] = [];
-            // all google search console checks here
-  
+
+            /**
+             * Coming in 2.0.1:
+             *  - Keep track of pages being indexed and de-indexed by Google
+             *  - Fetch warnings from Google Search Console
+             *  - Fetch performance data from Google Search Console
+             *  - Manual & Automatic re-submission for crawl and indexing on content
+             *    or indexing change
+             *  - Automatic initial sitemap submission
+             *  - ... file a GH issue to ask for more
+             */
 
             if (pageSpecificWarnings.length > 0) {
               let S = warningStore.get(pageUrl);
@@ -722,8 +796,16 @@ export default function simpleSEO(userOptions?: Options) {
           } else {
             const warningStore = warnings.bingWebmasterTools.store;
             const pageSpecificWarnings: string[] = [];
-            // all bing webmaster tools checks here
 
+            /**
+             * Coming in 2.0.1:
+             *  - Keep track of pages being indexed and de-indexed by Bing & Yahoo
+             *  - Fetch warnings and issues
+             *  - Automatically update Bing & Yahoo to come re-crawl when content changes
+             *  - Fetch performance data
+             *  - Automatic initial submission
+             *   ... file a GH issue to ask for more
+             */
 
             if (pageSpecificWarnings.length > 0) {
               let S = warningStore.get(pageUrl);
@@ -769,7 +851,9 @@ export default function simpleSEO(userOptions?: Options) {
           const warningStore = categoryInfo.store;
 
           if (warningStore.size > 0) {
-            logEvent(locale.foundWarningsForCategory(warningStore.size, categoryKey))
+            logEvent(
+              locale.foundWarningsForCategory(warningStore.size, categoryKey),
+            );
           }
 
           const rationaleUrl = categoryInfo.rationale(categoryInfo.check);
@@ -817,7 +901,9 @@ export default function simpleSEO(userOptions?: Options) {
       // Generate report file or call callback
       const finalReportData = prepareReportData(warnings);
       let totalWarningCount = 0;
-      finalReportData.forEach((messages) => totalWarningCount += messages.length);
+      finalReportData.forEach((messages) =>
+        totalWarningCount += messages.length
+      );
 
       if (typeof settings.reportFile === "function") {
         settings.reportFile(finalReportData);

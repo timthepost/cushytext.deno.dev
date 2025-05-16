@@ -236,7 +236,12 @@ export default function seo(userOptions?: Options) {
       debugBarReport.icon = "list-magnifying-glass";
       debugBarReport.items = [];
     }
-    function reportPush(url: string, text: string, context: string, warnings: string[]): void {
+    function reportPush(
+      url: string,
+      text: string,
+      context: string,
+      warnings: string[],
+    ): void {
       warnings.push(text);
       if (debugBarReport) {
         debugBarReport.items.push({
@@ -247,7 +252,8 @@ export default function seo(userOptions?: Options) {
             actions: [
               {
                 text: "About This Warning Type",
-                href: "https://cushytext.deno.dev/docs/theme-plugins/#" + context,
+                href: "https://cushytext.deno.dev/docs/theme-plugins/#" +
+                  context,
               },
             ],
           }],
@@ -337,8 +343,8 @@ export default function seo(userOptions?: Options) {
         logEvent(`SEO: Processing ${page.data.url} ...`);
 
         // This can't be blank, so set a default if we can't find a language.
-        const locale = page.document.documentElement.lang
-          || options.lengthLocale;
+        const locale = page.document.documentElement.lang ||
+          options.lengthLocale;
 
         if (options.warnTitleLength && page.data.title) {
           const titleLength = getLength(
@@ -362,8 +368,8 @@ export default function seo(userOptions?: Options) {
             lengthUnit,
             locale,
           );
-          const maxLength = options.thresholdLength
-            * options.thresholdLengthPercentage;
+          const maxLength = options.thresholdLength *
+            options.thresholdLengthPercentage;
           if (urlLength >= maxLength) {
             reportPush(
               page.data.url,
@@ -454,8 +460,8 @@ export default function seo(userOptions?: Options) {
               );
             }
             if (
-              img && options.warnImageTitleAttribute
-              && !img.hasAttribute("title")
+              img && options.warnImageTitleAttribute &&
+              !img.hasAttribute("title")
             ) {
               reportPush(
                 page.data.url,
@@ -468,8 +474,8 @@ export default function seo(userOptions?: Options) {
         }
 
         if (
-          options.warnTitleCommonWords && page.document.title
-          && page.document.title.length >= options.thresholdLengthForCWCheck
+          options.warnTitleCommonWords && page.document.title &&
+          page.document.title.length >= options.thresholdLengthForCWCheck
         ) {
           const titleCommonWords = calculateCommonWordPercentage(
             page.document.title,
@@ -485,8 +491,8 @@ export default function seo(userOptions?: Options) {
         }
 
         if (
-          options.warnUrlCommonWords && page.data.url
-          && page.data.url.length >= options.thresholdLengthForCWCheck
+          options.warnUrlCommonWords && page.data.url &&
+          page.data.url.length >= options.thresholdLengthForCWCheck
         ) {
           const urlCommonWords = calculateCommonWordPercentage(page.data.url);
           if (urlCommonWords >= options.thresholdCommonWordsPercent) {
@@ -500,13 +506,13 @@ export default function seo(userOptions?: Options) {
         }
 
         const metaDescriptionElement = page.document.querySelector(
-          "meta[name=\"description\"]",
+          'meta[name="description"]',
         );
 
         if (!metaDescriptionElement) {
           if (
-            options.warnMetasDescriptionLength
-            || options.warnMetasDescriptionCommonWords
+            options.warnMetasDescriptionLength ||
+            options.warnMetasDescriptionCommonWords
           ) {
             reportPush(
               page.data.url,
@@ -523,7 +529,8 @@ export default function seo(userOptions?: Options) {
               `SEO: Skipping meta description length check on ${page.data.url} per frontmatter.`,
             );
           } else {
-            const metaDescription = metaDescriptionElement.getAttribute("content") || null;
+            const metaDescription =
+              metaDescriptionElement.getAttribute("content") || null;
             if (metaDescription) {
               const metaDescriptionLength = getLength(
                 metaDescription,
@@ -531,8 +538,8 @@ export default function seo(userOptions?: Options) {
                 locale,
               );
               if (
-                metaDescriptionLength
-                  >= options.thresholdMetaDescriptionLength
+                metaDescriptionLength >=
+                  options.thresholdMetaDescriptionLength
               ) {
                 reportPush(
                   page.data.url,
@@ -551,14 +558,15 @@ export default function seo(userOptions?: Options) {
               `SEO: Skipping meta description common word count on ${page.data.url} per frontmatter.`,
             );
           } else {
-            const metaDescription = metaDescriptionElement?.getAttribute("content") || null;
+            const metaDescription =
+              metaDescriptionElement?.getAttribute("content") || null;
             const descriptionPercentage = calculateCommonWordPercentage(
               metaDescription as string,
             );
             if (
-              metaDescription
-              && descriptionPercentage
-                >= options.thresholdCommonWordsPercent
+              metaDescription &&
+              descriptionPercentage >=
+                options.thresholdCommonWordsPercent
             ) {
               reportPush(
                 page.data.url,

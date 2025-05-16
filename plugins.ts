@@ -25,7 +25,6 @@ import terser from "lume/plugins/terser.ts";
 import transformImages from "lume/plugins/transform_images.ts";
 import mermaid from "https://deno.land/x/lume_mermaid@v0.1.4/mod.ts";
 import minifyHTML from "lume/plugins/minify_html.ts";
-import seo from "./src/_plugins/seo/mod.ts";
 import simpleSEO from "./src/_plugins/seo/new_mod.ts";
 import toc from "./src/_plugins/toc/mod.ts";
 

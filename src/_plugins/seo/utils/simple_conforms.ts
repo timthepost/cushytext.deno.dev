@@ -56,7 +56,6 @@ export class SimpleConforms {
     this.pageLocale = pageLocale;
     this.reporterLocale = reporterLocale;
     this.requirement = this.parseNomenclature(nomenclature);
-
   }
 
   private parseNomenclature(nomenclature: string): ParsedRequirement {
